@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>UMD.io API Test</title>
+        <title>umd.io API Test</title>
     </head>
     <body>
-        content goes here
+        <h1>Test of <a href="https://umd.io" target="_blank">umd.io</a> API</h1>
+        <strong>Course name: </strong><span id="name"></span>
     </body>
 
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/main.js"></script> 
     <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-database.js"></script>
     <script>
         // Initialize Firebase
         var config = {
