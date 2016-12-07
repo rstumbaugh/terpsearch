@@ -6,13 +6,17 @@
 'use strict';
 
 function APITest() {
-    this.courseName = $('#name');
-
-    this.database = firebase.database();
-
-
-    this.getCourse();
+    this.emailField = document.getElementById('txtEmail');
+    this.submitEmail = document.getElementById("btnEmail");
+    this.database = firebase.database(); 
+    this.submitEmail.addEventListener("click", this.saveEmail.bind(this)); 
 }
+
+APITest.prototype.saveEmail = function() {
+    this.database.ref("/email/").push({
+        email: this.emailField.value
+    }); 
+};
 
 APITest.prototype.getCourse = function() {
     

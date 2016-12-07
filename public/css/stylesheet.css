@@ -1,0 +1,62 @@
+html, body {
+	width: 100%;
+	height: 100%;
+
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+nav.navbar {
+	margin-bottom: 0;
+}
+
+.landing-page-wrap {
+	width: 100%;
+	height: 93%;
+}
+
+.landing-page {
+	height: 60%;
+	background-color: #c0392b;
+}
+
+.landing-page > div {
+	text-align: center;
+}
+
+.hero {
+	text-align: center;
+	color: white;
+	margin-top: 100px;
+}
+
+.hero .small {
+	font-size: 16px;
+}
+
+.email {
+	margin-top: 100px;
+	color: white;
+	text-align: center;
+}
+
+.email label {
+	font-weight: 300;
+	font-size: 16px;
+}
+
+.email input {
+	display: inline;
+	color: black;
+	width: 20%;
+}
+
+.email button {
+	color: black;
+}
+
+
+
+
+
+
+
