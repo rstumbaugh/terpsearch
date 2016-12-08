@@ -44,17 +44,87 @@ nav.navbar {
 	font-size: 16px;
 }
 
+.email .input-group {
+	width: 30%;
+}
+
 .email input {
 	display: inline;
 	color: black;
-	width: 20%;
 }
 
-.email button {
+.email .input-group-btn button {
+	background-color: #e7e7e7;
 	color: black;
 }
 
+.icons,
+.content {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	text-align: center;	
+}
 
+
+.icon-wrap {
+	text-align: center;
+}
+
+.icon-wrap img {
+	height: 150px;
+	margin-bottom: 20px;
+}
+
+.icon-wrap p {
+	font-size: 16px;
+}
+
+.content div {
+}
+
+.content-top {
+	background-color: #f1c40f;
+	text-align: left;
+}
+
+.content input {
+	width: 30%;
+	margin-right: 35%;
+}
+
+.content-bottom {
+	background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+	height: 150px;
+	background: #ecf0f1;
+	color: #c0392b;
+	padding: 40px 0 40px 0;
+	text-align: center;
+}
+
+.footer .footer-links div {
+	text-align: center;
+}
+
+.footer a {
+	color: #42bcf4;
+}
 
 
 

@@ -44,6 +44,7 @@
         </nav>
 
 
+
         <div class="container-fluid landing-page-wrap">
             <div class="row landing-page">
                 <div class="col-md-8 col-md-offset-2">
@@ -53,14 +54,86 @@
                     </div>
                     <div class="email form-group">
                         <label for="txtEmail">Enter your email to receive updates on the project!</label><br/>
-                        <input type="email" class="form-control" id="txtEmail" placeholder="me@example.com">
-                        <button type="submit" class="btn btn-default btn-sm" id="btnEmail"><span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
+                        <div class="input-group col-sm-4 col-sm-offset-4">
+                            <input type="text" class="form-control" id="txtEmail" placeholder="me@example.com">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" id="btnEmail" type="button">
+                                    <span class="glyphicon glyphicon-arrow-right"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row icons">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <div class="icon-wrap col-sm-12 col-md-4">
+                        <img src="img/shell.svg">
+                        <p>One of the only course selection applications made specifically for Terps.</p>
+                    </div>
+                    <div class="icon-wrap col-sm-12 col-md-4">
+                        <img src="img/class.svg">
+                        <p>Find and filter classes based on difficulty, Gen Ed requirements, engagement, and subject.</p>
+                    </div>
+                    <div class="icon-wrap col-sm-12 col-md-4">
+                        <img src="img/students-cap.svg">
+                        <p>Course information contributed by students just like you (<a href="#">feel free to add your own info!</a>).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row content content-top">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <h1>API Test</h1>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtQuery" placeholder="Enter query">
+                        <br/>   
+                        <button class="btn btn-primary" id="btnQuery" type="button">Go</button>
+                        <br/><br/>
+                        <span id="numCourses"></span>
+                        <br/>
+                        <textarea id="queryResult" style="width:100%;height:200px"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row content content-bottom">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <h1>Some more content here</h1>
+                </div>
+            </div>
+
+            <div class="row footer">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <div class="col-sm-12">
+                        <p>Made at the University of Maryland, College Park</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="footer-links col-sm-4 col-sm-offset-4">
+                            <div class="col-xs-4">
+                                Contact Me
+                            </div>
+                            <div class="col-xs-4">
+                                GitHub
+                            </div>
+                            <div class="col-xs-4">
+                                email
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+        
     </body>
+
 
 
     <script src="scripts/jquery.min.js"></script>

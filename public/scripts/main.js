@@ -7,9 +7,14 @@
 
 function APITest() {
     this.emailField = document.getElementById('txtEmail');
-    this.submitEmail = document.getElementById("btnEmail");
+    this.submitEmail = document.getElementById('btnEmail');
+
+    this.queryField = document.getElementById('txtQuery');
+    this.submitQuery = document.getElementById('btnQuery');
+
     this.database = firebase.database(); 
     this.submitEmail.addEventListener("click", this.saveEmail.bind(this)); 
+    this.submitQuery.addEventListener("click", this.doQuery.bind(this));
 }
 
 APITest.prototype.saveEmail = function() {
@@ -18,19 +23,25 @@ APITest.prototype.saveEmail = function() {
     }); 
 };
 
-APITest.prototype.getCourse = function() {
-    
+APITest.prototype.doQuery = function() {
+    var url = "http://api.umd.io/v0/courses?";
+    var query = this.queryField.value;
+
+    url = url + query;
+
     $.ajax({
         method: "GET",
         dataType: "json",
-        url: "http://api.umd.io/v0/courses?course_id=CMSC330",
+        url: url,
         data: "",
         success: function(data) {
-            $("#name").text(data[0]["name"]);
+            var json_as_str = JSON.stringify(data);
+            $("#queryResult").text(json_as_str);
+            $("#numCourses").text("Number of results: "+data.length);
         }
     });
-    
 };
+
 
 
 window.onload = function() {
