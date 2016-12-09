@@ -89,10 +89,6 @@ html, body {
 	padding: 0 5px;
 }
 
-.hero .small {
-	font-size: 16px;
-}
-
 .email {
 	margin-top: 100px;
 	color: white;
@@ -164,17 +160,6 @@ html, body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 .footer {
 	height: 150px;
 	background: #ecf0f1;
@@ -189,6 +174,38 @@ html, body {
 
 .footer a {
 	color: #42bcf4;
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.hero {
+		top: 10px;
+	}
+
+	.subtitle {
+		bottom: 50px;
+	}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+	
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+	
 }
 
 
