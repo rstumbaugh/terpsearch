@@ -24,8 +24,10 @@ APITest.prototype.saveEmail = function() {
     }); 
 };
 
+
 APITest.prototype.search = function() {
     $("#queryResult").text("");
+    console.log("Here");
     var url = "http://api.umd.io/v0/courses/list";
     var term = this.queryField.value;
 
@@ -57,7 +59,7 @@ APITest.prototype.findTerm = function(list, term) {
     }
 
     return list.filter(filterFunc);
-}
+};
 
 APITest.prototype.doQuery = function() {
     var url = "http://api.umd.io/v0/courses?";

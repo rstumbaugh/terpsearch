@@ -3,14 +3,15 @@
     <head>
         <title>umd.io API Test</title>
 
+        <link href="https://fonts.googleapis.com/css?family=Cantarell:400i" rel="stylesheet">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
     </head>
 
     <body>
-        <nav class="navbar navbar-default">
+        <!-- <nav class="navbar navbar-default">
             <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -18,10 +19,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">[Name]</a>
+              <a class="navbar-brand" href="index.html">[Name]</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
@@ -39,20 +39,10 @@
                     </ul>
                 </li>
               </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
+            </div>
+          </div>
 
-
-
-        <div class="container-fluid landing-page-wrap">
-            <div class="row landing-page">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="hero">
-                        <h1>[name]</h1>
-                        <span class="small">Tagline</span>
-                    </div>
-                    <div class="email form-group">
+          <div class="email form-group">
                         <label for="txtEmail">Enter your email to receive updates on the project!</label><br/>
                         <div class="input-group col-sm-4 col-sm-offset-4">
                             <input type="text" class="form-control" id="txtEmail" placeholder="me@example.com">
@@ -63,6 +53,25 @@
                             </span>
                         </div>
                     </div>
+        </nav> -->
+        <div class="nav-header-wrap">
+            [name]
+        </div>  
+
+
+
+        <div class="container-fluid landing-page-wrap">
+            <div class="row landing-page">
+                <div class="hero-wrap col-md-5 col-md-offset-1">
+                    <div class="hero">
+                        <h1>Course selection <br/> made simple.</h1>
+                    </div>
+                    <div class="subtitle">
+                        <h2><i>Made by Terps, for Terps.</i></h2>
+                    </div>
+                </div>
+                <div class="img-wrap col-md-5">
+                    <img class="col-md-12" src="img/schedule.png">
                 </div>
             </div>
 
@@ -78,7 +87,7 @@
                     </div>
                     <div class="icon-wrap col-sm-12 col-md-4">
                         <img src="img/students-cap.svg">
-                        <p>Course information contributed by students just like you (<a href="#">feel free to add your own info!</a>).</p>
+                        <p>Course information contributed by students just like you (<a href="course_form.html">feel free to add your own info!</a>).</p>
                     </div>
                 </div>
             </div>
@@ -96,7 +105,23 @@
                     <textarea name="queryResult" id="queryResult"></textarea>
                 </div>
             </div>
+            <!-- <div class="row content content-top">
+                <h1>Form here</h1>
+            </div>
 
+            <div class="row content content-bottom">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <h2>API Testing</h2>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtQuery" placeholder="Enter keyword...">
+                        <br>
+                        <button class="btn btn-primary" id="btnQuery" type="button">Go</button>
+                    </div>
+                    <p id="numResults"></p>
+                    <textarea name="queryResult" id="queryResult"></textarea>
+                </div>
+            </div> -->
 
             <div class="row footer">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -130,10 +155,10 @@
     </body>
 
 
-
+    <script src="scripts/info.js"></script>
+    <script src="scripts/main.js"></script>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
-    <script src="scripts/main.js"></script> 
     <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
     <script>
         // Initialize Firebase
