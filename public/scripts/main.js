@@ -14,7 +14,8 @@ function APITest() {
 
     this.database = firebase.database(); 
     this.submitEmail.addEventListener("click", this.saveEmail.bind(this)); 
-    this.submitQuery.addEventListener("click", this.doQuery.bind(this));
+    //this.submitQuery.addEventListener("click", this.doQuery.bind(this));
+    this.submitQuery.addEventListener("click", this.search.bind(this));
 }
 
 APITest.prototype.saveEmail = function() {
@@ -22,6 +23,41 @@ APITest.prototype.saveEmail = function() {
         email: this.emailField.value
     }); 
 };
+
+APITest.prototype.search = function() {
+    $("#queryResult").text("");
+    var url = "http://api.umd.io/v0/courses/list";
+    var term = this.queryField.value;
+
+    var myclass = this;
+    $.ajax({
+        method: "GET",
+        dataType: "json",
+        url: url,
+        data: "",
+        success: function(data) {
+            var filtered = myclass.findTerm(data, term);
+
+            filtered.forEach(function(element) {
+                var text = $("#queryResult").text();
+                text += element["course_id"] + ": " + element["name"];
+                text += "\n";
+                $("#queryResult").text(text);
+            });
+
+            console.log("done");
+
+        }
+    });
+};
+
+APITest.prototype.findTerm = function(list, term) {
+    var filterFunc = function(item) {
+        return item["name"].toLowerCase().includes(term.toLowerCase());
+    }
+
+    return list.filter(filterFunc);
+}
 
 APITest.prototype.doQuery = function() {
     var url = "http://api.umd.io/v0/courses?";
@@ -41,8 +77,6 @@ APITest.prototype.doQuery = function() {
         }
     });
 };
-
-
 
 window.onload = function() {
     window.apiTest = new APITest();
