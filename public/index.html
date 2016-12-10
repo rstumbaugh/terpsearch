@@ -89,29 +89,68 @@
                     </div>
                     <div class="icon-wrap col-sm-12 col-md-4">
                         <img src="img/students-cap.svg">
-                        <p>Course information contributed by students just like you (<a href="course_form.html">feel free to add your own info!</a>).</p>
+                        <p>Course information contributed by University of Maryland students just like you.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- <div class="row content content-top">
+
+            <div class="row info-form">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <h2>API Testing</h2>
-                    <br>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txtQuery" placeholder="Enter keyword...">
-                        <br>
-                        <button class="btn btn-primary" id="btnQuery" type="button">Go</button>
+                    <div class="col-md-6">
+                        <h2>Coming Spring 2017</h2>
+                        <p>
+                            You can check out my progress <a href="https://github.com/rstumbaugh/umd-course-app" target="_blank">here</a>,
+                            and even view the page as I'm developing it <a href="https://rstumbaugh.github.io/umd-course-app" target="_blank">here</a>.
+                            This link will be updated periodically with new features as I implement them, so feel free to visit and
+                            see where I'm at.
+
+                            In the meantime, contribute your own courses to help out!<br/><br>
+
+                            Feel free to <a href="mailto:rstumbaugh1@gmail.com" target="_blank">shoot me an email</a> with
+                            any suggestions you might have for the site, or 
+                            <a href="https://github.com/rstumbaugh/umd-course-app/issues" target="_blank">report an issue on GitHub</a>.
+                            <br/><br/>
+                        </p>
                     </div>
-                    <p id="numResults"></p>
-                    <textarea name="queryResult" id="queryResult"></textarea>
+                    <div class="form-wrap col-md-6">
+                        <form class="col-md-11 col-md-offset-1 form-horizontal">
+                            <fieldset>
+                                <legend>Submit a course</legend>
+                                <div class="form-group">
+                                    <label for="txtCourse" class="control-label col-sm-3">Course name:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txtCourse" placeholder="ex. ENGL101">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rtgDifficulty" class="control-label col-sm-3">Difficulty:</label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" class="rating" id="rtgDifficulty" value="1">
+                                        <p class="help-block">1 star = Very Easy, 5 stars = Very Difficult</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rtgInterest" class="control-label col-sm-3">Interest:</label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" class="rating" id="rtgInterest" value="1">
+                                        <p class="help-block">1 star = Very Boring, 5 stars = Very Interesting</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-9 col-sm-offset-3">   
+                                        <button type="button" class="btn btn-primary" id="btnSubmitCourse">Submit</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
-            </div> -->
-            <!-- <div class="row content content-top">
-                <h1>Form here</h1>
             </div>
 
-            <div class="row content content-bottom">
+            
+
+            <!-- <div class="row content content-bottom">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                     <h2>API Testing</h2>
                     <br>
@@ -136,7 +175,7 @@
                                 <a href="mailto:rstumbaugh1@gmail.com" target="_blank">Contact Me</a>
                             </div>
                             <div class="col-xs-4">
-                                <a href="https://github.com/rstumbaugh/umd-api-test" target="_blank">GitHub</a>
+                                <a href="https://github.com/rstumbaugh/umd-course-app" target="_blank">GitHub</a>
                             </div>
                             <div class="col-xs-4">
                                 <a href="https://firebase.google.com" target="_blank">Google Firebase</a>
@@ -161,6 +200,7 @@
     <script src="scripts/main.js"></script>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/bootstrap-rating.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
     <script>
         // Initialize Firebase
