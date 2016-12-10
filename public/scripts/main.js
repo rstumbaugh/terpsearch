@@ -23,10 +23,18 @@ function APITest() {
 
 APITest.prototype.submitCourse = function() {
     var courseId = this.courseField.value.toUpperCase();
-    var diffRating = this.$difficultyField.value;
-    var interestRating = this.$interestField.value;
+    var diffRating = parseInt(this.$difficultyField.value);
+    var interestRating = parseInt(this.$interestField.value);
 
-    console.log(courseId+": "+diffRating+" "+interestRating);
+    // TODO: validate course name
+
+    this.database.ref("/courses/"+courseId+"/difficulty").push({
+        rating: diffRating
+    });
+
+    this.database.ref("/courses/"+courseId+"/interest").push({
+        rating: interestRating
+    });
 };
 
 APITest.prototype.saveEmail = function() {
