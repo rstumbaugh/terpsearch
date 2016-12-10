@@ -233,6 +233,11 @@ label {
 	.subtitle {
 		bottom: 50px;
 	}
+	
+	.form-wrap .glyphicon {
+		font-size: 32px;
+	}
+
 }
 
 /* Extra Small Devices, Phones */ 
