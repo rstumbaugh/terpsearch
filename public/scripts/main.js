@@ -23,8 +23,6 @@ function APITest() {
         e.preventDefault();
     });
 
-    $("#courseErrorMsg").hide();
-
     //this.queryField = document.getElementById('txtQuery');
     //this.submitQuery = document.getElementById('btnQuery');
 
@@ -36,9 +34,11 @@ function APITest() {
 }
 
 APITest.prototype.submitCourse = function() {
-    console.log("here");
     this.courseIdWrap.classList.remove('has-error');
+
     $("#courseErrorMsg").hide();
+    $("#courseSuccessMsg").hide();
+
     var courseId = this.courseField.value.toUpperCase();
     var diffRating = parseInt(this.difficultyField.value);
     var interestRating = parseInt(this.interestField.value);
@@ -53,9 +53,12 @@ APITest.prototype.submitCourse = function() {
         this.database.ref("/courses_test/"+courseId+"/interest").push({
             rating: interestRating
         });
+        $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
+        $('#txtCourse').val('');
+        $('.rating').rating('rate', '1');
     } else {
-        this.courseIdWrap.classList.toggle('has-error');
-        $("#courseErrorMsg").show();
+        this.courseIdWrap.classList.add('has-error');
+        $('#courseErrorMsg').css('visibility', 'visible').slideDown();
     }
     
 };

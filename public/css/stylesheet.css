@@ -6,6 +6,10 @@ html, body {
 	font-weight: 300;
 }
 
+.success-msg {
+	color: #3c763d;
+}
+
 .nav-header-wrap {
 	width: 100%;
 	height: 80px;
@@ -183,14 +187,19 @@ label {
 	margin-top: 5px;
 }
 
-.form-wrap p {
+.form-wrap .help-block {
 	font-size: 12px;
 	margin-bottom: 0;
 }
 
-.form-wrap .message {
-	height: 100%;
-	background-color: yellow;
+#courseSuccessMsg,
+#courseErrorMsg {
+	position: absolute;
+	visibility: hidden;
+}
+
+#courseSuccessMsg {
+	font-size: 14px;
 }
 
 ::-webkit-input-placeholder {
