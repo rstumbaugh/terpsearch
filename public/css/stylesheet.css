@@ -21,6 +21,8 @@ html, body {
 	font-size: 40px;
 	font-weight: 700;
 	color: #c0392b;
+
+	font-family: "Lobster", "Helvetica Neue", Helvetica;
 }
 
 .landing-page-wrap {
