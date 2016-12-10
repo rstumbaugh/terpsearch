@@ -6,17 +6,36 @@
 'use strict';
 
 function APITest() {
-    this.emailField = document.getElementById('txtEmail');
-    this.submitEmail = document.getElementById('btnEmail');
+    this.courseField = document.getElementById('txtCourse');
+    this.$difficultyField = document.getElementById('rtgDifficulty');
+    this.$interestField = document.getElementById('rtgInterest');
+    this.submitCourseButton = document.getElementById('btnSubmitCourse');
 
-    this.queryField = document.getElementById('txtQuery');
-    this.submitQuery = document.getElementById('btnQuery');
+    //this.queryField = document.getElementById('txtQuery');
+    //this.submitQuery = document.getElementById('btnQuery');
 
     this.database = firebase.database(); 
-    this.submitEmail.addEventListener("click", this.saveEmail.bind(this)); 
+    this.submitCourseButton.addEventListener('click', this.submitCourse.bind(this));
+    //this.submitEmail.addEventListener("click", this.saveEmail.bind(this)); 
     //this.submitQuery.addEventListener("click", this.doQuery.bind(this));
-    this.submitQuery.addEventListener("click", this.search.bind(this));
+    //this.submitQuery.addEventListener("click", this.search.bind(this));
 }
+
+APITest.prototype.submitCourse = function() {
+    var courseId = this.courseField.value.toUpperCase();
+    var diffRating = parseInt(this.$difficultyField.value);
+    var interestRating = parseInt(this.$interestField.value);
+
+    // TODO: validate course name
+
+    this.database.ref("/courses/"+courseId+"/difficulty").push({
+        rating: diffRating
+    });
+
+    this.database.ref("/courses/"+courseId+"/interest").push({
+        rating: interestRating
+    });
+};
 
 APITest.prototype.saveEmail = function() {
     this.database.ref("/email/").push({
@@ -27,7 +46,6 @@ APITest.prototype.saveEmail = function() {
 
 APITest.prototype.search = function() {
     $("#queryResult").text("");
-    console.log("Here");
     var url = "http://api.umd.io/v0/courses/list";
     var term = this.queryField.value;
 

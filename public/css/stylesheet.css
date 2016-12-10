@@ -3,6 +3,7 @@ html, body {
 	height: 100%;
 
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
 }
 
 .nav-header-wrap {
@@ -65,12 +66,13 @@ html, body {
 	left: 0;
 	bottom: 75px;
 
-	font-family: "Cantrelli";
 }
 
 .subtitle h2 {
     overflow: hidden;
     text-align: center;
+    font-weight: 200;
+    font-size: 22px;
 }
 
 .subtitle h2:before,
@@ -87,6 +89,7 @@ html, body {
 .subtitle i {
 	font-size: 22px;
 	padding: 0 5px;
+	font-style: normal;
 }
 
 .email {
@@ -114,10 +117,9 @@ html, body {
 	color: black;
 }
 
-.icons,
-.content {
+.icons{
 	padding-top: 40px;
-	padding-bottom: 40px;
+	padding-bottom: 65px;
 	text-align: center;	
 }
 
@@ -135,27 +137,69 @@ html, body {
 	font-size: 18px;
 }
 
-.content input {
-	width: 30%;
-	margin-right: 35%;
+.info-form {
+	padding-bottom: 25px;
 }
 
-.content-top {
-	background-color: #f1c40f;
+.info-form h2 {
+	color: #c0392b;
+	font-size: 36px;
+	padding-bottom: 15px;
 }
 
-.content-top {
-	text-align: left;
+.info-form p {
+	font-size: 18px;
 }
 
-.content-top textarea {
-	width: 100%;
-	height: 250px;
+.input-wrap {
+	padding-left: 0;
 }
 
 
-.content-bottom {
-	background-color: white;
+legend {
+	display: block;
+	width: auto;
+	padding: 0 5px;
+	font-size: inherit;
+	line-height: inherit;
+	border: auto;
+	border-bottom: none;
+	color: #c0392b;
+	font-size: 18px;
+	font-weight: 300;
+}
+
+fieldset {
+    border: 1px solid #c0392b;
+    padding-left: 15px;
+}
+
+label {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+}
+
+.form-wrap .glyphicon {
+	font-size: 18px;
+	color: #c0392b;
+	margin-top: 5px;
+}
+
+.form-wrap p {
+	font-size: 12px;
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;  
+}
+::-moz-placeholder {
+   font-style: italic;  
+}
+:-ms-input-placeholder {  
+   font-style: italic; 
 }
 
 
@@ -172,9 +216,6 @@ html, body {
 	text-align: center;
 }
 
-.footer a {
-	color: #42bcf4;
-}
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
