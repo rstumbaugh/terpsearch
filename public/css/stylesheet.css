@@ -133,7 +133,8 @@ html, body {
 	margin-bottom: 20px;
 }
 
-.icon-wrap p {
+.icon-wrap p,
+.info-form p {
 	font-size: 18px;
 }
 
@@ -147,9 +148,6 @@ html, body {
 	padding-bottom: 15px;
 }
 
-.info-form p {
-	font-size: 18px;
-}
 
 .input-wrap {
 	padding-left: 0;
@@ -171,7 +169,7 @@ legend {
 
 fieldset {
     border: 1px solid #c0392b;
-    padding-left: 15px;
+    padding: 0 15px;
 }
 
 label {
@@ -180,13 +178,14 @@ label {
 }
 
 .form-wrap .glyphicon {
-	font-size: 18px;
+	font-size: 22px;
 	color: #c0392b;
 	margin-top: 5px;
 }
 
 .form-wrap p {
 	font-size: 12px;
+	margin-bottom: 0;
 }
 
 ::-webkit-input-placeholder {
@@ -201,8 +200,6 @@ label {
 :-ms-input-placeholder {  
    font-style: italic; 
 }
-
-
 
 .footer {
 	height: 150px;
@@ -236,6 +233,11 @@ label {
 	.subtitle {
 		bottom: 50px;
 	}
+	
+	.form-wrap .glyphicon {
+		font-size: 32px;
+	}
+
 }
 
 /* Extra Small Devices, Phones */ 
