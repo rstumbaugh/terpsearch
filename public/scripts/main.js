@@ -11,30 +11,32 @@ function APITest() {
     this.$interestField = document.getElementById('rtgInterest');
     this.submitCourseButton = document.getElementById('btnSubmitCourse');
 
+    $("#message").hide();
     //this.queryField = document.getElementById('txtQuery');
     //this.submitQuery = document.getElementById('btnQuery');
 
     this.database = firebase.database(); 
-    //this.submitCourseButton.addEventListener('click', this.submitCourse.bind(this));
+    this.submitCourseButton.addEventListener('click', this.submitCourse.bind(this));
     //this.submitEmail.addEventListener("click", this.saveEmail.bind(this)); 
     //this.submitQuery.addEventListener("click", this.doQuery.bind(this));
     //this.submitQuery.addEventListener("click", this.search.bind(this));
 }
 
 APITest.prototype.submitCourse = function() {
-    var courseId = this.courseField.value.toUpperCase();
-    var diffRating = parseInt(this.$difficultyField.value);
-    var interestRating = parseInt(this.$interestField.value);
+    $("#message").show();
+    // var courseId = this.courseField.value.toUpperCase();
+    // var diffRating = parseInt(this.$difficultyField.value);
+    // var interestRating = parseInt(this.$interestField.value);
 
-    // TODO: validate course name
+    // // TODO: validate course name
 
-    this.database.ref("/courses/"+courseId+"/difficulty").push({
-        rating: diffRating
-    });
+    // this.database.ref("/courses/"+courseId+"/difficulty").push({
+    //     rating: diffRating
+    // });
 
-    this.database.ref("/courses/"+courseId+"/interest").push({
-        rating: interestRating
-    });
+    // this.database.ref("/courses/"+courseId+"/interest").push({
+    //     rating: interestRating
+    // });
 };
 
 APITest.prototype.saveEmail = function() {
