@@ -188,6 +188,11 @@ label {
 	margin-bottom: 0;
 }
 
+.form-wrap .message {
+	height: 100%;
+	background-color: yellow;
+}
+
 ::-webkit-input-placeholder {
    font-style: italic;
 }

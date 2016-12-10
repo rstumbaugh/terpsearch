@@ -13,15 +13,15 @@ function APITest() {
     this.courseIdWrap = document.getElementById('courseInputWrap');
     this.validationMessage = document.getElementById('courseErrorMsg');
 
-    // $('#txtCourse').keypress(function(e) {
-    //     if (e.keyCode == 13) {
-    //         this.submitCourse();
-    //     }
-    // });
+    $('#txtCourse').keypress(function(e) {
+        if (e.keyCode == 13) {
+            $('#btnSubmitCourse').click();
+        }
+    });
 
-    // $('form').submit(function(e) {
-    //     e.preventDefault();
-    // });
+    $('form').submit(function(e) {
+        e.preventDefault();
+    });
 
     $("#courseErrorMsg").hide();
 
@@ -36,6 +36,7 @@ function APITest() {
 }
 
 APITest.prototype.submitCourse = function() {
+    console.log("here");
     this.courseIdWrap.classList.remove('has-error');
     $("#courseErrorMsg").hide();
     var courseId = this.courseField.value.toUpperCase();
