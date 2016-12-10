@@ -183,6 +183,15 @@ label {
 	font-weight: 400;
 }
 
+
+.form-group {
+	margin-top: 24px;
+}
+
+#courseInputWrap {
+	margin-top: 0;
+}
+
 .form-wrap .glyphicon {
 	font-size: 22px;
 	color: #c0392b;
@@ -195,7 +204,8 @@ label {
 }
 
 #courseSuccessMsg,
-#courseErrorMsg {
+#courseErrorMsg,
+#profErrorMsg {
 	position: absolute;
 	visibility: hidden;
 }
