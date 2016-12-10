@@ -15,7 +15,7 @@ function APITest() {
     //this.submitQuery = document.getElementById('btnQuery');
 
     this.database = firebase.database(); 
-    this.submitCourseButton.addEventListener('click', this.submitCourse.bind(this));
+    //this.submitCourseButton.addEventListener('click', this.submitCourse.bind(this));
     //this.submitEmail.addEventListener("click", this.saveEmail.bind(this)); 
     //this.submitQuery.addEventListener("click", this.doQuery.bind(this));
     //this.submitQuery.addEventListener("click", this.search.bind(this));
