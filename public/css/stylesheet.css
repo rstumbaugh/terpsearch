@@ -171,7 +171,7 @@ legend {
 
 fieldset {
     border: 1px solid #c0392b;
-    padding-left: 15px;
+    padding: 0 15px;
 }
 
 label {
