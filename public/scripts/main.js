@@ -11,6 +11,16 @@ function APITest() {
     this.$interestField = document.getElementById('rtgInterest');
     this.submitCourseButton = document.getElementById('btnSubmitCourse');
 
+    // $('#txtCourse').keypress(function(e) {
+    //     if (e.keyCode == 13) {
+    //         this.submitCourse();
+    //     }
+    // });
+
+    // $('form').submit(function(e) {
+    //     e.preventDefault();
+    // });
+
     //this.queryField = document.getElementById('txtQuery');
     //this.submitQuery = document.getElementById('btnQuery');
 
@@ -64,9 +74,6 @@ APITest.prototype.search = function() {
                 text += "\n";
                 $("#queryResult").text(text);
             });
-
-            console.log("done");
-
         }
     });
 };
