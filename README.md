@@ -1,1 +1,4 @@
 # umd-api-test
+
+Application to filter courses at the University of Maryland. Inspired by <a href="https://www.ourumd.com">www.ourumd.com</a>.
+Utilizes API found at <a href="https://umd.io">umd.io</a>, which contains information on all courses offered at UMD.
