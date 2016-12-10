@@ -46,11 +46,11 @@ APITest.prototype.submitCourse = function() {
     // TODO: validate course name
 
     if (this.courseIsValid(courseId)) {
-        this.database.ref("/courses_test/"+courseId+"/difficulty").push({
+        this.database.ref("/courses_prod/"+courseId+"/difficulty").push({
             rating: diffRating
         });
 
-        this.database.ref("/courses_test/"+courseId+"/interest").push({
+        this.database.ref("/courses_prod/"+courseId+"/interest").push({
             rating: interestRating
         });
         $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
