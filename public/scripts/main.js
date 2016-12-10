@@ -7,11 +7,13 @@
 
 function APITest() {
     this.courseField = document.getElementById('txtCourse');
-    this.$difficultyField = document.getElementById('rtgDifficulty');
-    this.$interestField = document.getElementById('rtgInterest');
+    this.difficultyField = document.getElementById('rtgDifficulty');
+    this.interestField = document.getElementById('rtgInterest');
     this.submitCourseButton = document.getElementById('btnSubmitCourse');
+    this.courseIdWrap = document.getElementById('courseInputWrap');
+    this.validationMessage = document.getElementById('courseErrorMsg');
 
-    $("#message").hide();
+    $("#courseErrorMsg").hide();
     //this.queryField = document.getElementById('txtQuery');
     //this.submitQuery = document.getElementById('btnQuery');
 
@@ -23,20 +25,27 @@ function APITest() {
 }
 
 APITest.prototype.submitCourse = function() {
-    $("#message").show();
-    // var courseId = this.courseField.value.toUpperCase();
-    // var diffRating = parseInt(this.$difficultyField.value);
-    // var interestRating = parseInt(this.$interestField.value);
+    this.courseIdWrap.classList.remove('has-error');
+    $("#courseErrorMsg").hide();
+    var courseId = this.courseField.value.toUpperCase();
+    var diffRating = parseInt(this.difficultyField.value);
+    var interestRating = parseInt(this.interestField.value);
 
-    // // TODO: validate course name
+    // TODO: validate course name
 
-    // this.database.ref("/courses/"+courseId+"/difficulty").push({
-    //     rating: diffRating
-    // });
+    if (this.courseIsValid(courseId)) {
+        this.database.ref("/courses_test/"+courseId+"/difficulty").push({
+            rating: diffRating
+        });
 
-    // this.database.ref("/courses/"+courseId+"/interest").push({
-    //     rating: interestRating
-    // });
+        this.database.ref("/courses_test/"+courseId+"/interest").push({
+            rating: interestRating
+        });
+    } else {
+        this.courseIdWrap.classList.toggle('has-error');
+        $("#courseErrorMsg").show();
+    }
+    
 };
 
 APITest.prototype.saveEmail = function() {
@@ -44,6 +53,13 @@ APITest.prototype.saveEmail = function() {
         email: this.emailField.value
     }); 
 };
+
+APITest.prototype.courseIsValid = function(name) {
+    var pattern = /^[a-zA-Z]{4}[0-9]{3}[a-zA-Z]?$/
+    var matches = name.match(pattern);
+
+    return matches != null;
+}
 
 
 APITest.prototype.search = function() {

@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="https://fonts.googleapis.com/css?family=Cantarell:400i" rel="stylesheet">
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
     </head>
@@ -117,10 +118,11 @@
                         <form class="col-md-11 col-md-offset-1 form-horizontal">
                             <fieldset>
                                 <legend>Submit a course</legend>
-                                <div class="form-group">
+                                <div id="courseInputWrap" class="form-group">
                                     <label for="txtCourse" class="control-label col-sm-3">Course name:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="txtCourse" placeholder="ex. ENGL101">
+                                        <p class="help-block" class="error-msg" id="courseErrorMsg">Enter a valid course.</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -140,7 +142,6 @@
                                 <div class="form-group">
                                     <div class="col-sm-9 col-sm-offset-3">   
                                         <button type="button" class="btn btn-primary" id="btnSubmitCourse">Submit</button>
-                                        <p style="font-size: 16px;color:#c0392b" id="message">Oops, this feature isn't available yet.</p>
                                     </div>
                                 </div>
 
@@ -201,6 +202,7 @@
     <script src="scripts/info.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/bootstrap-rating.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
