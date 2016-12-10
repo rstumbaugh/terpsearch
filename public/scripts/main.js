@@ -7,10 +7,12 @@
 
 function APITest() {
     this.courseField = document.getElementById('txtCourse');
+    this.profField = document.getElementById('txtProf');
     this.difficultyField = document.getElementById('rtgDifficulty');
     this.interestField = document.getElementById('rtgInterest');
     this.submitCourseButton = document.getElementById('btnSubmitCourse');
     this.courseIdWrap = document.getElementById('courseInputWrap');
+    this.profInputWrap = document.getElementById('profInputWrap')
     this.validationMessage = document.getElementById('courseErrorMsg');
 
     $('#txtCourse').keypress(function(e) {
@@ -35,15 +37,23 @@ function APITest() {
 
 APITest.prototype.submitCourse = function() {
     this.courseIdWrap.classList.remove('has-error');
+    this.profInputWrap.classList.remove('has-error');
 
     $("#courseErrorMsg").hide();
     $("#courseSuccessMsg").hide();
+    $("#profErrorMsg").hide();
 
     var courseId = this.courseField.value.toUpperCase();
+    var professor = this.profField.value;
     var diffRating = parseInt(this.difficultyField.value);
     var interestRating = parseInt(this.interestField.value);
 
-    // TODO: validate course name
+    console.log(professor);
+
+
+    // validate both course id and professor name
+    // function for validation
+
 
     if (this.courseIsValid(courseId)) {
         this.database.ref("/courses_test/"+courseId+"/difficulty").push({
@@ -55,12 +65,12 @@ APITest.prototype.submitCourse = function() {
         });
         $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
         $('#txtCourse').val('');
+        $('#txtProf').val('');
         $('.rating').rating('rate', '1');
     } else {
         this.courseIdWrap.classList.add('has-error');
         $('#courseErrorMsg').css('visibility', 'visible').slideDown();
     }
-    
 };
 
 APITest.prototype.saveEmail = function() {
