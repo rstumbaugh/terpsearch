@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TerpSearch</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+        <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+        <link href="css/content.css" type="text/css" rel="stylesheet">
+    </head>
+
+    <body class="content" id="viewCourse">
+		<div class="nav-header-wrap">
+            TerpSearch
+        </div>  
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1">
+					<h1 id="courseName"></h1>
+					<h2 id="courseTitle"></h2>
+                    <p id="relationship_prereqs"><strong>Prerequisite: </strong><span id="prereqs"></span></p>
+                    <p id="relationship_coreqs"><strong>Corequisite: </strong><span id="coreqs"></span></p>
+                    <p id="relationship_restrictions"><strong>Restriction: </strong><span id="restrictions"></span></p>
+                    <p id="relationship_credit_granted_for"><strong>Credit only granted for: </strong><span id="credit_granted_for"></span></p>
+                    <p id="relationship_also_offered_as"><strong>Also offered as: </strong><span id="also_offered_as"></span></p>
+                    <p id="relationship_formerly"><strong>Formerly: </strong><span id="formerly"></span></p>
+                    <p id="relationship_additional_info"><strong>Additional info:</strong><span id="additional_info"></span></p>
+					<p id="description"></p>
+					
+				</div>
+			</div>
+
+
+			<!-- <div class="row footer">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <div class="col-sm-12">
+                        <p>Made at the University of Maryland, College Park</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="footer-links col-sm-6 col-sm-offset-3">
+                            <div class="col-xs-4">
+                                <a href="mailto:rstumbaugh1@gmail.com" target="_blank">Contact Me</a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="https://github.com/rstumbaugh/terpsearch" target="_blank">GitHub</a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="https://firebase.google.com" target="_blank">Google Firebase</a>
+                            </div>
+                        </div>
+                    <br/><br/>
+                    </div>
+                    <div class="col-sm-12">
+                        Icons made by <a href="http://www.freepik.com" target="_blank" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" target="_blank" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+                    </div>
+                </div>
+            </div> -->
+		</div>
+
+
+		
+    </body>
+
+    <script src="scripts/info.js"></script>
+    <script src="scripts/viewcourse.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/bootstrap-rating.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAMR4YSAmaxptjscXsoOd33Y3jBHnVUNdw",
+            authDomain: "umd-api-testing.firebaseapp.com",
+            databaseURL: "https://umd-api-testing.firebaseio.com",
+            storageBucket: "umd-api-testing.appspot.com",
+            messagingSenderId: "379483876030"
+        };
+        firebase.initializeApp(config);
+    </script>
+</html>

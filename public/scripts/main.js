@@ -11,7 +11,7 @@ function APITest() {
     this.difficultyField = document.getElementById('rtgDifficulty');
     this.interestField = document.getElementById('rtgInterest');
     this.submitCourseButton = document.getElementById('btnSubmitCourse');
-    this.courseIdWrap = document.getElementById('courseInputWrap');
+    this.courseInputWrap = document.getElementById('courseInputWrap');
     this.profInputWrap = document.getElementById('profInputWrap')
     this.validationMessage = document.getElementById('courseErrorMsg');
 
@@ -36,7 +36,7 @@ function APITest() {
 }
 
 APITest.prototype.submitCourse = function() {
-    this.courseIdWrap.classList.remove('has-error');
+    this.courseInputWrap.classList.remove('has-error');
     this.profInputWrap.classList.remove('has-error');
 
     $("#courseErrorMsg").hide();
@@ -48,43 +48,57 @@ APITest.prototype.submitCourse = function() {
     var diffRating = parseInt(this.difficultyField.value);
     var interestRating = parseInt(this.interestField.value);
 
-    console.log(professor);
-
-
     // validate both course id and professor name
     // function for validation
 
+    var valid = true;
+    valid = this.validateCourse(courseId) && valid;
+    valid = this.validateProfessor(professor) && valid;
+    if (valid) {
+        var obj = {
+            professor: professor, 
+            difficulty: diffRating, 
+            interest: interestRating
+        };
 
-    if (this.courseIsValid(courseId)) {
-        this.database.ref("/courses_prod/"+courseId+"/difficulty").push({
-            rating: diffRating
-        });
+        this.database.ref("/courses_test/"+courseId+"/").push(obj);
 
-        this.database.ref("/courses_prod/"+courseId+"/interest").push({
-            rating: interestRating
-        });
+
         $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
-        $('#txtCourse').val('');
-        $('#txtProf').val('');
-        $('.rating').rating('rate', '1');
-    } else {
-        this.courseIdWrap.classList.add('has-error');
-        $('#courseErrorMsg').css('visibility', 'visible').slideDown();
-    }
+        this.resetForm();
+    } 
 };
 
-APITest.prototype.saveEmail = function() {
-    this.database.ref("/email/").push({
-        email: this.emailField.value
-    }); 
-};
-
-APITest.prototype.courseIsValid = function(name) {
+APITest.prototype.validateCourse = function(value) {
     var pattern = /^[a-zA-Z]{4}[0-9]{3}[a-zA-Z]?$/
-    var matches = name.match(pattern);
+    var matches = value.match(pattern);
 
-    return matches != null;
+    if (matches == null) {
+        this.courseInputWrap.classList.add('has-error');
+        $('#courseErrorMsg').css('visibility', 'visible').slideDown();
+        return false;
+    }
+
+    return true;
+};
+
+APITest.prototype.validateProfessor = function(value) {
+    var isValid = value && value != "";
+
+    if (!isValid) {
+        this.profInputWrap.classList.add('has-error');
+        $('#profErrorMsg').css('visibility', 'visible').slideDown();
+        return false;
+    }
+
+    return true;
 }
+
+APITest.prototype.resetForm = function() {
+    $('#txtCourse').val('');
+    $('#txtProf').val('');
+    $('.rating').rating('rate', '1');
+};
 
 
 APITest.prototype.search = function() {

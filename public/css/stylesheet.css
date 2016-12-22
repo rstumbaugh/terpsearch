@@ -6,10 +6,6 @@ html, body {
 	font-weight: 300;
 }
 
-.success-msg {
-	color: #3c763d;
-}
-
 .nav-header-wrap {
 	width: 100%;
 	height: 80px;
@@ -23,6 +19,11 @@ html, body {
 	color: #c0392b;
 
 	font-family: "Lobster", "Helvetica Neue", Helvetica;
+}
+
+.content .nav-header-wrap {
+	background-color: #c0392b;
+	color: white;
 }
 
 .landing-page-wrap {
@@ -234,6 +235,7 @@ label {
 	padding: 40px 0 40px 0;
 	text-align: center;
 }
+
 
 .footer .footer-links div {
 	text-align: center;
