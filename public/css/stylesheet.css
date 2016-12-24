@@ -6,6 +6,10 @@ html, body {
 	font-weight: 300;
 }
 
+.success-msg {
+	color: #3c763d;
+}
+
 .nav-header-wrap {
 	width: 100%;
 	height: 80px;
