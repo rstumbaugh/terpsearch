@@ -1,3 +1,35 @@
+
 #viewCourse h1 {
 	font-size: 48px;
+}
+
+h2 {
+	color: inherit;
+}
+
+.course-info,
+.course-info div {
+	font-size: 16px;
+}
+
+.row {
+	padding-bottom: 50px;
+}
+
+.graphs {
+	background-color: #fff;
+	color: inherit;
+}
+
+.graphs > img {
+	height: 300px;
+	margin: 0 auto;
+}
+
+.graphs .progress-bar-custom {
+	background-color: #52A2F1
+}
+
+
+.comment-wrap blockquote {
 }

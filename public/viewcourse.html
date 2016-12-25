@@ -14,28 +14,153 @@
 
     <body class="content" id="viewCourse">
 		<div class="nav-header-wrap">
-            TerpSearch
+            <a href="index.html">TerpSearch</a>
         </div>  
-
+        
+        <h2 style="color:red" id="error"></h2>
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row course-info">
 				<div class="col-sm-10 col-sm-offset-1">
-					<h1 id="courseName"></h1>
-					<h2 id="courseTitle"></h2>
-                    <p id="relationship_prereqs"><strong>Prerequisite: </strong><span id="prereqs"></span></p>
-                    <p id="relationship_coreqs"><strong>Corequisite: </strong><span id="coreqs"></span></p>
-                    <p id="relationship_restrictions"><strong>Restriction: </strong><span id="restrictions"></span></p>
-                    <p id="relationship_credit_granted_for"><strong>Credit only granted for: </strong><span id="credit_granted_for"></span></p>
-                    <p id="relationship_also_offered_as"><strong>Also offered as: </strong><span id="also_offered_as"></span></p>
-                    <p id="relationship_formerly"><strong>Formerly: </strong><span id="formerly"></span></p>
-                    <p id="relationship_additional_info"><strong>Additional info:</strong><span id="additional_info"></span></p>
-					<p id="description"></p>
-					
-				</div>
-			</div>
+                        <h1 id="courseName"></h1>
+                        <div class="col-md-7">
+                            <div class="course-content" style="display:none">
+
+                                <h2 id="courseTitle"></h2>
+                                <p id="relationship_prereqs"><strong>Prerequisite: </strong><span id="prereqs"></span></p>
+                                <p id="relationship_coreqs"><strong>Corequisite: </strong><span id="coreqs"></span></p>
+                                <p id="relationship_restrictions"><strong>Restriction: </strong><span id="restrictions"></span></p>
+                                <p id="relationship_credit_granted_for"><strong>Credit only granted for: </strong><span id="credit_granted_for"></span></p>
+                                <p id="relationship_also_offered_as"><strong>Also offered as: </strong><span id="also_offered_as"></span></p>
+                                <p id="relationship_formerly"><strong>Formerly: </strong><span id="formerly"></span></p>
+                                <p id="relationship_additional_info"><strong>Additional info: </strong><span id="additional_info"></span></p>
+                                <p id="description"></p>
+                            </div>
+                            <div class="content-loading">
+                                <h4>Loading...</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-wrap">
+                            <div class="form-container">
+                                <form id="courseForm" class="form-horizontal">
+                                    <fieldset>
+                                        <legend>Add ratings</legend>
+                                        <div id="courseInputWrap" class="form-group">
+                                            <label for="txtCourse" class="control-label col-sm-3">Course name:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="txtCourse" placeholder="ex. ENGL101">
+                                                <p class="help-block" id="courseErrorMsg">Enter a valid course.</p>
+                                            </div>
+                                        </div>
+                                        <div id="profInputWrap" class="form-group">
+                                            <label for="txtCourse" class="control-label col-sm-3">Professor:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="txtProf" placeholder="Professor's name">
+                                                <p class="help-block" id="profErrorMsg">Enter the professor's name.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rtgDifficulty" class="control-label col-sm-3">Difficulty:</label>
+                                            <div class="col-sm-8">
+                                                <input type="hidden" class="rating" id="rtgDifficulty" value="1">
+                                                <p class="help-block">1 star = Very Easy, 5 stars = Very Difficult</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rtgInterest" class="control-label col-sm-3">Interest:</label>
+                                            <div class="col-sm-8">
+                                                <input type="hidden" class="rating" id="rtgInterest" value="1">
+                                                <p class="help-block">1 star = Very Boring, 5 stars = Very Interesting</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-3 col-sm-offset-3">   
+                                                <button type="button" class="btn btn-primary" id="btnSubmitCourse">Submit</button>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <p id="courseSuccessMsg" class="success-msg">Course succsesfully submitted.</p>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="row graphs">
+                <div class="col-sm-10 col-sm-offset-1">
+
+                    
+                        <h2>Student Responses</h2>
+                        <div class="col-md-6">
+                            <div class="difficulty-avg-wrap">
+                                <h4>Average Difficulty Rating: 3.4</h4>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-custom" style="width:80%">
+                                        3.4
+                                    </div>
+                                </div>
+
+                                <br>
+                            </div>
+
+                            <img src="img/graph.gif">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="interest-avg-wrap">
+                                <h4>Average Interest Rating: 3.8</h4>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-custom" style="width:80%">
+                                        3.4
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <img src="img/graph.gif" alt="graph">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+
+                    <div class="row comments">
+                        <div class="col-sm-12">
+                            <div class="comment-wrap">
+                                <h2>Comments</h2>
+                                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <br><cite style="float:right">&mdash; Ryan Stumbaugh</cite>
+                                </blockquote>
+                                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <br><cite style="float:right">&mdash; Ryan Stumbaugh</cite>
+                                </blockquote>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <fieldset>
+                                <legend>Add a comment</legend>
+                                <div class = "form-group">
+                                    <textarea class="form-control" rows = "6"></textarea>
+                               </div>
+                            </fieldset>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+
+        </div>
 
 
-			<!-- <div class="row footer">
+			<div class="row footer">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                     <div class="col-sm-12">
                         <p>Made at the University of Maryland, College Park</p>
@@ -58,11 +183,8 @@
                         Icons made by <a href="http://www.freepik.com" target="_blank" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" target="_blank" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
                     </div>
                 </div>
-            </div> -->
+            </div>
 		</div>
-
-
-		
     </body>
 
     <script src="scripts/info.js"></script>

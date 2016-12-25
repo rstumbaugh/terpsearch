@@ -37,25 +37,27 @@ ViewCourse.prototype.queryCourse = function(course) {
         	var desc = obj["description"];
             var relations = obj["relationships"];
 
-
     		$('#courseTitle').text(obj["name"]);
+            $('#txtCourse').val(course);
 
             var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 'formerly', 'additional_info'];
             relationsArr.forEach(function(rel) {
-                console.log(rel);
                 loadRelationship(rel, relations[rel]);
             });
 
             $('#description').text(desc);
 
+            $('.course-content').show();
+            $('.content-loading').hide();
+
         },
-        error: function(xhr, status) {
+        error: function(xhr, status, error) {
+            $('#error').text("db error");
         }
     });
 }
 
 function loadRelationship(relationship, value) {
-    console.log(relationship+": "+value);
     if (value != null) {
         $('#'+relationship).text(value);
     } else {
