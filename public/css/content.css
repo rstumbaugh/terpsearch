@@ -7,22 +7,99 @@ h2 {
 	color: inherit;
 }
 
-.course-info,
-.course-info div {
+.course-info{
 	font-size: 16px;
+	font-weight: 300;
 }
 
 .row {
+	padding-top: 0;
 	padding-bottom: 50px;
 }
 
-.graphs {
+button.btn-primary {
+	background-color: #52a2f1;
+	border-color: #52a2f1;
+
+	width: 35%;
+	margin-left: 10%;
+}
+
+.icons > div {
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 15px;
+	padding: 0;
+}
+
+.icon {
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	margin-bottom: 15px;
+	font-size: 48px;
+}
+
+.ratings {
 	background-color: #fff;
 	color: inherit;
 }
 
-.graphs > img {
-	height: 300px;
+.ratings .rating,
+.ratings .description {
+	padding: 25px 15px;
+}
+
+.ratings canvas {
+	width: 400px;
+	height: 250px;
+}
+
+
+.rating-wrap {
+	border: 1px solid #c0392b;
+	background-color: #ecf0f1;
+	padding: 0;
+}
+
+.interest .rating-wrap {
+	border-top: 0px;
+}
+
+.rating-wrap .rating {
+	text-align: center;
+	font-size: 18px;
+}
+
+.rating-wrap .rating span {
+	font-size: 48px;
+	font-weight: 700;
+	color: #c0392b;
+}
+
+.rating-wrap .description {
+	border-left: 1px solid #c0392b;
+	font-size: 32px;
+}
+
+.rating-wrap .description > div {
+	display: inline-block;
+	float: left;
+}
+
+
+.description .prof-wrap {
+	font-size: 18px;
+}
+
+.description .prof-wrap .prof {
+
+	padding-left: 50px;
+	margin-bottom: 25px;
+}
+
+img {
+	height: 100px;
 	margin: 0 auto;
 }
 
@@ -31,5 +108,42 @@ h2 {
 }
 
 
-.comment-wrap blockquote {
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	.ratings .rating {
+		border-bottom: 1px solid #c0392b;
+	}
+
+	.ratings .description {
+		border: none;
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	button.btn-primary {
+		width: 60%;
+		margin: 15px 20%;
+		height: 40px;
+	}
+
+	.icons {
+		padding-bottom: 25px;
+	}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+	
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+	
 }

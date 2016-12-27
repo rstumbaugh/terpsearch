@@ -21,103 +21,101 @@
 		<div class="container-fluid">
 			<div class="row course-info">
 				<div class="col-sm-10 col-sm-offset-1">
-                        <h1 id="courseName"></h1>
-                        <div class="col-md-7">
-                            <div class="course-content" style="display:none">
+                    <div class="col-md-9">
+                        <div class="course-content" style="display:none">
+                            <h1 id="courseName"></h1>
 
-                                <h2 id="courseTitle"></h2>
-                                <p id="relationship_prereqs"><strong>Prerequisite: </strong><span id="prereqs"></span></p>
-                                <p id="relationship_coreqs"><strong>Corequisite: </strong><span id="coreqs"></span></p>
-                                <p id="relationship_restrictions"><strong>Restriction: </strong><span id="restrictions"></span></p>
-                                <p id="relationship_credit_granted_for"><strong>Credit only granted for: </strong><span id="credit_granted_for"></span></p>
-                                <p id="relationship_also_offered_as"><strong>Also offered as: </strong><span id="also_offered_as"></span></p>
-                                <p id="relationship_formerly"><strong>Formerly: </strong><span id="formerly"></span></p>
-                                <p id="relationship_additional_info"><strong>Additional info: </strong><span id="additional_info"></span></p>
-                                <p id="description"></p>
+                            <h2 id="courseTitle"></h2>
+                            <p id="relationship_prereqs"><strong>Prerequisite: </strong><span id="prereqs"></span></p>
+                            <p id="relationship_coreqs"><strong>Corequisite: </strong><span id="coreqs"></span></p>
+                            <p id="relationship_restrictions"><strong>Restriction: </strong><span id="restrictions"></span></p>
+                            <p id="relationship_credit_granted_for"><strong>Credit only granted for: </strong><span id="credit_granted_for"></span></p>
+                            <p id="relationship_also_offered_as"><strong>Also offered as: </strong><span id="also_offered_as"></span></p>
+                            <p id="relationship_formerly"><strong>Formerly: </strong><span id="formerly"></span></p>
+                            <p id="relationship_additional_info"><strong>Additional info: </strong><span id="additional_info"></span></p>
+                            <p id="description"></p>
+                            <br><br>
+
+                            <button id="btnRate" class="btn btn-lg btn-primary">Rate this course</button>
+                            <button class="btn btn-lg btn-primary">Add a comment</button>
+                            <br><br>
+                        </div>
+                        <div class="content-loading">
+                            <!-- TODO: make loading cooler -->
+                            <h4>Loading...</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="icons">
+                            <div class="col-sm-6 col-md-12">
+                                <div class="icon" id="avgDifficulty"></div>
+                                Average Difficulty
+                                <br><br>
                             </div>
-                            <div class="content-loading">
-                                <h4>Loading...</h4>
+                            <div class="col-sm-6 col-md-12">
+                                <div class="icon" id="avgInterest"></div>
+                                Average Interest
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <div class="form-wrap">
-                            <div class="form-container">
-                                <form id="courseForm" class="form-horizontal">
-                                    <fieldset>
-                                        <legend>Add ratings</legend>
-                                        <div id="courseInputWrap" class="form-group">
-                                            <label for="txtCourse" class="control-label col-sm-3">Course name:</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="txtCourse" placeholder="ex. ENGL101">
-                                                <p class="help-block" id="courseErrorMsg">Enter a valid course.</p>
-                                            </div>
-                                        </div>
-                                        <div id="profInputWrap" class="form-group">
-                                            <label for="txtCourse" class="control-label col-sm-3">Professor:</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="txtProf" placeholder="Professor's name">
-                                                <p class="help-block" id="profErrorMsg">Enter the professor's name.</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="rtgDifficulty" class="control-label col-sm-3">Difficulty:</label>
-                                            <div class="col-sm-8">
-                                                <input type="hidden" class="rating" id="rtgDifficulty" value="1">
-                                                <p class="help-block">1 star = Very Easy, 5 stars = Very Difficult</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="rtgInterest" class="control-label col-sm-3">Interest:</label>
-                                            <div class="col-sm-8">
-                                                <input type="hidden" class="rating" id="rtgInterest" value="1">
-                                                <p class="help-block">1 star = Very Boring, 5 stars = Very Interesting</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-xs-3 col-sm-offset-3">   
-                                                <button type="button" class="btn btn-primary" id="btnSubmitCourse">Submit</button>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <p id="courseSuccessMsg" class="success-msg">Course succsesfully submitted.</p>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            </div>
-                        </div>
+                    </div>
+                        
                 </div>
             </div>
-            <div class="row graphs">
+            <div class="row ratings">
                 <div class="col-sm-10 col-sm-offset-1">
 
-                    
-                        <h2>Student Responses</h2>
-                        <div class="col-md-6">
-                            <div class="difficulty-avg-wrap">
-                                <h4>Average Difficulty Rating: 3.4</h4>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-custom" style="width:80%">
-                                        3.4
-                                    </div>
+                    <div class="difficulty col-md-12">
+                        <div class="rating-wrap row">
+                            <div class="col-md-2 rating"><span>3.4</span><br>Average Difficulty</div>
+                            <div class="col-md-10 description">
+                                <div>
+                                    <h4>Total Distribution</h4>
+                                    <br>
+                                    <canvas class="chart" id="diffChart"></canvas>
                                 </div>
+                                <div class="prof-wrap">
 
-                                <br>
+                                    <h4>Professor Breakdown</h4>
+                                    <br>
+                                    <div class="prof">
+                                        <strong>Firstname Lastname</strong>, <i>6 reviews</i>
+                                        <div style="display:inline;position:relative">
+                                            <div id="mamat-avg-diff"></div>
+                                        </div>
+                                    </div>
+                                    <div class="prof">
+                                        <strong>Firstname Lastname</strong>, <i>3 reviews</i>
+                                        <div style="display:inline;position:relative">
+                                            <div id="kruskal-avg-diff"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                
                             </div>
-
-                            <img src="img/graph.gif">
                         </div>
-                        <div class="col-md-6">
-                            <div class="interest-avg-wrap">
-                                <h4>Average Interest Rating: 3.8</h4>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-custom" style="width:80%">
-                                        3.4
-                                    </div>
+                    </div>
+                    <div class="interest col-md-12">
+                        <div class="rating-wrap row">
+                            <div class="col-md-2 rating"><span>4.1</span><br>Average Interest</div>
+                            <div class="col-md-10 description">
+                                <div>
+                                    <h4>Total Distribution</h4>
+                                    <br>
+                                    <canvas class="chart" id="intChart"></canvas>
                                 </div>
-                                <br>
+                                <div class="prof-wrap">
+                                    <h4>Professor Breakdown</h4>
+                                    <br>
+                                    <div class="prof">
+                                        <i>No professor data.</i>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                
                             </div>
-                            <img src="img/graph.gif" alt="graph">
                         </div>
                     </div>
                 </div>
@@ -188,6 +186,8 @@
     </body>
 
     <script src="scripts/info.js"></script>
+    <script src="scripts/Chart.bundle.min.js"></script>
+    <script src="scripts/progressbar.min.js"></script>
     <script src="scripts/viewcourse.js"></script>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
