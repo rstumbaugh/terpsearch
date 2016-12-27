@@ -4,6 +4,9 @@ html, body {
 
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 300;
+
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 .success-msg {
@@ -29,6 +32,13 @@ html, body {
 	background-color: #c0392b;
 	color: white;
 }
+
+.content .nav-header-wrap a,
+.content .nav-header-wrap a:hover {
+	color: white;
+	text-decoration: none;
+}
+
 
 .landing-page-wrap {
 	width: 100%;
