@@ -14,28 +14,151 @@
 
     <body class="content" id="viewCourse">
 		<div class="nav-header-wrap">
-            TerpSearch
+            <a href="index.html">TerpSearch</a>
         </div>  
-
+        
+        <h2 style="color:red" id="error"></h2>
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row course-info">
 				<div class="col-sm-10 col-sm-offset-1">
-					<h1 id="courseName"></h1>
-					<h2 id="courseTitle"></h2>
-                    <p id="relationship_prereqs"><strong>Prerequisite: </strong><span id="prereqs"></span></p>
-                    <p id="relationship_coreqs"><strong>Corequisite: </strong><span id="coreqs"></span></p>
-                    <p id="relationship_restrictions"><strong>Restriction: </strong><span id="restrictions"></span></p>
-                    <p id="relationship_credit_granted_for"><strong>Credit only granted for: </strong><span id="credit_granted_for"></span></p>
-                    <p id="relationship_also_offered_as"><strong>Also offered as: </strong><span id="also_offered_as"></span></p>
-                    <p id="relationship_formerly"><strong>Formerly: </strong><span id="formerly"></span></p>
-                    <p id="relationship_additional_info"><strong>Additional info:</strong><span id="additional_info"></span></p>
-					<p id="description"></p>
-					
-				</div>
-			</div>
+                    <div class="col-md-9">
+                        <div class="course-content" style="display:none">
+                            <h1 id="courseName"></h1>
+
+                            <h2 id="courseTitle"></h2>
+                            <p id="relationship_prereqs"><strong>Prerequisite: </strong><span id="prereqs"></span></p>
+                            <p id="relationship_coreqs"><strong>Corequisite: </strong><span id="coreqs"></span></p>
+                            <p id="relationship_restrictions"><strong>Restriction: </strong><span id="restrictions"></span></p>
+                            <p id="relationship_credit_granted_for"><strong>Credit only granted for: </strong><span id="credit_granted_for"></span></p>
+                            <p id="relationship_also_offered_as"><strong>Also offered as: </strong><span id="also_offered_as"></span></p>
+                            <p id="relationship_formerly"><strong>Formerly: </strong><span id="formerly"></span></p>
+                            <p id="relationship_additional_info"><strong>Additional info: </strong><span id="additional_info"></span></p>
+                            <p id="description"></p>
+                            <br><br>
+
+                            <button id="btnRate" class="btn btn-lg btn-primary">Rate this course</button>
+                            <button class="btn btn-lg btn-primary">Add a comment</button>
+                            <br><br>
+                        </div>
+                        <div class="content-loading">
+                            <!-- TODO: make loading cooler -->
+                            <h4>Loading...</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="icons">
+                            <div class="col-sm-6 col-md-12">
+                                <div class="icon" id="avgDifficulty"></div>
+                                Average Difficulty
+                                <br><br>
+                            </div>
+                            <div class="col-sm-6 col-md-12">
+                                <div class="icon" id="avgInterest"></div>
+                                Average Interest
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+            </div>
+            <div class="row ratings">
+                <div class="col-sm-10 col-sm-offset-1">
+
+                    <div class="difficulty col-md-12">
+                        <div class="rating-wrap row">
+                            <div class="col-md-2 rating"><span>3.4</span><br>Average Difficulty</div>
+                            <div class="col-md-10 description">
+                                <div>
+                                    <h4>Total Distribution</h4>
+                                    <br>
+                                    <canvas class="chart" id="diffChart"></canvas>
+                                </div>
+                                <div class="prof-wrap">
+
+                                    <h4>Professor Breakdown</h4>
+                                    <br>
+                                    <div class="prof">
+                                        <strong>Firstname Lastname</strong>, <i>6 reviews</i>
+                                        <div style="display:inline;position:relative">
+                                            <div id="mamat-avg-diff"></div>
+                                        </div>
+                                    </div>
+                                    <div class="prof">
+                                        <strong>Firstname Lastname</strong>, <i>3 reviews</i>
+                                        <div style="display:inline;position:relative">
+                                            <div id="kruskal-avg-diff"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interest col-md-12">
+                        <div class="rating-wrap row">
+                            <div class="col-md-2 rating"><span>4.1</span><br>Average Interest</div>
+                            <div class="col-md-10 description">
+                                <div>
+                                    <h4>Total Distribution</h4>
+                                    <br>
+                                    <canvas class="chart" id="intChart"></canvas>
+                                </div>
+                                <div class="prof-wrap">
+                                    <h4>Professor Breakdown</h4>
+                                    <br>
+                                    <div class="prof">
+                                        <i>No professor data.</i>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+
+                    <div class="row comments">
+                        <div class="col-sm-12">
+                            <div class="comment-wrap">
+                                <h2>Comments</h2>
+                                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <br><cite style="float:right">&mdash; Ryan Stumbaugh</cite>
+                                </blockquote>
+                                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <br><cite style="float:right">&mdash; Ryan Stumbaugh</cite>
+                                </blockquote>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <fieldset>
+                                <legend>Add a comment</legend>
+                                <div class = "form-group">
+                                    <textarea class="form-control" rows = "6"></textarea>
+                               </div>
+                            </fieldset>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+
+        </div>
 
 
-			<!-- <div class="row footer">
+			<div class="row footer">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                     <div class="col-sm-12">
                         <p>Made at the University of Maryland, College Park</p>
@@ -58,14 +181,13 @@
                         Icons made by <a href="http://www.freepik.com" target="_blank" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" target="_blank" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
                     </div>
                 </div>
-            </div> -->
+            </div>
 		</div>
-
-
-		
     </body>
 
     <script src="scripts/info.js"></script>
+    <script src="scripts/Chart.bundle.min.js"></script>
+    <script src="scripts/progressbar.min.js"></script>
     <script src="scripts/viewcourse.js"></script>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
