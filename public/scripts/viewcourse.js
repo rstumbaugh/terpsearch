@@ -4,10 +4,19 @@
 **/
 
 
+ViewCourse.prototype.refactorDB = function(course) {
+    var ref = this.database.ref('/courses');
+    
+
+    
+};
+
 function ViewCourse() {
 	var courseName = document.getElementById('courseName');
 
 	this.database = firebase.database();
+
+    //this.refactorDB(getUrlVars()["id"]);
 	this.loadCourseData();
     this.initProgressBars();
     this.initCharts();
@@ -49,7 +58,7 @@ ViewCourse.prototype.initCharts = function() {
 
 
 ViewCourse.prototype.queryCourse = function(course) {
-	var url = API_ROOT + "courses?course_id="+course;
+    	var url = API_ROOT + "courses?course_id="+course;
 	$.ajax({
         method: "GET",
         dataType: "json",

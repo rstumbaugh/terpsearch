@@ -13,7 +13,6 @@ h2 {
 }
 
 .row {
-	padding-top: 0;
 	padding-bottom: 50px;
 }
 
@@ -62,8 +61,8 @@ button.btn-primary {
 	padding: 0;
 }
 
-.interest .rating-wrap {
-	border-top: 0px;
+.ratings .difficulty {
+	margin-bottom: 15px;
 }
 
 .rating-wrap .rating {
@@ -98,15 +97,13 @@ button.btn-primary {
 	margin-bottom: 25px;
 }
 
-img {
-	height: 100px;
-	margin: 0 auto;
+.comments a {
+	font-size: 16px;
 }
 
-.graphs .progress-bar-custom {
-	background-color: #52A2F1
+.comment-input .form-group {
+	margin-top: 0;
 }
-
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
@@ -115,13 +112,7 @@ img {
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-	.ratings .rating {
-		border-bottom: 1px solid #c0392b;
-	}
-
-	.ratings .description {
-		border: none;
-	}
+	
 }
 
 /* Small Devices, Tablets */
