@@ -49,6 +49,10 @@ button.add-btn {
 	font-size: 48px;
 }
 
+.panel a:hover {
+	cursor: pointer;
+}
+
 .ratings {
 	background-color: #fff;
 	color: inherit;
@@ -114,6 +118,10 @@ button.add-btn {
 	font-size: 16px;
 }
 
+#commentWrap {
+	margin-top: 0;
+}
+
 .comment-wrap blockquote {
 	margin-bottom: 30px;
 }
@@ -121,6 +129,10 @@ button.add-btn {
 .comment-wrap cite {
 	float: right;
 	margin-top: 16px;
+}
+
+.comment-wrap i {
+	font-size: 16px;
 }
 
 

@@ -4,10 +4,16 @@
 **/
 
 /**
-    problem: not sure what to display when there's no data....
-        maybe 0.0 on progress bars, and 'no data' on lower sections?
+    TODO: show displays for when there's no data
+        if doesn't match pattern,  show 'invalid course'
+        if no data in db, show 'course not found (check name?)'
+            make sure to check multiple semesters
 
-        --------------------
+        ---------------------
+
+    MAYBE TODO: only show a few profs / comments, "show more" button
+
+        ---------------------
 
     problem: need to protect against typos with professors (or wrong professors)
         maybe check against API? for this page, assume all profs are good. deal with this
@@ -48,9 +54,6 @@ ViewCourse.prototype.refactorDB = function(course) {
         }
         console.log(id+': '+max+' responses');
     });
-
-    
-    
 };
 
 function ViewCourse() {
@@ -72,7 +75,7 @@ function ViewCourse() {
         }, 1000, "easeInOutCubic");
     });
 
-    $('#btnToRate').click(function() {
+    $('.to-rating').click(function() {
         $('.for-scrolling').animate({
             scrollTop: $('#ratingsInput').offset().top
         }, 1000, "easeInOutCubic");
@@ -123,22 +126,25 @@ ViewCourse.prototype.loadDataAPI = function(course) {
         url: url,
         data: "",
         success: function(data) {
-            // if data == [], no course found
-            // need to check for!
-            var obj = data[0];
-            var desc = obj["description"];
-            var relations = obj["relationships"];
 
-            $('#courseName').text(obj['course_id']);
-            $('#courseTitle').text(obj["name"]);
-            $('#txtCourse').val(course);
+            if (data.length > 0) {
+                var obj = data[0];
+                var desc = obj["description"];
+                var relations = obj["relationships"];
 
-            var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 'formerly', 'additional_info'];
-            relationsArr.forEach(function(rel) {
-                loadRelationship(rel, relations[rel]);
-            });
+                $('#courseName').text(obj['course_id']);
+                $('#courseTitle').text(obj["name"]);
+                $('#txtCourse').val(course);
 
-            $('#description').text(desc);
+                var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 'formerly', 'additional_info'];
+                relationsArr.forEach(function(rel) {
+                    loadRelationship(rel, relations[rel]);
+                });
+
+                $('#description').text(desc);
+            } else {
+                // no course found in current semester
+            }
 
             console.log("got information from API...");
 
@@ -160,35 +166,46 @@ ViewCourse.prototype.loadDataDB = function(course, callback) {
 
         // traverse rating entries
         var course = snapshot.val();
-        for (var key in course.ratings) {
+        if (course) {
 
-            var obj = course.ratings[key];
-            var prof = obj.professor;
-            var diffRating = obj.difficulty;
-            var intRating = obj.interest;
+            // hide empty value labels
+            $('.ratings .empty-data').hide();
+            for (var key in course.ratings) {
 
-            // add rating to data.reviews (professor => [array of diffs, array of ints])
-            if (prof in data.reviews) {
+                var obj = course.ratings[key];
+                var prof = obj.professor;
+                var diffRating = obj.difficulty;
+                var intRating = obj.interest;
 
-                var diff = data.reviews[prof].diffs;
-                var interest = data.reviews[prof].ints;
+                // add rating to data.reviews (professor => [array of diffs, array of ints])
+                if (prof in data.reviews) {
 
-                diff.push(diffRating);
-                interest.push(intRating);
+                    var diff = data.reviews[prof].diffs;
+                    var interest = data.reviews[prof].ints;
 
-                data.reviews[prof] = { diffs: diff, ints: interest };
-            } else {
-                data.reviews[prof] = { diffs: [diffRating], ints: [intRating] };
+                    diff.push(diffRating);
+                    interest.push(intRating);
+
+                    data.reviews[prof] = { diffs: diff, ints: interest };
+                } else {
+                    data.reviews[prof] = { diffs: [diffRating], ints: [intRating] };
+                }
             }
+
+            data.comments = course.comments;
+            
+        } else {
+            // course not found in db, leave as empty values and show info box
+            $('.course-content .panel').show();
         }
-
-        data.comments = course.comments;
-
-        console.log('got information from database...');
 
         // call callback with resulting information broken down by professors
         // callback will process & display this data
         callback(data);
+
+        console.log('got information from database...');
+
+        
     });
 }
 
@@ -201,6 +218,7 @@ ViewCourse.prototype.calculateStats = function(data) {
     var totalInts = 0;
     var totalCount = 0;
     var profs = []
+
     // go through each prof
     var profReviews = data.reviews;
     for (var prof in profReviews) {
@@ -244,9 +262,10 @@ ViewCourse.prototype.calculateStats = function(data) {
             other = e;
         return e.name != 'Other';
     }).sort();
-    profs.push(other);
+    if (other) {
+        profs.push(other);
+    }
     
-
     this.courseStats = {
         profs: profs,
         comments: data.comments,
@@ -266,8 +285,12 @@ ViewCourse.prototype.displayStats = function() {
     // need to populate difficulty and interest charts
     // need to add a professor entry for each professor in courseStats
 
-    var avgDiff = this.courseStats.totalDiffScore / this.courseStats.totalCount;
-    var avgInt = this.courseStats.totalIntScore / this.courseStats.totalCount;
+    var avgDiff = 0;
+    var avgInt = 0;
+    if (this.courseStats.totalCount > 0) {
+        avgDiff = this.courseStats.totalDiffScore / this.courseStats.totalCount;
+        avgInt = this.courseStats.totalIntScore / this.courseStats.totalCount;
+    }
 
     avgDiff = avgDiff.toFixed(1);
     avgInt = avgInt.toFixed(1);
@@ -283,6 +306,7 @@ ViewCourse.prototype.displayStats = function() {
     this.circleInt.animate(avgInt / 5.0);
 
     // create & animate charts
+    console.log(this.courseStats.diffCounts);
     initChart($('#diffChart'), this.courseStats.diffCounts);
     initChart($('#intChart'), this.courseStats.intCounts);
 
@@ -292,7 +316,7 @@ ViewCourse.prototype.displayStats = function() {
 
     var $diffWrap = $('.ratings .difficulty .prof-wrap');
     var $intWrap = $('.ratings .interest .prof-wrap');
-
+    console.log(profs);
     for (var i = 0; i < profs.length; i++) {
         var diffId = 'diffBar' + i;
         var intId = 'intBar' + i;
@@ -319,24 +343,31 @@ ViewCourse.prototype.displayStats = function() {
 }
 
 ViewCourse.prototype.displayComments = function() {
+    
     var comments = this.courseStats.comments;
+    var $wrap = $('.comments .comment-wrap');
 
-    for (var key in comments) {
-        var comment = comments[key];
-        var $wrap = $('.comments .comment-wrap');
-        var $div = $('<div/>');
-        var $quote = $('<blockquote/>');
-        var $cite = $('<cite/>');
+    if (comments && Object.keys(comments).length > 0) {
+        // remove empty data template
+        $('.comment-wrap .empty-data').hide();
+        for (var key in comments) {
+            var comment = comments[key];
+            var $div = $('<div/>');
+            var $quote = $('<blockquote/>');
+            var $cite = $('<cite/>');
 
-        $quote.text(comment.comment);
-        $cite.text('\u2014 '+comment.name);
+            $quote.text(comment.comment);
+            $cite.text('\u2014 '+comment.name);
 
-        $quote.append($cite);
+            $quote.append($cite);
 
-        $div.append($quote);
+            $div.append($quote);
 
-        $wrap.append($div);
+            $wrap.append($div);
+        }
     }
+
+    
 
     console.log('displayed comments...');
 }
