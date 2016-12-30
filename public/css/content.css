@@ -1,12 +1,9 @@
 html, body {
-	height: auto;
-	overflow: scroll;
- 	-webkit-overflow-scrolling: touch;
 }
 
-.for-scrolling {
+/*.for-scrolling {
   height: calc(100% + 1px);
-}
+}*/
 
 #viewCourse h1 {
 	font-size: 48px;
