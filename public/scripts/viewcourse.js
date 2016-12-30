@@ -76,7 +76,7 @@ function ViewCourse() {
         $('.for-scrolling').animate({
             scrollTop: $('#ratingsInput').offset().top
         }, 1000, "easeInOutCubic");
-    })
+    });
 
 
     $('#txtComment').bind('input propertychange', function() {
@@ -504,4 +504,5 @@ function getUrlVars() {
 
 window.onload = function() {
     window.viewCourse = new ViewCourse();
+    window.ratingsForm = new RatingsForm();
 };

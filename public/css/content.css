@@ -5,6 +5,7 @@ html, body {
 .for-scrolling {
 	height: 100%;
 	overflow-y: scroll;
+	overflow-x: hidden;
 	-webkit-overflow-scrolling: touch;
 }
 
@@ -133,7 +134,7 @@ button.add-btn {
 }
 
 .comment-input .form-group > div{
-	padding: 0;
+	
 }
 
 #commentErrorMsg,

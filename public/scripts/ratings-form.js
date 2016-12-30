@@ -6,6 +6,7 @@
 'use strict';
 
 function RatingsForm() {
+    console.log('ratings form loaded');
     this.courseField = document.getElementById('txtCourse');
     this.profField = document.getElementById('txtProf');
     this.difficultyField = document.getElementById('rtgDifficulty');
@@ -98,7 +99,3 @@ RatingsForm.prototype.resetForm = function() {
     $('#txtProf').val('');
     $('.rating').rating('rate', '1');
 };
-
-window.onload = function() {
-    window.RatingsForm = new RatingsForm();
-}
