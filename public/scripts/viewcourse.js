@@ -3,6 +3,13 @@
  * 19 Dec 2016
 **/
 
+/**
+    need to load overall avg and professor avg
+    load by professor (store as hash) and calc overall from that
+
+    problem: need to protect against typos with professors (or wrong professors)
+**/
+
 
 ViewCourse.prototype.refactorDB = function(course) {
     var ref = this.database.ref('/courses');
@@ -17,10 +24,12 @@ function ViewCourse() {
 	this.database = firebase.database();
     this.commentBtn.addEventListener('click', this.submitComment.bind(this));
 
+
     $("#btnToComment").click(function() {
-        $('html, body').animate({
-            scrollTop: $("#comments").offset().top
-        }, 2000, "easeInOutCubic");
+        console.log($('html,body').scrollTop);
+        $('html,body').animate({
+            scrollTop: $('#comments').offset().top
+        }, 1000, "easeInOutCubic");
     });
 
 
@@ -85,7 +94,8 @@ ViewCourse.prototype.loadCourseData = function() {
 
 // load course information from API
 ViewCourse.prototype.queryCourse = function(course) {
-        var url = API_ROOT + "courses?course_id="+course;
+    var url = API_ROOT + "courses?course_id="+course;
+
     $.ajax({
         method: "GET",
         dataType: "json",

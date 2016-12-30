@@ -1,3 +1,6 @@
+html, body {
+	height: auto;
+}
 
 #viewCourse h1 {
 	font-size: 48px;
