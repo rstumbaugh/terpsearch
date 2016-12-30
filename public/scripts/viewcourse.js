@@ -67,9 +67,14 @@ function ViewCourse() {
     this.courseStats = {};
 
     $("#btnToComment").click(function() {
-        console.log($('html,body').scrollTop);
-        $('html,body').animate({
+        $('.for-scrolling').animate({
             scrollTop: $('#comments').offset().top
+        }, 1000, "easeInOutCubic");
+    });
+
+    $('#btnToRate').click(function() {
+        $('.for-scrolling').animate({
+            scrollTop: $('#ratingsInput').offset().top
         }, 1000, "easeInOutCubic");
     });
 
@@ -499,4 +504,5 @@ function getUrlVars() {
 
 window.onload = function() {
     window.viewCourse = new ViewCourse();
+    window.ratingsForm = new RatingsForm();
 };

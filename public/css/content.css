@@ -1,9 +1,9 @@
-html, body {
+.for-scrolling {
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
 }
-
-/*.for-scrolling {
-  height: calc(100% + 1px);
-}*/
 
 #viewCourse h1 {
 	font-size: 48px;
@@ -101,7 +101,6 @@ button.add-btn {
 }
 
 .description .prof-wrap .prof {
-
 	padding-left: 50px;
 	margin-bottom: 25px;
 }
@@ -126,6 +125,10 @@ button.add-btn {
 
 .comment-input .form-group {
 	margin-top: 0;
+}
+
+.comment-input .form-group > div{
+	
 }
 
 #commentErrorMsg,

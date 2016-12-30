@@ -5,7 +5,8 @@
 
 'use strict';
 
-function APITest() {
+function RatingsForm() {
+    console.log('ratings form loaded');
     this.courseField = document.getElementById('txtCourse');
     this.profField = document.getElementById('txtProf');
     this.difficultyField = document.getElementById('rtgDifficulty');
@@ -35,7 +36,7 @@ function APITest() {
     //this.submitQuery.addEventListener("click", this.search.bind(this));
 }
 
-APITest.prototype.submitCourse = function() {
+RatingsForm.prototype.submitCourse = function() {
     this.courseInputWrap.classList.remove('has-error');
     this.profInputWrap.classList.remove('has-error');
 
@@ -68,7 +69,7 @@ APITest.prototype.submitCourse = function() {
     } 
 };
 
-APITest.prototype.validateCourse = function(value) {
+RatingsForm.prototype.validateCourse = function(value) {
     var pattern = /^[a-zA-Z]{4}[0-9]{3}[a-zA-Z]?$/
     var matches = value.match(pattern);
 
@@ -81,7 +82,7 @@ APITest.prototype.validateCourse = function(value) {
     return true;
 };
 
-APITest.prototype.validateProfessor = function(value) {
+RatingsForm.prototype.validateProfessor = function(value) {
     var isValid = value && value != "";
 
     if (!isValid) {
@@ -93,64 +94,8 @@ APITest.prototype.validateProfessor = function(value) {
     return true;
 }
 
-APITest.prototype.resetForm = function() {
+RatingsForm.prototype.resetForm = function() {
     $('#txtCourse').val('');
     $('#txtProf').val('');
     $('.rating').rating('rate', '1');
 };
-
-
-APITest.prototype.search = function() {
-    $("#queryResult").text("");
-    var url = "http://api.umd.io/v0/courses/list";
-    var term = this.queryField.value;
-
-    var myclass = this;
-    $.ajax({
-        method: "GET",
-        dataType: "json",
-        url: url,
-        data: "",
-        success: function(data) {
-            var filtered = myclass.findTerm(data, term);
-
-            filtered.forEach(function(element) {
-                var text = $("#queryResult").text();
-                text += element["course_id"] + ": " + element["name"];
-                text += "\n";
-                $("#queryResult").text(text);
-            });
-        }
-    });
-};
-
-APITest.prototype.findTerm = function(list, term) {
-    var filterFunc = function(item) {
-        return item["name"].toLowerCase().includes(term.toLowerCase());
-    }
-
-    return list.filter(filterFunc);
-};
-
-APITest.prototype.doQuery = function() {
-    var url = "http://api.umd.io/v0/courses?";
-    var query = this.queryField.value;
-
-    url = url + query;
-
-    $.ajax({
-        method: "GET",
-        dataType: "json",
-        url: url,
-        data: "",
-        success: function(data) {
-            var json_as_str = JSON.stringify(data);
-            $("#queryResult").text(json_as_str);
-            $("#numCourses").text("Number of results: "+data.length);
-        }
-    });
-};
-
-window.onload = function() {
-    window.apiTest = new APITest();
-}
