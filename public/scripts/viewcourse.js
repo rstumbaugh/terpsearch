@@ -67,13 +67,13 @@ function ViewCourse() {
     this.courseStats = {};
 
     $("#btnToComment").click(function() {
-        $('html,body').animate({
+        $('.for-scrolling').animate({
             scrollTop: $('#comments').offset().top
         }, 1000, "easeInOutCubic");
     });
 
     $('#btnToRate').click(function() {
-        $('html,body').animate({
+        $('.for-scrolling').animate({
             scrollTop: $('#ratingsInput').offset().top
         }, 1000, "easeInOutCubic");
     })
