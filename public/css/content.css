@@ -123,13 +123,6 @@ button.add-btn {
 	margin-top: 16px;
 }
 
-.comment-input .form-group {
-	margin-top: 0;
-}
-
-.comment-input .form-group > div{
-	
-}
 
 #commentErrorMsg,
 #commentSuccessMsg {
