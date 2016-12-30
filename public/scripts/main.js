@@ -61,7 +61,7 @@ APITest.prototype.submitCourse = function() {
             interest: interestRating
         };
 
-        this.database.ref("/courses_test/"+courseId+"/").push(obj);
+        this.database.ref("/courses_test/"+courseId+"/ratings").push(obj);
 
 
         $('#courseSuccessMsg').css('visibility', 'visible').slideDown();

@@ -12,9 +12,25 @@ ViewCourse.prototype.refactorDB = function(course) {
 };
 
 function ViewCourse() {
-	var courseName = document.getElementById('courseName');
+    this.commentBtn = document.getElementById('btnAddComment');
 
 	this.database = firebase.database();
+    this.commentBtn.addEventListener('click', this.submitComment.bind(this));
+
+    $("#btnToComment").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#comments").offset().top
+        }, 2000, "easeInOutCubic");
+    });
+
+
+    $('#txtComment').bind('input propertychange', function() {
+        var len = $(this).val().length;
+        $('#charsRemaining').text(25 - len > 0 ? 25 - len : 0);
+    });
+
+    $('#commentSuccessMsg').hide();
+    $('#commentErrorMsg').hide();
 
     //this.refactorDB(getUrlVars()["id"]);
 	this.loadCourseData();
@@ -22,8 +38,40 @@ function ViewCourse() {
     this.initCharts();
 }
 
+// validate and submit comment, push to db
+ViewCourse.prototype.submitComment = function() {
+    $('#commentSuccessMsg').hide();
+    $('#commentErrorMsg').hide();
+    $('#commentWrap').removeClass('has-error');
+
+    var len = $('#txtComment').val().length;
+    if (len < 25) {
+        $('#commentWrap').addClass('has-error');
+        $('#commentErrorMsg').slideDown();
+    } else {
+        var ref = this.database.ref('/courses_test/'+$('#courseName').text()+'/comments');
+
+        var comment = $('#txtComment').val();
+        var name = $('#txtName').val();
+        name = name ? name: 'anonymous';
+
+        var obj = {
+            comment: comment,
+            name: name
+        }
+        
+        ref.push(obj);
+
+        $('#commentSuccessMsg').slideDown();
+        $('#txtComment').val('');
+        $('#txtName').val('');
+        $('#charsRemaining').text('25');
+    }
+}
+
+// load course information from DB, call method to load from API
 ViewCourse.prototype.loadCourseData = function() {
-	var course = getUrlVars()["id"];
+	var course = getUrlVars()["id"].toUpperCase().split('#')[0];
 	$('#courseName').text(course);
 
 	this.queryCourse(course);
@@ -31,6 +79,41 @@ ViewCourse.prototype.loadCourseData = function() {
     this.database.ref('/courses/'+course).on('value', function(data) {
         for (var key in data.val()) {
             //console.log(data.val()[key]);
+        }
+    });
+}
+
+// load course information from API
+ViewCourse.prototype.queryCourse = function(course) {
+        var url = API_ROOT + "courses?course_id="+course;
+    $.ajax({
+        method: "GET",
+        dataType: "json",
+        url: url,
+        data: "",
+        success: function(data) {
+            // if data == [], no course found
+            var obj = data[0];
+            var desc = obj["description"];
+            var relations = obj["relationships"];
+
+            $('#courseTitle').text(obj["name"]);
+            $('#txtCourse').val(course);
+
+            var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 'formerly', 'additional_info'];
+            relationsArr.forEach(function(rel) {
+                loadRelationship(rel, relations[rel]);
+            });
+
+            $('#description').text(desc);
+
+            $('.course-content').show();
+            $('.content-loading').hide();
+
+        },
+        error: function(xhr, status, error) {
+            $('#error').text("db error");
+            console.log('error');
         }
     });
 }
@@ -57,37 +140,7 @@ ViewCourse.prototype.initCharts = function() {
 };
 
 
-ViewCourse.prototype.queryCourse = function(course) {
-    	var url = API_ROOT + "courses?course_id="+course;
-	$.ajax({
-        method: "GET",
-        dataType: "json",
-        url: url,
-        data: "",
-        success: function(data) {
-        	var obj = data[0];
-        	var desc = obj["description"];
-            var relations = obj["relationships"];
 
-    		$('#courseTitle').text(obj["name"]);
-            $('#txtCourse').val(course);
-
-            var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 'formerly', 'additional_info'];
-            relationsArr.forEach(function(rel) {
-                loadRelationship(rel, relations[rel]);
-            });
-
-            $('#description').text(desc);
-
-            $('.course-content').show();
-            $('.content-loading').hide();
-
-        },
-        error: function(xhr, status, error) {
-            $('#error').text("db error");
-        }
-    });
-}
 
 function loadRelationship(relationship, value) {
     if (value != null) {
@@ -124,7 +177,6 @@ function initChart(chart, dataArr) {
                 display: false
             },
             scales: {
-                
                 xAxes: [{
                     stacked: false,
                     gridLines: { display: false }
@@ -213,4 +265,4 @@ function getUrlVars() {
 
 window.onload = function() {
     window.viewCourse = new ViewCourse();
-}
+};

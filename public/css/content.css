@@ -16,9 +16,9 @@ h2 {
 	padding-bottom: 50px;
 }
 
-button.btn-primary {
-	background-color: #52a2f1;
-	border-color: #52a2f1;
+button.add-btn {
+	/*background-color: #52a2f1;
+	border-color: #52a2f1;*/
 
 	width: 35%;
 	margin-left: 10%;
@@ -49,9 +49,8 @@ button.btn-primary {
 	padding: 25px 15px;
 }
 
-.ratings canvas {
-	width: 400px;
-	height: 250px;
+.ratings .chart {
+	width: 100%;
 }
 
 
@@ -105,6 +104,16 @@ button.btn-primary {
 	margin-top: 0;
 }
 
+#commentErrorMsg,
+#commentSuccessMsg {
+	position: absolute;
+}
+
+/*.comment-input input.form-control {
+	width: 33%;
+	display: inline-block;
+}*/
+
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
 
@@ -112,7 +121,10 @@ button.btn-primary {
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-	
+	.ratings .description {
+		border-left: 0;
+		border-top: 1px solid #c0392b;
+	}
 }
 
 /* Small Devices, Tablets */
@@ -122,6 +134,8 @@ button.btn-primary {
 		margin: 15px 20%;
 		height: 40px;
 	}
+
+	
 
 	.icons {
 		padding-bottom: 25px;

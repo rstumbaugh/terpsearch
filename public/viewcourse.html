@@ -36,8 +36,8 @@
                             <p id="description"></p>
                             <br><br>
 
-                            <button id="btnRate" class="btn btn-lg btn-primary">Rate this course</button>
-                            <button class="btn btn-lg btn-primary">Add a comment</button>
+                            <button id="btnRate" class="btn btn-lg btn-primary add-btn">Rate this course</button>
+                            <button id="btnToComment" class="btn btn-lg btn-primary add-btn">Add a comment</button>
                             <br><br>
                         </div>
                         <div class="content-loading">
@@ -79,13 +79,13 @@
                                     <br>
                                     <div class="prof">
                                         <strong>Firstname Lastname</strong>, <i>6 reviews</i>
-                                        <div style="display:inline;position:relative">
+                                        <div style="display:inline; position:relative">
                                             <div id="mamat-avg-diff"></div>
                                         </div>
                                     </div>
                                     <div class="prof">
                                         <strong>Firstname Lastname</strong>, <i>3 reviews</i>
-                                        <div style="display:inline;position:relative">
+                                        <div style="display:inline; position:relative">
                                             <div id="kruskal-avg-diff"></div>
                                         </div>
                                     </div>
@@ -120,10 +120,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row comments">
                 <div class="col-sm-10 col-sm-offset-1">
 
-                    <div class="row comments">
+                    <div class="row">
                         <div class="col-sm-12">
                             <div class="comment-wrap">
                                 <h2>Comments</h2>
@@ -138,13 +138,29 @@
                         </div>
                     </div>
 
-                    <div class="row comment-input">
+                    <div class="row comment-input"  id="comments">
                         <div class="col-sm-12">
                             <fieldset>
                                 <legend>Add a comment</legend>
+                                <div id="commentWrap" class="form-group">
+                                    <label for="txtComment">Enter comment below (at least 25 characters):</label>
+                                    <textarea id="txtComment" class="form-control" rows="6"></textarea>
+                                    <p class="help-block"><span id="charsRemaining">25</span> characters remaining</p>
+                                </div>
                                 <div class="form-group">
-                                    <label for="txtComment">Enter comment text below</label>
-                                    <textarea class="form-control" rows = "6"></textarea>
+                                    <label for="txtName">Enter name to display (leave blank for anonymous):</label>
+
+                                    <input type="text" id="txtName" class="form-control" placeholder="anonymous">
+                               </div>
+                               <div class="form-group">
+                                    <div class="col-md-2">   
+                                        <button id="btnAddComment" class="btn btn-primary" type="button">Add comment</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p id="commentErrorMsg" class="error-msg">Comment must be at least 25 characters.</p>
+                                        <p id="commentSuccessMsg" class="success-msg">Comment submitted.</p>
+                                    </div>
+                                    <br><br>
                                </div>
                             </fieldset>
                         </div>
@@ -188,9 +204,9 @@
     <script src="scripts/info.js"></script>
     <script src="scripts/Chart.bundle.min.js"></script>
     <script src="scripts/progressbar.min.js"></script>
-    <script src="scripts/viewcourse.js"></script>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/viewcourse.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/bootstrap-rating.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
