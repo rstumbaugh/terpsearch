@@ -7,7 +7,7 @@ html, body {
 
 	overflow-x: hidden;
 	overflow-y: scroll;
-	-webkit-overflow-scroll: touch;
+	-webkit-overflow-scrolling: touch;
 }
 
 .success-msg {
