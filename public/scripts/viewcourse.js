@@ -67,11 +67,16 @@ function ViewCourse() {
     this.courseStats = {};
 
     $("#btnToComment").click(function() {
-        console.log($('html,body').scrollTop);
         $('html,body').animate({
             scrollTop: $('#comments').offset().top
         }, 1000, "easeInOutCubic");
     });
+
+    $('#btnToRate').click(function() {
+        $('html,body').animate({
+            scrollTop: $('#ratingsInput').offset().top
+        }, 1000, "easeInOutCubic");
+    })
 
 
     $('#txtComment').bind('input propertychange', function() {

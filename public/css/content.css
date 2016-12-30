@@ -98,7 +98,6 @@ button.add-btn {
 }
 
 .description .prof-wrap .prof {
-
 	padding-left: 50px;
 	margin-bottom: 25px;
 }
@@ -123,6 +122,10 @@ button.add-btn {
 
 .comment-input .form-group {
 	margin-top: 0;
+}
+
+.comment-input .form-group > div{
+	padding: 0;
 }
 
 #commentErrorMsg,
