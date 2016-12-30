@@ -19,6 +19,10 @@ h2 {
 	padding-bottom: 50px;
 }
 
+p.small {
+	font-size: 16px;
+}
+
 button.add-btn {
 	/*background-color: #52a2f1;
 	border-color: #52a2f1;*/
