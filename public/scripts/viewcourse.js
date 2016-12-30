@@ -4,8 +4,10 @@
 **/
 
 /**
-    need to load overall avg and professor avg
-    load by professor (store as hash) and calc overall from that
+    problem: not sure what to display when there's no data....
+        maybe 0.0 on progress bars, and 'no data' on lower sections?
+
+        --------------------
 
     problem: need to protect against typos with professors (or wrong professors)
         maybe check against API? for this page, assume all profs are good. deal with this
@@ -19,8 +21,9 @@
 /**
 
     DEFINITElY need to show some sort of loading, etc while waiting for all data / calculations to load
-    in the future look into ways to speed everything up.. maybe has to do with downloading too much info?
-    probably not..
+    in the future look into ways to speed everything up..
+
+    idea: do calculations in database when storing info. then retrieving calculations is just a DB call
 **/
 
 ViewCourse.prototype.refactorDB = function(course) {
@@ -79,19 +82,30 @@ function ViewCourse() {
     $('#commentSuccessMsg').hide();
     $('#commentErrorMsg').hide();
 
+
     var course = getUrlVars()["id"].toUpperCase().split('#')[0];
-    
 
     var myClass = this;
-    this.refactorDB(getUrlVars()["id"]);
+    //this.refactorDB(getUrlVars()["id"]);
 
+    this.initDisplay();
     this.loadDataAPI(course);
-	this.loadDataDB(course, function(profReviews) {
-        myClass.calculateStats(profReviews);
+	this.loadDataDB(course, function(data) {
+
+        myClass.calculateStats(data);
         myClass.displayStats();
+        myClass.displayComments();
+
+        $('.course-content').show();
+        $('.content-loading').hide();
     });
 }
 
+// prepare elements with default values before things are loaded
+ViewCourse.prototype.initDisplay = function() {
+    this.circleDiff = initCircularProgress('#avgDifficulty');
+    this.circleInt = initCircularProgress('#avgInterest');
+}
 
 
 // load course information from API
@@ -121,9 +135,6 @@ ViewCourse.prototype.loadDataAPI = function(course) {
 
             $('#description').text(desc);
 
-            $('.course-content').show();
-            $('.content-loading').hide();
-
             console.log("got information from API...");
 
         },
@@ -138,50 +149,55 @@ ViewCourse.prototype.loadDataAPI = function(course) {
 ViewCourse.prototype.loadDataDB = function(course, callback) {
 
     // get ratings by professor
-    this.database.ref('/courses/'+course+'/ratings').once('value', function(data) {
-        var profReviews = {};
+    this.database.ref('/courses/'+course+'/').once('value', function(snapshot) {
+
+        var data = { reviews: {}, comments: {} };
 
         // traverse rating entries
-        for (var key in data.val()) {
+        var course = snapshot.val();
+        for (var key in course.ratings) {
 
-            var obj = data.val()[key];
-            var prof = obj['professor'];
-            var diffRating = obj['difficulty'];
-            var intRating = obj['interest'];
+            var obj = course.ratings[key];
+            var prof = obj.professor;
+            var diffRating = obj.difficulty;
+            var intRating = obj.interest;
 
-            // add rating to profReviews (professor => [array of diffs, array of ints])
-            if (prof in profReviews) {
+            // add rating to data.reviews (professor => [array of diffs, array of ints])
+            if (prof in data.reviews) {
 
-                var diff = profReviews[prof]['diffs'];
-                var interest = profReviews[prof]['ints'];
+                var diff = data.reviews[prof].diffs;
+                var interest = data.reviews[prof].ints;
 
                 diff.push(diffRating);
                 interest.push(intRating);
 
-                profReviews[prof] = { diffs: diff, ints: interest };
+                data.reviews[prof] = { diffs: diff, ints: interest };
             } else {
-                profReviews[prof] = { diffs: [diffRating], ints: [intRating] };
+                data.reviews[prof] = { diffs: [diffRating], ints: [intRating] };
             }
         }
+
+        data.comments = course.comments;
 
         console.log('got information from database...');
 
         // call callback with resulting information broken down by professors
         // callback will process & display this data
-        callback(profReviews);
+        callback(data);
     });
 }
 
 // calculate professor averages and overall averages
-ViewCourse.prototype.calculateStats = function(profReviews) {
+ViewCourse.prototype.calculateStats = function(data) {
 
     var diffCounts = [0,0,0,0,0];
     var intCounts = [0,0,0,0,0];
     var totalDiffs = 0;
     var totalInts = 0;
     var totalCount = 0;
-
+    var profs = []
     // go through each prof
+    var profReviews = data.reviews;
     for (var prof in profReviews) {
         var diffs = profReviews[prof]['diffs'];
         var ints = profReviews[prof]['ints'];
@@ -211,17 +227,30 @@ ViewCourse.prototype.calculateStats = function(profReviews) {
         // add field for averages to prof object
         profReviews[prof]['diffAvg'] = diffAvg;
         profReviews[prof]['intAvg'] = intAvg;
+
+        profReviews[prof].name = prof;
+        profs.push(profReviews[prof]);
     }
 
+    // sort profs array, put 'other' at the end
+    var other;
+    profs = profs.filter(function(e) {
+        if (e.name == 'Other')
+            other = e;
+        return e.name != 'Other';
+    }).sort();
+    profs.push(other);
+    
+
     this.courseStats = {
-        profs: profReviews,
+        profs: profs,
+        comments: data.comments,
         diffCounts: diffCounts,
         intCounts: intCounts,
         totalDiffScore: totalDiffs,
         totalIntScore: totalInts,
         totalCount: totalCount
     };
-
 
     console.log('processed information...');
 }
@@ -245,29 +274,68 @@ ViewCourse.prototype.displayStats = function() {
 
     // create & animate circular progress bars
     // maybe create on page load, animate here?
-    initCircularProgress('#avgDifficulty', avgDiff);
-    initCircularProgress('#avgInterest', avgInt);
+    this.circleDiff.animate(avgDiff / 5.0);
+    this.circleInt.animate(avgInt / 5.0);
 
     // create & animate charts
     initChart($('#diffChart'), this.courseStats.diffCounts);
     initChart($('#intChart'), this.courseStats.intCounts);
+
+    // show professor info
+    // need to make new element, initProfessorProgress for each
+    var profs = this.courseStats.profs;
+
+    var $diffWrap = $('.ratings .difficulty .prof-wrap');
+    var $intWrap = $('.ratings .interest .prof-wrap');
+
+    for (var i = 0; i < profs.length; i++) {
+        var diffId = 'diffBar' + i;
+        var intId = 'intBar' + i;
+
+        var $prof = $('<div/>', {'class': 'prof'});
+        var $span = $('<span/>');
+        var $diffBar = $('<div/>', {'id': diffId});
+        var $intBar = $('<div/>', {'id': intId});
+
+        $span.html('<strong>'+profs[i].name+'</strong>, <i>'+profs[i].numResponses+' responses</i>');
+
+
+        $prof.append($span);
+
+
+        $diffWrap.append($prof.clone().append($('<div/>').append($diffBar)));
+        $intWrap.append($prof.clone().append($('<div/>').append($intBar)));
+
+        initProfessorProgress('#'+diffId, profs[i].diffAvg.toFixed(1));
+        initProfessorProgress('#'+intId, profs[i].intAvg.toFixed(1));
+    }
+
+    console.log('displayed data...');
 }
 
-ViewCourse.prototype.initProgressBars = function() {
+ViewCourse.prototype.displayComments = function() {
+    var comments = this.courseStats.comments;
 
+    for (var key in comments) {
+        var comment = comments[key];
+        var $wrap = $('.comments .comment-wrap');
+        var $div = $('<div/>');
+        var $quote = $('<blockquote/>');
+        var $cite = $('<cite/>');
 
-    initProfessorProgress('#mamat-avg-diff', 3.4);
-    initProfessorProgress('#kruskal-avg-diff', 2.1);
-    
-};
+        $quote.text(comment.comment);
+        $cite.text('\u2014 '+comment.name);
 
-ViewCourse.prototype.initCharts = function() {
-    var diffData = [1,2,3,3,2];
-    var intData = [2,3,5,4,4];
+        $quote.append($cite);
 
-    initChart($('#diffChart'), diffData);
-    initChart($('#intChart'), intData);
-};
+        $div.append($quote);
+
+        $wrap.append($div);
+    }
+
+    console.log('displayed comments...');
+}
+
 
 // validate and submit comment, push to db
 ViewCourse.prototype.submitComment = function() {
@@ -280,7 +348,7 @@ ViewCourse.prototype.submitComment = function() {
         $('#commentWrap').addClass('has-error');
         $('#commentErrorMsg').slideDown();
     } else {
-        var ref = this.database.ref('/courses_test/'+$('#courseName').text()+'/comments');
+        var ref = this.database.ref('/courses/'+$('#courseName').text()+'/comments');
 
         var comment = $('#txtComment').val();
         var name = $('#txtName').val();
@@ -386,7 +454,7 @@ function initProfessorProgress(id, avgRating) {
     bar.animate(avgRating/5.0);
 }
 
-function initCircularProgress(id, rating) {
+function initCircularProgress(id) {
     var bar = new ProgressBar.Circle(id, {
         strokeWidth: 6,
         easing: 'easeInOut',
@@ -400,8 +468,13 @@ function initCircularProgress(id, rating) {
         }
     });
 
-    bar.animate(rating/5.0);
     bar.text.style.color = '#333';
+
+    return bar;
+}
+
+function animateCircularProgress(id, rating) {
+    bar.animate(rating/5.0);
 }
 
 

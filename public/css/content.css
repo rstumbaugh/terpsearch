@@ -94,7 +94,7 @@ button.add-btn {
 
 
 .description .prof-wrap {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .description .prof-wrap .prof {
@@ -103,8 +103,22 @@ button.add-btn {
 	margin-bottom: 25px;
 }
 
+.description .prof-wrap .prof > div {
+	display: inline;
+	position: relative;
+}
+
 .comments a {
 	font-size: 16px;
+}
+
+.comment-wrap blockquote {
+	margin-bottom: 30px;
+}
+
+.comment-wrap cite {
+	float: right;
+	margin-top: 16px;
 }
 
 .comment-input .form-group {
