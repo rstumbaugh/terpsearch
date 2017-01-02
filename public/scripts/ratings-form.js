@@ -6,9 +6,6 @@
 'use strict';
 
 function RatingsForm() {
-    console.log('ratings form loaded');
-    this.courseField = document.getElementById('txtCourse');
-    this.profField = document.getElementById('txtProf');
     this.difficultyField = document.getElementById('rtgDifficulty');
     this.interestField = document.getElementById('rtgInterest');
     this.submitCourseButton = document.getElementById('btnSubmitCourse');
@@ -26,14 +23,66 @@ function RatingsForm() {
         e.preventDefault();
     });
 
-    //this.queryField = document.getElementById('txtQuery');
-    //this.submitQuery = document.getElementById('btnQuery');
+    $('#txtCourse').change(function() {
+        $(this).val($(this).val().toUpperCase());
+    })
+
 
     this.database = firebase.database(); 
     this.submitCourseButton.addEventListener('click', this.submitCourse.bind(this));
-    //this.submitEmail.addEventListener("click", this.saveEmail.bind(this)); 
-    //this.submitQuery.addEventListener("click", this.doQuery.bind(this));
-    //this.submitQuery.addEventListener("click", this.search.bind(this));
+
+    
+
+    // current method: always load all professors
+    // takes a while with every 5000+ professors
+
+    // solution: change API to return obj relating courses and profs 
+    // fetch all courses on page load, fetch all professors when a course is selected
+
+    // inconsistent API making this really fucking annoying... just gonna have all profs
+
+    // waayyyy too many courses to check against all of them, gonna have to validate each input
+    // after course is checked against regexp, check that it exists in API
+    var callback = this.initCombobox;
+    this.loadProfs(function(data) {
+        callback(data, '#txtProf', 'Enter professor\'s name');
+
+         $('#ratingsForm .content').show();
+         $('#ratingsForm .loading').hide();
+
+        console.log('ratings form loaded');
+
+    });
+}
+
+RatingsForm.prototype.loadProfs = function(callback) {
+    
+    var profs = [];
+    $.get(API_ROOT + 'prof', function(data) {
+        for (var i = 0; i < data.length; i++) {
+            profs.push(data[i]);
+        }
+
+        console.log('found '+profs.length+' profs');
+
+        callback(profs);
+    })
+}
+
+RatingsForm.prototype.initCombobox = function(data, id, placeholder) {
+    for (var i = 0; i < data.length; i++) {
+        var info = data[i];
+        var $box = $(id);
+        var $option = $('<option/>', {'value': info});
+        $option.text(info);
+
+        $box.append($option);
+    }
+
+    $(id).combobox();
+    $('.'+id.split('#')[1]+'-wrap .input-group input')
+        .addClass('form-control')
+        .attr({'placeholder': placeholder, 'id': id.split('#')[1]});
 }
 
 RatingsForm.prototype.submitCourse = function() {
@@ -44,42 +93,58 @@ RatingsForm.prototype.submitCourse = function() {
     $("#courseSuccessMsg").hide();
     $("#profErrorMsg").hide();
 
-    var courseId = this.courseField.value.toUpperCase();
-    var professor = this.profField.value;
+    var courseId = $('#txtCourse').val().toUpperCase();
+    var professor = 'test';
     var diffRating = parseInt(this.difficultyField.value);
     var interestRating = parseInt(this.interestField.value);
 
-    // validate both course id and professor name
-    // function for validation
 
-    var valid = true;
-    valid = this.validateCourse(courseId) && valid;
-    valid = this.validateProfessor(professor) && valid;
-    if (valid) {
-        var obj = {
-            professor: professor, 
-            difficulty: diffRating, 
-            interest: interestRating
-        };
+    var valid = this.validateProfessor(professor);
+    var reset = this.resetForm;
+    this.validateCourse(courseId, function() {
+        console.log('success');
+        if (valid) {
+            var obj = {
+                professor: professor, 
+                difficulty: diffRating, 
+                interest: interestRating
+            };
 
-        this.database.ref("/courses/"+courseId+"/ratings").push(obj);
+            //this.database.ref("/courses/"+courseId+"/ratings").push(obj);
+            console.log(courseId+', '+professor+' submitted..');
 
-        $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
-        this.resetForm();
-    } 
+            $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
+
+            reset();
+        }
+    }, 
+    function() {
+        console.log('error');
+    });
 };
 
-RatingsForm.prototype.validateCourse = function(value) {
+// validates course against regular expression and checks if it's been
+// offered by UMD
+RatingsForm.prototype.validateCourse = function(value, success, error) {
     var pattern = /^[a-zA-Z]{4}[0-9]{3}[a-zA-Z]?$/
     var matches = value.match(pattern);
 
     if (matches == null) {
         this.courseInputWrap.classList.add('has-error');
         $('#courseErrorMsg').css('visibility', 'visible').slideDown();
-        return false;
+        error();
+    } else {
+        // returns empty array if course is not in API
+        $.get(API_ROOT + 'find_course/'+value.toUpperCase(), function(data) {
+            if (data.length > 0) {
+                success();
+            } else {
+                $('#courseInputWrap').addClass('has-error');
+                $('#courseErrorMsg').css('visibility', 'visible').slideDown();
+                error();
+            }
+        });
     }
-
-    return true;
 };
 
 RatingsForm.prototype.validateProfessor = function(value) {

@@ -2,20 +2,7 @@
 function Main() {
 
 
-	// only gets courses from this semester
-	// might have to go server-side on this one....
-	var professors = [];
-	$.ajax({
-		type: 'GET',
-		url: API_ROOT + 'prof',
-		data: '',
-		success: function(data) {
-			console.log('received data');
-		},
-		error: function(xhr, status, err) {
-			
-		}
-	});
+	
 }
 
 
