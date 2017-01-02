@@ -94,7 +94,7 @@ RatingsForm.prototype.submitCourse = function() {
     $("#profErrorMsg").hide();
 
     var courseId = $('#txtCourse').val().toUpperCase();
-    var professor = 'test';
+    var professor = $('#txtProf').val();
     var diffRating = parseInt(this.difficultyField.value);
     var interestRating = parseInt(this.interestField.value);
 
