@@ -118,7 +118,7 @@ ViewCourse.prototype.initDisplay = function() {
 
 // load course information from API
 ViewCourse.prototype.loadDataAPI = function(course) {
-    var url = API_ROOT + "courses?course_id="+course;
+    var url = API_ROOT + 'query/v0/courses?course_id='+course;
 
     $.ajax({
         method: "GET",
