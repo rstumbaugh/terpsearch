@@ -58,11 +58,23 @@ function RatingsForm() {
 RatingsForm.prototype.loadProfs = function(callback) {
     
     var profs = [];
+    console.time('profs');
+
+    // this.database.ref('/profs').once('value', function(snapshot) {
+    //     var prof = snapshot.val();
+    //     for (var i = 0; i < prof.length; i++) {
+    //         profs.push(prof[i]);
+    //     }
+    //     console.timeEnd('profs');
+    //     callback(profs);
+    // });
+
     $.get(API_LIST_PROFS, function(data) {
+        
         for (var i = 0; i < data.length; i++) {
             profs.push(data[i]);
         }
-
+        console.timeEnd('profs');
         console.log('found '+profs.length+' profs');
 
         callback(profs);
