@@ -58,7 +58,7 @@ function RatingsForm() {
 RatingsForm.prototype.loadProfs = function(callback) {
     
     var profs = [];
-    $.get(API_ROOT + 'prof', function(data) {
+    $.get(API_LIST_PROFS, function(data) {
         for (var i = 0; i < data.length; i++) {
             profs.push(data[i]);
         }
@@ -102,7 +102,6 @@ RatingsForm.prototype.submitCourse = function() {
     var valid = this.validateProfessor(professor);
     var reset = this.resetForm;
     this.validateCourse(courseId, function() {
-        console.log('success');
         if (valid) {
             var obj = {
                 professor: professor, 
@@ -117,15 +116,12 @@ RatingsForm.prototype.submitCourse = function() {
 
             reset();
         }
-    }, 
-    function() {
-        console.log('error');
-    });
+    });;
 };
 
 // validates course against regular expression and checks if it's been
 // offered by UMD
-RatingsForm.prototype.validateCourse = function(value, success, error) {
+RatingsForm.prototype.validateCourse = function(value, onSuccess) {
     var pattern = /^[a-zA-Z]{4}[0-9]{3}[a-zA-Z]?$/
     var matches = value.match(pattern);
 
@@ -134,16 +130,15 @@ RatingsForm.prototype.validateCourse = function(value, success, error) {
         $('#courseErrorMsg').css('visibility', 'visible').slideDown();
         error();
     } else {
-        // returns empty array if course is not in API
-        $.get(API_ROOT + 'find_course/'+value.toUpperCase(), function(data) {
-            if (data.length > 0) {
-                success();
+        
+        this.database.ref('/course_list/'+value).once('value', function(snapshot) {
+            if (snapshot.val()) {
+                onSuccess();
             } else {
                 $('#courseInputWrap').addClass('has-error');
                 $('#courseErrorMsg').css('visibility', 'visible').slideDown();
-                error();
             }
-        });
+        })
     }
 };
 
