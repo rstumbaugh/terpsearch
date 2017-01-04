@@ -159,10 +159,14 @@ ViewCourse.prototype.loadDataAPI = function(course) {
 // load course information from DB, call method to load from API
 ViewCourse.prototype.loadDataDB = function(course, callback) {
 
+    $.get(API_FIND_COURSE + '/' + course, function(data) {
+        if (data.length > 0) {
+
+        }
+    })
+
     // get ratings by professor
     this.database.ref('/courses/'+course+'/').once('value', function(snapshot) {
-
-        var data = { reviews: {}, comments: {} };
 
         // traverse rating entries
         var course = snapshot.val();

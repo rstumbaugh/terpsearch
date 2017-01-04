@@ -43,7 +43,7 @@ function RatingsForm() {
 
     // waayyyy too many courses to check against all of them, gonna have to validate each input
     // after course is checked against regexp, check that it exists in API
-        this.initCombobox('#txtProf');
+    this.initCombobox('#txtProf');
 }
 
 RatingsForm.prototype.loadProfs = function(callback) {
@@ -160,15 +160,15 @@ RatingsForm.prototype.validateCourse = function(value, onSuccess) {
         $('#courseErrorMsg').css('visibility', 'visible').slideDown();
     } else {
         
-        this.database.ref('/course_list/'+value).once('value', function(snapshot) {
-            if (snapshot.val()) {
+        $.get(API_FIND_COURSE + '/' + value, function(data) {
+            if (data.length > 0) {
                 onSuccess();
             } else {
                 $('#courseInputWrap').addClass('has-error');
                 $('#courseErrorMsg').text('Course not found. Enter a valid course.')
                 $('#courseErrorMsg').css('visibility', 'visible').slideDown();
             }
-        })
+        });
     }
 };
 

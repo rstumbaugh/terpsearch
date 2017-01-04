@@ -13,7 +13,7 @@ function getProfessors() {
 
 window.onload = function() {
 	window.ratingsForm = new RatingsForm();
-	getProfessors();
+	//getProfessors();
 	//validCourseApi();
 	//validCourseFirebase();
 }
