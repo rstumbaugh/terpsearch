@@ -77,7 +77,7 @@ function ViewCourse() {
 
     $('.to-rating').click(function() {
         $('.for-scrolling').animate({
-            scrollTop: $('#ratingsInput').offset().top
+            scrollTop: $('#ratingsForm').offset().top
         }, 1000, "easeInOutCubic");
     });
 
@@ -380,6 +380,7 @@ ViewCourse.prototype.submitComment = function() {
     $('#commentWrap').removeClass('has-error');
 
     var len = $('#txtComment').val().length;
+
     if (len < 25) {
         $('#commentWrap').addClass('has-error');
         $('#commentErrorMsg').slideDown();

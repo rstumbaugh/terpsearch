@@ -118,31 +118,6 @@ html, body {
 	font-style: normal;
 }
 
-.email {
-	margin-top: 100px;
-	color: white;
-	text-align: center;
-}
-
-.email label {
-	font-weight: 300;
-	font-size: 16px;
-}
-
-.email .input-group {
-	width: 30%;
-}
-
-.email input {
-	display: inline;
-	color: black;
-}
-
-.email .input-group-btn button {
-	background-color: #e7e7e7;
-	color: black;
-}
-
 .icons{
 	padding-top: 40px;
 	padding-bottom: 65px;
@@ -216,6 +191,10 @@ label {
 	font-size: 22px;
 	color: #c0392b;
 	margin-top: 5px;
+}
+
+.form-wrap .glyphicon:hover {
+	cursor: pointer;
 }
 
 .form-wrap .help-block {

@@ -43,16 +43,7 @@ function RatingsForm() {
 
     // waayyyy too many courses to check against all of them, gonna have to validate each input
     // after course is checked against regexp, check that it exists in API
-    var callback = this.initCombobox;
-    this.loadProfs(function(data) {
-        callback(data, '#txtProf', 'Enter professor\'s name');
-
-         $('#ratingsForm .content').show();
-         $('#ratingsForm .loading').hide();
-
-        console.log('ratings form loaded');
-
-    });
+        this.initCombobox('#txtProf');
 }
 
 RatingsForm.prototype.loadProfs = function(callback) {
@@ -74,6 +65,7 @@ RatingsForm.prototype.loadProfs = function(callback) {
         for (var i = 0; i < data.length; i++) {
             profs.push(data[i]);
         }
+
         console.timeEnd('profs');
         console.log('found '+profs.length+' profs');
 
@@ -81,20 +73,45 @@ RatingsForm.prototype.loadProfs = function(callback) {
     })
 }
 
-RatingsForm.prototype.initCombobox = function(data, id, placeholder) {
-    for (var i = 0; i < data.length; i++) {
-        var info = data[i];
-        var $box = $(id);
-        var $option = $('<option/>', {'value': info});
-        $option.text(info);
-
-        $box.append($option);
-    }
-
-    $(id).combobox();
-    $('.'+id.split('#')[1]+'-wrap .input-group input')
-        .addClass('form-control')
-        .attr({'placeholder': placeholder, 'id': id.split('#')[1]});
+RatingsForm.prototype.initCombobox = function(id) {
+    $(id).selectize({
+        valueField: 'value',
+        labelField: 'name',
+        searchField: 'name',
+        sortField: 'name',
+        selectOnTab: true,
+        closeAfterSelect: true,
+        loadThrottle: 150,
+        persist: false,
+        create: function(input) {
+            return { name: input, value: 'Other'}
+        },
+        render: {
+            option: function(item, escape) {
+                return '<div>' +
+                    '<span class="title">' +
+                        '<span>' + escape(item.name) + '</span>' +
+                    '</span>'
+                '</div>';
+            }
+        },
+        load: function(query, callback) {
+            if (!query.length) return callback();
+            $.ajax({
+                url: API_FIND_PROFS + '/'+encodeURIComponent(query),
+                type: 'GET',
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    for (var i = 0; i < res.length; i++) {
+                        res[i]['value'] = res[i].name;
+                    }
+                    callback(res);
+                }
+            });
+        }
+    });
 }
 
 RatingsForm.prototype.submitCourse = function() {
@@ -139,8 +156,8 @@ RatingsForm.prototype.validateCourse = function(value, onSuccess) {
 
     if (matches == null) {
         this.courseInputWrap.classList.add('has-error');
+        $('#courseErrorMsg').text('Not a valid course ID.');
         $('#courseErrorMsg').css('visibility', 'visible').slideDown();
-        error();
     } else {
         
         this.database.ref('/course_list/'+value).once('value', function(snapshot) {
@@ -148,6 +165,7 @@ RatingsForm.prototype.validateCourse = function(value, onSuccess) {
                 onSuccess();
             } else {
                 $('#courseInputWrap').addClass('has-error');
+                $('#courseErrorMsg').text('Course not found. Enter a valid course.')
                 $('#courseErrorMsg').css('visibility', 'visible').slideDown();
             }
         })
@@ -168,6 +186,6 @@ RatingsForm.prototype.validateProfessor = function(value) {
 
 RatingsForm.prototype.resetForm = function() {
     $('#txtCourse').val('');
-    $('#txtProf').val('');
+    $('#txtProf')[0].selectize.clear();
     $('.rating').rating('rate', '1');
 };
