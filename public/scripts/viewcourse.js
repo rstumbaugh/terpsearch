@@ -104,8 +104,21 @@ function ViewCourse() {
         myClass.displayStats();
         myClass.displayComments();
 
-        $('.course-content').show();
-        $('.content-loading').hide();
+        // check if course is actually offered at UMD
+        // done here to initialize graphs, progress bars first
+        $.get(API_FIND_COURSE + '/' + course, function(data) {
+
+            $('.content-loading').hide();
+
+            if (data.length > 0) {
+                $('.course-content').show();
+            } else {
+                $('.invalid-course').show();
+                $('#invalidCourse').text(course);
+            }
+        })
+        
+        
     });
 }
 
@@ -131,10 +144,12 @@ ViewCourse.prototype.loadDataAPI = function(course) {
                 var obj = data[0];
                 var desc = obj["description"];
                 var relations = obj["relationships"];
+                var credits = obj['credits'];
 
                 $('#courseName').text(obj['course_id']);
                 $('#courseTitle').text(obj["name"]);
                 $('#txtCourse').val(course);
+                $('#credits').text(credits + ' credits');
 
                 var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 'formerly', 'additional_info'];
                 relationsArr.forEach(function(rel) {
@@ -159,17 +174,13 @@ ViewCourse.prototype.loadDataAPI = function(course) {
 // load course information from DB, call method to load from API
 ViewCourse.prototype.loadDataDB = function(course, callback) {
 
-    $.get(API_FIND_COURSE + '/' + course, function(data) {
-        if (data.length > 0) {
-
-        }
-    })
 
     // get ratings by professor
     this.database.ref('/courses/'+course+'/').once('value', function(snapshot) {
 
         // traverse rating entries
         var course = snapshot.val();
+        var data = {reviews: [], comments: []};
         if (course) {
 
             // hide empty value labels
@@ -200,7 +211,8 @@ ViewCourse.prototype.loadDataDB = function(course, callback) {
             
         } else {
             // course not found in db, leave as empty values and show info box
-            $('.course-content .panel').show();
+            
+            $('#noReviewPanel').show();
         }
 
         // call callback with resulting information broken down by professors
@@ -310,7 +322,6 @@ ViewCourse.prototype.displayStats = function() {
     this.circleInt.animate(avgInt / 5.0);
 
     // create & animate charts
-    console.log(this.courseStats.diffCounts);
     initChart($('#diffChart'), this.courseStats.diffCounts);
     initChart($('#intChart'), this.courseStats.intCounts);
 
@@ -320,7 +331,7 @@ ViewCourse.prototype.displayStats = function() {
 
     var $diffWrap = $('.ratings .difficulty .prof-wrap');
     var $intWrap = $('.ratings .interest .prof-wrap');
-    console.log(profs);
+
     for (var i = 0; i < profs.length; i++) {
         var diffId = 'diffBar' + i;
         var intId = 'intBar' + i;
@@ -387,25 +398,34 @@ ViewCourse.prototype.submitComment = function() {
 
     if (len < 25) {
         $('#commentWrap').addClass('has-error');
+        $('#commentErrorMsg').text('Comment must be at least 25 characters.');
         $('#commentErrorMsg').slideDown();
     } else {
-        var ref = this.database.ref('/courses/'+$('#courseName').text()+'/comments');
 
-        var comment = $('#txtComment').val();
-        var name = $('#txtName').val();
-        name = name ? name: 'anonymous';
+        if ($('.invalid-course').css('display') == 'none') {
+            var ref = this.database.ref('/courses/'+$('#courseName').text()+'/comments');
 
-        var obj = {
-            comment: comment,
-            name: name
+            var comment = $('#txtComment').val();
+            var name = $('#txtName').val();
+            name = name ? name: 'anonymous';
+
+            var obj = {
+                comment: comment,
+                name: name
+            }
+            
+            ref.push(obj);
+
+            $('#commentSuccessMsg').slideDown();
+            $('#txtComment').val('');
+            $('#txtName').val('');
+            $('#charsRemaining').text('25');
+        } else {
+            $('#commentErrorMsg').text('Invalid course.');
+            $('#commentErrorMsg').slideDown();
         }
-        
-        ref.push(obj);
 
-        $('#commentSuccessMsg').slideDown();
-        $('#txtComment').val('');
-        $('#txtName').val('');
-        $('#charsRemaining').text('25');
+        
     }
 }
 

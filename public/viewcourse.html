@@ -28,6 +28,7 @@
                             <h1 id="courseName"></h1>
 
                             <h2 id="courseTitle"></h2>
+                            <p><i id="credits"></i></p>
                             <p id="relationship_prereqs"><strong>Prerequisite: </strong><span id="prereqs"></span></p>
                             <p id="relationship_coreqs"><strong>Corequisite: </strong><span id="coreqs"></span></p>
                             <p id="relationship_restrictions"><strong>Restriction: </strong><span id="restrictions"></span></p>
@@ -42,7 +43,7 @@
                             <button id="btnToComment" class="btn btn-lg btn-primary add-btn">Add a comment</button>
                             <br><br><br>
                             <div class="col-md-8 col-md-offset-2">
-                                <div class="panel panel-warning" style="display:none">
+                                <div id="noReviewPanel" class="panel panel-warning" style="display:none">
                                     <div class="panel-heading">No reviews were found. <a class="to-rating">Be the first</a>
                                         to contribute for this course!</div>
                                 </div>
@@ -53,6 +54,14 @@
                         <div class="content-loading">
                             <!-- TODO: make loading cooler -->
                             <h4>Loading...</h4>
+                        </div>
+                        <div class="invalid-course" style="display:none">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    Course <span id="invalidCourse"></span> was not recognized. If you believe this is an error, please
+                                    <a href="https://github.com/rstumbaugh/terpsearch/issues" target="_blank">report an issue here</a>.
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -146,7 +155,7 @@
                                         <button id="btnAddComment" class="btn btn-primary" type="button">Add comment</button>
                                     </div>
                                     <div class="col-md-6">
-                                        <p id="commentErrorMsg" class="error-msg">Comment must be at least 25 characters.</p>
+                                        <p id="commentErrorMsg" class="error-msg"></p>
                                         <p id="commentSuccessMsg" class="success-msg">Comment submitted.</p>
                                     </div>
                                     <br><br>

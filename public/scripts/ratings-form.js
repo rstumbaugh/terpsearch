@@ -49,25 +49,12 @@ function RatingsForm() {
 RatingsForm.prototype.loadProfs = function(callback) {
     
     var profs = [];
-    console.time('profs');
-
-    // this.database.ref('/profs').once('value', function(snapshot) {
-    //     var prof = snapshot.val();
-    //     for (var i = 0; i < prof.length; i++) {
-    //         profs.push(prof[i]);
-    //     }
-    //     console.timeEnd('profs');
-    //     callback(profs);
-    // });
 
     $.get(API_LIST_PROFS, function(data) {
         
         for (var i = 0; i < data.length; i++) {
             profs.push(data[i]);
         }
-
-        console.timeEnd('profs');
-        console.log('found '+profs.length+' profs');
 
         callback(profs);
     })
@@ -130,6 +117,7 @@ RatingsForm.prototype.submitCourse = function() {
 
     var valid = this.validateProfessor(professor);
     var reset = this.resetForm;
+    var db = this.database;
     this.validateCourse(courseId, function() {
         if (valid) {
             var obj = {
@@ -138,8 +126,8 @@ RatingsForm.prototype.submitCourse = function() {
                 interest: interestRating
             };
 
-            //this.database.ref("/courses/"+courseId+"/ratings").push(obj);
-            console.log(courseId+', '+professor+' submitted..');
+            db.ref("/courses/"+courseId+"/ratings").push(obj);
+            //console.log(courseId+', '+professor+' submitted..');
 
             $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
 
