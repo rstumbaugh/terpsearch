@@ -54,6 +54,10 @@ function ViewCourse() {
     this.overallAvg = 0.0;
     this.courseStats = {};
 
+    $('#goBack').click(function() {
+        window.history.back();
+    });
+
     $('#btnToComment').click(function() {
         $('.for-scrolling').animate({
             scrollTop: $('#comments').offset().top
@@ -65,7 +69,6 @@ function ViewCourse() {
             scrollTop: $('#ratingsForm').offset().top
         }, 1000, 'easeInOutCubic');
     });
-
 
     $('#txtComment').bind('input propertychange', function() {
         var len = $(this).val().length;
@@ -111,6 +114,12 @@ function ViewCourse() {
 ViewCourse.prototype.initDisplay = function() {
     this.circleDiff = initCircularProgress('#avgDifficulty');
     this.circleInt = initCircularProgress('#avgInterest');
+
+    var prev = getUrlVars()['from'];
+
+    if (prev && prev == 'search') {
+        $('#back').show();
+    }
 }
 
 

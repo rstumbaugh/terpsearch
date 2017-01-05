@@ -38,7 +38,7 @@ Search.prototype.processQuery = function(query) {
 			var id = course.course_id;
 			var semester = course.semester;
 
-			var url = 'viewcourse.html?id=' + id + '&semester=' + semester;
+			var url = 'viewcourse.html?from=search&id=' + id + '&semester=' + semester;
 
 			$('.empty-data').hide();
 			
@@ -52,7 +52,7 @@ Search.prototype.processQuery = function(query) {
 		}
 	});
 }
- 
+
 
 window.onload = function() {
 	window.Search = new Search();
