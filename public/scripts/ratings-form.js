@@ -126,8 +126,8 @@ RatingsForm.prototype.submitCourse = function() {
                 interest: interestRating
             };
 
-            //db.ref("/courses/"+courseId+"/ratings").push(obj);
-            console.log(courseId+', '+professor+' submitted..');
+            db.ref("/courses/"+courseId+"/ratings").push(obj);
+            //console.log(courseId+', '+professor+' submitted..');
 
             $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
 
