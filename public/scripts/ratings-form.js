@@ -85,7 +85,7 @@ RatingsForm.prototype.initCombobox = function(id) {
         load: function(query, callback) {
             if (!query.length) return callback();
             $.ajax({
-                url: API_FIND_PROFS + '/'+encodeURIComponent(query),
+                url: API_FIND_PROFS + '?q='+encodeURIComponent(query),
                 type: 'GET',
                 error: function() {
                     callback();

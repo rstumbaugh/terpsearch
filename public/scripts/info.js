@@ -1,6 +1,6 @@
 // TODO: don't hardcode api version
 const API_ROOT = "https://sheltered-ridge-74266.herokuapp.com/";
-const UMD_API_ROOT = API_ROOT + 'query/v0/';
+const UMD_API_ROOT = API_ROOT + 'umdio/v0/';
 const API_LIST_COURSES = API_ROOT + 'courses';
 const API_LIST_PROFS = API_ROOT + 'prof';
 const API_COURSE_EXISTS = API_ROOT + 'course_exists';
