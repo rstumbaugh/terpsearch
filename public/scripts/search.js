@@ -5,43 +5,42 @@
 
 function Search() {
 
-	var query = getUrlVars();
+	var query = window.location.href.split('?')[1];
 
-	if (query.length > 0) {
-		this.processQuery(query);
+	if (query) {
+		this.processQuery('?' + query);
 	}
 
-	$('form').submit(function(e) {
-        e.preventDefault();
-    });
+	// $('form').submit(function(e) {
+ //        e.preventDefault();
+ //    });
 
-	var makeQuery = this.makeQuery;
-	$('#btnSearch').click(function() {
-		console.log('made query');
-		makeQuery();
-	})
+	// var makeQuery = this.makeQuery;
+	// $('#btnSearch').click(function() {
+	// 	console.log('made query');
+	// 	makeQuery();
+	// })
 }
 
 Search.prototype.processQuery = function(query) {
 	console.log('processing query');
 
-	var id = query['id'].toUpperCase();
-
 	var $resultsWrap = $('.search-results');
 
 	// add semester array to node DB, allow lookup on umd.io 
-	$.get(UMD_API_ROOT + 'courses?course_id=' + id, function(data) {
+	$.get(API_FIND_COURSES + query, function(data) {
 
-		
-		if (data.length > 0) {
+		console.log('found '+data.length+' courses');
+
+		for (var i = 0; i < data.length; i++) {
+			var course = data[i];
 
 			$('.empty-data').hide();
-
-			console.log('found a course');
+			
 
 			var $div = $('<div/>');
-			var $a = $('<a/>', {'href': 'viewcourse.html?id='+id});
-			$a.text(id);
+			var $a = $('<a/>', {'href': 'viewcourse.html?id=' + course.course_id});
+			$a.text(course.course_id);
 
 			$div.append($a);
 			$resultsWrap.append($div);

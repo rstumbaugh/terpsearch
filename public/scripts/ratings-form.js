@@ -31,35 +31,10 @@ function RatingsForm() {
     this.database = firebase.database(); 
     this.submitCourseButton.addEventListener('click', this.submitCourse.bind(this));
 
-    
-
-    // current method: always load all professors
-    // takes a while with every 5000+ professors
-
-    // solution: change API to return obj relating courses and profs 
-    // fetch all courses on page load, fetch all professors when a course is selected
-
-    // inconsistent API making this really fucking annoying... just gonna have all profs
-
-    // waayyyy too many courses to check against all of them, gonna have to validate each input
-    // after course is checked against regexp, check that it exists in API
     this.initCombobox('#txtProf');
 }
 
-RatingsForm.prototype.loadProfs = function(callback) {
-    
-    var profs = [];
-
-    $.get(API_LIST_PROFS, function(data) {
-        
-        for (var i = 0; i < data.length; i++) {
-            profs.push(data[i]);
-        }
-
-        callback(profs);
-    })
-}
-
+// initialize combobox with professor values
 RatingsForm.prototype.initCombobox = function(id) {
     $(id).selectize({
         valueField: 'value',
@@ -101,6 +76,7 @@ RatingsForm.prototype.initCombobox = function(id) {
     });
 }
 
+// validates and submits rating 
 RatingsForm.prototype.submitCourse = function() {
     this.courseInputWrap.classList.remove('has-error');
     this.profInputWrap.classList.remove('has-error');
@@ -160,6 +136,7 @@ RatingsForm.prototype.validateCourse = function(value, onSuccess) {
     }
 };
 
+// make sure professor has value
 RatingsForm.prototype.validateProfessor = function(value) {
     var isValid = value && value != "";
 
@@ -172,6 +149,7 @@ RatingsForm.prototype.validateProfessor = function(value) {
     return true;
 }
 
+// reset all items in form
 RatingsForm.prototype.resetForm = function() {
     $('#txtCourse').val('');
     $('#txtProf')[0].selectize.clear();
