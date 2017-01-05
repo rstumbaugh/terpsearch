@@ -1,0 +1,20 @@
+/**
+ * search.css
+ * 4 jan 2017
+**/
+
+
+.search-box {
+	border: 1px solid #c0392b;
+	background-color: #ecf0f1;
+	margin-top: 50px;
+}
+
+
+.search-results {
+	margin-top: 25px;
+}
+
+.search-results .empty-data {
+	font-size: 18px;
+}

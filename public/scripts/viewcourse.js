@@ -4,29 +4,14 @@
 **/
 
 /**
-    TODO: show displays for when there's no data
-        if doesn't match pattern,  show 'invalid course'
-        if no data in db, show 'course not found (check name?)'
-            make sure to check multiple semesters
 
-        ---------------------
+    MAYBE TODO: only show a few profs / comments, 'show more' button
 
-    MAYBE TODO: only show a few profs / comments, "show more" button
-
-        ---------------------
-
-    problem: need to protect against typos with professors (or wrong professors)
-        maybe check against API? for this page, assume all profs are good. deal with this
-        problem when adding reviews
-
-
-    SOLUTION: instead of textbox for professors, have dropdown list of all profs available on API
-        for given course for past 6 semesters or so
 **/
 
 /**
 
-    DEFINITElY need to show some sort of loading, etc while waiting for all data / calculations to load
+    definitely need to show some sort of loading, etc while waiting for all data / calculations to load
     in the future look into ways to speed everything up..
 
     idea: do calculations in database when storing info. then retrieving calculations is just a DB call
@@ -69,16 +54,16 @@ function ViewCourse() {
     this.overallAvg = 0.0;
     this.courseStats = {};
 
-    $("#btnToComment").click(function() {
+    $('#btnToComment').click(function() {
         $('.for-scrolling').animate({
             scrollTop: $('#comments').offset().top
-        }, 1000, "easeInOutCubic");
+        }, 1000, 'easeInOutCubic');
     });
 
     $('.to-rating').click(function() {
         $('.for-scrolling').animate({
             scrollTop: $('#ratingsForm').offset().top
-        }, 1000, "easeInOutCubic");
+        }, 1000, 'easeInOutCubic');
     });
 
 
@@ -90,11 +75,10 @@ function ViewCourse() {
     $('#commentSuccessMsg').hide();
     $('#commentErrorMsg').hide();
 
-
-    var course = getUrlVars()["id"].toUpperCase().split('#')[0];
+    var course = getUrlVars()['id'].toUpperCase().split('#')[0];
 
     var myClass = this;
-    //this.refactorDB(getUrlVars()["id"]);
+    //this.refactorDB(getUrlVars()['id']);
 
     this.initDisplay();
     this.loadDataAPI(course);
@@ -106,7 +90,7 @@ function ViewCourse() {
 
         // check if course is actually offered at UMD
         // done here to initialize graphs, progress bars first
-        $.get(API_FIND_COURSE + '/' + course, function(data) {
+        $.get(API_COURSE_EXISTS + '/' + course, function(data) {
 
             $('.content-loading').hide();
 
@@ -134,20 +118,20 @@ ViewCourse.prototype.loadDataAPI = function(course) {
     var url = UMD_API_ROOT + 'courses?course_id='+course;
 
     $.ajax({
-        method: "GET",
-        dataType: "json",
+        method: 'GET',
+        dataType: 'json',
         url: url,
-        data: "",
+        data: '',
         success: function(data) {
 
             if (data.length > 0) {
                 var obj = data[0];
-                var desc = obj["description"];
-                var relations = obj["relationships"];
+                var desc = obj['description'];
+                var relations = obj['relationships'];
                 var credits = obj['credits'];
 
                 $('#courseName').text(obj['course_id']);
-                $('#courseTitle').text(obj["name"]);
+                $('#courseTitle').text(obj['name']);
                 $('#txtCourse').val(course);
                 $('#credits').text(credits + ' credits');
 
@@ -161,11 +145,11 @@ ViewCourse.prototype.loadDataAPI = function(course) {
                 // no course found in current semester
             }
 
-            console.log("got information from API...");
+            console.log('got information from API...');
 
         },
         error: function(xhr, status, error) {
-            $('#error').text("db error");
+            $('#error').text('db error');
             console.log('error');
         }
     });
@@ -442,7 +426,7 @@ function loadRelationship(relationship, value) {
 
 function initChart(chart, dataArr) {
     var data = {
-        labels: ["1", "2", "3", "4", "5"],
+        labels: ['1', '2', '3', '4', '5'],
         datasets: [
             {
                 backgroundColor: [
@@ -537,24 +521,6 @@ function initCircularProgress(id) {
 function animateCircularProgress(id, rating) {
     bar.animate(rating/5.0);
 }
-
-
-// returns object of querystring params and values
-function getUrlVars() {
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
-    return vars;
-}
-
-
-
-
 
 
 

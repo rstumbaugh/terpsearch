@@ -126,8 +126,8 @@ RatingsForm.prototype.submitCourse = function() {
                 interest: interestRating
             };
 
-            db.ref("/courses/"+courseId+"/ratings").push(obj);
-            //console.log(courseId+', '+professor+' submitted..');
+            //db.ref("/courses/"+courseId+"/ratings").push(obj);
+            console.log(courseId+', '+professor+' submitted..');
 
             $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
 
@@ -148,7 +148,7 @@ RatingsForm.prototype.validateCourse = function(value, onSuccess) {
         $('#courseErrorMsg').css('visibility', 'visible').slideDown();
     } else {
         
-        $.get(API_FIND_COURSE + '/' + value, function(data) {
+        $.get(API_COURSE_EXISTS + '/' + value, function(data) {
             if (data.length > 0) {
                 onSuccess();
             } else {

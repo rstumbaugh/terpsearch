@@ -1,6 +1,7 @@
 
 
 // TODO: change Heroku task to update firebase DB instead of mongo
+// just kidding, dumb idea
 function getProfessors() {
 
 	var ref = firebase.database().ref('/profs')
