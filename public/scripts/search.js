@@ -33,26 +33,26 @@ Search.prototype.processQuery = function(query) {
 		console.log('found '+data.length+' courses');
 
 		for (var i = 0; i < data.length; i++) {
+
 			var course = data[i];
+			var id = course.course_id;
+			var semester = course.semester;
+
+			var url = 'viewcourse.html?id=' + id + '&semester=' + semester;
 
 			$('.empty-data').hide();
 			
 
 			var $div = $('<div/>');
-			var $a = $('<a/>', {'href': 'viewcourse.html?id=' + course.course_id});
-			$a.text(course.course_id);
+			var $a = $('<a/>', {'href': url});
+			$a.text(id);
 
 			$div.append($a);
 			$resultsWrap.append($div);
 		}
 	});
 }
-
-Search.prototype.makeQuery = function() {
-	var query = '?id='+$('#txtCourseId').val();
-	console.log(window.location.href + query);
-	window.location = window.location.href + query;
-}
+ 
 
 window.onload = function() {
 	window.Search = new Search();

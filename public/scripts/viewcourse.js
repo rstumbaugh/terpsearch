@@ -76,12 +76,13 @@ function ViewCourse() {
     $('#commentErrorMsg').hide();
 
     var course = getUrlVars()['id'].toUpperCase().split('#')[0];
+    var semester = getUrlVars()['semester'].split('#')[0];
 
     var myClass = this;
     //this.refactorDB(getUrlVars()['id']);
 
     this.initDisplay();
-    this.loadDataAPI(course);
+    this.loadDataAPI(course, semester);
 	this.loadDataDB(course, function(data) {
 
         myClass.calculateStats(data);
@@ -114,8 +115,8 @@ ViewCourse.prototype.initDisplay = function() {
 
 
 // load course information from API
-ViewCourse.prototype.loadDataAPI = function(course) {
-    var url = UMD_API_ROOT + 'courses?course_id='+course;
+ViewCourse.prototype.loadDataAPI = function(course, semester) {
+    var url = UMD_API_ROOT + 'courses?course_id=' + course + '&semester=' + semester;
 
     $.ajax({
         method: 'GET',
@@ -134,6 +135,7 @@ ViewCourse.prototype.loadDataAPI = function(course) {
                 $('#courseTitle').text(obj['name']);
                 $('#txtCourse').val(course);
                 $('#credits').text(credits + ' credits');
+                $('#semester').text(getSemester(semester));
 
                 var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 'formerly', 'additional_info'];
                 relationsArr.forEach(function(rel) {
@@ -522,6 +524,29 @@ function animateCircularProgress(id, rating) {
     bar.animate(rating/5.0);
 }
 
+
+// converts semester code to readable string
+function getSemester(semester) {
+    var regex = /(\d{4})(\d{2})/;
+
+    var matches = semester.match(regex);
+
+    var year = matches[1];
+    var seasonCode = matches[2];
+    var season;
+
+    if (seasonCode == '01') {
+        season = 'Spring';
+    } else if (seasonCode == '05') {
+        season = 'Summer';
+    } else if (seasonCode == '08') {
+        season = 'Fall';
+    } else if (seasonCode == '12') {
+        season = 'Winter';
+    }
+
+    return season + ' ' + year;
+}
 
 
 window.onload = function() {
