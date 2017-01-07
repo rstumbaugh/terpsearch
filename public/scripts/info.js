@@ -1,11 +1,16 @@
 // TODO: don't hardcode api version
-const API_ROOT = "https://sheltered-ridge-74266.herokuapp.com/";
-const UMD_API_ROOT = API_ROOT + 'umdio/v0/';
-const API_LIST_COURSES = API_ROOT + 'courses';
-const API_LIST_PROFS = API_ROOT + 'prof';
-const API_COURSE_EXISTS = API_ROOT + 'course_exists';
-const API_FIND_COURSES = API_ROOT + 'find_courses';
-const API_FIND_PROFS = API_ROOT + 'find_profs';
+const          API_ROOT  = "https://sheltered-ridge-74266.herokuapp.com/";
+
+const      UMD_API_ROOT  = API_ROOT + 'umdio/v0/';
+
+const  API_FIND_COURSES  = API_ROOT + 'courses';
+const  API_LIST_COURSES  = API_ROOT + 'courses/list';
+const API_COURSE_EXISTS  = API_ROOT + 'course_exists';
+const  API_COURSE_STATS  = API_ROOT + 'courses/stats';
+
+const    API_FIND_PROFS  = API_ROOT + 'profs';
+const    API_LIST_PROFS  = API_ROOT + 'profs/list';
+
 
 
 // returns object of querystring params and values
