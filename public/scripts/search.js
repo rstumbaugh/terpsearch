@@ -54,6 +54,7 @@ function generateSearchItem(course) {
 
 	var data = {
 		course_id: course.course_id,
+		link: url,
 		diff_rating: 3.2,
 		int_rating: 4.3,
 		semester: course.semester,
@@ -67,10 +68,10 @@ function generateSearchItem(course) {
 
 	var body = template(data);
 
-	var $a = $('<a/>', {'href': url});
-	$a.html(body);
+	//var $a = $('<a/>', {'href': url});
+	//$a.html(body);
 
-	return $a;
+	return body;
 }
 
 

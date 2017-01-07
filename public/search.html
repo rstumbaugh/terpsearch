@@ -85,7 +85,7 @@
     <script id="search-result-template" type="text/x-handlebars-template">
         <div class="search-result row">
             <div class="col-sm-3 col-md-2">
-                <h2>{{course_id}}</h2>
+                <h2><a href="{{link}}">{{course_id}}</a></h2>
                 <div class="rating col-xs-6">
                     <span class="large">{{diff_rating}}</span><br>
                     Avg. Difficulty
@@ -97,7 +97,7 @@
                 <span class="semester" style="display:none">{{semester}}</span>
             </div>
             <div class="col-sm-9 col-md-10">
-                <h3>{{title}}</h3>
+                <h3><a href="{{link}}">{{title}}</a></h3>
                 <div class="info row">
                     <div class="col-sm-4">
                         <strong>Last offered: </strong><span class="semester">{{semester_string}}
