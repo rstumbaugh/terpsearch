@@ -7,19 +7,10 @@ function Search() {
 
 	var query = window.location.href.split('?')[1];
 
+
 	if (query) {
 		this.processQuery('?' + query);
 	}
-
-	// $('form').submit(function(e) {
- //        e.preventDefault();
- //    });
-
-	// var makeQuery = this.makeQuery;
-	// $('#btnSearch').click(function() {
-	// 	console.log('made query');
-	// 	makeQuery();
-	// })
 }
 
 Search.prototype.processQuery = function(query) {
@@ -32,7 +23,14 @@ Search.prototype.processQuery = function(query) {
 
 		console.log('found '+data.length+' courses');
 
+		if (data.length == 0) {
+			$('.data-loading').hide();
+			$('.empty-data').show();
+		}
+
 		for (var i = 0; i < data.length; i++) {
+
+			$('.data-loading').hide();
 
 			var course = data[i];
 			var id = course.course_id;
@@ -40,7 +38,7 @@ Search.prototype.processQuery = function(query) {
 
 			var url = 'viewcourse.html?from=search&id=' + id + '&semester=' + semester;
 
-			$('.empty-data').hide();
+			
 			
 
 			var $div = $('<div/>');

@@ -25,27 +25,28 @@
                     <div class="row search-box-wrap">
                         
                         <div class="col-sm-12 search-box">
-                            <h1>Search and Filter</h1>
+                            <h1>Filter Courses</h1>
                             <form>
-                                <div class="col-xs-6">
-                                    <div class="form-group">
+                                <div class="form-group col-sm-6">
+                                    <div>
                                         <label for="txtKeyword">Search by Keyword</label>
                                         <input name="q" type="text" class="form-control" id="txtKeyword" placeholder="Enter search terms">
                                     </div>
                                 </div>
-                                <div class="col-xs-6">
-                                    <div class="form-group">
+                                <div class="form-group col-sm-6">
+                                    <div>
                                         <label for="txtCourseId">Search Course ID</label>
                                         <input name="id" type="text" class="form-control" id="txtCourseId" placeholder="Course ID (i.e. ENGL101)">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-sm-3">
                                     <button class="btn btn-primary" id="btnSearch">Search</button>
                                 </div>
                             </form>
                         </div>
                         <div class="col-sm-12 search-results">
-                            <div class="empty-data">No results to display.</div>
+                            <div class="empty-data" style="display:none"><i>No courses to display.</i></div>
+                            <div class="data-loading">Loading...</div>
                         </div>
                     </div>
                 </div>

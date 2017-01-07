@@ -388,7 +388,7 @@ ViewCourse.prototype.submitComment = function() {
     $('#commentSuccessMsg').hide();
     $('#commentErrorMsg').hide();
     $('#commentWrap').removeClass('has-error');
-
+    alert('hey erin');
     var len = $('#txtComment').val().length;
 
     if (len < 25) {
