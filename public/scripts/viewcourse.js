@@ -167,17 +167,21 @@ ViewCourse.prototype.loadDataAPI = function(course, semester) {
 // load course information from DB, call method to load from API
 ViewCourse.prototype.loadDataDB = function(course, callback) {
 
-
     // get ratings by professor
     this.database.ref('/courses/'+course+'/').once('value', function(snapshot) {
 
         // traverse rating entries
         var course = snapshot.val();
-        var data = {reviews: [], comments: []};
+        var data = {reviews: [], comments: [], avgDiff: 0.0, avgInt: 0.0};
         if (course) {
+
+            data.avgDiff = course.avgDifficulty.toFixed(1);
+            data.avgInt = course.avgInterest.toFixed(1);
 
             // hide empty value labels
             $('.ratings .empty-data').hide();
+
+            // traverse all ratings, calculate professor averages
             for (var key in course.ratings) {
 
                 var obj = course.ratings[key];
@@ -280,9 +284,8 @@ ViewCourse.prototype.calculateStats = function(data) {
         comments: data.comments,
         diffCounts: diffCounts,
         intCounts: intCounts,
-        totalDiffScore: totalDiffs,
-        totalIntScore: totalInts,
-        totalCount: totalCount
+        avgDiff: data.avgDiff,
+        avgInt: data.avgInt
     };
 
     console.log('processed information...');
@@ -294,15 +297,8 @@ ViewCourse.prototype.displayStats = function() {
     // need to populate difficulty and interest charts
     // need to add a professor entry for each professor in courseStats
 
-    var avgDiff = 0;
-    var avgInt = 0;
-    if (this.courseStats.totalCount > 0) {
-        avgDiff = this.courseStats.totalDiffScore / this.courseStats.totalCount;
-        avgInt = this.courseStats.totalIntScore / this.courseStats.totalCount;
-    }
-
-    avgDiff = avgDiff.toFixed(1);
-    avgInt = avgInt.toFixed(1);
+    var avgDiff = this.courseStats.avgDiff;
+    var avgInt = this.courseStats.avgInt;
 
     // populate easy fields first (num responses, average labels, etc)
     $('.numResponses').text(this.courseStats.totalCount);
