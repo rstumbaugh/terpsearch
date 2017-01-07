@@ -4,9 +4,7 @@
 **/
 
 /**
-
     MAYBE TODO: only show a few profs / comments, 'show more' button
-
 **/
 
 /**
@@ -30,12 +28,6 @@ ViewCourse.prototype.refactorDB = function(course) {
                 max = len;
                 id = course;
             }
-            // for (var rating in data.val()[course]['ratings']) {
-            //     var obj = data.val()[course]['ratings'][rating];
-            //     obj['professor'] = 'Other';
-            //     console.log(obj);
-            //     ref.child(course+'/ratings/'+rating).set(obj);
-            // }
         }
         console.log(id+': '+max+' responses');
     });
@@ -136,9 +128,11 @@ ViewCourse.prototype.loadDataAPI = function(course, semester) {
 
             if (data.length > 0) {
                 var obj = data[0];
-                var desc = obj['description'];
-                var relations = obj['relationships'];
-                var credits = obj['credits'];
+                var desc = obj.description;
+                var relations = obj.relationships;
+                var credits = obj.credits;
+                var dept = obj.dept_id;
+                var link = 'https://ntst.umd.edu/soc/'+semester+'/'+dept+'/'+course;
 
                 $('#courseName').text(obj['course_id']);
                 $('#courseTitle').text(obj['name']);
@@ -146,7 +140,11 @@ ViewCourse.prototype.loadDataAPI = function(course, semester) {
                 $('#credits').text(credits + ' credits');
                 $('#semester').text(getSemester(semester));
 
-                var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 'formerly', 'additional_info'];
+                $('#testudoLink').attr('href', link);
+
+                var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 
+                                    'formerly', 'additional_info'];
+
                 relationsArr.forEach(function(rel) {
                     loadRelationship(rel, relations[rel]);
                 });
