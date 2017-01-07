@@ -7,16 +7,18 @@ function Search() {
 
 	var query = window.location.href.split('?')[1];
 
-
 	if (query) {
 		this.processQuery('?' + query);
+	} else {
+		$('.data-loading').hide();
+		$('.empty-data').show();
 	}
 }
 
 Search.prototype.processQuery = function(query) {
 	console.log('processing query');
 
-	var $resultsWrap = $('.search-results');
+	var $resultsWrap = $('.search-results-wrap');
 
 	// add semester array to node DB, allow lookup on umd.io 
 	$.get(API_FIND_COURSES + query, function(data) {
@@ -33,22 +35,42 @@ Search.prototype.processQuery = function(query) {
 			$('.data-loading').hide();
 
 			var course = data[i];
-			var id = course.course_id;
-			var semester = course.semester;
 
-			var url = 'viewcourse.html?from=search&id=' + id + '&semester=' + semester;
+			var $item = generateSearchItem(course);
 
-			
-			
-
-			var $div = $('<div/>');
-			var $a = $('<a/>', {'href': url});
-			$a.text(id);
-
-			$div.append($a);
-			$resultsWrap.append($div);
+			$resultsWrap.append($item);
+			$resultsWrap.append($('<hr/>'));
 		}
 	});
+}
+
+
+
+function generateSearchItem(course) {
+	var url = 'viewcourse.html?from=search&id=' + course.course_id + '&semester=' + course.semester;
+
+	var source = $('#search-result-template').html();
+	var template = Handlebars.compile(source);
+
+	var data = {
+		course_id: course.course_id,
+		diff_rating: 3.2,
+		int_rating: 4.3,
+		semester: course.semester,
+		title: course.name,
+		semester_string: getSemester(course.semester),
+		gen_ed: course.gen_ed.join(', ') || 'None',
+		credits: course.credits,
+		description: course.description
+	};
+	
+
+	var body = template(data);
+
+	var $a = $('<a/>', {'href': url});
+	$a.html(body);
+
+	return $a;
 }
 
 

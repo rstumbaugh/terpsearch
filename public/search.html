@@ -44,7 +44,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-sm-12 search-results">
+                        <div class="col-sm-12 search-results-wrap">
                             <div class="empty-data" style="display:none"><i>No courses to display.</i></div>
                             <div class="data-loading">Loading...</div>
                         </div>
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <!-- <div class="row footer">
+            <div class="row footer">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                     <div class="col-sm-12">
                         <p>Made at the University of Maryland, College Park</p>
@@ -75,15 +75,51 @@
                         Icons made by <a href="http://www.freepik.com" target="_blank" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" target="_blank" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
                     </div>
                 </div>
-            </div> -->
-        </div>
-
-
-            
-        
-    
+            </div>
+        </div>  
     </body>
 
+
+
+    <!-- Handlebars template for course search result -->
+    <script id="search-result-template" type="text/x-handlebars-template">
+        <div class="search-result row">
+            <div class="col-sm-3 col-md-2">
+                <h2>{{course_id}}</h2>
+                <div class="rating col-xs-6">
+                    <span class="large">{{diff_rating}}</span><br>
+                    Avg. Difficulty
+                </div>
+                <div class="rating col-xs-6">
+                    <span class="large">{{int_rating}}</span><br>
+                    Avg. Interest
+                </div>
+                <span class="semester" style="display:none">{{semester}}</span>
+            </div>
+            <div class="col-sm-9 col-md-10">
+                <h3>{{title}}</h3>
+                <div class="info row">
+                    <div class="col-sm-4">
+                        <strong>Last offered: </strong><span class="semester">{{semester_string}}
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>Gen Ed: </strong><span class="gen_ed">{{gen_ed}}</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>Credits: </strong><span class="credits">{{credits}}</span>
+                    </div>
+                    <div class="clearfix visible-sm"></div>
+                </div>
+                <div class="description row">
+                    <div class="col-sm-12">
+                        {{description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script src="scripts/handlebars.min.js"></script>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>

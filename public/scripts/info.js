@@ -27,3 +27,26 @@ function getUrlVars() {
     }
     return vars;
 }
+
+// converts semester code to readable string
+function getSemester(semester) {
+    var regex = /(\d{4})(\d{2})/;
+
+    var matches = semester.match(regex);
+
+    var year = matches[1];
+    var seasonCode = matches[2];
+    var season;
+
+    if (seasonCode == '01') {
+        season = 'Spring';
+    } else if (seasonCode == '05') {
+        season = 'Summer';
+    } else if (seasonCode == '08') {
+        season = 'Fall';
+    } else if (seasonCode == '12') {
+        season = 'Winter';
+    }
+
+    return season + ' ' + year;
+}
