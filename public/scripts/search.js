@@ -39,9 +39,6 @@ Search.prototype.processQuery = function(query) {
 			var $item = generateSearchItem(course);
 			$resultsWrap.append($item);
 			$resultsWrap.append($('<hr/>'));
-			
-				
-
 				
 		}
 		
