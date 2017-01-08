@@ -79,17 +79,6 @@ function ViewCourse() {
             }
         })
     })
-	// this.loadDataDB(course, function(data) {
-
- //        myClass.calculateStats(data);
- //        myClass.displayStats();
- //        myClass.displayComments();
-
- //        
-        
-        
-        
- //    });
 }
 
 // prepare elements with default values before things are loaded
