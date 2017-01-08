@@ -35,20 +35,10 @@ Search.prototype.processQuery = function(query) {
 			$('.data-loading').hide();
 
 			var course = data[i];
-			
-			(function(course) {
-				$.get(API_COURSE_STATS + '?course_id=' + course.course_id, function(stats) {
-					console.log(data.course_id);
-					console.log(stats);
-					course.diffAvg = stats.totalDiffAvg;
-					course.intAvg = stats.totalIntAvg;
 
-					var $item = generateSearchItem(course);
-
-					$resultsWrap.append($item);
-					$resultsWrap.append($('<hr/>'));
-				});
-			})(course);
+			var $item = generateSearchItem(course);
+			$resultsWrap.append($item);
+			$resultsWrap.append($('<hr/>'));
 			
 				
 
@@ -71,8 +61,8 @@ function generateSearchItem(course) {
 	var data = {
 		course_id: course.course_id,
 		link: url,
-		diff_rating: course.diffAvg.toFixed(1),
-		int_rating: course.intAvg.toFixed(1),
+		diff_rating: 3.2,
+		int_rating: 2.5,
 		semester: course.semester,
 		title: course.name,
 		semester_string: getSemester(course.semester),
