@@ -1,4 +1,6 @@
 // TODO: don't hardcode api version
+
+// API ROUTES
 const          API_ROOT  = "https://sheltered-ridge-74266.herokuapp.com/";
 
 const      UMD_API_ROOT  = API_ROOT + 'umdio/v0/';
@@ -14,6 +16,7 @@ const    API_LIST_PROFS  = API_ROOT + 'profs/list';
 
 
 
+// GLOBAL HELPER METHODS
 // returns object of querystring params and values
 function getUrlVars() {
     var vars = [], hash;
