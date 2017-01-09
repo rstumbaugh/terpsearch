@@ -5,8 +5,9 @@ const      UMD_API_ROOT  = API_ROOT + 'umdio/v0/';
 
 const  API_FIND_COURSES  = API_ROOT + 'courses';
 const  API_LIST_COURSES  = API_ROOT + 'courses/list';
-const API_COURSE_EXISTS  = API_ROOT + 'course_exists';
 const  API_COURSE_STATS  = API_ROOT + 'courses/stats';
+const   API_DEPARTMENTS  = API_ROOT + 'courses/departments';
+const API_COURSE_EXISTS  = API_ROOT + 'course_exists';
 
 const    API_FIND_PROFS  = API_ROOT + 'profs';
 const    API_LIST_PROFS  = API_ROOT + 'profs/list';

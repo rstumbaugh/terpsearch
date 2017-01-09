@@ -28,11 +28,14 @@
                             <h1>Filter Courses</h1>
                             <form>
                                 <div class="form-group col-sm-12">
-                                    <div>
-                                        <label for="txtKeyword">Search by Keyword or Course ID</label>
-                                        <input name="keyword" type="text" class="form-control" id="txtKeyword" placeholder="Enter search terms">
-                                    </div>
+                                    <label for="txtKeyword">Search by Keyword or Course ID</label>
+                                    <input name="keyword" type="text" class="form-control" id="txtKeyword" placeholder="Enter search terms">
                                 </div>
+                                <form-group class="col-sm-3">
+                                    <label for="txtDept">Filter Department</label>
+                                    <select name="dept" id="txtDept" placeholder="Enter department (i.e. AASP)"></select>
+                                </form-group>
+                                <div class="clearfix visible-sm visible-md visible-lg"></div>
                                 <div class="form-group col-sm-3">
                                     <button class="btn btn-primary" id="btnSearch">Search</button>
                                 </div>

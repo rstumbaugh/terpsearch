@@ -5,6 +5,9 @@
 
 function Search() {
 
+	this.initCombobox('#txtDept');
+
+
 	var query = window.location.href.split('?')[1];
 
 	if (query) {
@@ -13,6 +16,9 @@ function Search() {
 		$('.data-loading').hide();
 		$('.empty-data').show();
 	}
+
+
+
 }
 
 Search.prototype.processQuery = function(query) {
@@ -46,7 +52,42 @@ Search.prototype.processQuery = function(query) {
 	});
 }
 
-
+Search.prototype.initCombobox = function(id) {
+    $(id).selectize({
+        valueField: 'value',
+        labelField: 'dept_id',
+        searchField: 'dept_id',
+        sortField: 'dept_id',
+        selectOnTab: true,
+        closeAfterSelect: true,
+        loadThrottle: 50,
+        create: false,
+        render: {
+            option: function(item, escape) {
+                return '<div>' +
+                    '<span class="title">' +
+                        '<span>' + escape(item.dept_id) + '</span>' +
+                    '</span>'
+                '</div>';
+            }
+        },
+        load: function(query, callback) {
+            $.ajax({
+                url: API_DEPARTMENTS,
+                type: 'GET',
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    for (var i = 0; i < res.length; i++) {
+                        res[i]['value'] = res[i].dept_id;
+                    }
+                    callback(res);
+                }
+            });
+        }
+    });
+}
 
 function generateSearchItem(course) {
 
