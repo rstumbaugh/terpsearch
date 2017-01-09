@@ -62,13 +62,15 @@
                                 </div>
                                 <div class="clearfix visible-sm visible-md visible-lg"></div>
                                 <div class="form-group col-sm-3">
-                                    <button class="btn btn-primary" id="btnSearch">Search</button>
+                                    <button class="btn btn-primary" id="btnSearch" type="submit">Search</button>
+                                    <button class="btn btn-default" id="btnReset" type="button">Reset Form</button>
                                 </div>
                             </form>
                         </div>
                         <div class="col-sm-12 search-results-wrap">
-                            <div class="empty-data" style="display:none"><i>No courses to display.</i></div>
-                            <div class="data-loading">Loading...</div>
+                            <div class="empty-data"><i>No courses to display.</i></div>
+                            <div class="data-loading" style="display:none">Loading...</div>
+                            <div class="search-results"></div>
                         </div>
                     </div>
                 </div>
