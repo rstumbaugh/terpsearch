@@ -1,5 +1,5 @@
 // TODO: don't hardcode api version
-const          API_ROOT  = "https://api.terpsearch.me/";
+const          API_ROOT  = "https://sheltered-ridge-74266.herokuapp.com/";
 
 const      UMD_API_ROOT  = API_ROOT + 'umdio/v0/';
 
