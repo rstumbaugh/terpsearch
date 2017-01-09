@@ -31,10 +31,35 @@
                                     <label for="txtKeyword">Search by Keyword or Course ID</label>
                                     <input name="keyword" type="text" class="form-control" id="txtKeyword" placeholder="Enter search terms">
                                 </div>
-                                <form-group class="col-sm-3">
+                                <div class="form-group col-sm-3">
                                     <label for="txtDept">Filter Department</label>
                                     <select name="dept" id="txtDept" placeholder="Enter department (i.e. AASP)"></select>
-                                </form-group>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="txtGened">Filter by Gen Ed</label>
+                                    <select name="gened" id="txtGened" placeholder="Enter a Gen Ed code (i.e. DSHS)">
+                                        <optgroup label="Fundamental Studies">
+                                        <option value="FSAW">FSAW - Academic Writing</option>
+                                        <option value="FSAR">FSAR - Analytic Reasoning</option>
+                                        <option value="FSMA">FSMA - Math</option>
+                                        <option value="FSOC">FSOC - Oral Communications</option>
+                                        <option value="FSPW">FSPW - Professional Writing</option>
+
+                                        <optgroup label="Distributive Studies">
+                                        <option value="DSHS">DSHS - History and Social Sciences</option>
+                                        <option value="DSHU">DSHU - Humanities</option>
+                                        <option value="DSNS">DSNS - Natural Sciences</option>
+                                        <option value="DSNL">DSNL - Natural Science Lab</option>
+                                        <option value="DSSP">DSSP - Scholarship in Practice</option>
+
+                                        <optgroup label="Diversity">
+                                        <option value="DVUP">DVUP - Understanding Plural Societies</option>
+                                        <option value="DVCC">DVCC - Cultural Competency</option>
+
+                                        <optgroup label="Signature Series">
+                                        <option value="SCIS">SCIS - I-Series</option>
+                                    </select>
+                                </div>
                                 <div class="clearfix visible-sm visible-md visible-lg"></div>
                                 <div class="form-group col-sm-3">
                                     <button class="btn btn-primary" id="btnSearch">Search</button>
