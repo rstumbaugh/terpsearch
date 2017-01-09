@@ -119,8 +119,8 @@ function generateSearchItem(course) {
 	var data = {
 		course_id: course.course_id,
 		link: url,
-		diff_rating: 3.2,
-		int_rating: 2.5,
+		diff_rating: (course.avg_diff ? course.avg_diff : 0).toFixed(1),
+		int_rating: (course.avg_int ? course.avg_int : 0).toFixed(1),
 		semester: course.semester,
 		title: course.name,
 		semester_string: getSemester(course.semester),
