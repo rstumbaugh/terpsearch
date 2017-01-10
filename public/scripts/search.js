@@ -5,6 +5,42 @@
 
 function Search() {
 
+	$('#txtProf').selectize({
+        valueField: 'value',
+        labelField: 'name',
+        searchField: 'name',
+        sortField: 'name',
+        maxItems: null,
+        selectOnTab: true,
+        closeAfterSelect: true,
+        loadThrottle: 150,
+        persist: false,
+        create: function(input) {
+            return { name: input, value: 'Other'}
+        },
+        render: {
+            option: function(item, escape) {
+                return '<div>' + escape(item.name) + '</div>';
+            }
+        },
+        load: function(query, callback) {
+            if (!query.length) return callback();
+            $.ajax({
+                url: API_FIND_PROFS + '?q='+encodeURIComponent(query),
+                type: 'GET',
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    for (var i = 0; i < res.length; i++) {
+                        res[i]['value'] = res[i].name;
+                    }
+                    callback(res);
+                }
+            });
+        }
+    });
+
 	$('#txtDept').selectize({
         valueField: 'dept_id',
         labelField: 'dept_id',
@@ -72,7 +108,12 @@ Search.prototype.buildQuery = function() {
 	});
 
 	$('.form-group > select').each(function(index) {
-		params[$(this).attr('name')] = $(this).val().join(',');
+		if ($(this).val()) {
+			params[$(this).attr('name')] = $(this).val().join(',');
+		} else {
+			params[$(this).attr('name')] = '';
+		}
+		
 	});
 
 	return $.param(params).replace(/%2C/g, ',');
