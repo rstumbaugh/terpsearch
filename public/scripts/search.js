@@ -103,29 +103,29 @@ Search.prototype.processQuery = function(query) {
 			$summary.text('Found '+data.length+' courses in '+numDepts+' department'+(numDepts > 1 ? 's.' : '.'));
 			$resultsWrap.append($summary);
 
-			
+			// compile handlebars template
+			var source = $('#search-result-template').html();
+			var template = Handlebars.compile(source);
+
 			for (var i = 0; i < data.length; i++) {
 
 				$('.data-loading').hide();
 
 				var course = data[i];
 
-				var $item = generateSearchItem(course);
+				var $item = generateSearchItem(course, template);
 				$resultsWrap.append($item);
 				$resultsWrap.append($('<hr/>'));
-					
 			}
 		}
 	});
 }
 
-
-function generateSearchItem(course) {
+// given a course, generate search result item from course info
+// uses Handlebar
+function generateSearchItem(course, template) {
 
 	var url = 'viewcourse.html?from=search&id=' + course.course_id + '&semester=' + course.semester;
-
-	var source = $('#search-result-template').html();
-	var template = Handlebars.compile(source);
 
 	var data = {
 		course_id: course.course_id,

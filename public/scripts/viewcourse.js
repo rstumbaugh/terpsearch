@@ -9,19 +9,45 @@
 
 **/
 
-/**
-
-    definitely need to show some sort of loading, etc while waiting for all data / calculations to load
-    in the future look into ways to speed everything up..
-
-    idea: do calculations in database when storing info. then retrieving calculations is just a DB call
-**/
-
 function ViewCourse() {
-    this.commentBtn = document.getElementById('btnAddComment');
-
 	this.database = firebase.database();
-    this.commentBtn.addEventListener('click', this.submitComment.bind(this));
+
+    var self = this;
+    var course = getUrlVars()['id'].toUpperCase().split('#')[0];
+    var semester = getUrlVars()['semester'].split('#')[0];
+
+    this.initEventHandlers();
+    this.initDisplay();
+    this.loadDataAPI(course, semester);
+    this.loadStats(course, function(data) {
+
+        self.displayComments(data.comments);
+
+        if (data.totalCount > 0) {
+            $('.ratings .empty-data').hide();
+        } else {
+            $('#noReviewPanel').show();
+        }
+
+        // check if course is actually offered at UMD
+        // done here to initialize graphs, progress bars first
+        $.get(API_FIND_COURSES + '?course_id=' + course, function(data) {
+
+            $('.content-loading').hide();
+
+            if (data.length > 0) {
+                $('.course-content').show();
+            } else {
+                $('.invalid-course').show();
+                $('#invalidCourse').text(course);
+            }
+        })
+    })
+}
+
+// add event handlers for buttons, etc
+ViewCourse.prototype.initEventHandlers = function() {
+    var self = this;
 
     $('#goBack').click(function() {
         window.history.back();
@@ -44,45 +70,16 @@ function ViewCourse() {
         $('#charsRemaining').text(25 - len > 0 ? 25 - len : 0);
     });
 
-    $('#commentSuccessMsg').hide();
-    $('#commentErrorMsg').hide();
-
-    var course = getUrlVars()['id'].toUpperCase().split('#')[0];
-    var semester = getUrlVars()['semester'].split('#')[0];
-
-    //this.refactorDB(getUrlVars()['id']);
-    var showComments = this.displayComments;
-
-    this.initDisplay();
-    this.loadDataAPI(course, semester);
-    this.loadStats(course, function(data) {
-
-        showComments(data.comments);
-
-        if (data.totalCount > 0) {
-            $('.ratings .empty-data').hide();
-        } else {
-            $('#noReviewPanel').show();
-        }
-
-        // check if course is actually offered at UMD
-        // done here to initialize graphs, progress bars first
-        $.get(API_COURSE_EXISTS + '/' + course, function(data) {
-
-            $('.content-loading').hide();
-
-            if (data.length > 0) {
-                $('.course-content').show();
-            } else {
-                $('.invalid-course').show();
-                $('#invalidCourse').text(course);
-            }
-        })
+    $('#btnAddComment').click(function() {
+        self.submitComment();
     })
 }
 
 // prepare elements with default values before things are loaded
 ViewCourse.prototype.initDisplay = function() {
+    $('#commentSuccessMsg').hide();
+    $('#commentErrorMsg').hide();
+
     this.circleDiff = initCircularProgress('#avgDifficulty');
     this.circleInt = initCircularProgress('#avgInterest');
 
@@ -145,6 +142,7 @@ ViewCourse.prototype.loadDataAPI = function(course, semester) {
     });
 }
 
+// load and display course stats from API
 ViewCourse.prototype.loadStats = function(course, callback) {
 
     var circleDiff = this.circleDiff;
@@ -226,10 +224,6 @@ ViewCourse.prototype.displayComments = function(comments) {
             $wrap.append($div);
         }
     }
-
-    
-
-    console.log('displayed comments...');
 }
 
 
@@ -247,6 +241,7 @@ ViewCourse.prototype.submitComment = function() {
         $('#commentErrorMsg').slideDown();
     } else {
 
+        // kinda hacky, but don't fuck with the HTML or you'll get an error
         if ($('.invalid-course').css('display') == 'none') {
 
             var comment = $('#txtComment').val();
