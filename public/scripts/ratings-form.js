@@ -104,7 +104,7 @@ RatingsForm.prototype.submitCourse = function() {
             };
 
 
-            $.post(API_ADD_RATING, obj, function(data) {
+            $.post(API_ADD_RATINGS, obj, function(data) {
                 $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
                 reset();
             });
