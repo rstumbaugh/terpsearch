@@ -97,17 +97,17 @@ RatingsForm.prototype.submitCourse = function() {
     this.validateCourse(courseId, function() {
         if (valid) {
             var obj = {
-                professor: professor, 
+                course_id: courseId,
                 difficulty: diffRating, 
-                interest: interestRating
+                interest: interestRating,
+                professor: professor
             };
 
-            db.ref("/courses/"+courseId+"/ratings").push(obj);
-            //console.log(courseId+', '+professor+' submitted..');
 
-            $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
-
-            reset();
+            $.post(API_ADD_RATING, obj, function(data) {
+                $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
+                reset();
+            });
         }
     });;
 };

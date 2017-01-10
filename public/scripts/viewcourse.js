@@ -238,7 +238,7 @@ ViewCourse.prototype.submitComment = function() {
     $('#commentSuccessMsg').hide();
     $('#commentErrorMsg').hide();
     $('#commentWrap').removeClass('has-error');
-    alert('hey erin');
+
     var len = $('#txtComment').val().length;
 
     if (len < 25) {
@@ -248,23 +248,25 @@ ViewCourse.prototype.submitComment = function() {
     } else {
 
         if ($('.invalid-course').css('display') == 'none') {
-            var ref = this.database.ref('/courses/'+$('#courseName').text()+'/comments');
 
             var comment = $('#txtComment').val();
             var name = $('#txtName').val();
             name = name ? name: 'anonymous';
 
             var obj = {
+                course_id: $('#courseName').text(),
                 comment: comment,
                 name: name
             }
             
-            ref.push(obj);
+            $.post(API_ADD_COMMENT, obj, function(data) {
+                $('#commentSuccessMsg').slideDown();
+                $('#txtComment').val('');
+                $('#txtName').val('');
+                $('#charsRemaining').text('25');
+            });
 
-            $('#commentSuccessMsg').slideDown();
-            $('#txtComment').val('');
-            $('#txtName').val('');
-            $('#charsRemaining').text('25');
+            
         } else {
             $('#commentErrorMsg').text('Invalid course.');
             $('#commentErrorMsg').slideDown();

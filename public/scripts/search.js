@@ -27,7 +27,6 @@ function Search() {
     	}
     });
 
-
     var self = this;
     $('#btnReset').click(function() {
     	self.resetForm();
