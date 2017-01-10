@@ -118,6 +118,13 @@
                     <span class="large">{{int_rating}}</span><br>
                     Avg. Interest
                 </div>
+                {{#unless has_reviews}}
+                    <div class="col-xs-12">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">No reviews found.</div>
+                        </div>
+                    </div>
+                {{/unless}}
                 <span class="semester" style="display:none">{{semester}}</span>
             </div>
             <div class="col-sm-9 col-md-10">

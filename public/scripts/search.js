@@ -82,15 +82,23 @@ Search.prototype.processQuery = function(query) {
 	var $resultsWrap = $('.search-results');
 
 	// add semester array to node DB, allow lookup on umd.io 
-	$.get(API_FIND_COURSES + query, function(data) {
+	$.get(API_FIND_COURSES + query, function(response) {
 
-		console.log('found '+data.length+' courses');
+		console.log('found '+(response.length == 0 ? 0 : response[1].length)+' courses');
 
-		if (data.length == 0) {
+		if (response.length == 0) {
 			$('.data-loading').hide();
 			$('.empty-data').show();
 		}
 
+		var numDepts = response[0].length;
+		var data = response[1];
+
+		var $summary = $('<h4/>');
+		$summary.text('Found '+data.length+' courses in '+numDepts+' department'+(numDepts > 1 ? 's.' : '.'));
+		$resultsWrap.append($summary);
+
+		
 		for (var i = 0; i < data.length; i++) {
 
 			$('.data-loading').hide();
@@ -102,8 +110,6 @@ Search.prototype.processQuery = function(query) {
 			$resultsWrap.append($('<hr/>'));
 				
 		}
-		
-		
 	});
 }
 
@@ -118,8 +124,9 @@ function generateSearchItem(course) {
 	var data = {
 		course_id: course.course_id,
 		link: url,
-		diff_rating: (course.avg_diff ? course.avg_diff : 0).toFixed(1),
-		int_rating: (course.avg_int ? course.avg_int : 0).toFixed(1),
+		has_reviews: course.avg_diff > 0 && course.avg_int > 0,
+		diff_rating: course.avg_diff ? course.avg_diff.toFixed(1) : 'N/A',
+		int_rating: course.avg_int ? course.avg_int.toFixed(1) : 'N/A',
 		semester: course.semester,
 		title: course.name,
 		semester_string: getSemester(course.semester),
@@ -127,7 +134,7 @@ function generateSearchItem(course) {
 		credits: course.credits,
 		description: course.description
 	};
-	
+
 	var body = template(data);
 
 	return body;
