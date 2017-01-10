@@ -10,8 +10,8 @@ function Search() {
         labelField: 'dept_id',
         searchField: 'dept_id',
         sortField: 'dept_id',
+        maxItems: null,
         selectOnTab: true,
-        closeAfterSelect: true,
         onInitialize: function() {
        		var self = this;
        		$.get(API_DEPARTMENTS, function(data) {
@@ -22,6 +22,12 @@ function Search() {
 
     $('#txtGened').selectize({
     	sortField: 'text',
+    	maxItems: null,
+    	render: {
+    		item: function(item, escape) {
+    			return '<div>' + item.value + '</div>'
+    		}
+    	},
     	onInitialize: function() {
     		this.clear();
     	}
@@ -39,6 +45,7 @@ function Search() {
     	$('.search-results').empty();
 
     	var query = self.buildQuery();
+    	console.log(query);
 		self.processQuery('?' + query);
 
     })
@@ -65,11 +72,10 @@ Search.prototype.buildQuery = function() {
 	});
 
 	$('.form-group > select').each(function(index) {
-		params[$(this).attr('name')] = $(this).val();
+		params[$(this).attr('name')] = $(this).val().join(',');
 	});
 
-
-	return $.param(params);
+	return $.param(params).replace(/%2C/g, ',');
 }
 
 // use query to search for courses
@@ -89,26 +95,26 @@ Search.prototype.processQuery = function(query) {
 		if (response.length == 0) {
 			$('.data-loading').hide();
 			$('.empty-data').show();
-		}
+		} else {
+			var numDepts = response[0].length;
+			var data = response[1];
 
-		var numDepts = response[0].length;
-		var data = response[1];
+			var $summary = $('<h4/>');
+			$summary.text('Found '+data.length+' courses in '+numDepts+' department'+(numDepts > 1 ? 's.' : '.'));
+			$resultsWrap.append($summary);
 
-		var $summary = $('<h4/>');
-		$summary.text('Found '+data.length+' courses in '+numDepts+' department'+(numDepts > 1 ? 's.' : '.'));
-		$resultsWrap.append($summary);
+			
+			for (var i = 0; i < data.length; i++) {
 
-		
-		for (var i = 0; i < data.length; i++) {
+				$('.data-loading').hide();
 
-			$('.data-loading').hide();
+				var course = data[i];
 
-			var course = data[i];
-
-			var $item = generateSearchItem(course);
-			$resultsWrap.append($item);
-			$resultsWrap.append($('<hr/>'));
-				
+				var $item = generateSearchItem(course);
+				$resultsWrap.append($item);
+				$resultsWrap.append($('<hr/>'));
+					
+			}
 		}
 	});
 }
