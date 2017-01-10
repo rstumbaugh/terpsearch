@@ -124,7 +124,7 @@ RatingsForm.prototype.validateCourse = function(value, onSuccess) {
         $('#courseErrorMsg').css('visibility', 'visible').slideDown();
     } else {
         
-        $.get(API_COURSE_EXISTS + '/' + value, function(data) {
+        $.get(API_FIND_COURSES + '?course_id=' + value, function(data) {
             if (data.length > 0) {
                 onSuccess();
             } else {
