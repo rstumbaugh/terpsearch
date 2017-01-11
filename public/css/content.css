@@ -18,6 +18,10 @@ h2 {
 	font-weight: 300;
 }
 
+.red span {
+	color: #c0392b;
+}
+
 .row {
 	padding-bottom: 50px;
 }

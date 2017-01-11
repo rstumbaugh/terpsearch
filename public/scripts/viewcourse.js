@@ -110,11 +110,13 @@ ViewCourse.prototype.loadDataAPI = function(course, semester) {
                 var dept = obj.dept_id;
                 var link = 'https://ntst.umd.edu/soc/'+semester+'/'+dept+'/'+course;
 
-                $('#courseName').text(obj['course_id']);
-                $('#courseTitle').text(obj['name']);
+                $('#courseName').text(obj.course_id);
+                $('#courseTitle').text(obj.name);
                 $('#txtCourse').val(course);
                 $('#credits').text(credits + ' credits');
                 $('#semester').text(getSemester(semester));
+                $('#gened').text(obj.gen_ed.join(', ') || 'None');
+                $('#core').text(obj.core.join(', ') || 'None');
 
                 $('#testudoLink').attr('href', link);
 
@@ -272,9 +274,6 @@ ViewCourse.prototype.submitComment = function() {
         
     }
 }
-
-
-
 
 function loadRelationship(relationship, value) {
     if (value != null) {
