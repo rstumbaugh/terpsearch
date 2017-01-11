@@ -7,7 +7,9 @@ function Test() {
         if (user) {
             console.log('signed in');
             var uid = user.providerData[0].uid;
-            
+
+            firebase.database().ref('users').child(uid+'/last_login').set(firebase.database.ServerValue.TIMESTAMP);
+
             firebase.database().ref('users').child(uid).once('value').then(function(snapshot) {
                 var profile = snapshot.val();
 
