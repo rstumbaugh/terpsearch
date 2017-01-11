@@ -30,7 +30,9 @@ hr {
 .search-results-wrap {
 	margin-top: 25px;
 	font-size: 18px;
+}
 
+.search-results {
 	min-height: 400px;
 }
 
@@ -91,6 +93,23 @@ hr {
 }
 .search-result .info span {
 	color: #c0392b;
+}
+
+.search-results-wrap .page-numbers {
+	width: 100%;
+	text-align: center;
+}
+
+.search-results-wrap .page-numbers ul {
+	list-style: none;
+}
+
+.page-numbers ul li {
+	display: inline-block;
+}
+
+.page-numbers ul a:hover {
+	cursor: pointer;
 }
 
 /* Large Devices, Wide Screens */

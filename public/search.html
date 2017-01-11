@@ -34,13 +34,13 @@
                                 <div class="form-group col-sm-6">
                                     <label for="txtProf">Filter professors</label>
                                     <select name="prof" id="txtProf" placeholder="Enter professor's name"></select>
-                                    <p class="help-block">Shows all courses taught by one of the selected professors.</p>
+                                    <p class="help-block">Shows courses taught by one of the selected professors.</p>
                                 </div>
                                 <div class="clearfix visible-sm visible-md visible-lg"></div>
                                 <div class="form-group col-sm-3">
                                     <label for="txtDept">Filter Departments</label>
                                     <select name="dept" id="txtDept" placeholder="Enter departments (i.e. AASP)"></select>
-                                    <p class="help-block">Shows all courses in selected departments.</p>
+                                    <p class="help-block">Shows courses in selected departments.</p>
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label for="txtGened">Filter by Gen Eds</label>
@@ -70,7 +70,7 @@
                                     <div class="radio-inline">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="genedType" value="or">
+                                                <input type="radio" name="genedType" value="or" checked>
                                                 At least 1 selected Gen Ed
                                             </label>
                                         </div>
@@ -92,6 +92,7 @@
                                         <option value="avg_int">Interest (Low - High)</option>
                                         <option value="-avg_int">Interest (High - Low)</option>
                                     </select>
+                                    <p class="help-block">If Difficulty or Interest selected, only shows courses with ratings.</p>
                                 </div>
                                 <div class="clearfix visible-sm visible-md visible-lg"></div>
                                 <div class="form-group col-sm-3">
@@ -104,6 +105,8 @@
                             <div class="empty-data"><i>No courses to display.</i></div>
                             <div class="data-loading" style="display:none">Loading...</div>
                             <div class="search-results"></div>
+                            <div class="page-numbers">
+                            </div>
                         </div>
                     </div>
                 </div>

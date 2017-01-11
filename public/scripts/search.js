@@ -152,17 +152,18 @@ Search.prototype.processQuery = function(query) {
 			$('.data-loading').hide();
 			$('.empty-data').show();
 		} else {
-			var numDepts = response[0].length;
+			var total = response[0].total_matches;
 			var data = response[1];
 
 			var $summary = $('<h4/>');
-			$summary.text('Found '+data.length+' courses in '+numDepts+' department'+(numDepts > 1 ? 's.' : '.'));
+			$summary.text('Found '+total+' courses, showing '+data.length+'.');
 			$resultsWrap.append($summary);
 
 			// compile handlebars template
 			var source = $('#search-result-template').html();
 			var template = Handlebars.compile(source);
 
+			// create item for all courses
 			for (var i = 0; i < data.length; i++) {
 
 				$('.data-loading').hide();
