@@ -5,6 +5,26 @@
 
 function Search() {
 
+    this.initComboBoxes();
+
+    var self = this;
+    $('#btnReset').click(function() {
+    	self.resetForm();
+    })
+
+    // don't reload page, just process here
+    $('form').submit(function(e) {
+    	e.preventDefault();
+
+    	$('.search-results').empty();
+
+    	var query = self.buildQuery();
+    	console.log(query);
+		self.processQuery('?' + query);
+    })
+}
+
+Search.prototype.initComboBoxes = function() {
 	$('#txtProf').selectize({
         valueField: 'value',
         labelField: 'name',
@@ -69,23 +89,9 @@ function Search() {
     	}
     });
 
-    var self = this;
-    $('#btnReset').click(function() {
-    	self.resetForm();
-    })
-
-    // don't reload page, just process here
-    $('form').submit(function(e) {
-    	e.preventDefault();
-
-    	$('.search-results').empty();
-
-    	var query = self.buildQuery();
-    	console.log(query);
-		self.processQuery('?' + query);
-
-    })
-
+    $('#txtSort').selectize({
+    	sortField: 'text'
+    });
 }
 
 // clear all input fields
@@ -95,7 +101,11 @@ Search.prototype.resetForm = function() {
 	});
 
 	$('.form-group > select').each(function(index) {
+		var id = $(this).attr('id');
 		$(this).selectize()[0].selectize.clear(false);
+		if (id == 'txtSort') {
+			$(this).selectize()[0].selectize.addItem('alpha');
+		}
 	})
 }
 
@@ -108,11 +118,10 @@ Search.prototype.buildQuery = function() {
 	});
 
 	$('.form-group > select').each(function(index) {
-		if ($(this).val()) {
-			params[$(this).attr('name')] = $(this).val().join(',');
-		} else {
-			params[$(this).attr('name')] = '';
-		}
+
+		var name = $(this).attr('name');
+		var val = [].concat($(this).val()); // converts val to array if string or null
+		params[name] = val.join(',');
 		
 	});
 

@@ -18,6 +18,10 @@ hr {
 	margin-top: 50px;
 }
 
+.search-box .form-group {
+	margin-top: 0;
+}
+
 .search-box .selectize-dropdown .optgroup-header {
 	font-weight: bold;
 	color: #333;

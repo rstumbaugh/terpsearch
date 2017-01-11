@@ -66,6 +66,17 @@
                                         <option value="SCIS">SCIS - I-Series</option>
                                     </select>
                                 </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="txtSort">Sort by:</label>
+                                    <select name="sort" id="txtSort">
+                                        <option value="course_id">Course ID (A - Z)</option>
+                                        <option value="-course_id">Course ID (Z - A)</option>
+                                        <option value="-avg_diff">Difficulty (High - Low)</option>
+                                        <option value="avg_diff">Difficulty (Low - High)</option>
+                                        <option value="avg_int">Interest (Low - High)</option>
+                                        <option value="-avg_int">Interest (High - Low)</option>
+                                    </select>
+                                </div>
                                 <div class="clearfix visible-sm visible-md visible-lg"></div>
                                 <div class="form-group col-sm-3">
                                     <button class="btn btn-primary" id="btnSearch" type="submit">Search</button>
