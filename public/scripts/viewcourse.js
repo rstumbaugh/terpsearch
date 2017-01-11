@@ -259,6 +259,8 @@ ViewCourse.prototype.submitComment = function() {
                 $('#txtComment').val('');
                 $('#txtName').val('');
                 $('#charsRemaining').text('25');
+            }).fail(function(err) {
+                console.log('error: '+err.responseText);
             });
 
             
