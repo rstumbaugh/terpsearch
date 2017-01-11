@@ -34,11 +34,13 @@
                                 <div class="form-group col-sm-6">
                                     <label for="txtProf">Filter professors</label>
                                     <select name="prof" id="txtProf" placeholder="Enter professor's name"></select>
+                                    <p class="help-block">Shows all courses taught by one of the selected professors.</p>
                                 </div>
                                 <div class="clearfix visible-sm visible-md visible-lg"></div>
                                 <div class="form-group col-sm-3">
                                     <label for="txtDept">Filter Departments</label>
                                     <select name="dept" id="txtDept" placeholder="Enter departments (i.e. AASP)"></select>
+                                    <p class="help-block">Shows all courses in selected departments.</p>
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label for="txtGened">Filter by Gen Eds</label>
@@ -65,6 +67,20 @@
                                         <optgroup label="Signature Series">
                                         <option value="SCIS">SCIS - I-Series</option>
                                     </select>
+                                    <div class="radio-inline">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="genedType" value="or">
+                                                At least 1 selected Gen Ed
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="genedType" value="and">
+                                                All selected Gen Eds
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label for="txtSort">Sort by:</label>

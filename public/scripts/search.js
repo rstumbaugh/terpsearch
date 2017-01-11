@@ -66,6 +66,7 @@ Search.prototype.initComboBoxes = function() {
         labelField: 'dept_id',
         searchField: 'dept_id',
         sortField: 'dept_id',
+        selectOnTab: true,
         maxItems: null,
         selectOnTab: true,
         onInitialize: function() {
@@ -79,6 +80,7 @@ Search.prototype.initComboBoxes = function() {
     $('#txtGened').selectize({
     	sortField: 'text',
     	maxItems: null,
+        selectOnTab: true,
     	render: {
     		item: function(item, escape) {
     			return '<div>' + item.value + '</div>'
@@ -104,7 +106,7 @@ Search.prototype.resetForm = function() {
 		var id = $(this).attr('id');
 		$(this).selectize()[0].selectize.clear(false);
 		if (id == 'txtSort') {
-			$(this).selectize()[0].selectize.addItem('alpha');
+			$(this).selectize()[0].selectize.addItem('course_id');
 		}
 	})
 }
@@ -124,6 +126,10 @@ Search.prototype.buildQuery = function() {
 		params[name] = val.join(',');
 		
 	});
+
+	$('.radio input:checked').each(function(index) {
+		params.gened_type = $(this).val();
+	})
 
 	return $.param(params).replace(/%2C/g, ',');
 }
