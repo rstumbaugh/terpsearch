@@ -13,6 +13,10 @@ const   API_ADD_COMMENT  = API_ROOT + 'courses/reviews/comments';
 const    API_FIND_PROFS  = API_ROOT + 'professors';
 const    API_LIST_PROFS  = API_ROOT + 'professors/list';
 
+const   API_SOCIAL_ROOT  = API_ROOT + 'social';
+
+const        API_CONFIG  = API_ROOT + 'firebase_config';
+
 
 
 // GLOBAL HELPER METHODS
