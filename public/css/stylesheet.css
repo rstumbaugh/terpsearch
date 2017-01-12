@@ -18,6 +18,26 @@ html, body {
 	color: #a94442;
 }
 
+.modal .modal-header,
+.modal .modal-footer {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #c0392b;
+	color: white;
+}
+
+.modal .modal-title,
+.modal .modal-body {
+	font-weight: 300;
+}
+
+.modal .modal-body {
+	font-size: 16px;
+}
+
+.modal .modal-footer button {
+	display: none;
+}
+
 .nav-header-wrap {
 	width: 100%;
 	height: 80px;

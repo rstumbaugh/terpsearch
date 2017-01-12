@@ -22,10 +22,24 @@ function Search() {
     	console.log(query);
 		self.processQuery('?' + query);
     })
+
+	$('#ratingsForm').on('courseSubmitted', function() {
+        var submitted = parseInt($('#numCourses').text());
+        submitted = submitted - 1 <= 0 ? 0 : submitted - 1;
+        $('#numCourses').text(submitted);
+
+        if (submitted == 0) {
+            $('#btnDone').slideDown();
+        }
+    })
+
+
+	// show modal on page load
+    $('#modal').modal({backdrop: 'static'});
 }
 
 Search.prototype.initComboBoxes = function() {
-	$('#txtProf').selectize({
+	$('#txtProfSearch').selectize({
         valueField: 'value',
         labelField: 'name',
         searchField: 'name',
@@ -220,5 +234,6 @@ function loadFormData() {
 
 
 window.onload = function() {
+	window.ratingsForm = new RatingsForm();
 	window.Search = new Search();
 }
