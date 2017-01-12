@@ -35,7 +35,7 @@ function Search() {
 
 
 	// show modal on page load
-    $('#modal').modal({backdrop: 'static'});
+    //$('#modal').modal({backdrop: 'static'});
 }
 
 Search.prototype.initComboBoxes = function() {
