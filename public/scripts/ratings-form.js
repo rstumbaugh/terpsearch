@@ -27,9 +27,13 @@ function RatingsForm() {
         $(this).val($(this).val().toUpperCase());
     })
 
+    var self = this;
+    $('#btnSubmitCourse').click(function() {
+        self.submitCourse();
+    })
+
 
     this.database = firebase.database(); 
-    this.submitCourseButton.addEventListener('click', this.submitCourse.bind(this));
 
     this.initCombobox('#txtProf');
 }
@@ -103,9 +107,10 @@ RatingsForm.prototype.submitCourse = function() {
                 professor: professor
             };
 
-
             $.post(API_ADD_RATINGS, obj, function(data) {
                 $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
+                $('#ratingsForm').trigger('courseSubmitted');
+
                 reset();
             });
         }
