@@ -112,7 +112,6 @@ ViewCourse.prototype.loadDataAPI = function(course, semester) {
 
                 $('#courseName').text(obj.course_id);
                 $('#courseTitle').text(obj.name);
-                $('#txtCourse').val(course);
                 $('#credits').text(credits + ' credits');
                 $('#semester').text(getSemester(semester));
                 $('#gened').text(obj.gen_ed.join(', ') || 'None');
