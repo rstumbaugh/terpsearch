@@ -23,10 +23,6 @@ function RatingsForm() {
         e.preventDefault();
     });
 
-    $('#txtCourse').change(function() {
-        $(this).val($(this).val().toUpperCase());
-    })
-
     var self = this;
     $('#btnSubmitCourse').click(function() {
         self.submitCourse();
@@ -35,17 +31,33 @@ function RatingsForm() {
 
     this.database = firebase.database(); 
 
-    this.initCombobox('#txtProf');
+    this.initComboboxes();
 }
 
 // initialize combobox with professor values
-RatingsForm.prototype.initCombobox = function(id) {
-    $(id).selectize({
+RatingsForm.prototype.initComboboxes = function() {
+    $('#txtCourse').selectize({
+        valueField: 'course_id',
+        labelField: 'course_id',
+        searchField: 'course_id',
+        sortField: 'course_id',
+        closeAfterSelect: true,
+        loadThrottle: 150,
+        persist: false,
+        create: false,
+        load: function(query, callback) {
+            if (query.length < 4) return callback();
+            $.get(API_LIST_COURSES + '?dept_id=', function(data) {
+                callback(data);
+            })
+        }
+    });
+
+    $('#txtProf').selectize({
         valueField: 'value',
         labelField: 'name',
         searchField: 'name',
         sortField: 'name',
-        selectOnTab: true,
         closeAfterSelect: true,
         loadThrottle: 150,
         persist: false,
@@ -96,49 +108,39 @@ RatingsForm.prototype.submitCourse = function() {
 
 
     var valid = this.validateProfessor(professor);
-    var reset = this.resetForm;
-    var db = this.database;
-    this.validateCourse(courseId, function() {
-        if (valid) {
-            var obj = {
-                course_id: courseId,
-                difficulty: diffRating, 
-                interest: interestRating,
-                professor: professor
-            };
+    valid = valid && this.validateCourse(courseId);
 
-            $.post(API_ADD_RATINGS, obj, function(data) {
-                $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
-                $('#ratingsForm').trigger('courseSubmitted');
+    if (valid) {
+        var obj = {
+            course_id: courseId,
+            difficulty: diffRating, 
+            interest: interestRating,
+            professor: professor
+        };
 
-                reset();
-            });
-        }
-    });;
+        var self = this;
+        $.post(API_ADD_RATINGS, obj, function(data) {
+            $('#courseSuccessMsg').css('visibility', 'visible').slideDown();
+            $('#ratingsForm').trigger('courseSubmitted');
+
+            self.resetForm();
+        });
+    }
 };
 
 // validates course against regular expression and checks if it's been
 // offered by UMD
-RatingsForm.prototype.validateCourse = function(value, onSuccess) {
-    var pattern = /^[a-zA-Z]{4}[0-9]{3}[a-zA-Z]?$/
-    var matches = value.match(pattern);
+RatingsForm.prototype.validateCourse = function(value) {
 
-    if (matches == null) {
-        this.courseInputWrap.classList.add('has-error');
-        $('#courseErrorMsg').text('Not a valid course ID.');
+    var isValid = value && value != "";
+
+    if (!isValid) {
+        $('#courseInputWrap').addClass('has-error');
         $('#courseErrorMsg').css('visibility', 'visible').slideDown();
-    } else {
-        
-        $.get(API_FIND_COURSES + '?course_id=' + value, function(data) {
-            if (data.length > 0) {
-                onSuccess();
-            } else {
-                $('#courseInputWrap').addClass('has-error');
-                $('#courseErrorMsg').text('Course not found. Enter a valid course.')
-                $('#courseErrorMsg').css('visibility', 'visible').slideDown();
-            }
-        });
+        return false;
     }
+
+    return true;
 };
 
 // make sure professor has value
@@ -156,7 +158,7 @@ RatingsForm.prototype.validateProfessor = function(value) {
 
 // reset all items in form
 RatingsForm.prototype.resetForm = function() {
-    $('#txtCourse').val('');
+    $('#txtCourse')[0].selectize.clear();
     $('#txtProf')[0].selectize.clear();
     $('.rating').rating('rate', '1');
 };
