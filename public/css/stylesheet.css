@@ -179,8 +179,9 @@ html, body {
 	padding: 0 50px;
 }
 
-.example .gif-wrap img {
-	margin-bottom: 15px;
+.example img {
+	display: block;
+	margin: 15px auto;
 }
 
 .example.search,
@@ -322,12 +323,21 @@ label {
 		font-size: 32px;
 	}
 
-	.example.search {
+	.example.search,
+	.example.fb {
 		padding-right: 0;
+	}
+
+	.example.course {
+		padding-left: 0;
 	}
 
 	.example .gif-wrap {
 		padding: 0 20px;
+	}
+
+	.example img {
+		margin-bottom: 15px;
 	}
 }
 
