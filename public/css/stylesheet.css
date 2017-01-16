@@ -175,6 +175,11 @@ html, body {
 	margin-top: 0;
 }
 
+.example .gif-wrap {
+	min-height: 300px;
+	padding: 0 50px;
+}
+
 .info-form {
 	padding-bottom: 25px;
 }
@@ -302,6 +307,11 @@ label {
 	.form-wrap .glyphicon {
 		font-size: 32px;
 	}
+
+	.example .gif-wrap {
+		padding: 0 20px;
+	}
+
 
 }
 
