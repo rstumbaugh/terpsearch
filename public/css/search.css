@@ -8,6 +8,10 @@ hr {
 	width: 85%;
 }
 
+.content {
+	height: calc(100% + 1px);
+}
+
 .content-wrap {
 	padding: 0 20px;
 }
