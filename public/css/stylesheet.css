@@ -168,19 +168,33 @@ html, body {
 }
 
 .example {
-	background-color: #ecf0f1;
 	padding-top: 50px;
 }
+
 .example h2 {
 	margin-top: 0;
 }
 
 .example .gif-wrap {
-	min-height: 300px;
 	padding: 0 50px;
 }
 
+.example .gif-wrap img {
+	margin-bottom: 15px;
+}
+
+.example.search,
+.example.fb {
+	background-color: #ecf0f1;
+	padding-right: 25px;
+}
+
+.example.course {
+	padding-left: 50px;
+}
+
 .info-form {
+	padding-top: 25px;
 	padding-bottom: 25px;
 }
 
@@ -308,11 +322,13 @@ label {
 		font-size: 32px;
 	}
 
+	.example.search {
+		padding-right: 0;
+	}
+
 	.example .gif-wrap {
 		padding: 0 20px;
 	}
-
-
 }
 
 /* Extra Small Devices, Phones */ 

@@ -12,16 +12,6 @@
     </head>
 
     <body>
-        <!-- gfycat embed -->
-        <script>
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "https://assets.gfycat.com/gfycat.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'gfycat-js'));
-        </script>
 
         <div class="nav-header-wrap">
             <a href="index.html">TerpSearch</a>
@@ -34,7 +24,6 @@
                         <h1>Course selection <br/> made simple.</h1>
                         <br>
                         <a href="search.html" id="btnGo" class="btn btn-primary">View Alpha Version</a>
-
                     </div>
                     <div class="subtitle">
                         <h2>Made for Terps, by Terps.</h2>
@@ -62,20 +51,53 @@
                 </div>
             </div>
 
-            <div class="row example">
-                <div class="col-sm-12">
-                    <div class="col-md-7 gif-wrap">
-                        <video height="100%" width="100%" autoplay loop muted playsinline controls>
-                            <source src="https://terpsearch.me/img/example.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video> 
-                    </div>
-                    <div class="col-md-5">
-                        <h2>Powerful course searching</h2>
-                        <p>
-                            Search and filter courses by keyword, professor, department, Gen Ed, and more. It's never been easier to find the perfect course for your interests. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
+            <div class="row example search">
+                <div class="col-md-6 gif-wrap">
+                    <video class="hidden-sm hidden-xs" height="100%" width="100%" autoplay loop muted playsinline>
+                        <source src="https://terpsearch.me/img/example.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+                    <img src="img/example.png" alt="example.png" class="hidden-md hidden-lg" height="100%" width="100%">
+                </div>
+                <div class="col-md-6">
+                    <h2>Powerful course searching</h2>
+                    <p>
+                        It's never been easier to find the perfect course for your interests. With the ability to search and sort by professor, department, difficulty, interest, and more, you'll be sure to find the courses that fit your needs. All course reviews and ratings are provided by University of Maryalnd students just like you.
+                    </p>
+                    <p>
+                        Our course searching functions combine the best of all the other websites out there &mdash; for the first time, you can search UMD courses by keyword or topic. The frustrating task of finding interesting courses that fulfill your requirements will soon be a thing of the past.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row example course">
+                <div class="col-md-6">
+                    <h2>In-depth reviews and descriptions</h2>
+                    <p>
+                        All the course information you need is now in one convenient place. View professors, Gen Ed requirements, prerequisites, reviews, and more for the courses you're interested in. 
+                    </p>
+                    <p>
+                        Reviews and ratings submitted by you are shown both cumulatively and broken down by professor to give you the full picture. Leave comments and reviews to let others know what you think about the courses you've taken and give back.
+                    </p>
+                </div>
+                <div class="col-md-6 gif-wrap">
+                    <video class="hidden-sm hidden-xs" height="auto" width="100%" autoplay loop muted playsinline>
+                        <source src="https://terpsearch.me/img/course.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+                    <img src="img/course.png" alt="course.png" class="hidden-md hidden-lg" height="100%" width="100%">
+                </div>
+            </div>
+
+            <div class="row example fb">
+                <div class="col-md-6">
+                    <img src="img/fb.png" alt="fb.png" height="200px" style="display:block;margin:auto">
+                </div>
+                <div class="col-md-6">
+                    <h2>Facebook integration</h2>
+                    <p>
+                        For the first time, you can log in with Facebook to see the courses and professors your friends have reviewed. Check out the courses they've signed up for, past courses you have in common, and what your friends thought of the courses you're interested in.
+                    </p>
                 </div>
             </div>
 
