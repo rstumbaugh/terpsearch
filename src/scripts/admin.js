@@ -51,7 +51,7 @@ Admin.prototype.loginAndValidate = function() {
 
 			user.getToken(true).then(function(token) {
 
-				var p = $.get('http://localhost:8888/admin/dash?token='+token);
+				var p = $.get(API_ROOT + 'admin/dash?token='+token);
 				p.done(function(data) {
 					data.name = name;
 					resolve(data);
