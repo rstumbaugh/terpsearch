@@ -141,15 +141,15 @@ html, body {
 }
 
 /* HOME PAGE CONTENT */
-.icon-wrap p,
-.info-form p,
-.example p {
+.landing-page-wrap p {
 	font-size: 18px;
 }
 
 .icons,
-.example {
-	padding-bottom: 65px;
+.example,
+.feedback {
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 .icons{
@@ -165,10 +165,6 @@ html, body {
 .icon-wrap img {
 	height: 150px;
 	margin-bottom: 20px;
-}
-
-.example {
-	padding-top: 50px;
 }
 
 .example h2 {
@@ -194,13 +190,41 @@ html, body {
 	padding-left: 50px;
 }
 
+.email {
+	text-align: center;
+	background-color: #c0392b;
+	color: white;
+	padding: 75px 0;
+}
+
+.message-wrap {
+	height: 24px;
+}
+
+.message-wrap .help-block {
+	display: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.feedback .help-block {
+	color: #333;
+}
+
+.email .help-block{
+	color: white;
+}
+
 .info-form {
 	padding-top: 25px;
 	padding-bottom: 25px;
 }
 
 .info-form h2,
-.example h2 {
+.example h2,
+.feedback h2 {
 	color: #c0392b;
 	font-size: 36px;
 	padding-bottom: 15px;
