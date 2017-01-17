@@ -1,0 +1,222 @@
+/* HOME PAGE CONTENT WRAP */
+.landing-page-wrap {
+	width: 100%;
+	height: 93%;
+}
+
+.landing-page-wrap .img-wrap {
+	padding-top: 25px;
+	position: absolute;
+	bottom: 0;
+	float: right;
+	right: 25px;
+}
+
+.landing-page {
+	height: 65%;
+	background-color: #c0392b;
+	position: relative;
+}
+
+.landing-page > div {
+	text-align: center;
+}
+
+/* HOME PAGE HERO */
+.hero-wrap {
+	position: relative;
+	height: 100%;
+}
+
+.hero {
+	text-align: center;
+	color: white;
+	position: relative;
+	top: 100px;
+}
+
+.hero h1 {
+	font-size: 48px;
+}
+
+.subtitle {
+	width: 100%;
+	text-align: center;
+	position: absolute; 
+	color: white;
+	left: 0;
+	bottom: 75px;
+
+}
+
+.subtitle h2 {
+    overflow: hidden;
+    text-align: center;
+    font-weight: 200;
+    font-size: 22px;
+}
+
+.subtitle h2:before,
+.subtitle h2:after {
+    background-color: white;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 5%;
+}
+
+.subtitle i {
+	font-size: 22px;
+	padding: 0 5px;
+	font-style: normal;
+}
+
+/* HOME PAGE CONTENT */
+.landing-page-wrap p {
+	font-size: 18px;
+}
+
+.icons,
+.example,
+.feedback {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.icons{
+	padding-top: 40px;
+	text-align: center;	
+}
+
+
+.icon-wrap {
+	text-align: center;
+}
+
+.icon-wrap img {
+	height: 150px;
+	margin-bottom: 20px;
+}
+
+.example h2 {
+	margin-top: 0;
+}
+
+.example .gif-wrap {
+	padding: 0 50px;
+}
+
+.example img {
+	display: block;
+	margin: 15px auto;
+}
+
+.example.search,
+.example.fb {
+	background-color: #ecf0f1;
+	padding-right: 25px;
+}
+
+.example.course {
+	padding-left: 50px;
+}
+
+.email {
+	text-align: center;
+	background-color: #c0392b;
+	color: white;
+	padding: 75px 0;
+}
+
+.message-wrap {
+	height: 24px;
+}
+
+.message-wrap .help-block {
+	display: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.feedback .help-block {
+	color: #333;
+}
+
+.email .help-block{
+	color: white;
+}
+
+.info-form {
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.info-form h2,
+.example h2,
+.feedback h2 {
+	color: #c0392b;
+	font-size: 36px;
+	padding-bottom: 15px;
+}
+
+
+.input-wrap {
+	padding-left: 0;
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.hero {
+		top: 10px;
+	}
+
+	.subtitle {
+		bottom: 50px;
+	}
+	
+	.form-wrap .glyphicon {
+		font-size: 32px;
+	}
+
+	.example.search,
+	.example.fb {
+		padding-right: 0;
+	}
+
+	.example.course {
+		padding-left: 0;
+	}
+
+	.example .gif-wrap {
+		padding: 0 20px;
+	}
+
+	.example img {
+		margin-bottom: 15px;
+	}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+	
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+	
+}
