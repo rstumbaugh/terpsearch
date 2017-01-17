@@ -6,11 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+        <!--build:css css/viewcourse.min.css -->
         <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
         <link href="css/content.css" type="text/css" rel="stylesheet">
         <link href="css/selectize.bootstrap3.css" type="text/css" rel="stylesheet">
+        <!-- endbuild -->
     </head>
 
     <body class="content" id="viewCourse">
@@ -253,10 +256,14 @@
     </div>
     </body>
 
-    <script src="scripts/info.js"></script>
 
+    
+
+    <!--build:js scripts/viewcourse.min.js -->
+    <script src="scripts/tracking.js"></script>
+    <script src="scripts/firebase.js"></script>
+    <script src="scripts/init_firebase.js"></script>
     <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/jquery-ui.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/bootstrap-rating.min.js"></script>
     <script src="scripts/info.js"></script>
@@ -265,16 +272,5 @@
     <script src="scripts/Chart.bundle.min.js"></script>
     <script src="scripts/progressbar.min.js"></script>
     <script src="scripts/selectize.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAMR4YSAmaxptjscXsoOd33Y3jBHnVUNdw",
-            authDomain: "umd-api-testing.firebaseapp.com",
-            databaseURL: "https://umd-api-testing.firebaseio.com",
-            storageBucket: "umd-api-testing.appspot.com",
-            messagingSenderId: "379483876030"
-        };
-        firebase.initializeApp(config);
-    </script>
+    <!-- endbuild -->
 </html>
