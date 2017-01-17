@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TerpSearch</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:url" content="https://terpsearch.me">
+        <meta property="og:title" content="TerpSearch">
+        <meta property="og:description" content="Course selection made simple.">
+        <meta property="og:image" content="https://terpsearch.me/img/logo.png">
+        <meta property="fb:app_id" content="350881175298575">
+
+        
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <!--build:css css/admin.min.css -->
+        <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="css/selectize.bootstrap3.css" type="text/css" rel="stylesheet">
+        <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+        <link href="css/admin.css" type="text/css" rel="stylesheet">
+        <!-- endbuild -->
+    </head>
+
+    <body class="content">
+
+        <div class="nav-header-wrap">
+            <a href="index.html">TerpSearch</a>
+        </div>  
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2 tab-bar">
+                    <div class="col-sm-12 col-xs-6 tab active logged-in">
+                        Emails
+                    </div>
+                    <div class="col-sm-12 col-xs-6 tab logged-in">
+                        Feedback
+                    </div>
+                </div>
+                <div class="col-sm-10 content-wrap">
+                    <div class="no-access">
+                        <h1>Access denied.</h1>
+                        <p>This page is for admins only.</p>
+                    </div>
+                    <div class="intro logged-in">
+                        <h1>Hello, <span id="name"></span>.</h1>
+                        <br><br>
+                    </div>
+                    <div class="email logged-in">
+                        <div class="col-sm-6 col-sm-offset-1">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Email Addresses</div>
+                                <table class="table table-striped">
+                                    <tr>
+                                        <td class="empty"><i>No email addresses.</i></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="feedback hidden">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </body>
+
+    <!--build:js scripts/admin.min.js -->
+    <script src="scripts/tracking.js"></script>
+    <script src="scripts/firebase.js"></script>
+    <script src="scripts/init_firebase.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/info.js"></script>
+    <script src="scripts/admin.js"></script>
+    <!-- endbuild -->
+</html>

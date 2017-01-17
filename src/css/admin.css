@@ -1,0 +1,78 @@
+.row,
+.container-fluid {
+	height: calc(100% - 40px);
+}
+
+.logged-in {
+	display:none;
+}
+
+.tab-bar {
+	background-color: #ecf0f1;
+	border: 1px solid #c0392b;
+	border-top: 0;
+	height: 100%;
+
+	padding: 0;
+}
+
+.tab-bar .tab {
+	font-size: 18px;
+	font-weight: 500;
+	color: #c0392b;
+	text-align: right;
+
+	padding: 25px 15px 25px 0;
+	border-bottom: 1px solid #c0392b;
+}
+
+.tab-bar .tab.active {
+	background-color: white;
+
+	box-shadow: 0px 3px 3px #888, 0px 3px 3px #888;
+}
+
+.content-wrap p {
+	font-size: 16px;
+}
+
+.content-wrap .no-access h1 {
+	color: #c0392b;
+}
+
+
+
+
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.tab-bar {
+		height: auto;
+	}
+	
+	.tab-bar .tab {
+		text-align: center;
+	}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+	
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+	
+}
