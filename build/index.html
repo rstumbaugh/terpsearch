@@ -10,10 +10,10 @@
         <meta property="og:image" content="https://terpsearch.me/img/logo.png">
         <meta property="fb:app_id" content="350881175298575">
 
+
+        
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-        <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link href="css/selectize.bootstrap3.css" type="text/css" rel="stylesheet">
-        <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.min.css">
     </head>
 
     <body>
@@ -57,11 +57,7 @@
 
             <div class="row example search">
                 <div class="col-md-6 gif-wrap">
-                    <video class="hidden-sm hidden-xs" height="100%" width="100%" autoplay loop muted playsinline>
-                        <source src="https://terpsearch.me/img/example.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video> 
-                    <img src="img/example.png" alt="example.png" class="hidden-md hidden-lg" height="100%" width="100%">
+                    <img src="img/example.png" alt="example.png" height="100%" width="100%">
                 </div>
                 <div class="col-md-6">
                     <h2>Powerful course searching</h2>
@@ -85,11 +81,7 @@
                     </p>
                 </div>
                 <div class="col-md-6 gif-wrap">
-                    <video class="hidden-sm hidden-xs" height="auto" width="100%" autoplay loop muted playsinline>
-                        <source src="https://terpsearch.me/img/course.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video> 
-                    <img src="img/course.png" alt="course.png" class="hidden-md hidden-lg" height="100%" width="100%">
+                    <img src="img/course.png" alt="course.png" height="100%" width="100%">
                 </div>
             </div>
 
@@ -242,32 +234,5 @@
     </body>
 
 
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-53954445-4', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    <script src="scripts/bootstrap-rating.min.js"></script>
-    <script src="scripts/info.js"></script>
-    <script src="scripts/ratings-form.js"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/selectize.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAMR4YSAmaxptjscXsoOd33Y3jBHnVUNdw",
-            authDomain: "umd-api-testing.firebaseapp.com",
-            databaseURL: "https://umd-api-testing.firebaseio.com",
-            storageBucket: "umd-api-testing.appspot.com",
-            messagingSenderId: "379483876030"
-        };
-        firebase.initializeApp(config);
-    </script>
+    <script src="scripts/main.min.js"></script>
 </html>
