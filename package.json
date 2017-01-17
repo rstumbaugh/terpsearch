@@ -19,6 +19,7 @@
   "devDependencies": {
     "browser-sync": "^2.18.6",
     "del": "^2.2.2",
+    "gulp-autoprefixer": "^3.1.1",
     "gulp-cache": "^0.4.5",
     "gulp-imagemin": "^3.1.1",
     "run-sequence": "^1.2.2"

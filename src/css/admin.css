@@ -1,0 +1,29 @@
+.row,
+.container-fluid {
+	height: calc(100% - 40px);
+}
+
+.tab-bar {
+	background-color: #ecf0f1;
+	border: 1px solid #c0392b;
+	border-top: 0;
+	height: 100%;
+
+	padding: 0;
+}
+
+.tab-bar .tab {
+	font-size: 18px;
+	font-weight: 500;
+	color: #c0392b;
+	text-align: right;
+
+	padding: 25px 15px 25px 50px;
+	border-bottom: 1px solid #c0392b;
+}
+
+.tab-bar .tab.active {
+	background-color: white;
+
+	box-shadow: 0px 3px 3px #888, 0px 3px 3px #888;
+}
