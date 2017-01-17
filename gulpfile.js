@@ -6,6 +6,7 @@ var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var browserSync = require('browser-sync').create();
+var autoprefixer = require('gulp-autoprefixer');
 var runSequence = require('run-sequence');
 var del = require('del');
 
@@ -37,6 +38,7 @@ gulp.task('minify', function() {
 		.pipe(useref())
 		.pipe(gulpIf('*.js', uglify()))
 		.pipe(gulpIf('*.css', cssnano()))
+		.pipe(gulpIf('*.css', autoprefixer()))
 		.pipe(gulp.dest('build/'))
 });
 
