@@ -167,10 +167,6 @@ html, body {
 	margin-bottom: 20px;
 }
 
-.example,
-.feedback {
-}
-
 .example h2 {
 	margin-top: 0;
 }
@@ -201,10 +197,17 @@ html, body {
 	padding: 75px 0;
 }
 
+.email .message-wrap {
+	height: 24px;
+}
+
 .email .help-block {
 	color: white;
-	position: aboslute;
 	display: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 
 .info-form {
