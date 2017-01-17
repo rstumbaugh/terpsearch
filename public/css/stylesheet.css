@@ -197,17 +197,24 @@ html, body {
 	padding: 75px 0;
 }
 
-.email .message-wrap {
+.message-wrap {
 	height: 24px;
 }
 
-.email .help-block {
-	color: white;
+.message-wrap .help-block {
 	display: none;
 	position: absolute;
 	left: 0;
 	right: 0;
 	margin: auto;
+}
+
+.feedback .help-block {
+	color: #333;
+}
+
+.email .help-block{
+	color: white;
 }
 
 .info-form {

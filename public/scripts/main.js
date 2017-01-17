@@ -12,18 +12,21 @@ function Main() {
 }
 
 Main.prototype.submitFeedback = function() {
+	$('.feedback .help-block').text('').hide();
+
 	var text = $('#txtFeedback').val();
 
 	if (text) {
-		$.post('http://localhost:8888/users/feedback', {msg: text})
+		$.post(API_ADD_FEEDBACK, {msg: text})
 			.then(function(res) {
 				$('#txtFeedback').val('');
-				console.log('thanks');
+				$('.feedback .help-block').text('Thanks!').slideDown();
 			}).catch(function(err) {
 				console.log('error: '+err);
+				$('.feedback .help-block').text('Sorry, something went wrong. Please try again later.').slideDown();
 			})
 	} else {
-		console.log('invalid');
+		$('.feedback .help-block').text('Please enter some valid text.').slideDown();
 	}
 };
 
@@ -34,12 +37,13 @@ Main.prototype.submitEmail = function() {
 	var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 	if (email.match(regex)) {
-		$.post('http://localhost:8888/users/email', {email: email})
+		$.post(API_ADD_EMAIL, {email: email})
 			.then(function(res) {
 				$('#txtEmail').val('');
 				$('.email .help-block').text('Thanks!').slideDown();
 			}).catch(function(err) {
 				console.log('error: '+err);
+				$('.email .help-block').text('Sorry, something went wrong. Please try again later.').slideDown();
 			})
 	} else {
 		$('.email .help-block').text('Please enter a valid email.').slideDown();

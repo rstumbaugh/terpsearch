@@ -3,6 +3,9 @@ const          API_ROOT  = "https://sheltered-ridge-74266.herokuapp.com/";
 
 const      UMD_API_ROOT  = API_ROOT + 'umdio/v0/';
 
+const     API_ADD_EMAIL  = API_ROOT + 'users/email';
+const  API_ADD_FEEDBACK  = API_ROOT + 'users/feedback';
+
 const  API_FIND_COURSES  = API_ROOT + 'courses';
 const  API_LIST_COURSES  = API_ROOT + 'courses/list';
 const  API_COURSE_STATS  = API_ROOT + 'courses/stats';
