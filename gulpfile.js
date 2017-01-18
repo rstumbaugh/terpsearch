@@ -8,6 +8,7 @@ var cache = require('gulp-cache');
 var browserSync = require('browser-sync').create();
 var autoprefixer = require('gulp-autoprefixer');
 var runSequence = require('run-sequence');
+var replace = require('gulp-replace');
 var del = require('del');
 
 // DEVELOPMENT TASKS
@@ -33,7 +34,7 @@ gulp.task('reload', function(done) {
 // PRODUCTION TASKS
 
 // minify js and css
-gulp.task('minify', function() {
+gulp.task('js-css', function() {
 	return gulp.src('src/*.html')
 		.pipe(useref())
 		.pipe(gulpIf('*.js', uglify()))
@@ -41,6 +42,12 @@ gulp.task('minify', function() {
 		.pipe(gulpIf('*.css', autoprefixer()))
 		.pipe(gulp.dest('build/'))
 });
+
+gulp.task('replace-api', function() {
+	return gulp.src('build/scripts/*.js')
+		.pipe(replace('http://localhost:8888/', 'https://sheltered-ridge-74266.herokuapp.com/'))
+		.pipe(gulp.dest('build/scripts/'))
+})
 
 // minify images
 gulp.task('images', function() {
@@ -61,8 +68,10 @@ gulp.task('clean:build', function() {
 })
 
 gulp.task('build', function(done) {
-	runSequence('clean:build',
-		['minify', 'fonts', 'images'],
+	runSequence(
+		'clean:build',
+		['js-css', 'fonts', 'images'],
+		'replace-api',
 		done
 	);
 })
