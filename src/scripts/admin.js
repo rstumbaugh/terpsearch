@@ -42,6 +42,10 @@ Admin.prototype.loadLogs = function(logs) {
 		$('#numLogs').text(logs.length);
 	}
 
+	logs.sort(function(a,b) {
+		return a.time > b.time ? -1 : 1
+	})
+
 	var $table = $('.logs .table');
 	for (var i = 0; i < logs.length; i++) {
 		var log = logs[i];
