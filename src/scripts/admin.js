@@ -93,7 +93,7 @@ Admin.prototype.loginAndValidate = function() {
 			var token = result.credential.accessToken;
 			var user = result.user;
 			var name = user.displayName.split(' ')[0];
-			var name = 'Ryan';
+
 			user.getToken(true).then(function(token) {
 
 				var p = $.get(API_ROOT + 'admin/dash?token='+token);
@@ -103,7 +103,9 @@ Admin.prototype.loginAndValidate = function() {
 				}).fail(function(xhr, status, err) {
 					reject('not authorized.');
 				})
-			 })
+			})
+		}).catch(function(error) {
+			reject('Unable to log in (check your popup settings?)');
 		});
 	});
 }
