@@ -1,5 +1,5 @@
 // API ROUTES
-const          API_ROOT  = "https://sheltered-ridge-74266.herokuapp.com/";
+const          API_ROOT  = "http://localhost:8888/";
 
 const      UMD_API_ROOT  = API_ROOT + 'umdio/v0/';
 
