@@ -38,6 +38,8 @@ Admin.prototype.loadLogs = function(logs) {
 	if (logs.length > 0) {
 		$('.logs .empty').hide();
 		$('.logs .table').removeClass('hidden');
+
+		$('#numLogs').text(logs.length);
 	}
 
 	var $table = $('.logs .table');
