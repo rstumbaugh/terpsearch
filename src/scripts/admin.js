@@ -38,7 +38,13 @@ Admin.prototype.loadLogs = function(logs) {
 	if (logs.length > 0) {
 		$('.logs .empty').hide();
 		$('.logs .table').removeClass('hidden');
+
+		$('#numLogs').text(logs.length);
 	}
+
+	logs.sort(function(a,b) {
+		return a.time > b.time ? -1 : 1
+	})
 
 	var $table = $('.logs .table');
 	for (var i = 0; i < logs.length; i++) {
