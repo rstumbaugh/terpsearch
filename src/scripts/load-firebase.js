@@ -5,5 +5,4 @@ function loadConfig() {
 			resolve();
 		});
 	});
-	
 }
