@@ -112,5 +112,8 @@ Admin.prototype.loginAndValidate = function() {
 
 
 window.onload = function() {
-	window.admin = new Admin();
+	loadFirebase().then(function(data) {
+		firebase.initializeApp(data);
+		window.admin = new Admin();
+	});
 }

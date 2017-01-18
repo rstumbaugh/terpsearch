@@ -28,9 +28,6 @@ function RatingsForm() {
         self.submitCourse();
     })
 
-
-    this.database = firebase.database(); 
-
     this.initComboboxes();
 }
 
