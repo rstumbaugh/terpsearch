@@ -269,8 +269,6 @@ ViewCourse.prototype.submitComment = function() {
             $('#commentErrorMsg').text('Invalid course.');
             $('#commentErrorMsg').slideDown();
         }
-
-        
     }
 }
 
