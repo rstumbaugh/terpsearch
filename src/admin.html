@@ -29,13 +29,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2 tab-bar">
-                    <div id="logs" class="col-sm-12 col-xs-4 tab logged-in active">
-                        Logs
+                    <div id="logs" class="col-sm-12 col-xs-6 tab logged-in active">
+                        General Logs
                     </div>
-                    <div id="email" class="col-sm-12 col-xs-4 tab logged-in">
+                    <div class="col-sm-12 col-xs-6 tab logged-in" id="heroku">
+                        Heroku Logs
+                    </div>
+                    <div id="email" class="col-sm-12 col-xs-6 tab logged-in">
                         Emails
                     </div>
-                    <div id="feedback" class="col-sm-12 col-xs-4 tab logged-in">
+                    <div id="feedback" class="col-sm-12 col-xs-6 tab logged-in">
                         Feedback
                     </div>
                 </div>
@@ -82,6 +85,10 @@
                                 <div class="panel-heading">Email Addresses (<span id="numEmails">0</span> found)</div>
                                 <table class="table table-striped">
                                     <tr>
+                                        <th>Email</th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
                                         <td class="empty"><i>No email addresses.</i></td>
                                     </tr>
                                 </table>
@@ -115,21 +122,13 @@
 
     <script id="feedback-template"  type="text/x-handlebars-template">
         <div class="row">
-            <div class="message col-md-6">
+            <div class="message col-xs-8">
                 {{message}}
                 <br><br>
                 <i>{{time}}</i>
-                <br><br>
-                <label>
-                    <input class="show_{{key}}" type="checkbox"> Display publicly
-                </label>
             </div>
-            <div class="action col-md-6 form-group">
-                <label>Leave a response</label>
-                <textarea class="comment form-control" rows="3" placeholder="Add comment...">
-                </textarea>
-                <br>
-                <button class="btn btn-primary" id="save_{{key}}">Save Changes</button>
+            <div class="action col-xs-4 form-group">
+                <button class="btn btn-danger remove" type="feedback" value="{{key}}">RM</button>
             </div>
         </div>
     </script>

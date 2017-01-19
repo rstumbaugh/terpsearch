@@ -21,6 +21,7 @@
 	font-weight: 500;
 	color: #c0392b;
 	text-align: right;
+	height: 75px;
 
 	padding: 25px 15px 25px 0;
 	border-bottom: 1px solid #c0392b;
@@ -51,7 +52,7 @@
 
 
 .content-wrap .content .panel.table-responsive {
-	max-height: 300px;
+	max-height: 400px;
 }
 
 .feedback .form-group {
@@ -87,11 +88,12 @@
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
 	.tab-bar {
-		height: auto;
+		height: calc(75px * 2);
 	}
 	
 	.tab-bar .tab {
 		text-align: center;
+		border-left: 1px solid #c0392b;
 	}
 }
 
