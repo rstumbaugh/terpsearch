@@ -37,6 +37,10 @@
 	cursor: pointer;
 }
 
+.content-wrap {
+	padding-bottom: 25px;
+}
+
 .content-wrap p {
 	font-size: 16px;
 }
@@ -50,18 +54,15 @@
 	max-height: 300px;
 }
 
-
 .feedback .form-group {
 	padding: 0;
 	margin: 0;
 }
 
-.feedback-wrap {
-}
-
 .feedback-wrap .row {
 	background-color: #ecf0f1;
 	padding: 10px;
+	margin-top: 15px;
 }
 
 .feedback-wrap .row > div {
