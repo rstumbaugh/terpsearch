@@ -51,7 +51,7 @@ gulp.task('replace-api', function() {
 
 // minify images
 gulp.task('images', function() {
-	return gulp.src('src/img/**/*.+(png|jpg|gif|svg)')
+	return gulp.src('src/**/*.+(png|jpg|gif|svg|ico)')
 		.pipe(cache(imagemin()))
 		.pipe(gulp.dest('build/img'))
 })
