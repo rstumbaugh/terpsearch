@@ -1,5 +1,6 @@
 function Admin() {
 	// log in with FB, check if admin
+	var self = this;
 
 	$('.tab').click(function() {
 		var id = $(this).attr('id');
@@ -11,7 +12,23 @@ function Admin() {
 		$('.content-wrap .content.'+id).slideDown();
 	})
 
-	var self = this;
+	$('.content-wrap').on('click', 'button.remove', function() {
+		var $this = $(this);
+		$this.attr('disabled', 'disabled');
+		var type = $this.attr('type');
+		var key = $this.attr('value');
+
+		var body = {
+			type: type,
+			key: key
+		}
+
+		$.post(API_ADMIN_DASH_RM + '?token='+self.token, body).done(function(res) {
+			$this.closest('tr, .row').hide('slow');
+		});
+	});
+
+	
 	this.loginAndValidate().then(function(data) {
 
 		$('textarea.comment').val('');
@@ -71,20 +88,27 @@ Admin.prototype.loadLogs = function(logs) {
 
 Admin.prototype.loadEmails = function(emails) {
 
-	if (emails.length > 0) {
+	var keys = Object.keys(emails);
+	if (keys.length > 0) {
 		$('.email .table .empty').hide();
 
-		$('#numEmails').text(emails.length);
+		$('#numEmails').text(keys.length);
 	}
 
 	var $table = $('.email .table');
 
-	for (var i = 0; i < emails.length; i++) {
-		var email = emails[i];
+	
+	for (var i = 0; i < keys.length; i++) {
+		var email = emails[keys[i]];
 
 		var $row = $('<tr/>');
+
+		var $rm = $('<button/>', {class: ['btn btn-danger remove'], text: 'RM', type: 'emails', val: keys[i]});
+
 		var $item = $('<td/>').text(email);
-		$row.append($item);
+		var $btn = $('<td/>').append($rm);
+
+		$row.append($item).append($btn);
 
 		$table.append($row);
 
@@ -139,7 +163,7 @@ Admin.prototype.loginAndValidate = function() {
 				var name = user.displayName.split(' ')[0];
 
 				user.getToken(true).then(function(token) { // get token
-
+					self.token = token;
 					var p = $.get(API_ROOT + 'admin/dash?token='+token); // get dashboard info from API
 					p.done(function(data) {
 						data.name = name;

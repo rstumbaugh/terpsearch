@@ -17,6 +17,8 @@ const    API_FIND_PROFS  = API_ROOT + 'professors';
 const    API_LIST_PROFS  = API_ROOT + 'professors/list';
 
 const         API_ADMIN  = API_ROOT + 'admin';
+const    API_ADMIN_DASH  = API_ROOT + 'admin/dash';
+const API_ADMIN_DASH_RM  = API_ROOT + 'admin/dash/remove';
 
 const   API_SOCIAL_ROOT  = API_ROOT + 'social';
 
