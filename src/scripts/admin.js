@@ -1,7 +1,5 @@
 function Admin() {
 	// log in with FB, check if admin
-	
-	this.auth = firebase.auth();
 
 	$('.tab').click(function() {
 		var id = $(this).attr('id');
@@ -14,8 +12,18 @@ function Admin() {
 		$('.content-wrap .content.'+id).slideDown();
 	})
 
+	$('h1').click(function() {
+		firebase.auth().signOut().then(function() {
+			console.log('logged out');
+		}, function(error) {
+		  // An error happened.
+		});
+	})
+
 	var self = this;
 	this.loginAndValidate().then(function(data) {
+
+		$('textarea.comment').val('');
 		
 		$('.no-access').hide();
 		$('#name').text(data.name);
@@ -26,6 +34,7 @@ function Admin() {
 
 		self.loadLogs(data.logs);
 		self.loadEmails(data.emails);
+		self.loadFeedback(data.feedback);
 
 	}).catch(function(err) {
 		console.log(err);
@@ -73,6 +82,8 @@ Admin.prototype.loadEmails = function(emails) {
 
 	if (emails.length > 0) {
 		$('.email .table .empty').hide();
+
+		$('#numEmails').text(emails.length);
 	}
 
 	var $table = $('.email .table');
@@ -87,33 +98,71 @@ Admin.prototype.loadEmails = function(emails) {
 		$table.append($row);
 
 	}
+}
 
+Admin.prototype.loadFeedback = function(feedback) {
+
+	var $wrap = $('.feedback .feedback-wrap');
+
+	var source = $('#feedback-template').html();
+	var template = Handlebars.compile(source);
+
+	for (var key in feedback) {
+		var item = feedback[key];
+		item.key = key;
+		item.time = new Date(item.timestamp).toString('hh:mm tt MMM dd yyyy');
+
+		var $body = template(item);
+		$wrap.append($body);
+
+		console.log(item);
+	}
 }
 
 Admin.prototype.loginAndValidate = function() {
 	var provider = new firebase.auth.FacebookAuthProvider();
 
 	var self = this;
+	var auth = firebase.auth();
 	return new Promise(function(resolve, reject) {
-		self.auth.signInWithPopup(provider).then(function(result) {
-			var token = result.credential.accessToken;
-			var user = result.user;
-			var name = user.displayName.split(' ')[0];
+		auth.onAuthStateChanged(function(user) { // check if logged in
+			new Promise(function(res, rej) {
+				if (user) {
+					console.log('logged in');
+					res(user);
+				} else { // if not logged in, log in with popup
+					console.log('not logged in');
+					auth.signInWithRedirect(provider);
+					auth.getRedirectResult().then(function(result) {
+						var user = result.user;
+						res(user)
+					})
+				}
+			}).then(function(user) { // get current user
+				var name = user.displayName.split(' ')[0];
 
-			user.getToken(true).then(function(token) {
+				user.getToken(true).then(function(token) { // get token
 
-				var p = $.get(API_ROOT + 'admin/dash?token='+token);
-				p.done(function(data) {
-					data.name = name;
-					resolve(data);
-				}).fail(function(xhr, status, err) {
-					reject('not authorized.');
+					var p = $.get(API_ROOT + 'admin/dash?token='+token); // get dashboard info from API
+					p.done(function(data) {
+						data.name = name;
+						resolve(data);
+					}).fail(function(xhr, status, err) { // if not an admin, gets rejected
+						reject('not authorized.');
+					})
 				})
 			})
-		}).catch(function(error) {
-			reject('Unable to log in (check your popup settings?)');
 		});
-	});
+	})
+}
+
+// given a course, generate search result item from course info
+// uses Handlebar
+function generateFeedbackItem(feedbackItem, template) {
+
+	var body = template(data);
+
+	return body;
 }
 
 
