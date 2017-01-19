@@ -3,21 +3,12 @@ function Admin() {
 
 	$('.tab').click(function() {
 		var id = $(this).attr('id');
-		console.log(id);
 
 		$('.tab.active').removeClass('active');
 		$(this).addClass('active');
 
 		$('.content-wrap .content').hide();
 		$('.content-wrap .content.'+id).slideDown();
-	})
-
-	$('h1').click(function() {
-		firebase.auth().signOut().then(function() {
-			console.log('logged out');
-		}, function(error) {
-		  // An error happened.
-		});
 	})
 
 	var self = this;
@@ -107,6 +98,8 @@ Admin.prototype.loadFeedback = function(feedback) {
 	var source = $('#feedback-template').html();
 	var template = Handlebars.compile(source);
 
+	$('#numFeedback').text(Object.keys(feedback).length);
+
 	for (var key in feedback) {
 		var item = feedback[key];
 		item.key = key;
@@ -114,8 +107,6 @@ Admin.prototype.loadFeedback = function(feedback) {
 
 		var $body = template(item);
 		$wrap.append($body);
-
-		console.log(item);
 	}
 }
 
