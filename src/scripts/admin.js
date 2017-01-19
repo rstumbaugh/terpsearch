@@ -98,9 +98,15 @@ Admin.prototype.loadFeedback = function(feedback) {
 	var source = $('#feedback-template').html();
 	var template = Handlebars.compile(source);
 
-	$('#numFeedback').text(Object.keys(feedback).length);
+	var keys = Object.keys(feedback);
+	keys.sort(function(a,b) {
+		return feedback[a].timestamp > feedback[b].timestamp ? -1 : 1;
+	})
 
-	for (var key in feedback) {
+	$('#numFeedback').text(keys.length);
+
+	for (var i = 0; i < keys.length; i++) {
+		var key = keys[i]
 		var item = feedback[key];
 		item.key = key;
 		item.time = new Date(item.timestamp).toString('hh:mm tt MMM dd yyyy');
