@@ -20,10 +20,12 @@ hr {
 	border: 1px solid #c0392b;
 	background-color: #f5d360;
 	margin-top: 20px;
+	padding-bottom: 20px;
 }
 
 .search-box .form-group {
 	margin-top: 0;
+	margin-bottom: 10px;
 }
 
 .search-box .selectize-dropdown .optgroup-header {
@@ -148,7 +150,6 @@ hr {
 	.search-result > div:nth-child(2) {
 		border: none;
 	}
-
 }
 
 /* Extra Small Devices, Phones */ 

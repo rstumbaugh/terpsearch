@@ -106,7 +106,9 @@ Search.prototype.initComboBoxes = function() {
     });
 
     $('#txtSort').selectize({
-    	sortField: 'text'
+    });
+
+    $('#txtPerPage').selectize({
     });
 }
 
@@ -172,6 +174,8 @@ Search.prototype.processQuery = function(query) {
 			var $summary = $('<h4/>');
 			$summary.text('Found '+total+' courses, showing '+data.length+'.');
 			$resultsWrap.append($summary);
+
+			console.log('per page: 25, pages: '+Math.ceil(total / data.length));
 
 			// compile handlebars template
 			var source = $('#search-result-template').html();
