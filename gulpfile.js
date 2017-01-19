@@ -51,9 +51,15 @@ gulp.task('replace-api', function() {
 
 // minify images
 gulp.task('images', function() {
-	return gulp.src('src/**/*.+(png|jpg|gif|svg|ico)')
+	return gulp.src('src/img/**/*.+(png|jpg|gif|svg)')
 		.pipe(cache(imagemin()))
 		.pipe(gulp.dest('build/img'))
+})
+
+//move favicon
+gulp.task('favicon', function() {
+	return gulp.src('src/favicon.ico')
+		.pipe(gulp.dest('build/'));
 })
 
 // move fonts
@@ -70,7 +76,7 @@ gulp.task('clean:build', function() {
 gulp.task('build', function(done) {
 	runSequence(
 		'clean:build',
-		['js-css', 'fonts', 'images'],
+		['js-css', 'fonts', 'images', 'favicon'],
 		'replace-api',
 		done
 	);
