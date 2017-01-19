@@ -103,7 +103,8 @@ Admin.prototype.loadEmails = function(emails) {
 
 		var $row = $('<tr/>');
 
-		var $rm = $('<button/>', {class: ['btn btn-danger remove'], text: 'RM', type: 'emails', val: keys[i]});
+		var $rm = $('<button/>', {class: ['btn btn-danger remove'], type: 'emails', val: keys[i]});
+		$rm.html('<i class="glyphicon glyphicon-remove"></i>');
 
 		var $item = $('<td/>').text(email);
 		var $btn = $('<td/>').append($rm);
