@@ -106,7 +106,9 @@ Search.prototype.initComboBoxes = function() {
     });
 
     $('#txtSort').selectize({
-    	sortField: 'text'
+    });
+
+    $('#txtPerPage').selectize({
     });
 }
 

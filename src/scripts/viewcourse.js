@@ -10,7 +10,6 @@
 **/
 
 function ViewCourse() {
-	this.database = firebase.database();
 
     var self = this;
     var course = getUrlVars()['id'].toUpperCase().split('#')[0];
@@ -93,52 +92,48 @@ ViewCourse.prototype.initDisplay = function() {
 
 // load course information from API
 ViewCourse.prototype.loadDataAPI = function(course, semester) {
-    var url = UMD_API_ROOT + 'courses?course_id=' + course + '&semester=' + semester;
+    var url = API_FIND_COURSES + '?course_id=' + course;;
 
-    $.ajax({
-        method: 'GET',
-        dataType: 'json',
-        url: url,
-        data: '',
-        success: function(data) {
+    // load course information from api
+    $.get(url, function(data) {
+        if (data.length > 0) {
+            var obj = data[1][0];
+            var desc = obj.description;
+            var relations = obj.relationships;
+            var credits = obj.credits;
+            var dept = obj.dept_id;
+            var profs = obj.professors;
+            var link = 'https://ntst.umd.edu/soc/'+semester+'/'+dept+'/'+course;
 
-            if (data.length > 0) {
-                var obj = data[0];
-                var desc = obj.description;
-                var relations = obj.relationships;
-                var credits = obj.credits;
-                var dept = obj.dept_id;
-                var link = 'https://ntst.umd.edu/soc/'+semester+'/'+dept+'/'+course;
+            $('#courseName').text(obj.course_id);
+            $('#courseTitle').text(obj.name);
+            $('#credits').text(credits + ' credits');
+            $('#semester').text(getSemester(semester));
+            $('#gened').text(obj.gen_ed.join(', ') || 'None');
+            $('#core').text(obj.core.join(', ') || 'None');
+            $('#testudoLink').attr('href', link);
+            $('#description').text(desc);
 
-                $('#courseName').text(obj.course_id);
-                $('#courseTitle').text(obj.name);
-                $('#credits').text(credits + ' credits');
-                $('#semester').text(getSemester(semester));
-                $('#gened').text(obj.gen_ed.join(', ') || 'None');
-                $('#core').text(obj.core.join(', ') || 'None');
-
-                $('#testudoLink').attr('href', link);
-
-                var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 
-                                    'formerly', 'additional_info'];
-
-                relationsArr.forEach(function(rel) {
-                    loadRelationship(rel, relations[rel]);
-                });
-
-                $('#description').text(desc);
-
-                console.log('got information from API...');
-            } else {
-                // no course found in current semester
+            var $profs = $('#taughtBy')
+            for (var i = 0; i < profs.length; i++) {
+                $profs.append($('<a/>', {text: profs[i], href: '#'}));
+                if (i < profs.length - 1) {
+                    $profs.append(', ');
+                }
             }
+
+            var relationsArr = ['prereqs', 'coreqs', 'restrictions', 'credit_granted_for', 'also_offered_as', 
+                                'formerly', 'additional_info'];
+
+            relationsArr.forEach(function(rel) {
+                loadRelationship(rel, relations[rel]);
+            });
 
             
 
-        },
-        error: function(xhr, status, error) {
-            $('#error').text('db error');
-            console.log('error');
+            console.log('got information from API...');
+        } else {
+            // no course found in current semester
         }
     });
 }
@@ -273,7 +268,7 @@ ViewCourse.prototype.submitComment = function() {
 }
 
 function loadRelationship(relationship, value) {
-    if (value != null) {
+    if (value) {
         $('#'+relationship).text(value);
     } else {
         $('#relationship_'+relationship).hide();
