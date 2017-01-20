@@ -4,9 +4,15 @@
     ".write": "auth.admin == true",
       
     "users": {
-      "$uid": {
-        ".read": "auth.token.firebase.identities['facebook.com'][0] == $uid",
-        ".write": "auth.token.firebase.identities['facebook.com'][0] == $uid"
+      "admins": {
+        ".read": "auth.admin == true",
+        ".write": "auth.admin == true"
+      },
+      "users": {
+        "$uid": {
+          ".read": "auth.token.firebase.identities['facebook.com'][0] == $uid || auth.admin == true",
+          ".write": "auth.token.firebase.identities['facebook.com'][0] == $uid || auth.admin == true"
+        }
       }
       
     }
