@@ -29,11 +29,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2 tab-bar">
-                    <div id="logs" class="col-sm-12 col-xs-6 tab logged-in active">
-                        General Logs
+                    <div class="col-sm-12 col-xs-6 tab logged-in active" id="users">
+                        Users
                     </div>
-                    <div class="col-sm-12 col-xs-6 tab logged-in" id="heroku">
-                        Heroku Logs
+                    <div id="logs" class="col-sm-12 col-xs-6 tab logged-in">
+                        Logs
                     </div>
                     <div id="email" class="col-sm-12 col-xs-6 tab logged-in">
                         Emails
@@ -51,6 +51,43 @@
                         <h1>Hello, <span id="name"></span>.</h1>
                         <br><br>
                     </div>
+                    <div class="content users logged-in">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <h3>Users</h3>
+                            <p>
+                                Lists of users and admins authorized for TerpSearch.
+                            </p>
+                            <br>
+                            <div class="panel panel-default table-responsive admins-table-wrap">
+                                <div class="panel-heading">Admins</div>
+                                <table class="table table-striped hidden">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>UID</th>
+                                        <th>API Access Token</th>
+                                    </tr>
+                                </table>
+                                <div class="panel-body empty">
+                                    <i>No admins to show</i>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="panel panel-default table-responsive users-table-wrap">
+                                <div class="panel-heading">Users</div>
+                                <table class="table table-striped hidden">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>UID</th>
+                                        <th>API Access Token</th>
+                                    </tr>
+                                </table>
+                                <div class="panel-body empty">
+                                    <i>No users to show</i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="content logs logged-in">
                         <div class="col-sm-10 col-sm-offset-1">
                             <h3>Logs</h3>
@@ -61,7 +98,7 @@
                             <br>
                             <div class="panel panel-default table-responsive">
                                 <div class="panel-heading">Logs (<span id="numLogs">0</span> found)</div>
-                                <table data-toggle="table" class="table table-striped hidden">
+                                <table class="table table-striped hidden">
                                     <tr>
                                         <th>Type</th>
                                         <th>Content</th>

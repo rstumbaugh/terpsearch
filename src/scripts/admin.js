@@ -38,8 +38,9 @@ function Admin() {
 		$('.logged-in').slideDown();
 
 		$('.content-wrap .content').hide();
-		$('.content.logs').show();
+		$('.content.users').show();
 
+		self.loadUsers(data.users);
 		self.loadLogs(data.logs);
 		self.loadEmails(data.emails);
 		self.loadFeedback(data.feedback);
@@ -49,8 +50,60 @@ function Admin() {
 	});
 }
 
+Admin.prototype.loadUsers = function(data) {
+	var admins = data.admins;
+	var users = data.users;
+
+	if (admins != {}) {
+		$('.admins-table-wrap .empty').hide();
+		$('.admins-table-wrap .table').removeClass('hidden');
+	}
+
+	if (users != {}) {
+		$('.users-table-wrap .empty').hide();
+		$('.users-table-wrap .table').removeClass('hidden');
+	}
+
+	var aKeys = Object.keys(admins);
+	var uKeys = Object.keys(users);
+
+	aKeys.sort(function(a,b) {
+		return users[a].name < users[b].name ? -1 : 1;
+	})
+
+	uKeys.sort(function(a,b) {
+		return users[a].name < users[b].name ? -1 : 1;
+	})
+
+	var $aTable = $('.users .admins-table-wrap table');
+	var $uTable = $('.users .users-table-wrap table');
+
+	for (var i = 0; i < aKeys.length; i++) {
+		var user = users[aKeys[i]];
+
+		var $row = $('<tr/>');
+		var $name = $('<td/>', {text: user.name});
+		var $uid = $('<td/>', {text: user.uid});
+		var $token = $('<td/>', {text: user.token.toString().substring(0,10)+'...'});
+
+		$row.append($name).append($uid).append($token);
+		$aTable.append($row);
+	}
+
+	for (var i = 0; i < uKeys.length; i++) {
+		var user = users[uKeys[i]];
+
+		var $row = $('<tr/>');
+		var $name = $('<td/>', {text: user.name});
+		var $uid = $('<td/>', {text: user.uid});
+		var $token = $('<td/>', {text: user.token.toString().substring(0,10)+'...'});
+
+		$row.append($name).append($uid).append($token);
+		$uTable.append($row);
+	}
+}
+
 Admin.prototype.loadLogs = function(logs) {
-	console.log('found '+logs.length+' logs');
 
 	if (logs.length > 0) {
 		$('.logs .empty').hide();
@@ -150,10 +203,8 @@ Admin.prototype.loginAndValidate = function() {
 		auth.onAuthStateChanged(function(user) { // check if logged in
 			new Promise(function(res, rej) {
 				if (user) {
-					console.log('logged in');
 					res(user);
 				} else { // if not logged in, log in with popup
-					console.log('not logged in');
 					auth.signInWithRedirect(provider);
 					auth.getRedirectResult().then(function(result) {
 						var user = result.user;
@@ -176,15 +227,6 @@ Admin.prototype.loginAndValidate = function() {
 			})
 		});
 	})
-}
-
-// given a course, generate search result item from course info
-// uses Handlebar
-function generateFeedbackItem(feedbackItem, template) {
-
-	var body = template(data);
-
-	return body;
 }
 
 
