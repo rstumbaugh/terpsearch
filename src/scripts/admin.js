@@ -38,7 +38,7 @@ function Admin() {
 		$('.logged-in').slideDown();
 
 		$('.content-wrap .content').hide();
-		$('.content.users').show();
+		$('.content.users').show(); // show users on page load
 
 		self.loadUsers(data.users);
 		self.loadLogs(data.logs);

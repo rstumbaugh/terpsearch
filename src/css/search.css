@@ -101,13 +101,10 @@ hr {
 	color: #c0392b;
 }
 
-.search-results-wrap .page-numbers {
-	width: 100%;
-	text-align: center;
-}
 
-.search-results-wrap .page-numbers ul {
-	list-style: none;
+
+.search-results-wrap .summary h4 {
+	margin-top: 0;
 }
 
 .page-numbers ul li {

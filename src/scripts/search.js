@@ -157,6 +157,7 @@ Search.prototype.processQuery = function(query) {
 	$('.empty-data').hide();
 	$('.data-loading').show();
 
+	var $summaryWrap = $('.summary');
 	var $resultsWrap = $('.search-results');
 
 	// add semester array to node DB, allow lookup on umd.io 
@@ -173,7 +174,10 @@ Search.prototype.processQuery = function(query) {
 
 			var $summary = $('<h4/>');
 			$summary.text('Found '+total+' courses, showing '+data.length+'.');
-			$resultsWrap.append($summary);
+			$summaryWrap.append($summary);
+
+			var $links = $('<div/>', {class: 'col-sm-6'});
+
 
 			console.log('per page: 25, pages: '+Math.ceil(total / data.length));
 
