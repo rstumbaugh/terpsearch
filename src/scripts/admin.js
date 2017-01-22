@@ -33,7 +33,7 @@ function Admin() {
 
 		$('textarea.comment').val('');
 		
-		$('.no-access').hide();
+		$('.logging-in').hide();
 		$('#name').text(data.name);
 		$('.logged-in').slideDown();
 
@@ -46,6 +46,8 @@ function Admin() {
 		self.loadFeedback(data.feedback);
 
 	}).catch(function(err) {
+		$('.logging-in').hide();
+		$('.no-access').slideDown();
 		console.log(err);
 	});
 }
@@ -224,6 +226,8 @@ Admin.prototype.loginAndValidate = function() {
 						reject('not authorized.');
 					})
 				})
+			}).catch(function(err) {
+				reject(err);
 			})
 		});
 	})

@@ -157,6 +157,7 @@ Search.prototype.processQuery = function(query) {
 	$('.empty-data').hide();
 	$('.data-loading').show();
 
+	var $summaryWrap = $('.summary');
 	var $resultsWrap = $('.search-results');
 
 	// add semester array to node DB, allow lookup on umd.io 
