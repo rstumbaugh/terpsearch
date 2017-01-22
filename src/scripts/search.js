@@ -10,17 +10,30 @@ function Search() {
     var self = this;
     $('#btnReset').click(function() {
     	self.resetForm();
+
+    	$('.summary-wrap div').empty();
+    	$('.search-results').empty();
+    	$('.empty-data').show();
     })
 
     // don't reload page, just process here
     $('form').submit(function(e) {
     	e.preventDefault();
 
-    	$('.search-results').empty();
+    	$('.links').empty(); // reset page numbers on new form submit
 
-    	var query = self.buildQuery();
-    	console.log(query);
-		self.processQuery('?' + query);
+    	self.search();
+    })
+
+    // on perPage change, reset page number to 1 to avoid out of bounds
+    $('#txtPerPage').selectize()[0].selectize.on('change', function() {
+    	$('.links').empty(); // clear page numbers
+
+    	var display = $('.empty-data').css('display');
+    	if (display == 'none') { // if there is content, search
+    		self.search();
+    	}
+    	
     })
 
 	$('#ratingsForm').on('courseSubmitted', function() {
@@ -38,6 +51,17 @@ function Search() {
     //$('#modal').modal({backdrop: 'static'});
 }
 
+Search.prototype.search = function() {
+	var query = this.buildQuery();
+
+	$('.summary').empty();
+	$('.links').empty();
+	$('.search-results').empty();
+
+	console.log(query);
+	this.processQuery('?' + query);
+}
+
 Search.prototype.initComboBoxes = function() {
 	$('#txtProfSearch').selectize({
         valueField: 'value',
@@ -48,10 +72,6 @@ Search.prototype.initComboBoxes = function() {
         selectOnTab: true,
         closeAfterSelect: true,
         loadThrottle: 150,
-        persist: false,
-        create: function(input) {
-            return { name: input, value: 'Other'}
-        },
         render: {
             option: function(item, escape) {
                 return '<div>' + escape(item.name) + '</div>';
@@ -136,34 +156,32 @@ Search.prototype.buildQuery = function() {
 	});
 
 	$('.form-group > select').each(function(index) {
-
 		var name = $(this).attr('name');
 		var val = [].concat($(this).val()); // converts val to array if string or null
 		params[name] = val.join(',');
-		
 	});
 
 	$('.radio input:checked').each(function(index) {
 		params.gened_type = $(this).val();
 	})
 
-	return $.param(params).replace(/%2C/g, ',');
+	var page = $('#txtPage')[0] ? $('#txtPage').val() : 1;
+
+	return $.param(params).replace(/%2C/g, ',') + '&page='+page;
 }
 
 // use query to search for courses
 Search.prototype.processQuery = function(query) {
-	console.log('processing query');
-
 	$('.empty-data').hide();
 	$('.data-loading').show();
 
+	var self = this;
 	var $summaryWrap = $('.summary');
+	var $linksWrap = $('.links');
 	var $resultsWrap = $('.search-results');
 
 	// add semester array to node DB, allow lookup on umd.io 
 	$.get(API_FIND_COURSES + query, function(response) {
-
-		console.log('found '+(response.length == 0 ? 0 : response[1].length)+' courses');
 
 		if (response.length == 0) {
 			$('.data-loading').hide();
@@ -171,15 +189,16 @@ Search.prototype.processQuery = function(query) {
 		} else {
 			var total = response[0].total_matches;
 			var data = response[1];
+			var page = getPage(query);
+			var perPage = $('#txtPerPage').val();
 
 			var $summary = $('<h4/>');
+			var $links = $('.search-results-wrap .links');
+
 			$summary.text('Found '+total+' courses, showing '+data.length+'.');
 			$summaryWrap.append($summary);
 
-			var $links = $('<div/>', {class: 'col-sm-6'});
-
-
-			console.log('per page: 25, pages: '+Math.ceil(total / data.length));
+			self.initPageBox(page, perPage, total, $linksWrap);
 
 			// compile handlebars template
 			var source = $('#search-result-template').html();
@@ -198,6 +217,40 @@ Search.prototype.processQuery = function(query) {
 			}
 		}
 	});
+}
+
+Search.prototype.initPageBox = function (page, perPage, total, $wrapper) {
+	var $box = $('<select/>', {name: 'page', id: 'txtPage'});
+
+	var numPages = Math.ceil(total / perPage);
+
+	for (var i = 1; i <= numPages; i++) {
+		var $opt = $('<option/>', {text: i, value: i});
+		$box.append($opt);
+	}
+
+	var $prev = $('<a/>', {id: 'prev'}).text('prev');
+	var $next = $('<a/>', {id: 'next'}).text('next');
+
+	$prev.click(function() {
+		var box = $('#txtPage').selectize()[0].selectize;
+    	box.addItem(parseInt($('#txtPage').val()) - 1);
+    })
+
+    $next.click(function() {
+		var box = $('#txtPage').selectize()[0].selectize;
+    	box.addItem(parseInt($('#txtPage').val()) + 1);
+    })
+
+	$wrapper.append($prev).append('Page ').append($box).append(' of '+numPages+'.').append($next);
+	var box = $box.selectize()[0].selectize;
+
+	box.addItem(page);
+
+	var self = this;
+	box.on('change', function() {
+		self.search();
+	})
 }
 
 // given a course, generate search result item from course info
@@ -239,6 +292,12 @@ function loadFormData() {
 	$('#txtDept').val(storage.getItem('dept')); // fix
 	$('#txtGened').val(storage.getItem('gened')); // fix
 }
+
+function getPage(query) {
+	return query.match(/&page=(\d+)/)[1];
+}
+
+
 
 
 window.onload = function() {

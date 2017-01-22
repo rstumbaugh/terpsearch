@@ -101,21 +101,25 @@ hr {
 	color: #c0392b;
 }
 
-.search-results-wrap .page-numbers {
-	width: 100%;
-	text-align: center;
+.search-results-wrap .form-group.links {
+	margin: 0;
+	font-size: 14px;
 }
 
-.search-results-wrap .page-numbers ul {
-	list-style: none;
+.search-results-wrap .links a:hover {
+	cursor: pointer;
 }
 
-.page-numbers ul li {
+.search-results-wrap .form-group.links .selectize-control {
 	display: inline-block;
 }
 
-.page-numbers ul a:hover {
-	cursor: pointer;
+.search-results-wrap .selectize-control.single .selectize-input {
+	margin-right: 10px;
+}
+
+.search-results-wrap .selectize-control.single .selectize-input:after {
+	right: 2px;
 }
 
 /* Large Devices, Wide Screens */
