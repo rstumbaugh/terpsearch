@@ -56,6 +56,12 @@ gulp.task('images', function() {
 		.pipe(gulp.dest('build/img'))
 })
 
+//move favicon
+gulp.task('favicon', function() {
+	return gulp.src('src/favicon.ico')
+		.pipe(gulp.dest('build/'));
+})
+
 // move fonts
 gulp.task('fonts', function() {
 	return gulp.src('src/fonts/**/*')
@@ -70,7 +76,7 @@ gulp.task('clean:build', function() {
 gulp.task('build', function(done) {
 	runSequence(
 		'clean:build',
-		['js-css', 'fonts', 'images'],
+		['js-css', 'fonts', 'images', 'favicon'],
 		'replace-api',
 		done
 	);
