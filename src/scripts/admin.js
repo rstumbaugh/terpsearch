@@ -88,6 +88,10 @@ Admin.prototype.loadUsers = function(data) {
 		var $uid = $('<td/>', {text: user.uid});
 		var $token = $('<td/>', {text: user.token.toString().substring(0,10)+'...'});
 
+		$token.click(function() {
+			console.log(user.token);
+		})
+
 		$row.append($name).append($uid).append($token);
 		$aTable.append($row);
 	}
@@ -99,6 +103,10 @@ Admin.prototype.loadUsers = function(data) {
 		var $name = $('<td/>', {text: user.name});
 		var $uid = $('<td/>', {text: user.uid});
 		var $token = $('<td/>', {text: user.token.toString().substring(0,10)+'...'});
+
+		$token.click(function() {
+			console.log(user.token);
+		})
 
 		$row.append($name).append($uid).append($token);
 		$uTable.append($row);

@@ -53,6 +53,8 @@
 
 .content-wrap .content .panel.table-responsive {
 	max-height: 400px;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 .feedback .form-group {
