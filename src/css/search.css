@@ -101,21 +101,53 @@ hr {
 	color: #c0392b;
 }
 
-.search-results-wrap .page-numbers {
-	width: 100%;
-	text-align: center;
+.summary-wrap {
+	transition: background-color 0.2s ease-in-out;
+	padding: 15px 25px;
 }
 
-.search-results-wrap .page-numbers ul {
-	list-style: none;
+.summary-wrap.fix {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 101%;
+	background-color: #c0392b;
+	color: white;
+
+	box-shadow: 0px 3px 3px #888, 0px 3px 3px #888;
+
+	transition: background-color 0.2s ease-in-out;
 }
 
-.page-numbers ul li {
+.summary-wrap.fix a,
+.summary-wrap.fix a:hover {
+	color: white;
+}
+
+.search-results-wrap .form-group.links {
+	margin: 0;
+	font-size: 14px;
+}
+
+.search-results-wrap .form-group a {
+	margin: 0 5px;
+}
+
+.search-results-wrap .links a:hover {
+	cursor: pointer;
+}
+
+.search-results-wrap .form-group.links .selectize-control {
 	display: inline-block;
 }
 
-.page-numbers ul a:hover {
-	cursor: pointer;
+.search-results-wrap .selectize-control.single .selectize-input {
+	margin-right: 10px;
+}
+
+.search-results-wrap .selectize-control.single .selectize-input:after {
+	right: 2px;
 }
 
 /* Large Devices, Wide Screens */

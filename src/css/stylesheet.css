@@ -11,6 +11,13 @@ html, body {
 	-webkit-overflow-scrolling: touch;
 }
 
+.for-scrolling {
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
 .hidden {
 	display: none;
 }
