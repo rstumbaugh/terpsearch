@@ -101,9 +101,37 @@ hr {
 	color: #c0392b;
 }
 
+.summary-wrap {
+	transition: background-color 0.2s ease-in-out;
+	padding: 15px 25px;
+}
+
+.summary-wrap.fix {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 101%;
+	background-color: #c0392b;
+	color: white;
+
+	box-shadow: 0px 3px 3px #888, 0px 3px 3px #888;
+
+	transition: background-color 0.2s ease-in-out;
+}
+
+.summary-wrap.fix a,
+.summary-wrap.fix a:hover {
+	color: white;
+}
+
 .search-results-wrap .form-group.links {
 	margin: 0;
 	font-size: 14px;
+}
+
+.search-results-wrap .form-group a {
+	margin: 0 5px;
 }
 
 .search-results-wrap .links a:hover {

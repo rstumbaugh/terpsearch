@@ -46,6 +46,17 @@ function Search() {
         }
     })
 
+    $('.for-scrolling').scroll(function() {
+    	var summaryOffset = $('.summary-wrap').offset().top;
+    	var wrapOffset = $('.search-results-wrap').offset().top;
+
+    	if (summaryOffset < 0) {
+    		$('.summary-wrap').addClass('fix');
+    	} else if (wrapOffset >= 0) {
+    		$('.summary-wrap').removeClass('fix');
+    	}
+    })
+
 
 	// show modal on page load
     //$('#modal').modal({backdrop: 'static'});
@@ -229,8 +240,8 @@ Search.prototype.initPageBox = function (page, perPage, total, $wrapper) {
 		$box.append($opt);
 	}
 
-	var $prev = $('<a/>', {id: 'prev'}).text('prev');
-	var $next = $('<a/>', {id: 'next'}).text('next');
+	var $prev = $('<a/>', {id: 'prev'}).html('<i class="glyphicon glyphicon-triangle-left"></i> Prev');
+	var $next = $('<a/>', {id: 'next'}).html('<i class="glyphicon glyphicon-triangle-right"></i> Next');
 
 	$prev.click(function() {
 		var box = $('#txtPage').selectize()[0].selectize;
@@ -242,7 +253,7 @@ Search.prototype.initPageBox = function (page, perPage, total, $wrapper) {
     	box.addItem(parseInt($('#txtPage').val()) + 1);
     })
 
-	$wrapper.append($prev).append('Page ').append($box).append(' of '+numPages+'.').append($next);
+	$wrapper.append($prev).append($box).append(' of '+numPages).append($next);
 	var box = $box.selectize()[0].selectize;
 
 	box.addItem(page);
