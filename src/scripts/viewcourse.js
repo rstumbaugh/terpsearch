@@ -13,11 +13,10 @@ function ViewCourse() {
 
     var self = this;
     var course = getUrlVars()['id'].toUpperCase().split('#')[0];
-    var semester = getUrlVars()['semester'].split('#')[0];
 
     this.initEventHandlers();
     this.initDisplay();
-    this.loadDataAPI(course, semester);
+    this.loadDataAPI(course);
     this.loadStats(course, function(data) {
 
         self.displayComments(data.comments);
@@ -84,14 +83,15 @@ ViewCourse.prototype.initDisplay = function() {
 
     var prev = getUrlVars()['from'];
 
-    if (prev && prev == 'search') {
+    if (prev) {
+        $('#goBack').text('Back to '+prev);
         $('#back').show();
     }
 }
 
 
 // load course information from API
-ViewCourse.prototype.loadDataAPI = function(course, semester) {
+ViewCourse.prototype.loadDataAPI = function(course) {
     var url = API_FIND_COURSES + '?course_id=' + course;;
 
     // load course information from api
@@ -103,6 +103,7 @@ ViewCourse.prototype.loadDataAPI = function(course, semester) {
             var credits = obj.credits;
             var dept = obj.dept_id;
             var profs = obj.professors;
+            var semester = obj.semester;
             var link = 'https://ntst.umd.edu/soc/'+semester+'/'+dept+'/'+course;
 
             $('#courseName').text(obj.course_id);
@@ -116,7 +117,12 @@ ViewCourse.prototype.loadDataAPI = function(course, semester) {
 
             var $profs = $('#taughtBy')
             for (var i = 0; i < profs.length; i++) {
-                $profs.append($('<a/>', {text: profs[i], href: '#'}));
+                $profs.append(
+                    $('<a/>', 
+                    {
+                        text: profs[i],
+                        href: 'professor.html?from=course&name='+encodeURIComponent(profs[i])
+                    }));
                 if (i < profs.length - 1) {
                     $profs.append(', ');
                 }

@@ -136,11 +136,8 @@ Search.prototype.initComboBoxes = function() {
     	}
     });
 
-    $('#txtSort').selectize({
-    });
-
-    $('#txtPerPage').selectize({
-    });
+    $('#txtSort').selectize({});
+    $('#txtPerPage').selectize({});
 }
 
 // clear all input fields
@@ -151,9 +148,8 @@ Search.prototype.resetForm = function() {
 
 	$('.form-group > select').each(function(index) {
 		var id = $(this).attr('id');
-		$(this).selectize()[0].selectize.clear(false);
-		if (id == 'txtSort') {
-			$(this).selectize()[0].selectize.addItem('course_id');
+		if (id != 'txtSort' && id != 'txtPerPage' && id != 'txtPage') {
+			$(this).selectize()[0].selectize.clear(false);
 		}
 	})
 }
@@ -268,7 +264,7 @@ Search.prototype.initPageBox = function (page, perPage, total, $wrapper) {
 // uses Handlebar
 function generateSearchItem(course, template) {
 
-	var url = 'viewcourse.html?from=search&id=' + course.course_id + '&semester=' + course.semester;
+	var url = 'viewcourse.html?from=search&id=' + course.course_id;
 
 	var data = {
 		course_id: course.course_id,
