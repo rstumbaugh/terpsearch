@@ -172,14 +172,14 @@ ViewCourse.prototype.loadStats = function(course, callback) {
         // need to make new element, initProfessorProgress for each
         var profs = data.profs;
 
-        var $diffWrap = $('.ratings .difficulty .prof-wrap');
-        var $intWrap = $('.ratings .interest .prof-wrap');
+        var $diffWrap = $('.ratings .difficulty .breakdown-wrap');
+        var $intWrap = $('.ratings .interest .breakdown-wrap');
 
         for (var i = 0; i < profs.length; i++) {
             var diffId = 'diffBar' + i;
             var intId = 'intBar' + i;
 
-            var $prof = $('<div/>', {'class': 'prof'});
+            var $prof = $('<div/>', {'class': 'breakdown'});
             var $span = $('<span/>');
             var $diffBar = $('<div/>', {'id': diffId});
             var $intBar = $('<div/>', {'id': intId});

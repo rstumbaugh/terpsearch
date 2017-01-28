@@ -23,9 +23,9 @@
         </div>  
 
 
-        <div class="container-fluid">
+        <div class="container-fluid content-wrap">
             <div class="row prof-info">
-                <div class="col-sm-10 col-sm-offset-1 content-wrap">
+                <div class="col-sm-10 col-sm-offset-1">
                     <div id="back" class="panel panel-default" style="display:none">
                         <div class="panel-heading">
                             <a id="goBack">Back to course</a>
@@ -33,39 +33,74 @@
                     </div>
                     <div class="col-md-9 info-wrap">
                         <div class="info" style="display:none">
-                            <h1 class="name"></h1>
-                            <p>Professor Profile</p>
-                            <p><strong>Courses taught: </strong><span id="courses"></span></p>
-                            
-                            <br>
+                            <div class="row info">
+                                <h1 class="name"></h1>
+                                <p>Professor Profile</p>
+                                <p><strong>Courses taught: </strong><span id="courses"></span></p>
 
-                            <h3>Course Ratings</h3>
-                            <p>Distribution of course ratings where <span class="name"></span> was the professor.</p>
-                            <div class="col-md-6 chart-wrap">
-                                <h4>Difficulty</h4>
-                                <canvas class="chart" id="diffChart"></canvas>
-                            </div>
-                            <div class="col-md-6 chart-wrap">
-                                <h4>Interest</h4>
-                                <canvas class="chart" id="intChart"></canvas>
+                                <br><br>
                             </div>
                         </div>
                         <div class="loading">
                             <h1>Loading...</h1>
                         </div>
                     </div>
-                    
-                    <div class="col-md-3 icons">
-                        <div class="col-sm-6 col-md-12">
-                            <div class="icon" id="avgDifficulty"></div>
-                            Average Difficulty
-                            <br><br>
-                        </div>
-                        <div class="col-sm-6 col-md-12">
-                            <div class="icon" id="avgInterest"></div>
-                            Average Interest
+                            
+                    <div class="col-md-8 col-md-offset-2">
+                        <div id="noReviewPanel" class="panel panel-warning" style="display:none">
+                            <div class="panel-heading">No reviews found for courses taught by this professor.</div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="row ratings">
+                <div class="col-sm-10 col-sm-offset-1">
+
+                    <div class="difficulty col-md-12">
+                        <div class="rating-wrap row">
+                            <div class="col-md-2 rating"><span id="avgDiff">0.0</span><br>Average Difficulty</div>
+                            <div class="col-md-10 description">
+                                <div>
+                                    <h4>Total Distribution</h4>
+                                    <p class="small"><span class="numResponses">0</span> responses</p>
+                                    <br>
+                                    <canvas class="chart" id="diffChart"></canvas>
+                                </div>
+                                <div class="breakdown-wrap">
+                                    <h4>Professor Breakdown</h4>
+                                    <br>
+                                    <i class="empty-data">No data found.</i>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interest col-md-12">
+                        <div class="rating-wrap row">
+                            <div class="col-md-2 rating"><span id="avgInt">0.0</span><br>Average Interest</div>
+                            <div class="col-md-10 description">
+                                <div>
+                                    <h4>Total Distribution</h4>
+                                    <p class="small"><span class="numResponses">0</span> responses</p>
+                                    <br>
+                                    <canvas class="chart" id="intChart"></canvas>
+                                </div>
+                                <div class="breakdown-wrap">
+                                    <h4>Professor Breakdown</h4>
+                                    <br>
+                                    <i class="empty-data">No data found.</i>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row comments">
+                <div class="col-sm-10 col-sm-offset-1">
+                    
                 </div>
             </div>
         </div>

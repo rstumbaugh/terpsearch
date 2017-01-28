@@ -1,9 +1,3 @@
-.for-scrolling {
-	height: 100%;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	-webkit-overflow-scrolling: touch;
-}
 
 #viewCourse h1 {
 	font-size: 48px;
@@ -34,6 +28,10 @@ button.add-btn {
 
 	width: 35%;
 	margin-left: 10%;
+}
+
+.icons {
+	text-align: center;
 }
 
 .icons > div {
@@ -102,16 +100,16 @@ button.add-btn {
 }
 
 
-.description .prof-wrap {
+.description .breakdown-wrap {
 	font-size: 16px;
 }
 
-.description .prof-wrap .prof {
+.description .breakdown-wrap .breakdown {
 	padding-left: 50px;
 	margin-bottom: 25px;
 }
 
-.description .prof-wrap .prof > div {
+.description .breakdown-wrap .breakdown > div {
 	display: inline;
 	position: relative;
 }
@@ -141,6 +139,10 @@ button.add-btn {
 #commentErrorMsg,
 #commentSuccessMsg {
 	position: absolute;
+}
+
+#noReviewPanel .panel-heading {
+	text-align: center;
 }
 
 /*.comment-input input.form-control {

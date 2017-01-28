@@ -1,45 +1,31 @@
 .content-wrap {
-	padding: 25px 15px;
+	padding: 25px 15px 50px 15px;
 	font-size: 16px;
+
+}
+
+.small {
+	font-size: 12px;
 }
 
 .info-wrap h1 {
 	font-size: 48px;
 }
 
-.icons {
-	text-align: center
-}
-
-.icons > div {
-	font-size: 18px;
-	font-weight: 500;
-	margin-bottom: 15px;
+.content-wrap .row {
 	padding: 0;
+	margin: 0;
 }
 
-.icon {
-	width: 150px;
-	height: 150px;
-	margin: 0 auto;
-	margin-bottom: 15px;
-	font-size: 48px;
-}
-
-.chart-wrap {
+.button-wrap {
+	width: 100%;
 	text-align: center;
 }
 
-.chart-wrap p {
-	font-size: 14px;
+.description > div, 
+.interest > div {
+	padding: 15px;
 }
-
-.chart-wrap .chart {
-	width: 100%;
-	height: auto;
-	margin: 0 auto;
-}
-
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
