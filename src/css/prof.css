@@ -7,19 +7,33 @@
 	font-size: 48px;
 }
 
-.ratings > div {
+.icons > div {
 	font-size: 18px;
 	font-weight: 500;
 	margin-bottom: 15px;
 	padding: 0;
 }
 
-.rating {
+.icon {
 	width: 150px;
 	height: 150px;
 	margin: 0 auto;
 	margin-bottom: 15px;
 	font-size: 48px;
+}
+
+.chart-wrap {
+	text-align: center;
+}
+
+.chart-wrap p {
+	font-size: 14px;
+}
+
+.chart-wrap .chart {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
 }
 
 
