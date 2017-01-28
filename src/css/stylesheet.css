@@ -6,13 +6,15 @@ html, body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 300;
 
-	overflow-y: auto;
+	overflow-x: hidden;
+	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
 }
 
 .for-scrolling {
 	height: 100%;
-	overflow-y: auto;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	-webkit-overflow-scrolling: touch;
 }
 
