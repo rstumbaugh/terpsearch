@@ -31,33 +31,39 @@
                             <a id="goBack">Back to course</a>
                         </div>
                     </div>
-                    <div class="col-md-9 info-wrap" style="display:none">
-                        <h1 id="name"></h1>
-                        <p>Professor Profile</p>
-                        <p><strong>Courses taught: </strong><span id="courses"></span></p>
-                        <p><strong>Number of ratings: </strong><span id="numRatings"></span></p>
+                    <div class="col-md-9 info-wrap">
+                        <div class="info" style="display:none">
+                            <h1 class="name"></h1>
+                            <p>Professor Profile</p>
+                            <p><strong>Courses taught: </strong><span id="courses"></span></p>
+                            
+                            <br>
 
-                        <div class="col-md-6 chart-wrap">
-                            <canvas class="chart" id="diffChart"></canvas>
+                            <h3>Course Ratings</h3>
+                            <p>Distribution of course ratings where <span class="name"></span> was the professor.</p>
+                            <div class="col-md-6 chart-wrap">
+                                <h4>Difficulty</h4>
+                                <canvas class="chart" id="diffChart"></canvas>
+                            </div>
+                            <div class="col-md-6 chart-wrap">
+                                <h4>Interest</h4>
+                                <canvas class="chart" id="intChart"></canvas>
+                            </div>
                         </div>
-                        <div class="col-md-6 chart-wrap">
-                            <canvas class="chart" id="intChart"></canvas>
+                        <div class="loading">
+                            <h1>Loading...</h1>
                         </div>
                     </div>
-                    <div class="loading">
-                        <h1>Loading...</h1>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="icons">
-                            <div class="col-sm-6 col-md-12">
-                                <div class="icon" id="avgDifficulty"></div>
-                                Average Difficulty
-                                <br><br>
-                            </div>
-                            <div class="col-sm-6 col-md-12">
-                                <div class="icon" id="avgInterest"></div>
-                                Average Interest
-                            </div>
+                    
+                    <div class="col-md-3 icons">
+                        <div class="col-sm-6 col-md-12">
+                            <div class="icon" id="avgDifficulty"></div>
+                            Average Difficulty
+                            <br><br>
+                        </div>
+                        <div class="col-sm-6 col-md-12">
+                            <div class="icon" id="avgInterest"></div>
+                            Average Interest
                         </div>
                     </div>
                 </div>

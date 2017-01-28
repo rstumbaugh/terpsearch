@@ -8,7 +8,7 @@ function Professor() {
 	ps.push(this.loadStats());
 	Promise.all(ps).then(function() {
 		$('.loading').hide();
-		$('.info-wrap').show();
+		$('.info').show();
 	})
 
 
@@ -37,9 +37,9 @@ Professor.prototype.loadInfo = function() {
 		p.done(function(data) {
 			var obj = data[0];
 
-			$('#name').text(obj.name);
+			$('.name').text(obj.name);
 			for (var i = 0; i < obj.courses.length; i++) {
-				var $a = $('<a/>', {text: obj.courses[i], href: 'viewcourse.html?id='+obj.courses[i], target: '_blank'});
+				var $a = $('<a/>', {text: obj.courses[i], href: 'viewcourse.html?from=professor&id='+obj.courses[i]});
 				$('#courses').append($a);
 				if (i < obj.courses.length - 1) {
 					$('#courses').append(', ');
@@ -54,8 +54,26 @@ Professor.prototype.loadInfo = function() {
 }
 
 Professor.prototype.loadStats = function() {
+	var self = this;
 	return new Promise(function(resolve, reject) {
-		resolve();
+		$.get(API_PROF_STATS + '?name=' + self.name).done(function(data) {
+			var avgDiff = data.avgDiff;
+			var avgInt = data.avgInt;
+
+			console.log(data);
+
+			// animate circular average bars
+			self.circleDiff.animate(avgDiff / 5.0);
+			self.circleInt.animate(avgInt / 5.0);
+
+			// init bar charts
+			initChart($('#diffChart'), data.diffCounts);
+			initChart($('#intChart'), data.intCounts);
+			
+			resolve();
+		}).fail(function(xhr, status, err) {
+			reject(err);
+		})
 	})
 }
 
@@ -94,7 +112,7 @@ function initChart(chart, dataArr) {
                     stacked: false,
                     ticks: { 
                         display: false,
-                        stepSize: 1
+                        stepSize: 5
                     }
                 }]
             }
@@ -119,10 +137,6 @@ function initCircularProgress(id) {
     bar.text.style.color = '#333';
 
     return bar;
-}
-
-function animateCircularProgress(id, rating) {
-    bar.animate(rating/5.0);
 }
 
 

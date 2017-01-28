@@ -160,8 +160,7 @@ ViewCourse.prototype.loadStats = function(course, callback) {
         $('#avgDiff').text(avgDiff);
         $('#avgInt').text(avgInt);
 
-        // create & animate circular progress bars
-        // maybe create on page load, animate here?
+        // animate circular progress bars
         circleDiff.animate(avgDiff / 5.0);
         circleInt.animate(avgInt / 5.0);
 
@@ -373,10 +372,6 @@ function initCircularProgress(id) {
     bar.text.style.color = '#333';
 
     return bar;
-}
-
-function animateCircularProgress(id, rating) {
-    bar.animate(rating/5.0);
 }
 
 

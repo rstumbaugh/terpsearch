@@ -15,6 +15,7 @@ const   API_ADD_COMMENT  = API_ROOT + 'courses/reviews/comments';
 
 const    API_FIND_PROFS  = API_ROOT + 'professors';
 const    API_LIST_PROFS  = API_ROOT + 'professors/list';
+const    API_PROF_STATS  = API_ROOT + 'professors/stats';
 
 const         API_ADMIN  = API_ROOT + 'admin';
 const    API_ADMIN_DASH  = API_ROOT + 'admin/dash';
