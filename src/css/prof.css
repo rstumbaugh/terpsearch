@@ -7,6 +7,10 @@
 	font-size: 48px;
 }
 
+.icons {
+	text-align: center
+}
+
 .icons > div {
 	font-size: 18px;
 	font-weight: 500;
@@ -35,13 +39,6 @@
 	height: auto;
 	margin: 0 auto;
 }
-
-
-
-
-
-
-
 
 
 /* Large Devices, Wide Screens */
