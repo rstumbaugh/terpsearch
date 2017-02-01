@@ -53,4 +53,49 @@ var EmailBox = React.createClass({
 	}
 });
 
+var Feedback = React.createClass({
+	getInitialState: function() {
+		return {
+			message: ''
+		}
+	},
+	handleChange: function(e) {
+		this.setState({
+			message: e.target.value
+		})
+	},
+	handleSubmit: function() {
+		console.log(this.state.message);
+		this.setState({
+			message: ''
+		})
+	},
+	render: function() {
+		return (
+			<div>
+				<div className="form-group col-sm-12">
+	                <textarea 
+	                	id="txtFeedback" 
+	                	cols="30" rows="6" 
+	                	placeholder="Leave a comment here..." 
+	                	className="form-control"
+	                	value={this.state.message}
+	                	onChange={this.handleChange}>
+	                	</textarea>
+	            </div>
+	            <div className="form-group">
+	                <div className="button-wrap col-sm-2">
+	                    <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+	                </div>
+	                
+	                <div className="message-wrap col-sm-10">
+	                    <p className="help-block"></p>
+	                </div>
+	            </div>
+	        </div>
+		)
+	}
+})
+
 React.render(<EmailBox />, document.getElementById('email'));
+React.render(<Feedback />, document.getElementById('feedback'));
