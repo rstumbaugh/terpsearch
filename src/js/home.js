@@ -1,3 +1,7 @@
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+var globals = require('./modules/globals.js');
+
 var EmailBox = React.createClass({
 	getInitialState: function() {
 		return {
@@ -15,20 +19,41 @@ var EmailBox = React.createClass({
 		});
 	},
 	handleSubmit: function() {
-		
 		if (this.state.email == '') {
-			this.setState({
-				message: 'Enter a valid email.',
-				slideClass: 'slide open'
-			})
+			this.rejectEmail();
 		} else {
-			this.setState({
-				email: '',
-				message: 'Thanks!',
-				slideClass: 'slide open'
+			fetch(globals.API_ADD_EMAIL, {
+				method: 'post',
+				headers: {
+			    	'Accept': 'application/json',
+			    	'Content-Type': 'application/json'
+			    },
+				body: JSON.stringify({ 'email': this.state.email })
+			}).then(function(response) {
+				if (response.status >= 400) {
+					return Promise.reject(response.status);
+				}
+
+				this.setState({
+					email: '',
+					message: 'Thanks!',
+					slideClass: 'slide open'
+				})
+			}).catch(function(err) {
+				console.log(err);
+				this.rejectEmail();
 			})
+
+			
 		}
 		
+	},
+	rejectEmail: function() {
+		this.setState({
+			message: 'Please enter a valid email.',
+			slideClass: 'slide open'
+		});
+		console.log('here');
 	},
 	render: function() {
 		return (
