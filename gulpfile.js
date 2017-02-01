@@ -9,6 +9,7 @@ var watchify = require('watchify');
 var reactify = require('reactify');
 var streamify = require('streamify');
 var uglify = require('gulp-uglify');
+var del = require('del');
 
 var bundles = [
 	
