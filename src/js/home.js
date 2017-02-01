@@ -32,7 +32,7 @@ var EmailBox = React.createClass({
 				body: JSON.stringify({ 'email': this.state.email })
 			})
 			.then(globals.handleFetchResponse)
-			.then(function(response) {
+		    .then(function(response) {
 				self.setState({
 					email: '',
 					message: 'Thanks!',
@@ -64,7 +64,7 @@ var EmailBox = React.createClass({
 						   onChange={this.handleChange}>
 					</input>
 		            <span className="input-group-btn">
-		            	<button className="btn btn-default" id="btnEmail" onClick={this.handleSubmit}>Go!</button>
+		            	<button className="btn btn-default" onClick={this.handleSubmit}>Go!</button>
 		        	</span>
 		        </div>
 		        <br/>
@@ -90,12 +90,30 @@ var Feedback = React.createClass({
 		})
 	},
 	handleSubmit: function() {
-		console.log(this.state.feedback);
-		this.setState({
-			feedback: '',
-			message: 'Thanks!',
-			slideClass: 'slide open'
-		})
+		if (this.state.feedback.length > 0) {
+			var self = this;
+			fetch(globals.API_ADD_FEEDBACK, {
+				method: 'post',
+				headers: {
+			    	'Accept': 'application/json',
+			    	'Content-Type': 'application/json'
+			    },
+				body: JSON.stringify({ msg: this.state.feedback })
+			})
+			.then(globals.handleFetchResponse)
+			.then(function(response) {
+			  	self.setState({
+					feedback: '',
+					message: 'Thanks!',
+					slideClass: 'slide open'
+				})
+			}).catch(function(err) {
+				self.setState({
+					message: 'Something went wrong...',
+					slideClass: 'slide open'
+				})
+			})
+		}
 	},
 	render: function() {
 		return (
