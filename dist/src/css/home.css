@@ -5917,13 +5917,12 @@ body {
     color: white;
     padding: 75px 0; }
     .home-wrap .email .message-wrap {
+      position: absolute;
       margin-left: auto;
       margin-right: auto;
       left: 0;
       right: 0;
       color: white;
-      position: absolute;
-      height: 25px;
       text-align: center; }
 
 .hero-wrap {

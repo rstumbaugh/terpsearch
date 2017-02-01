@@ -41,10 +41,10 @@ var EmailBox = React.createClass({
 						   onChange={this.handleChange}>
 					</input>
 		            <span className="input-group-btn">
-		                <button className="btn btn-default" id="btnEmail" onClick={this.handleSubmit}>Go!</button>
-		            </span>
-		         </div>
-		         <br/>
+		            	<button className="btn btn-default" id="btnEmail" onClick={this.handleSubmit}>Go!</button>
+		        	</span>
+		        </div>
+		        <br/>
 	            <div className={'message-wrap '+this.state.slideClass}>
 	            	{this.state.message}
 	            </div>
@@ -56,18 +56,22 @@ var EmailBox = React.createClass({
 var Feedback = React.createClass({
 	getInitialState: function() {
 		return {
-			message: ''
+			feedback: '',
+			message: '',
+			slideClass: 'slide closed'
 		}
 	},
 	handleChange: function(e) {
 		this.setState({
-			message: e.target.value
+			feedback: e.target.value
 		})
 	},
 	handleSubmit: function() {
-		console.log(this.state.message);
+		console.log(this.state.feedback);
 		this.setState({
-			message: ''
+			feedback: '',
+			message: 'Thanks!',
+			slideClass: 'slide open'
 		})
 	},
 	render: function() {
@@ -79,17 +83,17 @@ var Feedback = React.createClass({
 	                	cols="30" rows="6" 
 	                	placeholder="Leave a comment here..." 
 	                	className="form-control"
-	                	value={this.state.message}
+	                	value={this.state.feedback}
 	                	onChange={this.handleChange}>
 	                	</textarea>
 	            </div>
 	            <div className="form-group">
-	                <div className="button-wrap col-sm-2">
+	                <div className="button-wrap col-xs-2">
 	                    <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
 	                </div>
 	                
-	                <div className="message-wrap col-sm-10">
-	                    <p className="help-block"></p>
+	                <div className={'message-wrap col-xs-10 ' + this.state.slideClass}>
+	                    {this.state.message}
 	                </div>
 	            </div>
 	        </div>
