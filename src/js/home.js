@@ -19,9 +19,10 @@ var EmailBox = React.createClass({
 		});
 	},
 	handleSubmit: function() {
-		if (this.state.email == '') {
-			this.rejectEmail();
-		} else {
+		
+		if (this.state.email.match(globals.EMAIL_REGEX)) {
+			var self = this;
+
 			fetch(globals.API_ADD_EMAIL, {
 				method: 'post',
 				headers: {
@@ -29,22 +30,20 @@ var EmailBox = React.createClass({
 			    	'Content-Type': 'application/json'
 			    },
 				body: JSON.stringify({ 'email': this.state.email })
-			}).then(function(response) {
-				if (response.status >= 400) {
-					return Promise.reject(response.status);
-				}
-
-				this.setState({
+			})
+			.then(globals.handleFetchResponse)
+			.then(function(response) {
+				self.setState({
 					email: '',
 					message: 'Thanks!',
 					slideClass: 'slide open'
 				})
-			}).catch(function(err) {
-				console.log(err);
-				this.rejectEmail();
 			})
-
-			
+			.catch(function(err) {
+				self.rejectEmail();
+			})
+		} else {
+			this.rejectEmail();
 		}
 		
 	},
@@ -53,7 +52,6 @@ var EmailBox = React.createClass({
 			message: 'Please enter a valid email.',
 			slideClass: 'slide open'
 		});
-		console.log('here');
 	},
 	render: function() {
 		return (
