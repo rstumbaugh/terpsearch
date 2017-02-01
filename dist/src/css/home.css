@@ -5860,17 +5860,18 @@ body {
     transition: max-height .5s linear; }
 
 .footer {
-  height: 150px;
   background: #ecf0f1;
   color: #c0392b;
   padding: 40px 0 40px 0;
-  text-align: center; }
+  text-align: center;
+  font-size: 14px; }
   .footer .footer-links div {
     text-align: center; }
 
 .home-wrap {
   width: 100%;
-  height: 93%; }
+  height: 93%;
+  font-size: 18px; }
   .home-wrap .landing {
     height: 65%;
     background-color: #c0392b;
@@ -5881,8 +5882,6 @@ body {
       bottom: 0;
       float: right;
       right: 25px; }
-  .home-wrap .row {
-    font-size: 18px; }
   .home-wrap .icons,
   .home-wrap .example,
   .home-wrap .feedback {

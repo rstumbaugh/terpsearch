@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rstumbaugh/terpsearch#readme",
   "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
     "browser-sync": "^2.18.6",
     "browserify": "^14.0.0",
     "del": "^2.2.2",

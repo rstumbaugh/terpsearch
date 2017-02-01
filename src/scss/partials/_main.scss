@@ -72,11 +72,12 @@ body {
 
 
 .footer {
-	height: 150px;
 	background: $gray;
 	color: $red;
 	padding: 40px 0 40px 0;
 	text-align: center;
+	font-size: 14px;
+	
 
 	.footer-links div {
 		text-align: center
