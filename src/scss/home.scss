@@ -1,0 +1,150 @@
+@import "partials/main";
+
+
+// wraps all content
+.home-wrap {
+	width: 100%;
+	height: 93%;
+
+	// landing page wrap
+	.landing {
+		height: 65%;
+		background-color: $red;
+		position: relative;
+
+		// schedule image
+		.img-wrap {
+			padding-top: 25px;
+			position: absolute;
+			bottom: 0;
+			float: right;
+			right: 25px;
+		}
+	}
+
+	.row {
+		font-size: 18px;
+	}
+
+	// content rows
+	.icons,
+	.example,
+	.feedback {
+		padding-top: 50px;
+		padding-bottom: 50px;
+
+		.img-wrap {
+			padding: 0 50px;
+		}
+	}
+
+	// section headers
+	.example h2,
+	.feedback h2,
+	.info-wrap h2 {
+		color: $red;
+		font-size: 36px;
+		padding-bottom: 15px;
+	}
+
+	// icon row
+	.icons {
+		text-align: center;
+
+		.icon-wrap img {
+			height: 150px;
+			margin-bottom: 20px;
+		}
+	}
+
+	// example rows
+	.example {
+		img {
+			display: block;
+			margin: 15px auto;
+		}
+
+		&.fb,
+		&.search {
+			background-color: $gray;
+			padding-right: 50px;
+		}
+
+		&.info,
+		&.course {
+			padding-left: 50px;
+		}
+	}
+
+	// email row
+	.email {
+		text-align: center;
+		background-color: $red;
+		color: white;
+		padding: 75px 0;
+
+		.message-wrap {
+			margin-left: auto;
+			margin-right: auto;
+			left: 0;
+			right: 0;
+			color: white;
+			position: absolute;
+			height: 25px;
+
+			text-align: center
+		}
+		
+	}
+}
+
+// home page hero
+.hero-wrap {
+	position: relative;
+	height: 100%;
+
+	.hero {
+		text-align: center;
+		color: white;
+		position: relative;
+		top: 100px;
+
+		h1 {
+			font-size: 48px;
+		}
+	}
+
+	.subtitle {
+		width: 100%;
+		text-align: center;
+		position: absolute; 
+		color: white;
+		left: 0;
+		bottom: 50px;
+
+		h2 {
+		    overflow: hidden;
+		    text-align: center;
+		    font-weight: 200;
+		    font-size: 22px;
+
+		    &:before,
+		    &:after {
+			    background-color: white;
+			    content: "";
+			    display: inline-block;
+			    height: 1px;
+			    position: relative;
+			    vertical-align: middle;
+			    width: 5%;
+		    }
+		}
+
+		i {
+			font-size: 22px;
+			padding: 0 5px;
+			font-style: normal;
+		}
+	}
+}
+

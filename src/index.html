@@ -10,15 +10,15 @@
         <meta property="og:image" content="https://terpsearch.me/img/logo.png">
         <meta property="fb:app_id" content="350881175298575">
 
-
-        
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-        <!--build:css css/main.min.css -->
-        <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+        <link href="css/home.css" type="text/css" rel="stylesheet">
+
+        <!-- <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="css/selectize.bootstrap3.css" type="text/css" rel="stylesheet">
         <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
-        <link href="css/home.css" type="text/css" rel="stylesheet">
-        <!-- endbuild -->
+        <link href="css/home.css" type="text/css" rel="stylesheet"> -->
+   
     </head>
 
     <body>
@@ -27,8 +27,8 @@
             <a href="index.html">TerpSearch</a>
         </div>  
 
-        <div class="container-fluid landing-page-wrap">
-            <div class="row landing-page">
+        <div class="container-fluid home-wrap">
+            <div class="row landing">
                 <div class="hero-wrap col-md-5 col-md-offset-1">
                     <div class="hero">
                         <h1>Course selection <br/> made simple.</h1>
@@ -36,7 +36,7 @@
                         <a href="search.html" class="btn btn-primary">View Alpha Version</a>
                     </div>
                     <div class="subtitle">
-                        <h2>Made for Terps, by Terps.</h2>
+                        <h2><i>Made for Terps, by Terps.</i></h2>
                     </div>
                 </div>
                 <div class="img-wrap col-md-5 hidden-xs hidden-sm">
@@ -62,7 +62,7 @@
             </div>
 
             <div class="row example search">
-                <div class="col-md-6 gif-wrap">
+                <div class="col-md-6 img-wrap">
                     <img src="img/example.png" alt="example.png" height="100%" width="100%">
                 </div>
                 <div class="col-md-6">
@@ -86,7 +86,7 @@
                         Reviews and ratings submitted by you are shown both cumulatively and broken down by professor to give you the full picture. Leave comments and reviews to let others know what you think about the courses you've taken and give back.
                     </p>
                 </div>
-                <div class="col-md-6 gif-wrap">
+                <div class="col-md-6 img-wrap">
                     <img src="img/course.png" alt="course.png" height="100%" width="100%">
                 </div>
             </div>
@@ -104,8 +104,8 @@
             </div>
 
 
-            <div class="row info-form">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <div class="row example info">
+                <div class="col-sm-12">
                     <div class="col-md-6">
                         <h2>Coming Spring 2017</h2>
                         <p>
@@ -122,51 +122,7 @@
                         </p>
                     </div>
                     <div id="ratingsForm" class="form-wrap col-md-6">
-                        <div class="form-container">
-                            <form id="courseForm" class="col-md-11 col-md-offset-1 form-horizontal">
-                                <fieldset>
-                                    <legend>Submit a course</legend>
-                                    
-                                    <div id="courseInputWrap" class="form-group">
-                                        <label for="txtCourse" class="control-label col-sm-3">Course name:</label>
-                                        <div class="col-sm-8">
-                                            <input id="txtCourse" placeholder="Enter course ID (i.e. ENGL101)"></input>
-                                            <p class="help-block" id="courseErrorMsg">Enter a valid course.</p>
-                                        </div>
-                                    </div>
-                                    <div id="profInputWrap" class="form-group">
-                                        <label for="txtProf" class="control-label col-sm-3">Professor:</label>
-                                        <div class="col-sm-8 txtProf-wrap">
-                                            <input id="txtProf" placeholder="Enter professor's name">
-                                            </input>   
-                                            <p class="help-block" id="profErrorMsg">Enter a professor's name.</p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="rtgDifficulty" class="control-label col-sm-3">Difficulty:</label>
-                                        <div class="col-sm-8">
-                                            <input type="hidden" class="rating" id="rtgDifficulty" value="1">
-                                            <p class="help-block">1 star = Very Easy, 5 stars = Very Difficult</p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="rtgInterest" class="control-label col-sm-3">Interest:</label>
-                                        <div class="col-sm-8">
-                                            <input type="hidden" class="rating" id="rtgInterest" value="1">
-                                            <p class="help-block">1 star = Very Boring, 5 stars = Very Interesting</p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-3 col-sm-offset-3">   
-                                            <button type="button" class="btn btn-primary" id="btnSubmitCourse">Submit</button>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <p id="courseSuccessMsg" class="success-msg">Course succsesfully submitted.</p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
+                        /* Insert form here */
                     </div>
                 </div>
             </div>
@@ -177,14 +133,12 @@
                     <p>
                         Enter your email to get notifications when the the first version is released. (Don't worry, no spam.)
                     </p>
-                    <div class="input-group col-sm-4 col-sm-offset-4">
-                        <input type="text" class="form-control" id="txtEmail" placeholder="me@example.com">
+                    <div id="email" class="col-sm-4 col-sm-offset-4">
+
+                        <!-- <input type="text" class="form-control" id="txtEmail" placeholder="me@example.com">
                         <span class="input-group-btn">
                             <button class="btn btn-default" id="btnEmail">Go!</button>
-                        </span>
-                    </div>
-                    <div class="message-wrap">
-                        <p class="help-block"></p>
+                        </span> -->
                     </div>
                     
                 </div>
@@ -236,18 +190,8 @@
                 </div>
             </div>
         </div>
-    </body>
 
-    <!--build:js scripts/main.min.js -->
-    <script src="scripts/tracking.js"></script>
-    <script src="scripts/firebase.js"></script>
-    <script src="scripts/info.js"></script>
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/init_firebase.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    <script src="scripts/bootstrap-rating.min.js"></script>x
-    <script src="scripts/ratings-form.js"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/selectize.min.js"></script>
-    <!-- endbuild -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.min.js"></script>
+        <script src="js/home.build.js"></script>
+    </body>
 </html>

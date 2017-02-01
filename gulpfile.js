@@ -12,10 +12,13 @@ var uglify = require('gulp-uglify');
 var del = require('del');
 
 var bundles = [
-	
+	{
+		entry: './src/js/home.js',
+		dest: 'js/home.build.js'
+	}
 ];
 
-// dev tasks 
+// DEVELOPMENT TASKS 
 // serve source folder, watch for changes (compile JS, reload on change)
 gulp.task('dev', ['copy-html:dev', 'bundle:dev', 'sass:dev']);
 
@@ -39,10 +42,19 @@ gulp.task('copy-html:dev', function(){
     	.pipe(gulp.dest('dist/src'));
 });
 
+gulp.task('copy-image:dev', function() {
+	gulp.src('src/img/*')
+		.pipe(gulp.dest('dist/src/img'));
+})
+
 gulp.task('sass:dev', function() {
 	gulp.src('src/scss/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('dist/src/css'));
+})
+
+gulp.task('clean:dev', function() {
+	del.sync('build/src');
 })
 
 gulp.task('browserSync', ['dev'], function() {
