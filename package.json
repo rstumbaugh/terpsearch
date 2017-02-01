@@ -23,6 +23,7 @@
     "gulp-cache": "^0.4.5",
     "gulp-imagemin": "^3.1.1",
     "gulp-replace": "^0.5.4",
+    "gulp-sass": "^3.1.0",
     "run-sequence": "^1.2.2"
   }
 }

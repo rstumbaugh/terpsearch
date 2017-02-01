@@ -1,85 +1,81 @@
 var gulp = require('gulp');
-var gulpIf = require('gulp-if');
-var useref = require('gulp-useref');
-var uglify = require('gulp-uglify');
-var cssnano = require('gulp-cssnano');
-var imagemin = require('gulp-imagemin');
-var cache = require('gulp-cache');
+var react = require('gulp-react');
 var browserSync = require('browser-sync').create();
-var autoprefixer = require('gulp-autoprefixer');
-var runSequence = require('run-sequence');
-var replace = require('gulp-replace');
-var del = require('del');
+var sass = require('gulp-sass');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var browserify = require('browserify');
+var watchify = require('watchify');
+var reactify = require('reactify');
+var streamify = require('streamify');
+var uglify = require('gulp-uglify');
 
-// DEVELOPMENT TASKS
+var bundles = [
+	
+];
 
-// serve browswersync, watch src files for changes
-gulp.task('serve', function() {
-	browserSync.init({
-		server: {
-			baseDir: 'src'
-		}
-	});
+// dev tasks 
+// serve source folder, watch for changes (compile JS, reload on change)
+gulp.task('dev', ['copy-html:dev', 'bundle:dev', 'sass:dev']);
 
-	gulp.watch('src/**/*', ['reload']);
+gulp.task('bundle:dev', function() {
+	for (var i = 0; i < bundles.length; i++) {
+		var bundle = bundles[i];
+		browserify({
+			entries: [bundle.entry],
+			transform: [reactify],
+			debug: true,
+			cache: {}, packageCache: {}, fullPaths: true
+		})
+			.bundle()
+			.pipe(source(bundle.dest))
+			.pipe(gulp.dest('dist/src'))
+	}
+});
+
+gulp.task('copy-html:dev', function(){
+	gulp.src('src/*.html')
+    	.pipe(gulp.dest('dist/src'));
+});
+
+gulp.task('sass:dev', function() {
+	gulp.src('src/scss/**/*.scss')
+		.pipe(sass().on('error', sass.logError))
+		.pipe(gulp.dest('dist/src/css'));
 })
 
-// reload on change
-gulp.task('reload', function(done) {
+gulp.task('browserSync', ['dev'], function() {
+	browserSync.init({
+		server: {
+			baseDir: 'dist/src'
+		}
+	});
+})
+
+gulp.task('serve', ['browserSync'], function() {
+	gulp.watch('src/**/*', ['reload']);
+
+	for (var i = 0; i < bundles.length; i++) {
+		var bundle = bundles[i];
+		var watcher = watchify(browserify({
+			entries: [bundle.entry],
+			transform: [reactify],
+			debug: true,
+			cache: {}, packageCache: {}, fullPaths: true
+		}));
+
+		watcher.on('update', function() {
+			watcher.bundle()
+				   .pipe(source(bundle.dest))
+				   .pipe(gulp.dest('dist/src'))	   
+			})
+				   .bundle()
+				   .pipe(source(bundle.dest))
+				   .pipe(gulp.dest('dist/src'))
+	}
+})
+
+gulp.task('reload', ['dev'], function(done) {
 	browserSync.reload();
 	done();
 })
-
-
-// PRODUCTION TASKS
-
-// minify js and css
-gulp.task('js-css', function() {
-	return gulp.src('src/*.html')
-		.pipe(useref())
-		.pipe(gulpIf('*.js', uglify()))
-		.pipe(gulpIf('*.css', cssnano()))
-		.pipe(gulpIf('*.css', autoprefixer()))
-		.pipe(gulp.dest('build/'))
-});
-
-gulp.task('replace-api', function() {
-	return gulp.src('build/scripts/*.js')
-		.pipe(replace('http://localhost:8888/', 'https://sheltered-ridge-74266.herokuapp.com/'))
-		.pipe(gulp.dest('build/scripts/'))
-})
-
-// minify images
-gulp.task('images', function() {
-	return gulp.src('src/img/**/*.+(png|jpg|gif|svg)')
-		.pipe(cache(imagemin()))
-		.pipe(gulp.dest('build/img'))
-})
-
-//move favicon
-gulp.task('favicon', function() {
-	return gulp.src('src/favicon.ico')
-		.pipe(gulp.dest('build/'));
-})
-
-// move fonts
-gulp.task('fonts', function() {
-	return gulp.src('src/fonts/**/*')
-		.pipe(gulp.dest('build/fonts'))
-});
-
-// clean build folder
-gulp.task('clean:build', function() {
-  return del.sync('build');
-})
-
-gulp.task('build', function(done) {
-	runSequence(
-		'clean:build',
-		['js-css', 'fonts', 'images', 'favicon'],
-		'replace-api',
-		done
-	);
-})
-
-
