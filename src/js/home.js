@@ -1,5 +1,8 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var RatingForm = require('./modules/rating-form.js');
 var globals = require('./modules/globals.js');
 
 var EmailBox = React.createClass({
@@ -142,5 +145,6 @@ var Feedback = React.createClass({
 	}
 })
 
-React.render(<EmailBox />, document.getElementById('email'));
-React.render(<Feedback />, document.getElementById('feedback'));
+ReactDOM.render(<EmailBox />, document.getElementById('email'));
+ReactDOM.render(<Feedback />, document.getElementById('feedback'));
+ReactDOM.render(<RatingForm />, document.getElementById('ratingForm'));

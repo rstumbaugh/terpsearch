@@ -20,7 +20,7 @@ var bundles = [
 
 // DEVELOPMENT TASKS 
 // serve source folder, watch for changes (compile JS, reload on change)
-gulp.task('dev', ['copy-html:dev', 'bundle:dev', 'sass:dev']);
+gulp.task('dev', ['copy-html:dev', 'copy-image:dev', 'bundle:dev', 'sass:dev', 'fonts:dev']);
 
 gulp.task('bundle:dev', function() {
 	for (var i = 0; i < bundles.length; i++) {
@@ -47,6 +47,11 @@ gulp.task('copy-image:dev', function() {
 		.pipe(gulp.dest('dist/src/img'));
 })
 
+gulp.task('fonts:dev', function() {
+	gulp.src('src/fonts/**/*')
+		.pipe(gulp.dest('dist/src/fonts'));
+})
+
 gulp.task('sass:dev', function() {
 	gulp.src('src/scss/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
@@ -54,7 +59,7 @@ gulp.task('sass:dev', function() {
 })
 
 gulp.task('clean:dev', function() {
-	del.sync('build/src');
+	del.sync('dist/src');
 })
 
 gulp.task('browserSync', ['dev'], function() {
