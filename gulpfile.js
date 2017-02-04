@@ -10,6 +10,7 @@ var reactify = require('reactify');
 var streamify = require('streamify');
 var uglify = require('gulp-uglify');
 var del = require('del');
+var imagemin = require('gulp-imagemin');
 
 var bundles = [
 	{
@@ -72,7 +73,7 @@ gulp.task('browserSync', ['dev'], function() {
 
 gulp.task('serve', ['browserSync'], function() {
 	gulp.watch('src/**/*', ['reload']);
-
+	//process.env.NODE_ENV = 'production'; // gets production-optimized version of react
 	for (var i = 0; i < bundles.length; i++) {
 		var bundle = bundles[i];
 		var watcher = watchify(browserify({

@@ -51,25 +51,26 @@ body {
 
 .slide {
 	overflow: hidden;
+	position: absolute;
 
 	&.closed {
 		max-height: 0px;
 
-		-webkit-transition:max-height .5s linear;
-		-moz-transition: max-height .5s linear;
-		-ms-transition: max-height .5s linear;
-		-o-transition: max-height .5s linear;
-		transition: max-height .5s linear;
+		-webkit-transition:max-height .75s linear;
+		-moz-transition: max-height .75s linear;
+		-ms-transition: max-height .75s linear;
+		-o-transition: max-height .75s linear;
+		transition: max-height .75s linear;
 	}
 
 	&.open {
 		max-height: 50px;
 
-		-webkit-transition:max-height .5s linear;
-		-moz-transition: max-height .5s linear;
-		-ms-transition: max-height .5s linear;
-		-o-transition: max-height .5s linear;
-		transition: max-height .5s linear;
+		-webkit-transition:max-height .75s linear;
+		-moz-transition: max-height .75s linear;
+		-ms-transition: max-height .75s linear;
+		-o-transition: max-height .75s linear;
+		transition: max-height .75s linear;
 	}
 }
 
@@ -87,10 +88,11 @@ body {
 }
 
 .selectize-option {
+	cursor: pointer;
 	padding: 2px 5px;
-	color: $red;
+	color: $black;
 	background-color: $gray;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 
 .footer {

@@ -6510,21 +6510,22 @@ body {
     color: white; }
 
 .slide {
-  overflow: hidden; }
+  overflow: hidden;
+  position: absolute; }
   .slide.closed {
     max-height: 0px;
-    -webkit-transition: max-height .5s linear;
-    -moz-transition: max-height .5s linear;
-    -ms-transition: max-height .5s linear;
-    -o-transition: max-height .5s linear;
-    transition: max-height .5s linear; }
+    -webkit-transition: max-height .75s linear;
+    -moz-transition: max-height .75s linear;
+    -ms-transition: max-height .75s linear;
+    -o-transition: max-height .75s linear;
+    transition: max-height .75s linear; }
   .slide.open {
     max-height: 50px;
-    -webkit-transition: max-height .5s linear;
-    -moz-transition: max-height .5s linear;
-    -ms-transition: max-height .5s linear;
-    -o-transition: max-height .5s linear;
-    transition: max-height .5s linear; }
+    -webkit-transition: max-height .75s linear;
+    -moz-transition: max-height .75s linear;
+    -ms-transition: max-height .75s linear;
+    -o-transition: max-height .75s linear;
+    transition: max-height .75s linear; }
 
 .selectize-item, .selectize-item-empty {
   font-size: 14px;
@@ -6536,10 +6537,11 @@ body {
   color: #737373; }
 
 .selectize-option {
+  cursor: pointer;
   padding: 2px 5px;
-  color: #c0392b;
+  color: #333;
   background-color: #ecf0f1;
-  border-radius: 5px; }
+  border-radius: 3px; }
 
 .footer {
   background: #ecf0f1;
@@ -6559,8 +6561,10 @@ body {
     font-size: 24px; }
   .rating-form .react-selectize.root-node {
     width: auto; }
-    .rating-form .react-selectize.root-node .react-selectize-control .react-selectize-toggle-button path {
-      fill: #fff; }
+    .rating-form .react-selectize.root-node .react-selectize-reset-button-container {
+      margin-right: 5px; }
+    .rating-form .react-selectize.root-node .react-selectize-toggle-button-container {
+      display: none; }
   .rating-form legend {
     display: block;
     width: auto;
@@ -6581,7 +6585,7 @@ body {
     font-weight: 400;
     color: #333; }
   .rating-form .form-component {
-    padding: 10px 0; }
+    padding-bottom: 25px; }
   .rating-form .help-block {
     font-size: 12px;
     margin-bottom: 0; }

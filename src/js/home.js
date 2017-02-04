@@ -1,9 +1,9 @@
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var RatingForm = require('./modules/rating-form.js');
 var globals = require('./modules/globals.js');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 var EmailBox = React.createClass({
 	getInitialState: function() {
