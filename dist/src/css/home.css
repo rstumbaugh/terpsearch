@@ -6527,6 +6527,9 @@ body {
     -o-transition: max-height .75s linear;
     transition: max-height .75s linear; }
 
+.success-msg {
+  color: #3c763d; }
+
 .selectize-item, .selectize-item-empty {
   font-size: 14px;
   padding: 5px 5px;
@@ -6579,12 +6582,15 @@ body {
   .rating-form fieldset {
     border: 1px solid #c0392b;
     padding: 0 15px 20px 15px; }
+    .rating-form fieldset span {
+      padding-left: 10px; }
   .rating-form label {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
     color: #333; }
   .rating-form .form-component {
+    padding: 0;
     padding-bottom: 25px; }
   .rating-form .help-block {
     font-size: 12px;

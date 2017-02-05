@@ -5,6 +5,7 @@ $red: #c0392b;
 $gray: #ecf0f1;
 $dark-gray: #737373;
 $black: #333;
+$green: #3c763d;
 $fonts: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 html,
@@ -72,6 +73,10 @@ body {
 		-o-transition: max-height .75s linear;
 		transition: max-height .75s linear;
 	}
+}
+
+.success-msg {
+	color: $green;
 }
 
 .selectize-item {
