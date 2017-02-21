@@ -2,11 +2,45 @@
 @import '../../node_modules/react-selectize/themes/index';
 
 $red: #c0392b;
+$error-red: #a94442;
 $gray: #ecf0f1;
 $dark-gray: #737373;
 $black: #333;
 $green: #3c763d;
 $fonts: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$xs-width: 480px;
+$sm-width: 768px;
+$md-width: 992px;
+$lg-width: 1200px;
+
+@mixin media-xs {
+	@media (max-width: #{$xs-width}) {
+		@content
+	}
+}
+@mixin media-sm {
+	@media (max-width: #{$sm-width}) {
+		@content
+	}
+}
+@mixin media-md {
+	@media (max-width: #{$md-width}) {
+		@content
+	}
+}
+@mixin media-lg {
+	@media (max-width: #{$lg-width}) {
+		@content
+	}
+}
+
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
 
 html,
 body {
@@ -15,6 +49,7 @@ body {
 
 	font-family: $fonts;
 	font-weight: 300;
+	overflow-x: hidden;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 }
@@ -31,7 +66,8 @@ body {
 
 	font-size: 40px;
 	font-weight: 700;
-	color: $red;
+	color: white;
+	background-color: $red;
 
 	font-family: $fonts;
 
@@ -43,11 +79,13 @@ body {
 			text-decoration: none;
 		}
 	}
+}
 
-	.content & {
-		background-color: $red;
-		color: white;
-	}
+.nav-header-wrap-white {
+	@extend .nav-header-wrap;
+
+	color: $red;
+	background-color: white;
 }
 
 .slide {
@@ -75,24 +113,76 @@ body {
 	}
 }
 
+.hidden {
+	display: none
+}
+
+label {
+	font-weight: 400;
+	font-family: $fonts;
+}
+
+legend {
+	display: block;
+	width: auto;
+	padding: 0 5px;
+	font-size: inherit;
+	line-height: inherit;
+	border: auto;
+	border-bottom: none;
+	color: $red;
+	font-size: 18px;
+	font-weight: 300;
+}
+
+fieldset {
+    border: 1px solid $red;
+    padding: 0 15px 20px 15px;
+    
+    span {
+    	padding-left: 10px;
+    }
+}
+
 .success-msg {
 	color: $green;
 }
 
-.selectize-item {
+.error-msg {
+	color: $error-red;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.react-selectize.root-node {
+	width: auto;
+	
+	.react-selectize-control {
+		background-color: #fff;
+	}
+	
+	.react-selectize-reset-button-container {
+		margin-right: 5px;
+	}
+}
+
+.selectize-option {
 	font-size: 14px;
 	padding: 5px 5px;
+	margin-right: 5px;
 	color: $black;
 }
 
-.selectize-item-empty {
-	@extend .selectize-item;
+.selectize-option-empty {
+	@extend .selectize-option;
 
 	font-size: 12px;
 	color: $dark-gray;
 }
 
-.selectize-option {
+.selectize-item {
 	cursor: pointer;
 	padding: 2px 5px;
 	color: $black;
@@ -100,13 +190,31 @@ body {
 	border-radius: 3px;
 }
 
+.circle-progress-wrap {
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 15px;
+	padding: 0;
+	text-align: center;
+
+	.circle-progress {
+		width: 150px;
+		height: 150px;
+		margin: 0 auto;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		font-size: 48px;
+	}
+}
+
+
 .footer {
 	background: $gray;
 	color: $red;
 	padding: 40px 0 40px 0;
 	text-align: center;
 	font-size: 16px;
-	
+	margin-top: 50px;
 
 	.footer-links div {
 		text-align: center

@@ -1,0 +1,39 @@
+.rating-form {
+	font-size: 14px;
+	padding: 10px;
+
+	.star {
+		display: inline;
+		padding: 5px 1px;
+		color: $red;
+		font-size: 24px;
+	}
+
+	label {
+		font-family: $fonts;
+		font-size: 14px;
+		font-weight: 400;
+
+		color: $black;
+	}
+
+	.form-component {
+		padding: 0;
+		padding-bottom: 25px;
+	}
+
+	.help-block {
+		font-size: 12px;
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 0;
+	}
+
+	.glyphicon:hover {
+		cursor: pointer;
+	}
+
+	.feedback-wrap {
+		margin: 10px auto;
+	}
+}

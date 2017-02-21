@@ -1,0 +1,91 @@
+@import "partials/main";
+@import "partials/ratings";
+
+body {
+	font-size: 16px;
+}
+
+h1 {
+	font-size: 48px;
+}
+
+.red {
+	color: $red;
+}
+
+.course-info {
+	span {
+		padding-right: 10px;
+	}
+}
+
+
+.comment-wrap {
+	word-wrap: break-word;
+	font-size: 16px;
+
+	blockquote {
+		padding-bottom: 30px;
+		display: block;
+	}
+
+	cite {
+		margin-top: 15px;
+		float: right
+	}
+}
+
+
+.comment-input {
+	font-size: 14px;
+	padding: 10px;
+
+	.button-wrap {
+		margin-bottom: 10px;
+
+		.btn {
+			width: 100%;
+		}
+	}
+}
+
+.breakdown-wrap {
+	background-color: $gray;
+	border: 1px solid $red;
+	margin-bottom: 20px;
+
+	.average,
+	.breakdown {
+		padding: 25px 15px;
+		font-size: 18px;
+	}
+
+	.average {
+		text-align: center;
+
+		.value {
+			font-size: 48px;
+			font-weight: 700;
+			color: $red;
+		}
+	}
+
+	.breakdown {
+		border-left: 1px solid $red;
+
+		canvas {
+			margin-top: 35px;
+		}
+	}
+
+	
+}
+
+
+@include media-md {
+	.comment-input {
+		.feedback-wrap {
+			margin: 10px auto;
+		}
+	}
+}

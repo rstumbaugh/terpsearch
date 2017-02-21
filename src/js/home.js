@@ -1,5 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Header = require('./modules/header.js');
+var Footer = require('./modules/footer.js');
 var RatingForm = require('./modules/rating-form.js');
 var globals = require('./modules/globals.js');
 require('es6-promise').polyfill();
@@ -148,3 +150,4 @@ var Feedback = React.createClass({
 ReactDOM.render(<EmailBox />, document.getElementById('email'));
 ReactDOM.render(<Feedback />, document.getElementById('feedback'));
 ReactDOM.render(<RatingForm />, document.getElementById('ratingForm'));
+ReactDOM.render(<Footer />, document.getElementById('footer'));
