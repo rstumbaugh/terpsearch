@@ -3,10 +3,10 @@ var ReactDOM = require('react-dom');
 var ReactSelectize = require('react-selectize');
 var MultiSelect = ReactSelectize.MultiSelect;
 var SimpleSelect = ReactSelectize.SimpleSelect;
-var RemoteMultiSelect = require('./remote-multi-select.js');
-var StaticSimpleSelect = require('./static-simple-select.js');
+var RemoteMultiSelect = require('../remote-multi-select.js');
+var StaticSimpleSelect = require('../static-simple-select.js');
 var SearchComponent = require('./search-box-component.js');
-var Globals = require('./globals.js');
+var Globals = require('../globals.js');
 
 var SearchBox = React.createClass({
 	render: function() {

@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Header = require('./modules/header.js');
 var Footer = require('./modules/footer.js');
-var RatingForm = require('./modules/rating-form.js');
+var RatingForm = require('./modules/rating/rating-form.js');
 var globals = require('./modules/globals.js');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');

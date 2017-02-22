@@ -1,7 +1,7 @@
 var React = require('react');
 var Sensor = require('react-visibility-sensor');
 var SimpleSelect = require('react-selectize').SimpleSelect;
-var StaticSimpleSelect = require('./static-simple-select.js')
+var StaticSimpleSelect = require('../static-simple-select.js')
 
 var SearchSummary = React.createClass({
 	getInitialState: function() {

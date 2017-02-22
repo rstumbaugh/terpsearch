@@ -1,8 +1,8 @@
 var React = require('react');
 var RatingFormComponent = require('./rating-form-component.js');
 var StarRating = require('./star-rating.js');
-var RemoteSimpleSelect = require('./remote-simple-select.js');
-var Globals = require('./globals.js');
+var RemoteSimpleSelect = require('../remote-simple-select.js');
+var Globals = require('../globals.js');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -129,7 +129,7 @@ var RatingForm = React.createClass({
 						<RatingFormComponent 
 								component={intRating}
 								labelText={'Interest:'}
-								message={'1 star = Very Easy, 5 stars = Very Difficult'}
+								message={'1 star = Very Boring, 5 stars = Very Interesting'}
 						/>
 						<div className='col-sm-12'>
 							<button className='full-width btn btn-primary' 

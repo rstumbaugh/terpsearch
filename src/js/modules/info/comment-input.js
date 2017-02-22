@@ -1,5 +1,5 @@
 var React = require('react');
-var Globals = require('./globals.js');
+var Globals = require('../globals.js');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 

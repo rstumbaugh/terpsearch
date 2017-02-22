@@ -75,9 +75,6 @@
 		}
 	}
 
-	.message-wrap {
-	}
-
 	// email row
 	.email {
 		text-align: center;
@@ -145,6 +142,18 @@
 			font-size: 22px;
 			padding: 0 5px;
 			font-style: normal;
+		}
+	}
+}
+
+@include media-md {
+	.example {
+		&.fb,
+		&.search,
+		&.info,
+		&.course {
+			padding-left: 50px;
+			padding-right: 50px;
 		}
 	}
 }

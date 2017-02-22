@@ -1,5 +1,5 @@
 var React = require('react');
-var Globals = require('./globals.js');
+var Globals = require('../globals.js');
 
 var CourseInfo = React.createClass({
 	render: function() {
@@ -20,6 +20,17 @@ var CourseInfo = React.createClass({
 			profs.push(', ');
 		}
 		profs.pop(); // remove trailing comma
+
+		var noReviewsPanel;
+		if (this.props.course.num_responses == 0) {
+			noReviewsPanel = 
+				<div className="col-md-8 col-md-offset-2">
+                    <div className="panel panel-warning">
+                        <div className="panel-heading">No reviews were found. <a>Be the first </a>
+                            to contribute for this course!</div>
+                    </div>
+                </div>
+		}
 
 		return (
 			<div className='course-info'>
@@ -50,6 +61,10 @@ var CourseInfo = React.createClass({
 				<p>
 					{this.props.course.description}
 				</p>
+				<br/>
+
+				{ noReviewsPanel }
+				
 			</div>
 		)
 	},

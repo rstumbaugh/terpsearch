@@ -19,6 +19,11 @@ h1 {
 	}
 }
 
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
 
 .comment-wrap {
 	word-wrap: break-word;
@@ -57,12 +62,13 @@ h1 {
 	.average,
 	.breakdown {
 		padding: 25px 15px;
-		font-size: 18px;
+		font-size: 16px;
 	}
 
 	.average {
 		text-align: center;
-
+		font-size: 18px;
+		
 		.value {
 			font-size: 48px;
 			font-weight: 700;
@@ -76,9 +82,27 @@ h1 {
 		canvas {
 			margin-top: 35px;
 		}
-	}
 
-	
+		.progress-bars {
+			padding-bottom: 20px;
+		}
+
+		.custom-progress {
+			margin: 20px auto;
+
+			& > div {
+				display: inline;
+				position: relative;
+			}
+			
+		}
+
+		& > div {
+			display: inline-block;
+			float: left;
+			padding: 0 20px;
+		}
+	}
 }
 
 
@@ -88,4 +112,16 @@ h1 {
 			margin: 10px auto;
 		}
 	}
+
+	.breakdown-wrap {
+		.breakdown {
+			border-left: 0;
+			border-top: 1px solid $red;
+
+			.progress-bars {
+				width: 100%;
+			}
+		}
+	}
+
 }

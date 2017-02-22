@@ -42,6 +42,8 @@
     "react-chartjs-2": "^2.0.0",
     "react-dom": "^15.4.2",
     "react-progressbar.js": "^0.2.0",
+    "react-scroll": "^1.4.6",
+    "react-scrollchor": "^2.2.0",
     "react-select": "^1.0.0-rc.3",
     "react-selectize": "^2.1.0",
     "react-visibility-sensor": "^3.6.2",

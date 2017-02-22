@@ -1,16 +1,18 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var CircleProgress = require('./modules/circle-progress.js');
-var CourseInfo = require('./modules/course-info.js');
-var RatingBreakdown = require('./modules/rating-breakdown.js');
-var CourseComments = require('./modules/course-comments.js');
-var CommentInput = require('./modules/comment-input.js');
-var RatingForm = require('./modules/rating-form.js');
+var CircleProgress = require('./modules/info/circle-progress.js');
+var CourseInfo = require('./modules/info/course-info.js');
+var RatingBreakdown = require('./modules/info/rating-breakdown.js');
+var CourseComments = require('./modules/info/info-comments.js');
+var CommentInput = require('./modules/info/comment-input.js');
+var RatingForm = require('./modules/rating/rating-form.js');
 var Header = require('./modules/header.js');
 var Footer = require('./modules/footer.js');
 var Globals = require('./modules/globals.js');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+
+var commentScrollName = 'commentInputElement';
 
 var App = React.createClass({
 	getInitialState: function() {
@@ -134,60 +136,73 @@ var App = React.createClass({
 				<div className='container-fluid'>
 					<div className='row'>
 						<div className='col-sm-10 col-sm-offset-1'>
-							<div className='col-md-9'>
-								<CourseInfo course={this.state.courseInfo} />
-							</div>
-							<div className='col-md-3'>
-								<div className='circle-progress-wrap col-sm-6 col-md-12'>
-									<CircleProgress 
-										id='circleDiff'
-										text='Average Difficulty' 
-										value={this.state.courseInfo.avg_diff}
+							<div className='row'>
+								<div className='col-md-9'>
+									<CourseInfo 
+										course={this.state.courseInfo}
 									/>
 								</div>
-								<div className='circle-progress-wrap col-sm-6 col-md-12'>
-									<CircleProgress 
-										id='circleInt'
-										text='Average Interest'
-										value={this.state.courseInfo.avg_int} 
+								<div className='col-md-3'>
+									<div className='circle-progress-wrap col-sm-6 col-md-12'>
+										<CircleProgress 
+											id='circleDiff'
+											text='Average Difficulty' 
+											value={this.state.courseInfo.avg_diff}
+										/>
+									</div>
+									<div className='circle-progress-wrap col-sm-6 col-md-12'>
+										<CircleProgress 
+											id='circleInt'
+											text='Average Interest'
+											value={this.state.courseInfo.avg_int} 
+										/>
+									</div>
+								</div>
+							</div>
+							<div className='row'>
+								<div className='col-md-12'>
+									<RatingBreakdown
+										title='Average Difficulty'
+										breakdownTitle='Professor Breakdown'
+										average={diffStats.average}
+										numResponses={diffStats.numResponses}
+										counts={diffStats.counts}
+										breakdown={diffStats.breakdown}
+										id='diffBkdwn'
 									/>
 								</div>
 							</div>
-							<div className='col-md-12'>
-								<RatingBreakdown
-									title='Average Difficulty'
-									breakdownTitle='Professor Breakdown'
-									average={diffStats.average}
-									numResponses={diffStats.numResponses}
-									counts={diffStats.counts}
-									breakdown={diffStats.breakdown}
-								/>
+							<div className='row'>
+								<div className='col-md-12'>
+									<RatingBreakdown
+										title='Average Interest'
+										breakdownTitle='Professor Breakdown'
+										average={intStats.average}
+										numResponses={intStats.numResponses}
+										counts={intStats.counts}
+										breakdown={intStats.breakdown}
+									/>
+								</div>
 							</div>
-							<div className='col-md-12'>
-								<RatingBreakdown
-									title='Average Interest'
-									breakdownTitle='Professor Breakdown'
-									average={intStats.average}
-									numResponses={intStats.numResponses}
-									counts={intStats.counts}
-									breakdown={intStats.breakdown}
-								/>
+							<div className='row'>
+								<div className='col-md-12'>
+									<CourseComments 
+										comments={this.state.comments} 
+									/>
+								</div>
 							</div>
-							<div className='col-md-12'>
-								<CourseComments 
-									comments={this.state.comments} 
-								/>
-							</div>
-							<div className='col-md-7'>
-								<CommentInput
-									rows={6}
-									minLength={25}
-									id={this.state.courseId}
-									getRequestBody={this.getRequestBody}
-								/>
-							</div>
-							<div className='col-md-5'>
-								<RatingForm />
+							<div className='row'>
+								<div className='col-md-7'>
+									<CommentInput
+										rows={6}
+										minLength={25}
+										id={this.state.courseId}
+										getRequestBody={this.getRequestBody}
+									/>
+								</div>
+								<div className='col-md-5'>
+									<RatingForm />
+								</div>
 							</div>
 						</div>
 					</div>

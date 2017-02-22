@@ -2,7 +2,7 @@ var React = require('react');
 var ReactSelectize = require('react-selectize');
 var VisibilitySensor = require('react-visibility-sensor');
 var SearchItem = require('./search-item.js');
-var Globals = require('./globals.js');
+var Globals = require('../globals.js');
 
 var SearchResults = React.createClass({
 	componentWillReceiveProps: function(nextProps) {

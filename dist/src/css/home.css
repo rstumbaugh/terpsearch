@@ -6728,3 +6728,8 @@ fieldset {
       font-size: 22px;
       padding: 0 5px;
       font-style: normal; }
+
+@media (max-width: 992px) {
+  .example.fb, .example.search, .example.info, .example.course {
+    padding-left: 50px;
+    padding-right: 50px; } }
