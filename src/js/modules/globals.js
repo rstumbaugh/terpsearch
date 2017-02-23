@@ -7,7 +7,7 @@ var globals = {
 	API_LIST_COURSES: 	  API_ROOT + 'courses/list',
 	API_COURSE_STATS: 	  API_ROOT + 'courses/stats',
 	API_LIST_DEPARTMENTS: API_ROOT + 'courses/departments',   
-	API_ADD_COMMENT: 	  API_ROOT + 'courses/reviews/comments',
+	API_COURSE_COMMENTS:  API_ROOT + 'courses/reviews/comments',
   
 	API_SUBMIT_RATING:    API_ROOT + 'courses/reviews/ratings',
   

@@ -33,7 +33,7 @@ var CourseInfo = React.createClass({
 		}
 
 		return (
-			<div className='course-info'>
+			<div className='info'>
 				<h1>{this.props.course.course_id}</h1>
 				<h2>{this.props.course.name}</h2>
 				<p>

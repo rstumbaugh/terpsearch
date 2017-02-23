@@ -24,6 +24,10 @@ var bundles = [
 	{
 		entry: './src/js/course.js',
 		dest: 'js/course.build.js'
+	},
+	{
+		entry: './src/js/comments.js',
+		dest: 'js/comments.build.js'
 	}
 ];
 

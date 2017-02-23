@@ -13,7 +13,7 @@ h1 {
 	color: $red;
 }
 
-.course-info {
+.info {
 	span {
 		padding-right: 10px;
 	}
@@ -29,8 +29,19 @@ h1 {
 	word-wrap: break-word;
 	font-size: 16px;
 
+	a {
+		margin-left: 5px;
+	}
+
+	.comment {
+		padding-bottom: 15px;
+
+		&:first-child {
+			padding-top: 30px;
+		}
+	}
+
 	blockquote {
-		padding-bottom: 30px;
 		display: block;
 	}
 

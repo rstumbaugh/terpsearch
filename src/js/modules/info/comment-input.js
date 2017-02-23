@@ -44,7 +44,7 @@ var CommentInput = React.createClass({
 				name: this.state.name || 'anonymous'
 			});
 
-			fetch(Globals.API_ADD_COMMENT, {
+			fetch(Globals.API_COURSE_COMMENTS, {
 				method: 'post',
 				'headers': {
 					'Accept': 'application/json',

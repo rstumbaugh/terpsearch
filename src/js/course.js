@@ -7,6 +7,7 @@ var CourseComments = require('./modules/info/info-comments.js');
 var CommentInput = require('./modules/info/comment-input.js');
 var RatingForm = require('./modules/rating/rating-form.js');
 var Header = require('./modules/header.js');
+var BackPanel = require('./modules/back-panel.js');
 var Footer = require('./modules/footer.js');
 var Globals = require('./modules/globals.js');
 require('es6-promise').polyfill();
@@ -19,9 +20,10 @@ var App = React.createClass({
 		return {
 			courseInfo: {},
 			courseStats: {},
-			courseId: Globals.getQueryString().course_id,
+			courseId: Globals.getQueryString().course_id.split('#')[0],
 			comments: [],
-			status: 'waiting'
+			status: 'waiting',
+			from: decodeURIComponent(Globals.getQueryString().from)
 		}
 	},
 
@@ -130,12 +132,15 @@ var App = React.createClass({
 			};
 		}
 
+		var backPanel = this.state.from ? <BackPanel location={this.state.from} /> : undefined;
+
 		return (
 			<div>
 				<Header />
 				<div className='container-fluid'>
 					<div className='row'>
 						<div className='col-sm-10 col-sm-offset-1'>
+							{backPanel}
 							<div className='row'>
 								<div className='col-md-9'>
 									<CourseInfo 
@@ -187,6 +192,9 @@ var App = React.createClass({
 							<div className='row'>
 								<div className='col-md-12'>
 									<CourseComments 
+										max={5}
+										id={this.state.courseId}
+										type='course'
 										comments={this.state.comments} 
 									/>
 								</div>

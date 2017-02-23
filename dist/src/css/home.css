@@ -6564,6 +6564,11 @@ fieldset {
 .full-width {
   width: 100%; }
 
+.back-panel {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  cursor: pointer; }
+
 .react-selectize.root-node {
   width: auto; }
   .react-selectize.root-node .react-selectize-control {

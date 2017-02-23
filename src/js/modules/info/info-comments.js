@@ -18,7 +18,14 @@ var CourseComments = React.createClass({
 
 		var comments = [];
 
-		for (var i = 0; i < this.state.comments.length; i++) {
+		var max;
+		if (this.props.max) {
+			max = Math.min(this.state.comments.length, this.props.max);
+		} else {
+			max = this.state.comments.length;
+		}
+
+		for (var i = 0; i < max; i++) {
 			comments.push(
 				<div className='comment' key={i}>
 					<blockquote>
@@ -29,12 +36,32 @@ var CourseComments = React.createClass({
 			)
 		}
 
-		return comments
+		return <div>{comments}</div>;
 	},
 	render: function() {
+		var summary;
+		var link;
+
+		if (this.props.max && this.state.comments.length > this.props.max) {
+			link = 
+				<a href={'comments.html?id=' + this.props.id + '&type=' + this.props.type}>
+					View all
+				</a>
+		}
+
+		if (this.state.comments.length) {
+			summary = 
+				<i>
+					{'Showing ' + (this.props.max ? this.props.max : this.state.comments.length) + ' of ' + 
+						this.state.comments.length + '.'}</i>
+		}
+
 		return (
 			<div className='comment-wrap'>
 				<h2>Comments</h2>
+				{summary}
+				{link}
+				<br/>
 				{this.getComments()}
 			</div>
 		)
