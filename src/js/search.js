@@ -13,7 +13,6 @@ require('isomorphic-fetch');
 var App = React.createClass({
 	render: function() {
 		var matches = this.state.query.match(/per_page=(\d+)/);
-			console.log('current: '+this.state.results.length+', total: '+this.state.numResults);
 
 		return (
 			<div>
@@ -47,7 +46,6 @@ var App = React.createClass({
 		this.setState({
 			query: this.state.query.replace(/&page=\d+/, '') + '&page=' + newPage
 		}, function() {
-			console.log(self.state.query);
 			self.onQueryUpdate(self.state.query)
 		})
 	},

@@ -12,24 +12,7 @@ var uglify = require('gulp-uglify');
 var del = require('del');
 var imagemin = require('gulp-imagemin');
 
-var bundles = [
-	{
-		entry: './src/js/home.js',
-		dest: 'js/home.build.js'
-	},
-	{
-		entry: './src/js/search.js',
-		dest: 'js/search.build.js'
-	}, 
-	{
-		entry: './src/js/course.js',
-		dest: 'js/course.build.js'
-	},
-	{
-		entry: './src/js/comments.js',
-		dest: 'js/comments.build.js'
-	}
-];
+var bundles = ['home', 'search', 'course', 'comments', 'admin'];
 
 // DEVELOPMENT TASKS 
 // serve source folder, watch for changes (compile JS, reload on change)
@@ -37,7 +20,11 @@ gulp.task('dev', ['copy-html:dev', 'copy-image:dev', 'bundle:dev', 'sass:dev', '
 
 gulp.task('bundle:dev', function() {
 	for (var i = 0; i < bundles.length; i++) {
-		var bundle = bundles[i];
+		var bundle = {
+			entry: './src/js/' + bundles[i] + '.js',
+			dest: 'js/' + bundles[i] + '.build.js'
+		};
+
 		browserify({
 			entries: [bundle.entry],
 			transform: [reactify],
@@ -87,7 +74,10 @@ gulp.task('serve', ['browserSync'], function() {
 	gulp.watch('src/**/*', ['reload']);
 	//process.env.NODE_ENV = 'production'; // gets production-optimized version of react
 	for (var i = 0; i < bundles.length; i++) {
-		var bundle = bundles[i];
+		var bundle = {
+			entry: './src/js/' + bundles[i] + '.js',
+			dest: 'js/' + bundles[i] + '.build.js'
+		};
 		var watcher = watchify(browserify({
 			entries: [bundle.entry],
 			transform: [reactify],

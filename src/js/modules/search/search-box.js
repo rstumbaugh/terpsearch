@@ -196,7 +196,7 @@ var SearchBox = React.createClass({
 						</div>
 						<div className='clearfix visible-sm visible-md visible-lg'></div>
 						<div className='col-sm-3'>
-							<div className='btn btn-primary' onClick={this.handleClick}>Search</div>
+							<div className='btn btn-primary' onClick={this.submitForm}>Search</div>
 						</div>
 					</form>
 				</div>
@@ -205,7 +205,7 @@ var SearchBox = React.createClass({
 	},
 	getInitialState: function() {
 		return {
-			keyword: 'testing',
+			keyword: '',
 			prof: [],
 			dept: [],
 			gened: [],
@@ -224,7 +224,7 @@ var SearchBox = React.createClass({
 		s[field] = value;
 		this.setState(s);
 	},
-	handleClick: function() {
+	submitForm: function() {
 		var query = '?';
 
 		for (var field in this.state) {
@@ -245,6 +245,14 @@ var SearchBox = React.createClass({
 
 		query = query.replace(/%2C/g, ',');
 		this.props.updateQuery(query.substring(0, query.length-1));
+	},
+	componentDidMount: function() {
+		var self = this;
+		document.onkeydown = function() {
+			if (window.event.keyCode == '13') {
+				self.submitForm();
+			}
+		}
 	}
 });
 

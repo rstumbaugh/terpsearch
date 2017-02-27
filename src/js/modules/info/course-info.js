@@ -21,8 +21,9 @@ var CourseInfo = React.createClass({
 		}
 		profs.pop(); // remove trailing comma
 
+
 		var noReviewsPanel;
-		if (this.props.course.num_responses == 0) {
+		if (!this.props.course.num_responses) {
 			noReviewsPanel = 
 				<div className="col-md-8 col-md-offset-2">
                     <div className="panel panel-warning">

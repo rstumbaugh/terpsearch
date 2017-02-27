@@ -1,19 +1,5 @@
 var React = require('react');
 
-/*
-	PROPS:
-		course_id
-		title
-		description
-		gen_ed
-		credits
-		lastOffered - semester code for last time the course was offered
-		diffRating
-		intRating
-		link       	- link to CourseInfo page
-		hasReviews  - boolean
-*/
-
 var SearchItem = React.createClass({
 	render: function() {
 		var noReviewsPanel = this.props.hasReviews 
@@ -24,14 +10,13 @@ var SearchItem = React.createClass({
 			                        </div>
 			                      </div>
 
-
 		var diffs = this.props.diffRating;
 		diffs = typeof(diffs) === 'string' ? diffs : diffs.toFixed(1);	                      
 		
         return (
 			<div className='search-result row'>
 	            <div className='col-sm-3 col-md-2'>
-	            	<h2><a href='#'>{this.props.course_id}</a></h2>
+	            	<h2><a href={this.props.link}>{this.props.course_id}</a></h2>
 	                <div className='rating col-xs-6'>
 	                    <span className='large'>{this.props.diffRating}</span><br/>
 	                    Avg. Difficulty

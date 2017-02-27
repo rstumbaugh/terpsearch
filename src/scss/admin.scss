@@ -1,0 +1,52 @@
+@import "partials/main";
+
+.content-wrap {
+	height: 100%;
+
+	& > div {
+		height: 100%;
+	}
+
+	.container-fluid {
+		height: calc(100% - 80px);
+	}
+}
+
+.sidebar-wrap {
+	height: 100%;
+	padding: 0;
+
+	.sidebar {
+		background-color: $gray;
+		border: 1px solid $red;
+		border-top: 0;
+		height: 100%;
+		width: 100%;
+		padding: 0;
+
+		.sidebar-item {
+			font-size: 18px;
+			font-weight: 500;
+			color: $red;
+			text-align: right;
+			height: 75px;
+
+			padding: 25px 15px 25px 0;
+			border-bottom: 1px solid $red;
+
+			cursor: pointer;
+
+			&.active {
+				background-color: white;
+
+				box-shadow: 0px 3px 3px #888, 0px 3px 3px #888;
+				@include transition(box-shadow 0.3s ease-in-out);
+			}
+		}
+	}
+}
+
+
+.admin-content {
+	height: 100%;
+}
