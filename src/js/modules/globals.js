@@ -17,6 +17,8 @@ var globals = {
 	API_ADD_EMAIL: 		  API_ROOT + 'users/email',
 	API_ADD_FEEDBACK:     API_ROOT + 'users/feedback',
 
+	API_FIREBASE_CONFIG:  API_ROOT + 'firebase_config',
+
 
 	EMAIL_REGEX: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 	

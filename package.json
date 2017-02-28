@@ -24,6 +24,7 @@
     "chart.js": "^2.5.0",
     "del": "^2.2.2",
     "es6-promise": "^4.0.5",
+    "firebase": "^3.6.10",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-cache": "^0.4.5",
