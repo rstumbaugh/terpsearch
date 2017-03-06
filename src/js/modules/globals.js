@@ -17,6 +17,9 @@ var globals = {
 	API_ADD_EMAIL: 		  API_ROOT + 'users/email',
 	API_ADD_FEEDBACK:     API_ROOT + 'users/feedback',
 
+	API_ADMIN_DASHBOARD:  API_ROOT + 'admin/dash',
+	API_DASHBOARD_REMOVE: API_ROOT + 'admin/dash/remove',
+
 	API_FIREBASE_CONFIG:  API_ROOT + 'firebase_config',
 
 
