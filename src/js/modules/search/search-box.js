@@ -13,6 +13,9 @@ var SearchBox = React.createClass({
 		var self = this;
 		// option groups for Gen Ed dropdown
 		var genedGroups = [{
+			groupId: 'any',
+			title: 'Any'
+		},{
 			groupId: 'ds',
 			title: 'Distributive Studies'
 		},{
@@ -27,6 +30,8 @@ var SearchBox = React.createClass({
 		}];
 		// geneds for dropdown
 		var geneds = [
+			['any', 'Any',  'Any'],
+
 			['ds', 'DSHS', 'DSHS - History and Social Sciences'],
 			['ds', 'DSHU', 'DSHU - Humanities'],
 			['ds', 'DSSP', 'DSSP - Scholarship and Practice'],
@@ -149,15 +154,23 @@ var SearchBox = React.createClass({
 								}}
 							/>
 
+
 		return (
 			<div className='row'>
 				<div className='col-sm-12 search-box'>
 					<h1>Filter Courses</h1>
 					<form>
-						<div className='col-sm-12'>
+						<div className='col-sm-12 col-lg-8'>
 							<SearchComponent
 								labelText='Search by keyword or course ID'
 								component={keyword} />
+						</div>
+						<div className='col-sm-6 col-lg-4 '>
+							<SearchComponent
+								labelText='Filter departments'
+								component={departments}
+								subcomponent={<p className='help-block'>Shows courses in selected departments</p>}
+							/>
 						</div>
 						<div className='col-sm-6'>
 							<SearchComponent
@@ -167,22 +180,15 @@ var SearchBox = React.createClass({
 											one of the selected professors</p>} 
 							/>
 						</div>
-						<div className='col-sm-3'>
-							<SearchComponent
-								labelText='Filter departments'
-								component={departments}
-								subcomponent={<p className='help-block'>Shows courses in selected departments</p>}
-							/>
-						</div>
-						<div className='clearfix visible-sm visible-md visible-lg'></div>
-						<div className='col-sm-3'>
+						<div className='col-sm-6 col-lg-3 '>
 							<SearchComponent
 								labelText='Filter Gen Eds'
 								component={genedComponent}
 								subcomponent={genedRadios}
 							/>
 						</div>
-						<div className='col-sm-3'>
+						<div className='clearfix visible-sm visible-md visible-lg'></div>
+						<div className='col-lg-3 col-sm-5'>
 							<SearchComponent
 								labelText='Sort by:'
 								component={sortComponent}
@@ -194,7 +200,7 @@ var SearchBox = React.createClass({
 								component={pageComponent}
 							/>
 						</div>
-						<div className='clearfix visible-sm visible-md visible-lg'></div>
+						<div className='clearfix visible-xs visible-sm visible-md visible-lg'></div>
 						<div className='col-sm-3'>
 							<div className='btn btn-primary' onClick={this.submitForm}>Search</div>
 						</div>
