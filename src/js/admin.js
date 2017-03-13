@@ -167,6 +167,29 @@ var App = React.createClass({
 		return rows;
 	},
 
+	getFeedback: function(feedback) {
+		var rows = [];
+
+		for (var key in feedback) {
+			var item = feedback[key];
+			var time = new Date(item.timestamp).toString('hh:mm tt MMM dd yyyy');
+			console.log(item);
+			rows.push(
+				<tr key={key}>
+					<td>{item.message}</td>
+					<td>{time}</td>
+					<td>
+						<button className='btn btn-danger' onClick={this.removeItem.bind(this, 'feedback', key)}>
+							<i className='glyphicon glyphicon-remove'></i>
+						</button>
+					</td>
+				</tr>
+			)
+		}
+
+		return rows;
+	},
+
 	getContent: function() {
 		if (this.state.status == 'logged in') { // authorized and logged in
 			if (this.state.active == 'Logs') {
@@ -232,7 +255,18 @@ var App = React.createClass({
 					</table>
 				)
 			} else if (this.state.active == 'Feedback') {
-				// return feedback
+				return (
+					<table className='table table-bordered'>
+						<tbody>
+							<tr>
+								<th>Feedback</th>
+								<th>Time</th>
+								<th></th>
+							</tr>
+							{this.getFeedback(this.state.feedback)}
+						</tbody>
+					</table>
+				)
 			}
 		}
 	},
