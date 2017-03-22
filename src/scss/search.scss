@@ -10,6 +10,10 @@ $summary-transition: background-color 0.2s ease-in-out;
 		margin-left: 0;
 		margin-right: 0;
 	}
+
+	.empty {
+		padding-bottom: 25px;
+	}
 }
 
 .search-box {
@@ -119,6 +123,10 @@ $summary-transition: background-color 0.2s ease-in-out;
 		}
 		.rating {
 			margin-top: 20px;
+
+			.large {
+				font-size: 28px;
+			}
 		}
 	}
 }

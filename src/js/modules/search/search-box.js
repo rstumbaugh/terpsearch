@@ -169,7 +169,6 @@ var SearchBox = React.createClass({
 							<SearchComponent
 								labelText='Filter departments'
 								component={departments}
-								subcomponent={<p className='help-block'>Shows courses in selected departments</p>}
 							/>
 						</div>
 						<div className='col-sm-6'>

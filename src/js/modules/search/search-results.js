@@ -21,7 +21,7 @@ var SearchResults = React.createClass({
 	
 	getSearchItems: function() {
 		if (this.state.results.length == 0) {
-			return <div><i>No results to display.</i></div>;
+			return <div className='empty'><i>No results to display.</i></div>;
 		}
 
 		var items = [];
@@ -54,7 +54,7 @@ var SearchResults = React.createClass({
 			results = this.getSearchItems();
 
 		} else if (this.state.status == 'loading') {
-			results = <div><i>Loading...</i></div>;
+			results = <div className='empty'><i>Loading...</i></div>;
 		}
 		
 		return (

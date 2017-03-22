@@ -34,7 +34,6 @@ var RemoteMultiSelect = React.createClass({
 						var filtered = self.state.allOptions.filter(function(item) {
 		                	return !!item[self.props.textField].match(new RegExp(regex, 'i'));
 		                });
-
 						self.setState({
 							results: filtered
 						})
@@ -81,12 +80,10 @@ var RemoteMultiSelect = React.createClass({
 
 	componentDidMount: function() {
 		var self = this;
+		console.log('mounted');
 		if (!this.props.loadOnSearchChange) {
 			fetch(this.props.url)
 				.then(Globals.handleFetchResponse)
-				.then(function(response) {
-					return response.json();
-				})
 				.then(function(response) {
 					self.setState({
 						allOptions: response,
