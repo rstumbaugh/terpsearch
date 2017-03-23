@@ -11,6 +11,7 @@ var streamify = require('streamify');
 var uglify = require('gulp-uglify');
 var del = require('del');
 var imagemin = require('gulp-imagemin');
+var cleanCss = require('gulp-clean-css');
 
 var bundles = ['home', 'search', 'course', 'comments', 'admin'];
 
@@ -100,3 +101,69 @@ gulp.task('reload', ['dev'], function(done) {
 	browserSync.reload();
 	done();
 })
+
+
+// PRODUCTION TASKS
+// compile & minify JS, CSS. compress images. copy html, fonts
+
+gulp.task('bundle:prod', function() {
+	for (var i = 0; i < bundles.length; i++) {
+		var bundle = {
+			entry: './src/js/' + bundles[i] + '.js',
+			dest: 'js/' + bundles[i] + '.build.js'
+		};
+
+		browserify({
+			entries: [bundle.entry],
+			transform: [reactify],
+			debug: true,
+			cache: {}, packageCache: {}, fullPaths: true
+		})
+			.bundle()
+			.on('error', function(err){
+			    console.log(err.stack);
+			 
+			    notifier.notify({
+			      'title': 'Compile Error',
+			      'message': err.message
+			    });
+			  })
+			.pipe(source(bundle.dest))
+			.pipe(buffer())
+			.pipe(uglify().on('error', function(uglify) {
+		        console.error(uglify);
+		    }))
+			.pipe(gulp.dest('dist/build'))
+	}
+});
+
+gulp.task('sass:prod', function() {
+	gulp.src('src/scss/**/*.scss')
+		.pipe(sass().on('error', sass.logError))
+		.pipe(cleanCss({compatibility: 'ie8'}))
+		.pipe(gulp.dest('dist/build/css'));
+})
+
+gulp.task('compress-img:prod', function() {
+	gulp.src('src/img/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('dist/build/img'));
+})
+
+gulp.task('copy-html:prod', function(){
+	gulp.src('src/*.html')
+    	.pipe(gulp.dest('dist/build'));
+})
+
+gulp.task('fonts:prod', function() {
+	gulp.src('src/fonts/**/*')
+		.pipe(gulp.dest('dist/build/fonts'));
+})
+
+gulp.task('favicon:prod', function() {
+	gulp.src('src/favicon.ico')
+		.pipe(gulp.dest('dist/build'))
+})
+
+gulp.task('build:prod', ['bundle:prod', 'sass:prod', 'compress-img:prod',
+						 'copy-html:prod', 'fonts:prod', 'favicon:prod']);

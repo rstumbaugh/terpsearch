@@ -6,7 +6,7 @@ var CourseComments = React.createClass({
 			comments: []
 		}
 	},
-	componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps: function(nextProps) {
 		this.setState({
 			comments: nextProps.comments
 		})

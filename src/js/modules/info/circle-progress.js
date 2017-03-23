@@ -23,7 +23,7 @@ var CircleProgress = React.createClass({
 		})
 	},
 
-	componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps: function(nextProps) {
 		if (nextProps.value && this.state.progress) {
 			this.setState({
 				value: nextProps.value

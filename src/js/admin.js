@@ -67,7 +67,7 @@ var App = React.createClass({
 		Auth.logIn();
 	},
 
-	removeItem(type, key) {
+	removeItem: function(type, key) {
 		var obj = this.state[type];
 		delete obj[key];
 		
