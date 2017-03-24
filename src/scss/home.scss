@@ -25,30 +25,58 @@
 		}
 	}
 
-	// content rows
-	.icons,
-	.example,
-	.feedback {
-		padding-top: 50px;
-		padding-bottom: 50px;
+	.content-heading {
+		background-color: $gray;
+		text-align: center;
+		color: $red;
+		font-size: 48px;
+		font-weight: 500;
+		padding-top: 25px;
+	}
 
-		.img-wrap {
-			padding: 0 50px;
+	.content {
+		background-color: $gray;
+		padding: 25px 0 50px 0;
+
+		h2 {
+			margin-top: 0;
+		}
+
+		img {
+			padding-top: 10px;
+		}
+
+		.content-list {
+			background-color: white;
+			width: 80%;
+			margin: 0 auto;
+			padding: 20px 35px;
+
+			.content-item {
+				padding-bottom: 40px;
+
+				& > div:nth-child(2) {
+					padding-left: 15px;
+				}
+			}
 		}
 	}
 
-	// section headers
-	.example h2,
-	.feedback h2,
-	.info-wrap h2 {
-		color: $red;
-		font-size: 36px;
-		padding-bottom: 15px;
+	.coming-soon {
+		padding: 25px 50px;
+
+		h2 {
+			color: $red;
+			font-size: 36px;
+			font-weight: 500;
+		}
 	}
 
 	// icon row
 	.icons {
 		text-align: center;
+		padding-top: 50px;
+		padding-bottom: 50px;
 
 		.icon-wrap img {
 			height: 150px;
@@ -56,43 +84,10 @@
 		}
 	}
 
-	// example rows
-	.example {
-		img {
-			display: block;
-			margin: 15px auto;
-		}
-
-		&.fb,
-		&.search {
-			background-color: $gray;
-			padding-right: 50px;
-		}
-
-		&.info,
-		&.course {
-			padding-left: 50px;
-		}
-	}
-
-	// email row
-	.email {
-		text-align: center;
+	.feedback {
 		background-color: $red;
 		color: white;
-		padding: 75px 0;
-
-		.message-wrap {
-			position: absolute;
-			margin-left: auto;
-			margin-right: auto;
-			left: 0;
-			right: 0;
-			color: white;
-
-			text-align: center
-		}
-		
+		padding: 50px 0;
 	}
 }
 
@@ -147,6 +142,11 @@
 }
 
 @include media-md {
+	.features {
+		h2 {
+			color: $red;
+		}
+	}
 	.example {
 		&.fb,
 		&.search,
