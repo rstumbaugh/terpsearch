@@ -108,6 +108,9 @@ var App = React.createClass({
 							and we will look into it! You can choose to leave your email as well if you would
 							like a response. 
 							<br/><br/>
+							For developers, you can visit the 
+							<a href='https://github.com/rstumbaugh/terpsearch' target='_blank'> GitHub page </a>
+							for this website to report an issue or just poke through the front-end code.
 							You can also send an email to <a href='mailto:admin@terpsearch.me'>admin@terpsearch.me</a>.
 						</p>
 						<br/>
