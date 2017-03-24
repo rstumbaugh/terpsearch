@@ -12,6 +12,7 @@ var App = React.createClass({
 	getInitialState: function() {
 		return {
 			status: 'logging in',
+			name: '',
 			active: '',
 			items: []
 		}
@@ -34,7 +35,8 @@ var App = React.createClass({
 				user.getToken(true)
 					.then(function(token) {
 						self.setState({
-							token: token
+							token: token,
+							name: user.displayName
 						})
 						return fetch(Globals.API_ADMIN_DASHBOARD + '?token=' + token);
 					})
@@ -60,7 +62,11 @@ var App = React.createClass({
 						})
 					})
 			} else {
-				console.log('logged out');
+				self.setState({
+					status: 'logged out',
+					items: [],
+					active: '',
+				})
 			}
 		})
 
@@ -297,8 +303,16 @@ var App = React.createClass({
 					</div>
 				</div>
 			)
+		} else if (this.state.status == 'logged out') {
+			content = (
+				<div>
+					<h1>Logged out</h1>
+					<p>You are not logged in.</p>
+				</div>
+			)
 		}
 
+		var displayName = this.state.status != 'logging in' && this.state.status != 'logged out';
 		return (
 			<div>
 				<Header hideFeedback={true} />
@@ -314,6 +328,15 @@ var App = React.createClass({
 						</div>
 						<div className='col-sm-10 admin-content'>
 							<h1>{this.state.active}</h1>
+							<div style={{display: displayName ? '' : 'none'}}>
+								<div>
+									{'Logged in as '+this.state.name}
+								</div>
+								<div className='link' onClick={function() {Auth.logOut()}}>
+									Log Out
+								</div>
+								<br/><br/>
+							</div>
 							{content}
 						</div>
 					</div>

@@ -205,6 +205,16 @@ fieldset {
 	}
 }
 
+.link {
+	color: #337ab7;
+
+	&:hover {
+		color: #23527c;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
+
 
 .footer {
 	background: $gray;
