@@ -106,7 +106,9 @@ var App = React.createClass({
 							Experience any errors or strange behavior using this application?
 							Have any questions, comments, or suggestions? Leave your feedback here
 							and we will look into it! You can choose to leave your email as well if you would
-							like a response.
+							like a response. 
+							<br/><br/>
+							You can also send an email to <a href='mailto:admin@terpsearch.me'>admin@terpsearch.me</a>.
 						</p>
 						<br/>
 						<Feedback />

@@ -14,7 +14,7 @@ var Footer = React.createClass({
                                 <a href="admin.html">Admin Login</a>
                             </div>
                             <div className="col-xs-4">
-                                <a href="mailto:rstumbaugh1@gmail.com" target="_blank">Contact Me</a>
+                                <a href='feedback.html'>Contact</a>
                             </div>
                             <div className="col-xs-4">
                                 <a href="https://github.com/rstumbaugh/terpsearch" target="_blank">GitHub</a>
