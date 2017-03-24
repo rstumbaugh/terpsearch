@@ -29,17 +29,18 @@ var SearchResults = React.createClass({
 		for (var i = 0; i < this.state.results.length; i++) {
 			var course = this.state.results[i];
 			items.push(
-				<SearchItem key={i}
-							course_id={course.course_id}
-							title={course.name}
-							description={course.description}
-							gen_ed={course.gen_ed.join(', ') || 'None'}
-							credits={course.credits}
-							lastOffered={Globals.getSemesterFromCode(course.semester)}
-							diffRating={course.avg_diff ? course.avg_diff.toFixed(1) : 'N/A'}
-							intRating={course.avg_int ? course.avg_int.toFixed(1) : 'N/A'}
-							link={'course.html?from=search&course_id=' + course.course_id}
-							hasReviews={course.num_responses > 0}
+				<SearchItem 
+					key={i}
+					course_id={course.course_id}
+					title={course.name}
+					description={course.description}
+					gen_ed={course.gen_ed.join(', ') || 'None'}
+					credits={course.credits}
+					lastOffered={Globals.getSemesterFromCode(course.semester)}
+					diffRating={course.avg_diff ? course.avg_diff.toFixed(1) : 'N/A'}
+					intRating={course.avg_int ? course.avg_int.toFixed(1) : 'N/A'}
+					link={'course.html?from=search&course_id=' + course.course_id}
+					hasReviews={course.num_responses > 0}
 				/>
 			)
 		}

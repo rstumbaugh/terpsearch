@@ -15,12 +15,10 @@ var StaticSimpleSelect = React.createClass({
 	},
 
 	handleChange: function(item) {
-		var self = this;
 		this.setState({
 			value: item || this.props.default
-		}, function() {
-			self.props.onValueChange(self.state.value)
 		})
+		this.props.onValueChange(item)
 	},
 
 	render: function() {

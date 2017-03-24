@@ -16,7 +16,8 @@ var CourseInfo = React.createClass({
 		var profs = [];
 
 		for (var i = 0; i < this.props.course.professors.length; i++) {
-			profs.push(<a key={i} href=''>{this.props.course.professors[i]}</a>)
+			profs.push(<span className='red' key={i}>{this.props.course.professors[i]}</span>)
+			//profs.push(<a key={i} href=''>{this.props.course.professors[i]}</a>)
 			profs.push(', ');
 		}
 		profs.pop(); // remove trailing comma
@@ -32,7 +33,7 @@ var CourseInfo = React.createClass({
                     </div>
                 </div>
 		}
-
+		var padding = {paddingRight: '10px'};
 		return (
 			<div className='info'>
 				<h1>{this.props.course.course_id}</h1>
@@ -54,9 +55,9 @@ var CourseInfo = React.createClass({
 				</p>
 				<p>
 					<strong>Gen Ed: </strong>
-						<span className='red'>{genEd ? genEd.join(', ') || 'None' : ''}</span>
+						<span className='red' style={padding}>{genEd ? genEd.join(', ') || 'None' : ''}</span>
 					<strong>Core: </strong>
-						<span className='red'>{core ? core.join(', ') || 'None' : ''}</span>
+						<span className='red' style={padding}>{core ? core.join(', ') || 'None' : ''}</span>
 				</p>
 				{this.getRelations()}
 				<p>

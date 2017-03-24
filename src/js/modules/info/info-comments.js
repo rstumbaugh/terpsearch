@@ -50,10 +50,11 @@ var CourseComments = React.createClass({
 		}
 
 		if (this.state.comments.length) {
-			summary = 
-				<i>
-					{'Showing ' + (this.props.max ? this.props.max : this.state.comments.length) + ' of ' + 
-						this.state.comments.length + '.'}</i>
+			var max = this.props.max && this.state.comments.length > this.props.max
+						? this.props.max 
+						: this.state.comments.length
+						
+			summary = <i>{'Showing ' + max + ' of ' + this.state.comments.length + '.'}</i>
 		}
 
 		return (

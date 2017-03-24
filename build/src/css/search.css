@@ -6620,7 +6620,8 @@ fieldset {
     margin-left: 0;
     margin-right: 0; }
   .search-wrap .empty {
-    padding-bottom: 25px; }
+    padding-bottom: 25px;
+    font-size: 18px; }
 
 .search-box {
   background-color: #f5d360;

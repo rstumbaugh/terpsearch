@@ -36,7 +36,6 @@ var SearchSummary = React.createClass({
 			currentPage: page
 		})
 		this.props.onPageChange(page);
-		//console.log(page);
 	},
 
 	handleArrowClick: function(direction) {
@@ -65,27 +64,10 @@ var SearchSummary = React.createClass({
 							onValueChange={this.handlePageChange}
 							style={{display: 'inline-block'}}
 						 />
-		// var pagePicker = <SimpleSelect
-		// 					hideResetButton={true}
-		// 					value={this.state.currentPage}
-		// 					theme='bootstrap3'
-		// 					options={this.getPages()}
-		// 					onValueChange={this.handlePageChange}
-		// 					uid={function(item) {
-		// 						return item
-		// 					}}
-		// 					renderOption={function(item) {
-		// 						return <span className='selectize-option'>{item}</span>
-		// 					}}
-		// 					renderValue={function(item) {
-		// 						return <span>{item}</span>
-		// 					}}
-		// 					filterOptions={function(options, search) {
-		// 						return options
-		// 					}}
-		// 				/>
+
+		var style = this.state.numResults == 0 ? {display: 'none'} : {};
 		return (
-			<div>
+			<div style={style}>
 				<div className='before'></div>
 				<Sensor
 					scrollCheck={true}

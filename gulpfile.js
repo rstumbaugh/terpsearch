@@ -12,8 +12,11 @@ var uglify = require('gulp-uglify');
 var del = require('del');
 var imagemin = require('gulp-imagemin');
 var cleanCss = require('gulp-clean-css');
+var replace = require('gulp-replace');
+var transform = require('vinyl-transform');
+var runSequence = require('run-sequence');
 
-var bundles = ['home', 'search', 'course', 'comments', 'admin'];
+var bundles = ['home', 'search', 'course', 'comments', 'admin', 'feedback'];
 
 // DEVELOPMENT TASKS 
 // serve source folder, watch for changes (compile JS, reload on change)
@@ -39,22 +42,22 @@ gulp.task('bundle:dev', function() {
 });
 
 gulp.task('copy-html:dev', function(){
-	gulp.src('src/*.html')
+	return gulp.src('src/*.html')
     	.pipe(gulp.dest('build/src'));
 });
 
 gulp.task('copy-image:dev', function() {
-	gulp.src('src/img/*')
+	return gulp.src('src/img/*')
 		.pipe(gulp.dest('build/src/img'));
 })
 
 gulp.task('fonts:dev', function() {
-	gulp.src('src/fonts/**/*')
+	return gulp.src('src/fonts/**/*')
 		.pipe(gulp.dest('build/src/fonts'));
 })
 
 gulp.task('sass:dev', function() {
-	gulp.src('src/scss/**/*.scss')
+	return gulp.src('src/scss/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('build/src/css'));
 })
@@ -105,8 +108,7 @@ gulp.task('reload', ['dev'], function(done) {
 
 // PRODUCTION TASKS
 // compile & minify JS, CSS. compress images. copy html, fonts
-
-gulp.task('bundle:prod', function() {
+gulp.task('bundle:prod', function(done) {
 	for (var i = 0; i < bundles.length; i++) {
 		var bundle = {
 			entry: './src/js/' + bundles[i] + '.js',
@@ -135,39 +137,60 @@ gulp.task('bundle:prod', function() {
 		    }))
 			.pipe(gulp.dest('build/dist'))
 	}
+
+	return;
 });
 
 gulp.task('sass:prod', function() {
-	gulp.src('src/scss/**/*.scss')
-		.pipe(sass().on('error', sass.logError))
-		.pipe(cleanCss({compatibility: 'ie8'}))
-		.pipe(gulp.dest('build/dist/css'));
+	return gulp.src('src/scss/**/*.scss')
+			   .pipe(sass().on('error', sass.logError))
+			   .pipe(cleanCss({compatibility: 'ie8'}))
+			   .pipe(gulp.dest('build/dist/css'));
 })
 
 gulp.task('compress-img:prod', function() {
-	gulp.src('src/img/*')
-		.pipe(imagemin())
-		.pipe(gulp.dest('build/dist/img'));
+	return gulp.src('src/img/*')
+		       .pipe(imagemin())
+		       .pipe(gulp.dest('build/dist/img'));
 })
 
 gulp.task('copy-html:prod', function(){
-	gulp.src('src/*.html')
-    	.pipe(gulp.dest('build/dist'));
+	return gulp.src('src/*.html')
+    		   .pipe(gulp.dest('build/dist'));
 })
 
 gulp.task('fonts:prod', function() {
-	gulp.src('src/fonts/**/*')
-		.pipe(gulp.dest('build/dist/fonts'));
+	return gulp.src('src/fonts/**/*')
+		       .pipe(gulp.dest('build/dist/fonts'));
 })
 
 gulp.task('favicon:prod', function() {
-	gulp.src('src/favicon.ico')
-		.pipe(gulp.dest('build/dist'))
+	return gulp.src('src/favicon.ico')
+			   .pipe(gulp.dest('build/dist'))
 })
 
 gulp.task('clean:prod', function() {
 	del.sync('build/dist')
 })
 
-gulp.task('build:prod', ['clean:prod', 'bundle:prod', 'sass:prod', 'compress-img:prod',
-						 'copy-html:prod', 'fonts:prod', 'favicon:prod']);
+gulp.task('replace-api', function() {
+	return gulp.src('build/dist/js/*.build.js')
+			   .pipe(replace('http://localhost:8888/', 'https://sheltered-ridge-74266.herokuapp.com/'))
+			   .pipe(gulp.dest('build/dist/js'))
+})
+
+gulp.task('apply-prod-environment', function() {
+    process.env.NODE_ENV = 'production';
+});
+
+gulp.task('build:prod', function(callback) {
+	runSequence(
+		'clean:prod',
+		'apply-prod-environment',
+		[
+			'bundle:prod', 'sass:prod', 'compress-img:prod', 'copy-html:prod', 'fonts:prod', 'favicon:prod'
+		],
+		'replace-api',
+		callback
+	)
+})

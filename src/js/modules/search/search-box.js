@@ -148,6 +148,7 @@ var SearchBox = React.createClass({
 								value={this.state.per_page}
 								options={perPage}
 								onValueChange={function(item) {
+									console.log('changing to ' + item);
 									self.setState({
 										per_page: item
 									})

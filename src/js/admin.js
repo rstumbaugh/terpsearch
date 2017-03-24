@@ -170,13 +170,19 @@ var App = React.createClass({
 	getFeedback: function(feedback) {
 		var rows = [];
 
-		for (var key in feedback) {
+		var sortedKeys = Object.keys(feedback).sort(function(a,b) {
+			return feedback[a].timestamp < feedback[b].timestamp ? 1 : -1;
+		})
+		
+		for (var i = 0; i < sortedKeys.length; i++) {
+			var key = sortedKeys[i];
 			var item = feedback[key];
-			var time = new Date(item.timestamp).toString('hh:mm tt MMM dd yyyy');
-			console.log(item);
+			var time = new Date(item.timestamp).toString('h:mm tt MMM dd yyyy');
+
 			rows.push(
 				<tr key={key}>
 					<td>{item.message}</td>
+					<td>{item.email}</td>
 					<td>{time}</td>
 					<td>
 						<button className='btn btn-danger' onClick={this.removeItem.bind(this, 'feedback', key)}>
@@ -260,6 +266,7 @@ var App = React.createClass({
 						<tbody>
 							<tr>
 								<th>Feedback</th>
+								<th>Email</th>
 								<th>Time</th>
 								<th></th>
 							</tr>
@@ -294,7 +301,7 @@ var App = React.createClass({
 
 		return (
 			<div>
-				<Header />
+				<Header hideFeedback={true} />
 				<div className='container-fluid content-wrap'>
 					<div className='row'>
 						<div className='col-sm-2 sidebar-wrap'>

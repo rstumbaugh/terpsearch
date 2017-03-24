@@ -138,8 +138,10 @@ var Feedback = React.createClass({
 	                    <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
 	                </div>
 	                
-	                <div className={'message-wrap col-xs-10 ' + this.state.slideClass}>
-	                    {this.state.message}
+	                <div className='message-wrap col-xs-10'>
+	                	<div className={this.state.slideClass}>
+	                    	{this.state.message}
+	                    </div>
 	                </div>
 	            </div>
 	        </div>
