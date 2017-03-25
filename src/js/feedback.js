@@ -99,7 +99,7 @@ var App = React.createClass({
 			<div>
 				<Header />
 				<div className='container-fluid'>
-					<div className='col-md-10 col-md-offset-1'>
+					<div className='feedback-wrap col-md-10 col-md-offset-1'>
 						<h1>Feedback</h1>
 						<br/>
 						<p style={{fontSize: '16px'}}>
