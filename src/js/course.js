@@ -189,7 +189,7 @@ var App = React.createClass({
 									/>
 								</div>
 							</div>
-							<div className='row card'>
+							<div className='row card last-card'>
 								<div className='col-md-12'>
 									<Comments 
 										max={5}
@@ -198,7 +198,7 @@ var App = React.createClass({
 										comments={this.state.comments} 
 									/>
 								</div>
-								
+
 								<div className='col-md-7'>
 									<CommentInput
 										rows={6}

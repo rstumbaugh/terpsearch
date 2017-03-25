@@ -59,7 +59,7 @@ var SearchResults = React.createClass({
 		}
 		
 		return (
-			<div className='search-results-wrap'>
+			<div>
 				{results}
 			</div>
 		)

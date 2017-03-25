@@ -20,20 +20,24 @@ var App = React.createClass({
 				<div className='container-fluid'>
 					<div className='row'>
 						<div className='col-sm-10 col-sm-offset-1 search-wrap'>
-							<SearchBox updateQuery={this.onQueryUpdate} />
+							<div className='search-box-wrap'>
+								<SearchBox updateQuery={this.onQueryUpdate} />
+							</div>
 							<br/>
 							<br/>
-							<SearchSummary
-								perPage={matches ? matches[1] : 25}
-								numResults={this.state.results.length}
-								totalResults={this.state.numResults}
-								showSummary={this.state.status == 'done'}
-								onPageChange={this.onPageChange}
-							/>
-							<SearchResults
-								numResults={this.state.numResults} 
-								results={this.state.results}
-								status={this.state.status} />
+							<div className='search-results-wrap'>
+								<SearchSummary
+									perPage={matches ? matches[1] : 25}
+									numResults={this.state.results.length}
+									totalResults={this.state.numResults}
+									showSummary={this.state.status == 'done'}
+									onPageChange={this.onPageChange}
+								/>
+								<SearchResults
+									numResults={this.state.numResults} 
+									results={this.state.results}
+									status={this.state.status} />
+							</div>
 						</div>
 					</div>
 				</div>

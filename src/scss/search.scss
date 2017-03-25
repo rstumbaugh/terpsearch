@@ -1,4 +1,5 @@
 @import "partials/main";
+@import "partials/card";
 
 $yellow: #f5d360;
 $summary-transition: background-color 0.2s ease-in-out;
@@ -20,6 +21,7 @@ body {
 	background-color: $yellow;
 	border: 1px solid $red;
 	padding-bottom: 20px;
+	box-shadow: $card-box-shadow;
 }
 
 .summary-wrap {
@@ -62,6 +64,7 @@ body {
 .search-results-wrap {
 	background-color: white;
 	padding: 15px 10px;
+	box-shadow: $card-box-shadow;
 
 	.empty {
 		font-size: 18px;
