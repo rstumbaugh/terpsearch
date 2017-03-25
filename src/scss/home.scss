@@ -113,21 +113,3 @@
 		}
 	}
 }
-
-@include media-md {
-	.features {
-		h2 {
-			color: $red;
-		}
-	}
-	.example {
-		&.fb,
-		&.search,
-		&.info,
-		&.course {
-			padding-left: 50px;
-			padding-right: 50px;
-		}
-	}
-}
-
