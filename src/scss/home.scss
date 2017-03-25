@@ -1,5 +1,6 @@
 @import "partials/main";
 @import "partials/ratings";
+@import "partials/content";
 
 
 // wraps all content
@@ -25,51 +26,23 @@
 		}
 	}
 
-	.content-heading {
-		background-color: $gray;
-		text-align: center;
-		color: $red;
-		font-size: 48px;
-		font-weight: 500;
-		padding-top: 25px;
-	}
-
 	.content {
-		background-color: $gray;
-		padding: 25px 0 50px 0;
-
-		h2 {
-			margin-top: 0;
-		}
-
 		img {
 			padding-top: 10px;
 		}
 
-		.content-list {
-			background-color: white;
-			width: 80%;
-			margin: 0 auto;
-			padding: 20px 35px;
-
-			.content-item {
-				padding-bottom: 40px;
-
-				& > div:nth-child(2) {
-					padding-left: 15px;
-				}
-			}
+		.content-desc {
+			padding-left: 15px;
 		}
 	}
 
-	.coming-soon {
-		padding: 25px 50px;
+	.coming-soon-content {
+		padding-top: 20px;
+	}
+	
 
-		h2 {
-			color: $red;
-			font-size: 36px;
-			font-weight: 500;
-		}
+	.rating-wrap {
+		padding-left: 30px;
 	}
 
 	// icon row

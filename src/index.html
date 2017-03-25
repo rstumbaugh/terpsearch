@@ -55,37 +55,36 @@
                     </div>
                 </div>
             </div>
-            <div class="row content-heading">
-                <div class="col-md-10 col-md-offset-1">
+            
+            <div class="row content">
+                <div class="content-heading">
                     Features
                 </div>
-            </div>
-            <div class="row content">
                 <div class="col-sm-12">
                     <div class="content-list">
                         <div class="row content-item">
-                            <div class="col-xs-1 hidden-sm hidden-xs">
+                            <div class="col-md-1 hidden-sm hidden-xs">
                                 <img src="img/search.svg" alt="search.svg" width="100%">
                             </div>
-                            <div class="col-xs-11">
+                            <div class="content-desc col-md-11">
                                 <h2>Powerful course searching</h2>
                                 It's never been easier to find courses that fit your interests. With the ability to search for courses by keyword, professor, difficulty, interest, and more, you'll be sure to find courses that fit your needs.
                             </div>
                         </div>
                         <div class="row content-item">
-                            <div class="col-xs-1 hidden-sm hidden-xs">
+                            <div class="col-md-1 hidden-sm hidden-xs">
                                 <img src="img/ratings.svg" alt="ratings.svg" width="100%">
                             </div>
-                            <div class="col-xs-11">
+                            <div class="content-desc col-md-11">
                                 <h2>Student-contributed ratings and reviews</h2>
                                 Powered by ratings provided by UMD students, you can see what other students think about the courses you're considering. See what students thought about both the difficulty and interest of courses, as well as rating breakdowns by professor.
                             </div>
                         </div>
                         <div class="row content-item">
-                            <div class="col-xs-1 hidden-sm hidden-xs">
+                            <div class="col-md-1 hidden-sm hidden-xs">
                                 <img src="img/desc.svg" alt="desc.svg" width="100%">
                             </div>
-                            <div class="col-xs-11">
+                            <div class="content-desc col-md-11">
                                 <h2>In-depth descriptions</h2>
                                 Course information and description is retrieved from the University of Maryland Schedule of Classes, so you can be sure that you have the most accurate and up-to-date course information available.
                             </div>
@@ -94,24 +93,43 @@
                 </div>
             </div>
 
-            <div class="row coming-soon">
+            <div class="row coming-soon content">
+                <div class="content-heading">
+                    More coming soon
+                </div>
                 <div class="col-sm-12">
-                    <div class="col-md-6">
-                        <h2>More coming soon</h2>
-                        <p>
-                            You can check out the code and progress <a href="https://github.com/rstumbaugh/terpsearch" target="_blank">here</a> on GitHub.
-                            This link will be updated periodically with new features as I implement them, so feel free to visit and
-                            see where I'm at.
+                    <div class="content-list">
+                        <div class="row content-item">
+                            <div class="col-md-6 coming-soon-content">
+                                <p>
+                                    You can check out the code and progress <a href="https://github.com/rstumbaugh/terpsearch" target="_blank">here</a> on GitHub.
+                                    In the meantime, contribute your own ratings to help out!<br/><br>
 
-                            In the meantime, contribute your own ratings to help out!<br/><br>
+                                    Feel free to <a href="mailto:admin@terpsearch.me" target="_blank">shoot me an email</a> with any suggestions you might have for the site or 
+                                    <a href="https://github.com/rstumbaugh/terpsearch/issues" target="_blank">report an issue on GitHub</a>. Some possible features on the To Do list include:
+                                    <br/>
 
-                            Feel free to <a href="mailto:rstumbaugh1@gmail.com" target="_blank">shoot me an email</a> with
-                            any suggestions you might have for the site or 
-                            <a href="https://github.com/rstumbaugh/terpsearch/issues" target="_blank">report an issue on GitHub</a>.
-                            <br/>
-                        </p>
+                                    <ul class="coming-soon-list">
+                                        <li>
+                                            <h3>Facebook integration</h3>
+                                            See courses your Facebook friends have taken and how they have rated them in the past.
+                                        </li>
+                                        <li>
+                                            <h3>Professor review pages</h3>
+                                            See all ratings for courses taught by a specific professor and leave comments and reviews.
+                                        </li>
+                                        <li>
+                                            <h3>Course suggestions</h3>
+                                            Given your remaining unfulfilled requirements and interests, find and suggest courses to fit your schedule.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="col-md-6 rating-wrap">
+                                <div id="ratingForm" class="form-wrap col-sm-12"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="ratingForm" class="form-wrap col-md-5 col-md-offset-1"></div>
                 </div>
             </div>
 
@@ -125,13 +143,11 @@
                     <div id="feedback"></div>
                 </div>
             </div>
-
-            <div class="row content-heading">
-                <div class="col-md-10 col-md-offset-1">
+            
+            <div class="row content">
+                <div class="content-heading">
                     Changelog
                 </div>
-            </div>
-            <div class="row content">
                 <div class="col-sm-12">
                     <div class="content-list">
                         <div class="row content-item">

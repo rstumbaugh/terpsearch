@@ -30,7 +30,7 @@ var App = React.createClass({
 								showSummary={this.state.status == 'done'}
 								onPageChange={this.onPageChange}
 							/>
-							<SearchResults 
+							<SearchResults
 								numResults={this.state.numResults} 
 								results={this.state.results}
 								status={this.state.status} />
