@@ -1,8 +1,11 @@
 @import "partials/main";
 @import "partials/ratings";
+@import "partials/comments";
+@import "partials/card";
 
 body {
 	font-size: 16px;
+	background-color: $gray;
 }
 
 h1 {
@@ -13,43 +16,7 @@ h1 {
 	color: $red;
 }
 
-.row {
-	margin-left: 0;
-	margin-right: 0;
-}
-
-
-.comment-wrap {
-	word-wrap: break-word;
-	font-size: 16px;
-
-	a {
-		margin-left: 5px;
-	}
-
-	.comment {
-		padding-bottom: 15px;
-
-		&:first-child {
-			padding-top: 30px;
-		}
-	}
-
-	blockquote {
-		display: block;
-	}
-
-	cite {
-		margin-top: 15px;
-		float: right
-	}
-}
-
-
 .comment-input {
-	font-size: 14px;
-	padding: 10px;
-
 	.button-wrap {
 		margin-bottom: 10px;
 
@@ -60,10 +27,6 @@ h1 {
 }
 
 .breakdown-wrap {
-	background-color: $gray;
-	border: 1px solid $red;
-	margin-bottom: 20px;
-
 	.average,
 	.breakdown {
 		padding: 25px 15px;

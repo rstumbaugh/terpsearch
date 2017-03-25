@@ -1,46 +1,6 @@
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 @import '../../node_modules/react-selectize/themes/index';
-
-$red: #c0392b;
-$error-red: #a94442;
-$gray: #ecf0f1;
-$dark-gray: #737373;
-$black: #333;
-$green: #3c763d;
-$fonts: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-$xs-width: 480px;
-$sm-width: 768px;
-$md-width: 992px;
-$lg-width: 1200px;
-
-@mixin media-xs {
-	@media (max-width: #{$xs-width}) {
-		@content
-	}
-}
-@mixin media-sm {
-	@media (max-width: #{$sm-width}) {
-		@content
-	}
-}
-@mixin media-md {
-	@media (max-width: #{$md-width}) {
-		@content
-	}
-}
-@mixin media-lg {
-	@media (max-width: #{$lg-width}) {
-		@content
-	}
-}
-
-@mixin transition($transition...) {
-    -moz-transition:    $transition;
-    -o-transition:      $transition;
-    -webkit-transition: $transition;
-    transition:         $transition;
-}
+@import "vars";
 
 html,
 body {
@@ -150,7 +110,7 @@ fieldset {
 
 .back-panel {
 	margin-top: 15px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	cursor: pointer;
 }
 

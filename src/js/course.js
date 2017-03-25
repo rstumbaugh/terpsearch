@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var CircleProgress = require('./modules/info/circle-progress.js');
 var CourseInfo = require('./modules/info/course-info.js');
 var RatingBreakdown = require('./modules/info/rating-breakdown.js');
-var CourseComments = require('./modules/info/info-comments.js');
+var Comments = require('./modules/info/info-comments.js');
 var CommentInput = require('./modules/info/comment-input.js');
 var RatingForm = require('./modules/rating/rating-form.js');
 var Header = require('./modules/header.js');
@@ -139,9 +139,9 @@ var App = React.createClass({
 				<Header />
 				<div className='container-fluid'>
 					<div className='row'>
-						<div className='col-sm-10 col-sm-offset-1'>
+						<div>
 							{backPanel}
-							<div className='row'>
+							<div className='row card'>
 								<div className='col-md-9'>
 									<CourseInfo 
 										course={this.state.courseInfo}
@@ -164,7 +164,7 @@ var App = React.createClass({
 									</div>
 								</div>
 							</div>
-							<div className='row'>
+							<div className='row card'>
 								<div className='col-md-12'>
 									<RatingBreakdown
 										title='Average Difficulty'
@@ -177,7 +177,7 @@ var App = React.createClass({
 									/>
 								</div>
 							</div>
-							<div className='row'>
+							<div className='row card'>
 								<div className='col-md-12'>
 									<RatingBreakdown
 										title='Average Interest'
@@ -189,17 +189,16 @@ var App = React.createClass({
 									/>
 								</div>
 							</div>
-							<div className='row'>
+							<div className='row card'>
 								<div className='col-md-12'>
-									<CourseComments 
+									<Comments 
 										max={5}
 										id={this.state.courseId}
 										type='course'
 										comments={this.state.comments} 
 									/>
 								</div>
-							</div>
-							<div className='row'>
+								
 								<div className='col-md-7'>
 									<CommentInput
 										rows={6}
