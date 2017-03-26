@@ -22,10 +22,14 @@ body {
 	border: 1px solid $red;
 	padding-bottom: 20px;
 	box-shadow: $card-box-shadow;
+	border-radius: $card-border-radius;
 }
 
 .summary-wrap {
 	padding: 15px 25px;
+	box-shadow: $card-box-shadow;
+	border-radius: $card-border-radius;
+	margin-bottom: 10px;
 	@include transition($summary-transition);
 
 	&.fix {
@@ -62,19 +66,21 @@ body {
 }
 
 .search-results-wrap {
-	background-color: white;
 	padding: 15px 10px;
-	box-shadow: $card-box-shadow;
 
 	.empty {
 		font-size: 18px;
 	}
 }
 
+
 .search-result {
 	padding: 15px;
 	font-size: 14px;
 	color: #333;
+	background-color: white;
+	box-shadow: $card-box-shadow;
+	border-radius: $card-border-radius;
 
 	margin-bottom: 15px;
 
