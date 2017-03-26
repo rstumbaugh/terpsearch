@@ -110,6 +110,19 @@
 }
 
 @include media-md {
+	.landing {
+		height: auto;
+
+		.hero-wrap {
+			.hero {
+				top: 10px;
+			}
+			.subtitle {
+				bottom: 20px;
+			}
+		}
+	}
+	
 	.rating-wrap {
 		margin-left: -25px;
 		margin-right: -25px;
