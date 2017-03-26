@@ -39,11 +39,6 @@
 	.coming-soon-content {
 		padding-top: 20px;
 	}
-	
-
-	.rating-wrap {
-		padding-left: 30px;
-	}
 
 	// icon row
 	.icons {
@@ -111,5 +106,12 @@
 			padding: 0 5px;
 			font-style: normal;
 		}
+	}
+}
+
+@include media-md {
+	.rating-wrap {
+		margin-left: -25px;
+		margin-right: -25px;
 	}
 }
