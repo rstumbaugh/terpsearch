@@ -73,6 +73,11 @@ h1 {
 	}
 }
 
+.comment-input,
+.rating-form {
+	padding: 0 10px;
+}
+
 
 @include media-md {
 	.comment-input {
@@ -91,5 +96,10 @@ h1 {
 			}
 		}
 	}
+
+	.rating-form {
+		margin-top: 20px;
+	}
+
 
 }
