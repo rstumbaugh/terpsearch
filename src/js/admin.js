@@ -125,6 +125,8 @@ var App = React.createClass({
 							+ ' (' + c.professor + ')';
 			} else if (log.type == 'comment') {
 				content = c.course_id + ': ' + c.comment;
+			} else {
+				content = c;
 			}
 
 			rows.push(

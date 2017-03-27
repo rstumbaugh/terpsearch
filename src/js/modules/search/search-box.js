@@ -233,6 +233,15 @@ var SearchBox = React.createClass({
 			per_page: '25'
 		}
 	},
+	componentDidMount: function() {
+		var self = this;
+		
+		document.onkeydown = function() {
+			if (window.event.keyCode == '13') {
+				self.submitForm();
+			}
+		}
+	},
 	handleChange: function(field, value) {
 		var s = {};
 
@@ -263,15 +272,7 @@ var SearchBox = React.createClass({
 		}
 
 		query = query.replace(/%2C/g, ',');
-		this.props.updateQuery(query.substring(0, query.length-1));
-	},
-	componentDidMount: function() {
-		var self = this;
-		document.onkeydown = function() {
-			if (window.event.keyCode == '13') {
-				self.submitForm();
-			}
-		}
+		this.props.updateQuery(query.substring(0, query.length-1)); // remove trailing &
 	}
 });
 
