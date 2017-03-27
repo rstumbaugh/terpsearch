@@ -51,3 +51,10 @@
 	height: 100%;
 	overflow-y: scroll;
 }
+
+@include media-md {
+	.sidebar-wrap,
+	.sidebar-wrap .sidebar {
+		height: auto;
+	}
+}
