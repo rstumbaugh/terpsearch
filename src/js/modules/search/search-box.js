@@ -172,12 +172,13 @@ var SearchBox = React.createClass({
 				<div className='col-sm-12 search-box'>
 					<h1>Filter Courses</h1>
 					<form>
-						<div className='col-sm-12 col-lg-10'>
+						<div className='col-lg-10'>
 							<SearchComponent
 								labelText='Search by keyword or course ID'
 								component={keyword} />
 						</div>
-						<div className='col-sm-5'>
+						<div className='clearfix visible-md visible-lg'></div>
+						<div className='col-sm-6 col-lg-5'>
 							<SearchComponent
 								labelText='Filter professors'
 								component={professors}
@@ -191,14 +192,15 @@ var SearchBox = React.createClass({
 								component={departments}
 							/>
 						</div>
-						<div className='clearfix visible-md visible-lg'></div>
-						<div className='col-sm-6 col-lg-3 '>
+						<div className='clearfix visible-sm visible-md visible-lg'></div>
+						<div className='col-sm-6 col-lg-3'>
 							<SearchComponent
 								labelText='Filter Gen Eds'
 								component={genedComponent}
 								subcomponent={genedRadios}
 							/>
 						</div>
+						<div className='clearfix visible-sm'></div>
 						<div className='col-lg-3 col-sm-5'>
 							<SearchComponent
 								labelText='Sort by:'
