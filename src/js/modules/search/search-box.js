@@ -143,18 +143,29 @@ var SearchBox = React.createClass({
 								}}
 							/>
 
-		var pageComponent = <StaticSimpleSelect
-								default='25'
-								value={this.state.per_page}
+		var pageComponent = <SimpleSelect
+								hideResetButton={true}
+								theme='bootstrap3'
 								options={perPage}
-								onValueChange={function(item) {
-									console.log('changing to ' + item);
+								value={this.state.per_page}
+								onValueChange={function(value) {
 									self.setState({
-										per_page: item
+										per_page: value
 									})
 								}}
+								uid={function(item) {
+									return item
+								}}
+								renderOption={function(option) {
+									return <div className='selectize-option'>{option}</div>
+								}}
+								renderValue={function(item) {
+									return <div>{item}</div>
+								}}
+								filterOptions={function(options, search) {
+									return options
+								}}
 							/>
-
 
 		return (
 			<div className='row'>

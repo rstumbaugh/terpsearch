@@ -80,7 +80,6 @@ var RemoteMultiSelect = React.createClass({
 
 	componentDidMount: function() {
 		var self = this;
-		console.log('mounted');
 		if (!this.props.loadOnSearchChange) {
 			fetch(this.props.url)
 				.then(Globals.handleFetchResponse)
