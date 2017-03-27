@@ -14,7 +14,7 @@ var SearchItem = React.createClass({
 		diffs = typeof(diffs) === 'string' ? diffs : diffs.toFixed(1);	                      
 		
         return (
-			<div className='search-result row'>
+			<div className='search-result card row'>
 	            <div className='col-sm-3 col-md-2'>
 	            	<h2><a href={this.props.link}>{this.props.course_id}</a></h2>
 	                <div className='rating col-xs-6'>
@@ -43,7 +43,7 @@ var SearchItem = React.createClass({
 	                </div>
 	                <div className='description row'>
 	                    <div className='col-sm-12'>
-	                        {this.props.description}
+	                        {this.props.description || <i>No description.</i>}
 	                    </div>
 	                </div>
 	            </div>

@@ -2,11 +2,9 @@
 
 .card {
 	background-color: white;
-	width: 80%;
-	margin: 20px auto;
 	padding: 25px 15px;
+	margin-bottom: 15px;
 	border-radius: $card-border-radius;
-
 	box-shadow: $card-box-shadow;
 
 	&.last-card {
@@ -16,6 +14,7 @@
 
 @include media-md {
 	.card {
-		width: 95%;
+		margin-left: -5px;
+		margin-right: -5px;
 	}
 }

@@ -20,10 +20,9 @@ var App = React.createClass({
 				<div className='container-fluid'>
 					<div className='row'>
 						<div className='col-sm-10 col-sm-offset-1 search-wrap'>
-							<div className='search-box-wrap'>
+							<div className='search-box-wrap card'>
 								<SearchBox updateQuery={this.onQueryUpdate} />
 							</div>
-							<br/>
 							<br/>
 							<div className='search-results-wrap'>
 								<SearchSummary

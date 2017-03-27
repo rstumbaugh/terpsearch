@@ -7,15 +7,11 @@ var BackPanel = React.createClass({
 
 	render: function() {
 		return (
-			<div className='row'>
-				<div className='col-md-10 col-md-offset-1'>
-					<div className='panel panel-default back-panel'>
-						<div className='panel-heading'>
-							<a onClick={this.click}>
-								{'Back ' + (this.props.location ? ' to ' + this.props.location : '')}
-							</a>
-						</div>
-					</div>
+			<div className='panel panel-default back-panel'>
+				<div className='panel-heading'>
+					<a onClick={this.click} style={{cursor: "pointer"}}>
+						{'Back ' + (this.props.location ? ' to ' + this.props.location : '')}
+					</a>
 				</div>
 			</div>
 		)

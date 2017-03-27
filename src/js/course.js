@@ -139,7 +139,7 @@ var App = React.createClass({
 				<Header />
 				<div className='container-fluid'>
 					<div className='row'>
-						<div>
+						<div className='col-md-10 col-md-offset-1'>
 							{backPanel}
 							<div className='row card'>
 								<div className='col-md-9'>

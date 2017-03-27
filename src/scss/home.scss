@@ -1,6 +1,5 @@
 @import "partials/main";
 @import "partials/ratings";
-@import "partials/content";
 
 
 // wraps all content
@@ -26,16 +25,6 @@
 		}
 	}
 
-	.content {
-		img {
-			padding-top: 10px;
-		}
-
-		.content-desc {
-			padding-left: 15px;
-		}
-	}
-
 	.coming-soon-content {
 		padding-top: 20px;
 	}
@@ -56,6 +45,44 @@
 		background-color: $red;
 		color: white;
 		padding: 50px 0;
+	}
+}
+
+.content {
+	background-color: $gray;
+	padding-top: 25px;
+	padding-bottom: 25px;
+
+	.content-heading {
+		background-color: $gray;
+		text-align: center;
+		color: $red;
+		font-size: 48px;
+		font-weight: 500;
+		padding-bottom: 15px;
+	}
+
+	h2 {
+		margin-top: 0;
+	}
+
+	img {
+		padding-top: 10px;
+	}
+
+	.content-desc {
+		padding-left: 15px;
+	}
+
+	.content-list {
+		background-color: white;
+		width: 80%;
+		margin: 0 auto;
+		padding: 20px 35px;
+
+		.content-item {
+			padding-bottom: 40px;
+		}
 	}
 }
 
@@ -109,6 +136,7 @@
 	}
 }
 
+
 @include media-md {
 	.landing {
 		height: auto;
@@ -121,6 +149,10 @@
 				bottom: 20px;
 			}
 		}
+	}
+
+	.content .content-list {
+		width: 95%;
 	}
 	
 	.rating-wrap {

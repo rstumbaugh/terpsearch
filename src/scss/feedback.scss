@@ -1,13 +1,6 @@
 @import "partials/main";
+@import "partials/card";
 
 body {
 	background-color: $gray;
 }
-
-.feedback-wrap {
-	background-color: white;
-	box-shadow: $card-box-shadow;
-	margin-bottom: 50px;
-	padding: 20px 15px;
-}
-
