@@ -1,7 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Modal = require('react-modal');
 var Header = require('./modules/header.js');
 var Footer = require('./modules/footer.js');
+var RatingForm = require('./modules/rating/rating-form.js');
 var SearchBox = require('./modules/search/search-box.js');
 var SearchSummary = require('./modules/search/search-summary.js');
 var SearchResults = require('./modules/search/search-results.js');
@@ -13,6 +15,23 @@ require('isomorphic-fetch');
 var App = React.createClass({
 	render: function() {
 		var matches = this.state.query.match(/per_page=(\d+)/);
+		var modalStyle = {
+			content: {
+				width: '50%',
+				marginLeft: 'auto',
+				marginRight: 'auto',
+				padding: '15px 30px'
+			}
+		}
+		var modal = 
+			<Modal 
+				isOpen={true} 
+				contentLabel='Rating Form'
+				style={modalStyle}
+			>
+				<h1>Testing</h1>
+				<RatingForm />
+			</Modal>
 
 		return (
 			<div>
@@ -20,6 +39,7 @@ var App = React.createClass({
 				<div className='container-fluid'>
 					<div className='row'>
 						<div className='col-sm-10 col-sm-offset-1 search-wrap'>
+							{modal}
 							<div className='search-box-wrap card'>
 								<SearchBox updateQuery={this.onQueryUpdate} />
 							</div>

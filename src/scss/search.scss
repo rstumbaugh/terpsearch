@@ -1,5 +1,6 @@
 @import "partials/main";
 @import "partials/card";
+@import "partials/ratings";
 
 $yellow: #f5d360;
 $summary-transition: background-color 0.2s ease-in-out;
@@ -137,6 +138,11 @@ body {
 			color: $red;
 		}
 	}	
+}
+
+.rating-form {
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 @include media-sm {
