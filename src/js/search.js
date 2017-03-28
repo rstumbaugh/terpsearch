@@ -14,23 +14,43 @@ require('isomorphic-fetch');
 
 var App = React.createClass({
 	render: function() {
+		var self = this;
 		var matches = this.state.query.match(/per_page=(\d+)/);
-		var modalStyle = {
-			content: {
-				width: '50%',
-				marginLeft: 'auto',
-				marginRight: 'auto',
-				padding: '15px 30px'
-			}
+		var buttonStyle = {
+			display: this.state.reviewSubmitted ? '' : 'none'
 		}
 		var modal = 
 			<Modal 
-				isOpen={true} 
+				isOpen={this.state.showModal} 
 				contentLabel='Rating Form'
-				style={modalStyle}
+				onRequestClose={function() {
+					self.setState({
+						showModal: false
+					}
+				)}}
+				shouldCloseOnOverlayClick={false}
+				overlayClassName='rating-modal-overlay'
+				className='rating-modal'
 			>
-				<h1>Testing</h1>
-				<RatingForm />
+				<h1>A quick favor...</h1>
+				<p style={{fontSize: '16px'}}>
+					This site is powered by student-contributed ratings. In order to make this successful,
+					we need all the ratings we can get. Please take a second to submit <strong>one </strong> 
+					course rating and contribute to the site.
+				</p>
+					<div style={{width: '100%', textAlign: 'center'}}>
+					<div className='btn btn-primary' style={buttonStyle} onClick={function() {self.toggleModal(false)}}>
+						Thanks!
+					</div>
+				</div>
+				<br/>
+				<RatingForm 
+					onSuccess={function() {
+						self.setState({
+							reviewSubmitted: true
+						})
+					}}
+				/>
 			</Modal>
 
 		return (
@@ -64,6 +84,11 @@ var App = React.createClass({
 			</div>
 		);
 	},
+	toggleModal: function(show) {
+		this.setState({
+			showModal: show
+		})
+	},
 	onPageChange: function(newPage) {
 		var self = this;
 		this.setState({
@@ -93,7 +118,9 @@ var App = React.createClass({
 			query: '',
 			numResults: 0,
 			results: [],
-			status: 'waiting'
+			status: 'waiting',
+			showModal: true,
+			reviewSubmitted: false
 		}
 	}
 })
