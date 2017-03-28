@@ -47,6 +47,20 @@ var RatingForm = React.createClass({
 				interest: this.state.interest
 			};
 
+			// moved this method outside promise success to avoid UI hanging
+			self.setState({
+				courseId: '',
+				professor: '',
+				difficulty: 1,
+				interest: 1,
+				courseError: false,
+				profError: false,
+				messageClass: 'slide open'
+			})
+
+			self.refs.courseField.reset();
+			self.refs.profField.reset();
+
 			fetch(Globals.API_SUBMIT_RATING, {
 				method: 'post',
 				'headers': {
@@ -58,18 +72,11 @@ var RatingForm = React.createClass({
 			.then(Globals.handleFetchResponse)
 			.then(function(response) {
 				// on success, reset form and show success message
-				self.setState({
-					courseId: '',
-					professor: '',
-					difficulty: 1,
-					interest: 1,
-					courseError: false,
-					profError: false,
-					messageClass: 'slide open'
-				})
+				
 
-				self.refs.courseField.reset();
-				self.refs.profField.reset();
+				if (self.props.onSuccess) {
+					self.props.onSuccess();
+				}
 			})
 			.catch(function(err) {
 				console.log(err);
