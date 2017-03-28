@@ -113,13 +113,19 @@ var App = React.createClass({
 				})
 			})
 	},
+	componentDidMount: function() {
+		var showModal = Math.random() < Globals.MODAL_POPUP_FREQUENCY;
+		this.setState({
+			showModal: showModal
+		})
+	},
 	getInitialState: function() {
 		return {
 			query: '',
 			numResults: 0,
 			results: [],
 			status: 'waiting',
-			showModal: true,
+			showModal: false,
 			reviewSubmitted: false
 		}
 	}
