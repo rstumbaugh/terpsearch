@@ -3,6 +3,8 @@ var ReactDOM = require('react-dom');
 var Header = require('./modules/header.js');
 var Footer = require('./modules/footer.js');
 var Globals = require('./modules/globals.js');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 var Feedback = React.createClass({
 	getInitialState: function() {
