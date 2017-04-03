@@ -18,6 +18,10 @@
 
 		// schedule image
 		.img-wrap {
+			position: absolute;
+			float: right;
+			bottom: 0;
+			right: 40px;
 		}
 	}
 
@@ -63,7 +67,7 @@
 		width: 100%;
 		text-align: center;
 		color: white;
-		padding: 15px 0;
+		padding: 15px 0 60px 0;
 
 		h2 {
 		    overflow: hidden;
