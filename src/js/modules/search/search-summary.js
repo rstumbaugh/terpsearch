@@ -77,7 +77,7 @@ var SearchSummary = React.createClass({
 
 		var placeholderStyle = this.state.visible ? {display: 'none'} : {};
 		placeholderStyle.height = placeholderHeight;
-		console.log(placeholderStyle)
+		
 		return (
 			<div style={style}>
 				<div className='before'></div>
