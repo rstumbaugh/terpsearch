@@ -66,6 +66,18 @@ var SearchSummary = React.createClass({
 						 />
 
 		var style = this.state.numResults == 0 ? {display: 'none'} : {};
+		var className = this.state.showSummary ? (this.state.visible ? '' : 'fix') : 'hidden';
+
+		
+		var placeholderHeight;
+		var summaryWrap = document.querySelector('#summaryWrap');
+		if (summaryWrap) {
+			placeholderHeight = summaryWrap.clientHeight;
+		}
+
+		var placeholderStyle = this.state.visible ? {display: 'none'} : {};
+		placeholderStyle.height = placeholderHeight;
+		console.log(placeholderStyle)
 		return (
 			<div style={style}>
 				<div className='before'></div>
@@ -79,8 +91,7 @@ var SearchSummary = React.createClass({
 					<div className='sensor-anchor'></div>
 				</Sensor>
 				<div className='after'></div>
-				<div className={'row summary-wrap ' + (this.state.showSummary ? 
-															(this.state.visible ? '' : 'fix') : 'hidden')}>
+				<div id='summaryWrap' className={'row summary-wrap ' + className}>
 					<div className='summary col-sm-4'>
 						{'Found ' + this.state.totalResults + ' results, showing ' + this.state.numResults + '.'}
 					</div>
@@ -94,6 +105,7 @@ var SearchSummary = React.createClass({
 						</a>
 					</div>
 				</div>
+				<div style={placeholderStyle}></div>
 			</div>
 		)
 	}
