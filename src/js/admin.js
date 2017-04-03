@@ -101,9 +101,6 @@ var App = React.createClass({
 		.catch(function(err) {
 			console.log(err);
 		})
-
-
-		
 	},
 
 	getLogs: function(logs) {

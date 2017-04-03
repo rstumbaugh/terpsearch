@@ -26,10 +26,16 @@ var CourseComments = React.createClass({
 		}
 
 		for (var i = 0; i < max; i++) {
+			var paragraphs = this.state.comments[i].comment.split(/\r?\n/);
+			var text = [];
+			paragraphs.forEach(function(p, i) {
+				text.push(p);
+				text.push(<br key={i}/>)
+			})
 			comments.push(
 				<div className='comment' key={i}>
 					<blockquote>
-						{this.state.comments[i].comment}
+						{text}
 						<cite>{'\u2014 ' + (this.state.comments[i].name || 'anonymous')}</cite>
 					</blockquote>
 				</div>
