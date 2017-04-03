@@ -54,10 +54,12 @@ var App = React.createClass({
 							<BackPanel 
 								location='course page'
 							/>
-							<h1>{decodeURIComponent(this.state.id)}</h1>
-							<Comments
-								comments={this.state.comments}
-							/>
+							<div className='card'>
+								<h1>{decodeURIComponent(this.state.id)}</h1>
+								<Comments
+									comments={this.state.comments}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
