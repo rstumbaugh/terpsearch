@@ -25,7 +25,7 @@ var globals = {
 
 	EMAIL_REGEX: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 	
-	MODAL_POPUP_FREQUENCY: 0.05,
+	MODAL_POPUP_FREQUENCY: 0.08,
 
 	getQueryString: function() {
 	    var vars = [], hash;
