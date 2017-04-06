@@ -28,52 +28,45 @@ var App = React.createClass({
 	},
 
 	componentDidMount: function() {
-		this.loadCourseInformation()
-			.then(this.loadStatsComments)
+		var self = this;
+		Promise.all([this.loadCourseInformation(), this.loadStatsComments()])
+			.then(function(response) {
+				var courseInfo = response[0];
+				var statsComments = response[1];
+
+				self.setState({
+					courseInfo: courseInfo,
+					comments: statsComments.comments,
+					courseStats: {
+						profs: statsComments.profs,
+						diffCounts: statsComments.diffCounts,
+						intCounts: statsComments.intCounts,
+						avgDiff: statsComments.totalDiffAvg,
+						avgInt: statsComments.totalIntAvg,
+						numResponses: statsComments.totalCount
+					}
+				})
+			})
 			.catch(function(err) {
-				console.log(err)
+				console.log(err);
 			})
 	},
 
 	loadCourseInformation: function() {
-		var self = this;
-		return new Promise(function(resolve, reject) {
-			fetch(Globals.API_COURSES + '?course_id=' + self.state.courseId)
+		return fetch(Globals.API_COURSES + '?course_id=' + this.state.courseId)
 				.then(Globals.handleFetchResponse)
 				.then(function(response) {
-					self.setState({
-						courseInfo: response[1][0]
-					});
-					console.log('loaded course info');
-					resolve();
+					return response[1][0]
 				})
-			
-		})
 	},
 
 	loadStatsComments: function() {
 		var self = this;
-		return new Promise(function(resolve, reject) {
-			fetch(Globals.API_COURSE_STATS + '?course_id=' + self.state.courseId)
+		return fetch(Globals.API_COURSE_STATS + '?course_id=' + this.state.courseId)
 				.then(Globals.handleFetchResponse)
 				.then(function(response) {
-					self.setState({
-						comments: response.comments,
-						courseStats: {
-							profs: response.profs,
-							diffCounts: response.diffCounts,
-							intCounts: response.intCounts,
-							avgDiff: response.totalDiffAvg,
-							avgInt: response.totalIntAvg,
-							numResponses: response.totalCount
-						}
-					}, function() {
-						console.log('loaded stats and comments');
-						resolve()
-					})
-					
+					return response
 				})
-		})
 	},
 
 	getRequestBody: function(comment) {
@@ -152,14 +145,14 @@ var App = React.createClass({
 										<CircleProgress 
 											id='circleDiff'
 											text='Average Difficulty' 
-											value={this.state.courseInfo.avg_diff}
+											value={this.state.courseStats.avgDiff}
 										/>
 									</div>
 									<div className='circle-progress-wrap col-sm-6 col-md-12'>
 										<CircleProgress 
 											id='circleInt'
 											text='Average Interest'
-											value={this.state.courseInfo.avg_int} 
+											value={this.state.courseStats.avgInt} 
 										/>
 									</div>
 								</div>
