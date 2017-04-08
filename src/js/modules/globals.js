@@ -27,10 +27,10 @@ var globals = {
 	
 	MODAL_POPUP_FREQUENCY: 0.08,
 
-	getQueryString: function() {
+	getQueryString: function(url) {
 	    var vars = [], hash;
 
-	    var url = window.location.href;
+	    var url = url || window.location.href;
 
 	    if (!url.includes('?')) {
 	    	return []
