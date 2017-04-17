@@ -53,10 +53,10 @@ var SearchBox = React.createClass({
 		var sorts = [
 			['course_id', 'Course ID (A - Z)'],
 			['-course_id', 'Course ID (Z - A)'],
-			['difficulty', 'Difficulty (Low - High)'],
-			['-difficulty', 'Difficulty (High - Low)'],
-			['interest', 'Interest (Low - High)'],
-			['-interest', 'Interest (High - Low)']
+			['avg_diff', 'Difficulty (Low - High)'],
+			['-avg_diff', 'Difficulty (High - Low)'],
+			['avg_int', 'Interest (Low - High)'],
+			['-avg_int', 'Interest (High - Low)']
 		];
 
 		var perPage = ['25', '50', '100'];
