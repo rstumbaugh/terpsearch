@@ -27,6 +27,8 @@ var globals = {
 	
 	MODAL_POPUP_FREQUENCY: 0.08,
 
+	ADMIN_PAGES: ['logs', 'emails', 'users', 'feedback'],
+
 	getQueryString: function(url) {
 	    var vars = [], hash;
 
@@ -75,6 +77,10 @@ var globals = {
 		} else {
 			return response.text();
 		}
+	},
+
+	capitalize: function(str) {
+		return str.substring(0,1).toUpperCase() + str.substring(1);
 	}
 }
 
