@@ -52,7 +52,7 @@ var App = React.createClass({
 					}}
 				/>
 			</Modal>
-
+			console.log(this.state.results);
 		return (
 			<div>
 				<Header />
