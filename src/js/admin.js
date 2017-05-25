@@ -110,6 +110,32 @@ var App = React.createClass({
 			console.log(err);
 		})
 	},
+	sendEmail: function(subject, body) {
+		console.log('sending...');
+		console.log({subject: subject, body: body})
+
+		var obj = {
+			subject: subject,
+			message: body
+		};
+
+		var self = this;
+		fetch(Globals.API_ADMIN_SEND + '?token=' + this.state.token, {
+			method: 'POST',
+			'headers': {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(obj)
+		})
+		.then(Globals.handleFetchResponse)
+		.then(function(response) {
+			console.log('email sent!');
+		})
+		.catch(function(err) {
+			console.log(err);
+		})
+	},
 
 	getUsers: function(users) {
 		
@@ -159,7 +185,8 @@ var App = React.createClass({
 	render: function() {
 		var content;
 		var callbacks = {
-			removeItem: this.removeItem
+			removeItem: this.removeItem,
+			sendEmail: this.sendEmail
 		};
 
 		if (this.state.status == 'logging in') {

@@ -9,11 +9,11 @@ var Pages = React.createClass({
 	render: function() {
 		var active = this.props.active;
 		var {logs, emails, feedback, users} = this.props.content;
-		var {removeItem} = this.props.callbacks;
+		var {removeItem, sendEmail} = this.props.callbacks;
 
 		var components = {
 			logs: <Logs logs={logs} />,
-			emails: <Emails emails={emails} removeItem={removeItem} />,
+			emails: <Emails emails={emails} removeItem={removeItem} sendEmail={sendEmail} />,
 			users: <Users users={users} />,
 			feedback: <Feedback feedback={feedback} removeItem={removeItem} />
 		};
