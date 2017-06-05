@@ -8,8 +8,13 @@ var Feedback = require('./admin-feedback.js');
 var Pages = React.createClass({
 	render: function() {
 		var active = this.props.active;
-		var {logs, emails, feedback, users} = this.props.content;
-		var {removeItem, sendEmail} = this.props.callbacks;
+		var logs = this.props.content.logs;
+		var emails = this.props.content.emails;
+		var feedback = this.props.content.feedback;
+		var users = this.props.content.users;
+
+		var removeItem = this.props.callbacks.removeItem;
+		var sendEmail = this.props.callbacks.sendEmail;
 
 		var components = {
 			logs: <Logs logs={logs} />,

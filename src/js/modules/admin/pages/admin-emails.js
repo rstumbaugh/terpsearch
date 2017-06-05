@@ -34,7 +34,8 @@ var Emails = React.createClass({
 
 	sendEmail: function(e) {
 		e.preventDefault(); // don't submit form
-		var {subject, body} = this.state;
+		var subject = this.state.subject;
+		var body = this.state.body;
 
 		this.setState({
 			subject: '', 
