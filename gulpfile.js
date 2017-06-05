@@ -16,7 +16,10 @@ var replace = require('gulp-replace');
 var transform = require('vinyl-transform');
 var runSequence = require('run-sequence');
 
-var bundles = ['home', 'search', 'course', 'comments', 'admin', 'feedback', 'professor'];
+var bundles = [
+				'home', 'search', 'course', 'comments', 'admin', 'feedback', 'professor',
+				'rate'
+			  ];
 
 // DEVELOPMENT TASKS 
 // serve source folder, watch for changes (compile JS, reload on change)
