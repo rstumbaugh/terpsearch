@@ -110,6 +110,8 @@ var App = React.createClass({
 			console.log(err);
 		})
 	},
+
+	// sends email to all emails in DB
 	sendEmail: function(subject, body) {
 		console.log('sending...');
 		console.log({subject: subject, body: body})
@@ -120,7 +122,7 @@ var App = React.createClass({
 		};
 
 		var self = this;
-		fetch(Globals.API_ADMIN_SEND + '?token=' + this.state.token, {
+		fetch(Globals.API_EMAIL_SEND + '?token=' + this.state.token, {
 			method: 'POST',
 			'headers': {
 				'Accept': 'application/json',
@@ -137,56 +139,42 @@ var App = React.createClass({
 		})
 	},
 
-	getUsers: function(users) {
-		
-	},
+	// add email to list of emails, update all when received by server
+	addEmail: function(email) {
+		var self = this;
 
-	getEmails: function(emails) {
-		
-	},
-
-	
-
-	getContent: function() {
-		if (this.state.status == 'logged in') { // authorized and logged in
-			if (this.state.active == 'Logs') {
-				var rows = this.getLogs(this.state.logs);
-				return (
-					<table className='table table-bordered'>
-						<tbody>
-							<tr>
-								<th>Type</th>
-								<th>Content</th>
-								<th>Time</th>
-							</tr>
-							{rows}
-						</tbody>
-					</table>
-				)
-			} else if (this.state.active == 'Users') {
-				
-			} else if (this.state.active == 'Emails') {
-				return (
-					<table className='table table-bordered'>
-						<tbody>
-							<tr>
-								<th>{'Emails (' + Object.keys(this.state.emails).length + ' found)'}</th>
-								<th></th>
-							</tr>
-							{this.getEmails(this.state.emails)}
-						</tbody>
-					</table>
-				)
-			} else if (this.state.active == 'Feedback') {
-			}
-		}
+		fetch(Globals.API_ADD_EMAIL + '?token=' + this.state.token, {
+			method: 'POST',
+			'headers': {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({email: email})
+		})
+		.then(Globals.handleFetchResponse)
+		.then(function(response) {
+			return fetch(Globals.API_ADMIN_DASHBOARD + '?token=' + self.state.token)
+		})
+		.then(Globals.handleFetchResponse)
+		.then(function(response) {
+			self.setState({
+				content: {
+					emails: response.emails
+				}
+			})
+			console.log('emails updated');
+		})
+		.catch(function(err) {
+			console.log(err);
+		})
 	},
 
 	render: function() {
 		var content;
-		var callbacks = {
+		var callbacks = { // passed down to pages, all API calls managed here
 			removeItem: this.removeItem,
-			sendEmail: this.sendEmail
+			sendEmail: this.sendEmail,
+			addEmail: this.addEmail
 		};
 
 		if (this.state.status == 'logging in') {

@@ -15,10 +15,11 @@ var Pages = React.createClass({
 
 		var removeItem = this.props.callbacks.removeItem;
 		var sendEmail = this.props.callbacks.sendEmail;
+		var addEmail = this.props.callbacks.addEmail;
 
 		var components = {
 			logs: <Logs logs={logs} />,
-			emails: <Emails emails={emails} removeItem={removeItem} sendEmail={sendEmail} />,
+			emails: <Emails emails={emails} removeItem={removeItem} sendEmail={sendEmail} addEmail={addEmail} />,
 			users: <Users users={users} />,
 			feedback: <Feedback feedback={feedback} removeItem={removeItem} />
 		};
