@@ -57,5 +57,8 @@
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0",
     "watchify": "^3.9.0"
+  },
+  "dependencies": {
+    "webpack": "^2.6.1"
   }
 }
