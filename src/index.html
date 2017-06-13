@@ -1,179 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>TerpSearch</title>
+  <head>
+    <title>TerpSearch</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta property="og:url" content="https://terpsearch.me">
-        <meta property="og:title" content="TerpSearch">
-        <meta property="og:description" content="Course selection made simple.">
-        <meta property="og:image" content="https://terpsearch.me/img/logo.png">
-        <meta property="fb:app_id" content="350881175298575">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="https://terpsearch.me">
+    <meta property="og:title" content="TerpSearch">
+    <meta property="og:description" content="Course selection made simple.">
+    <meta property="og:image" content="https://terpsearch.me/img/logo.png">
+    <meta property="fb:app_id" content="350881175298575">
 
-        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
 
-        <link href="css/home.css" type="text/css" rel="stylesheet">
-   
-    </head>
+  <body>
+    <div id="app"></div>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    <body>
-
-        <div class="nav-header-wrap-white">
-            <a href="index.html">TerpSearch</a>
-        </div>
-
-        <div class="container-fluid home-wrap">
-            <div class="row landing">
-                <div class="hero-wrap col-md-5 col-md-offset-1">
-                    <div class="hero">
-                        <h1>Course selection <br/> made simple.</h1>
-                        <br>
-                        <a href="search.html" class="btn btn-lg btn-primary">Start Searching</a>
-                    </div>
-                    <div class="subtitle">
-                        <h2><i>Made for Terps, by Terps.</i></h2>
-                    </div>
-                </div>
-                <div class="img-wrap col-md-5 hidden-xs hidden-sm">
-                        <img class="col-md-12" src="img/schedule.png">
-                </div>
-            </div>
-
-            <div class="row icons">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="icon-wrap col-sm-12 col-md-4">
-                        <img src="img/shell.svg">
-                        <p>One of the only course selection applications made specifically for UMD students.</p>
-                    </div>
-                    <div class="icon-wrap col-sm-12 col-md-4">
-                        <img src="img/class.svg">
-                        <p>Find and filter classes based on difficulty, Gen Ed requirements, engagement, and subject.</p>
-                    </div>
-                    <div class="icon-wrap col-sm-12 col-md-4">
-                        <img src="img/students-cap.svg">
-                        <p>Course information contributed by University of Maryland students just like you.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row content">
-                <div class="content-heading">
-                    Features
-                </div>
-                <div class="col-sm-12">
-                    <div class="content-list card">
-                        <div class="row content-item">
-                            <div class="col-md-1 hidden-sm hidden-xs">
-                                <img src="img/search.svg" alt="search.svg" width="100%">
-                            </div>
-                            <div class="content-desc col-md-11">
-                                <h2>Powerful course searching</h2>
-                                It's never been easier to find courses that fit your interests. With the ability to search for courses by keyword, professor, difficulty, interest, and more, you'll be sure to find courses that fit your needs.
-                            </div>
-                        </div>
-                        <div class="row content-item">
-                            <div class="col-md-1 hidden-sm hidden-xs">
-                                <img src="img/ratings.svg" alt="ratings.svg" width="100%">
-                            </div>
-                            <div class="content-desc col-md-11">
-                                <h2>Student-contributed ratings and reviews</h2>
-                                Powered by ratings provided by UMD students, you can see what other students think about the courses you're considering. See what students thought about both the difficulty and interest of courses, as well as rating breakdowns by professor.
-                            </div>
-                        </div>
-                        <div class="row content-item">
-                            <div class="col-md-1 hidden-sm hidden-xs">
-                                <img src="img/desc.svg" alt="desc.svg" width="100%">
-                            </div>
-                            <div class="content-desc col-md-11">
-                                <h2>In-depth descriptions</h2>
-                                Course information and description is retrieved from the University of Maryland Schedule of Classes, so you can be sure that you have the most accurate and up-to-date course information available.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row coming-soon content">
-                <div class="content-heading">
-                    More coming soon
-                </div>
-                <div class="col-sm-12">
-                    <div class="content-list card">
-                        <div class="row content-item">
-                            <div class="col-md-6 coming-soon-content">
-                                <p>
-                                    You can check out the code and progress <a href="https://github.com/rstumbaugh/terpsearch" target="_blank">here</a> on GitHub.
-                                    In the meantime, contribute your own ratings to help out!<br/><br>
-
-                                    Feel free to <a href="mailto:admin@terpsearch.me" target="_blank">shoot me an email</a> with any suggestions you might have for the site or 
-                                    <a href="https://github.com/rstumbaugh/terpsearch/issues" target="_blank">report an issue on GitHub</a>. Some possible features on the To Do list include:
-                                    <br/>
-
-                                    <ul class="coming-soon-list">
-                                        <li>
-                                            <h3>Facebook integration</h3>
-                                            See courses your Facebook friends have taken and how they have rated them in the past.
-                                        </li>
-                                        <li>
-                                            <h3>Professor review pages</h3>
-                                            See all ratings for courses taught by a specific professor and leave comments and reviews.
-                                        </li>
-                                        <li>
-                                            <h3>Course suggestions</h3>
-                                            Given your remaining unfulfilled requirements and interests, find and suggest courses to fit your schedule.
-                                        </li>
-                                    </ul>
-                                </p>
-                            </div>
-                            <div class="col-md-6 rating-wrap">
-                                <div id="ratingForm" class="form-wrap col-sm-12"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="row feedback">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <h2>Questions? Comments? Suggestions?</h2>
-                    <p>
-                        Have any feedback about the site or idea? Maybe a cool idea you'd like to see? Feel free to leave an anonymous comment here. Comments, complaints, and suggestions are welcome.
-                    </p>
-                    <div id="feedback"></div>
-                </div>
-            </div>
-            
-            <div class="row content">
-                <div class="content-heading">
-                    Changelog
-                </div>
-                <div class="col-sm-12">
-                    <div class="content-list card">
-                        <div class="row content-item">
-                            <div class="col-sm-12">
-                                <h3 class="version-title">v1.0</h3>
-                                <p class="version-desc">
-                                    The first version of TerpSearch is out! This first version features advanced course searching, student-contributed ratings and reviews, and course information retrieved from Testudo. Excited to see where this will go in the future!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="footer"></div>
-        </div>
-
-        <script src="js/home.build.js"></script>
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-53954445-4', 'auto');
-            ga('send', 'pageview');
-        </script>
-    </body>
+      ga('create', 'UA-53954445-4', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
 </html>

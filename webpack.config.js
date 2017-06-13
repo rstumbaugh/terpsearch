@@ -7,7 +7,7 @@ const HtmlWebpackPluginConfig =  new HtmlWebpackPlugin({
   inject: 'body'
 });
 
-const config = {
+module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
     app: './js/app.js'
@@ -22,6 +22,7 @@ const config = {
       images: path.resolve(__dirname, './src/img/'),
       components: path.resolve(__dirname, './src/js/components/'),
       pages: path.resolve(__dirname, './src/js/pages/'),
+      js: path.resolve(__dirname, './src/js/'),
     },
   },
   module: {
@@ -37,7 +38,7 @@ const config = {
           loader: 'babel-loader',
           options: { presets: ['react'] },
         }],
-      }
+      },
       {
         test: /\.(sass|scss)$/,
         use: [{
@@ -63,5 +64,3 @@ const config = {
     historyApiFallback: true
   }
 };
-
-export default config;

@@ -12,6 +12,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Search from 'pages/search.js';
 import Header from 'components/header.js';
+import RatingForm from 'components/rating/rating-form.js';
 
 class Home extends React.Component {
   render() {
@@ -131,7 +132,9 @@ class Home extends React.Component {
                       </ul>
                     </div>
                     <div className='col-md-6 rating-wrap'>
-                      <div id='ratingForm' className='form-wrap col-sm-12'></div>
+                      <div className='form-wrap col-sm-12'>
+                        <RatingForm />
+                      </div>
                     </div>
                   </div>
                 </div>
