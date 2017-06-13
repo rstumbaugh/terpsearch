@@ -19,8 +19,10 @@
     "react-addons-css-transition-group": "^15.5.2",
     "react-addons-shallow-compare": "^15.5.2",
     "react-dom": "^15.5.4",
+    "react-modal": "^1.9.2",
     "react-router-dom": "^4.1.1",
     "react-selectize": "^2.1.0",
+    "react-visibility-sensor": "^3.10.0",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
     "webpack": "^2.6.1"
