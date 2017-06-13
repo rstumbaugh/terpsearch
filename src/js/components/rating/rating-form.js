@@ -94,7 +94,7 @@ class RatingForm extends Component {
 								textField='course_id' 
 								name='courseId'
 								ref='courseField'
-								onValueChange={this.handleChange}
+								onValueChange={this.handleChange.bind(this)}
 						 />;
 		var profField = <RemoteSimpleSelect 
 								placeholder='Enter a professor'
@@ -102,18 +102,18 @@ class RatingForm extends Component {
 								textField='name'
 								name='professor'
 								ref='profField'
-								onValueChange={this.handleChange}
+								onValueChange={this.handleChange.bind(this)}
 						/>;
 		var diffRating = <StarRating 
 								rating={this.state.difficulty} 
 								name='difficulty'
-								updateRating={this.handleChange}
+								updateRating={this.handleChange.bind(this)}
 						/>
 
 		var intRating = <StarRating 
 								rating={this.state.interest} 
 								name='interest'
-								updateRating={this.handleChange}
+								updateRating={this.handleChange.bind(this)}
 						/>
 		return (
 			<div className='row rating-form'>
@@ -144,7 +144,7 @@ class RatingForm extends Component {
 						/>
 						<div className='col-sm-12'>
 							<button className='full-width btn btn-primary' 
-									onClick={this.handleClick}>
+									onClick={this.handleClick.bind(this)}>
 									Submit
 							</button>
 						</div>

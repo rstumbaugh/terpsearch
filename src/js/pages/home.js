@@ -10,9 +10,12 @@ import descImg from 'images/desc.svg';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
+
 import Search from 'pages/search.js';
 import Header from 'components/header.js';
+import Footer from 'components/footer.js';
 import RatingForm from 'components/rating/rating-form.js';
+import Feedback from 'components/feedback.js';
 
 class Home extends React.Component {
   render() {
@@ -149,7 +152,7 @@ class Home extends React.Component {
                 Have any feedback about the site or idea? Maybe a cool idea you'd like to see? Feel free to leave an 
                 anonymous comment here. Comments, complaints, and suggestions are welcome.
               </p>
-              <div id='feedback'></div>
+              <Feedback />
             </div>
           </div>
           
@@ -173,7 +176,7 @@ class Home extends React.Component {
             </div>
           </div>
 
-        	<div id='footer'></div>
+        	<Footer />
   			</div>
       </div>
     )
