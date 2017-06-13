@@ -2,63 +2,36 @@
   "name": "terpsearch",
   "version": "1.0.0",
   "description": "Application to filter courses at the University of Maryland. Inspired by <a href=\"https://www.ourumd.com\">www.ourumd.com</a>. Utilizes API found at <a href=\"https://umd.io\">umd.io</a>, which contains information on all courses offered at UMD.",
-  "main": "gulpfile.js",
+  "main": "./src/app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "file-loader": "^0.11.2",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.3",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.6.1"
+  },
   "scripts": {
-    "build": "gulp build:prod; gulp replace-api"
+    "clean": "rm -rf dist",
+    "build": "rm -rf dist; webpack -p"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rstumbaugh/terpsearch.git"
   },
-  "author": "",
+  "author": "Ryan Stumbaugh",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rstumbaugh/terpsearch/issues"
   },
-  "homepage": "https://github.com/rstumbaugh/terpsearch#readme",
-  "devDependencies": {
-    "babelify": "^7.3.0",
-    "bootstrap-sass": "^3.3.7",
-    "browser-sync": "^2.18.6",
-    "browserify": "^14.0.0",
-    "chart.js": "^2.5.0",
-    "del": "^2.2.2",
-    "es6-promise": "^4.0.5",
-    "firebase": "^3.6.10",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-cache": "^0.4.5",
-    "gulp-clean-css": "^3.0.4",
-    "gulp-imagemin": "^3.1.1",
-    "gulp-react": "^3.1.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-sass": "^3.1.0",
-    "gulp-streamify": "^1.0.2",
-    "gulp-uglify": "^2.0.1",
-    "isomorphic-fetch": "^2.2.1",
-    "progressbar.js": "^1.0.1",
-    "react": "^15.4.2",
-    "react-addons-css-transition-group": "^15.4.2",
-    "react-addons-shallow-compare": "^15.4.2",
-    "react-ajax": "^0.1.1",
-    "react-chartjs-2": "^2.0.0",
-    "react-dom": "^15.4.2",
-    "react-modal": "^1.7.3",
-    "react-progressbar.js": "^0.2.0",
-    "react-scroll": "^1.4.6",
-    "react-scrollchor": "^2.2.0",
-    "react-select": "^1.0.0-rc.3",
-    "react-selectize": "^2.1.0",
-    "react-visibility-sensor": "^3.6.2",
-    "reactify": "^1.1.1",
-    "run-sequence": "^1.2.2",
-    "streamify": "^0.2.7",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "vinyl-transform": "^1.0.0",
-    "watchify": "^3.9.0"
-  },
-  "dependencies": {
-    "webpack": "^2.6.1"
-  }
+  "homepage": "https://github.com/rstumbaugh/terpsearch#readme"
 }
