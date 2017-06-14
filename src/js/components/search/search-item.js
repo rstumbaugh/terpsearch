@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 class SearchItem extends Component {
 	render() {
@@ -16,7 +17,11 @@ class SearchItem extends Component {
     return (
 			<div className='search-result card row'>
         <div className='col-sm-3 col-md-2'>
-        	<h2><a href={this.props.link}>{this.props.course_id}</a></h2>
+        	<h2>
+            <Link to='/course'>
+              {this.props.course_id}
+            </Link>
+          </h2>
           <div className='rating col-xs-6'>
             <span className='large'>{this.props.diffRating}</span><br/>
             Avg. Difficulty
@@ -28,7 +33,11 @@ class SearchItem extends Component {
           {noReviewsPanel}
         </div>
         <div className='col-sm-9 col-md-10'>
-          <h3><a href={this.props.link}>{this.props.title}</a></h3>
+          <h3>
+            <Link to='/course'>
+              {this.props.title}
+            </Link>
+          </h3>
           <div className='info row'>
             <div className='col-sm-4'>
               <strong>Last offered: </strong><span className='semester'>{this.props.lastOffered}</span>

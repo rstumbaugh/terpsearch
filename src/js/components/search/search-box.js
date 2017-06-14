@@ -270,7 +270,7 @@ class SearchBox extends Component {
 						</div>
 						<div className='clearfix visible-xs visible-sm visible-md visible-lg'></div>
 						<div className='col-sm-3'>
-							<div className='btn btn-primary' onClick={this.submitForm}>Search</div>
+							<div className='btn btn-primary' onClick={this.submitForm.bind(this)}>Search</div>
 						</div>
 					</form>
 				</div>

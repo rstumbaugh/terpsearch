@@ -9,7 +9,6 @@ import SearchBox from 'components/search/search-box.js';
 import SearchSummary from 'components/search/search-summary.js';
 import SearchResults from 'components/search/search-results.js';
 
-
 class Search extends Component {
 	constructor() {
 		super();
