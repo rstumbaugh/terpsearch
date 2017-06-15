@@ -15,6 +15,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js',
+    publicPath: '/',
   },
   resolve: {
     alias: {
@@ -36,7 +37,7 @@ module.exports = {
         exclude: [/node_modules/],
         use: [{
           loader: 'babel-loader',
-          options: { presets: ['react'] },
+          options: { presets: ['react', 'es2015'] },
         }],
       },
       {
@@ -60,7 +61,7 @@ module.exports = {
   },
   plugins: [ HtmlWebpackPluginConfig ],
   devServer: {
-    contentBase: path.resolve(__dirname, './src'),
+    contentBase: './src',
     historyApiFallback: true
   }
 };
