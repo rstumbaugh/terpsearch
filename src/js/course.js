@@ -1,83 +1,83 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var CircleProgress = require('./modules/info/circle-progress.js');
-var CourseInfo = require('./modules/info/course-info.js');
-var RatingBreakdown = require('./modules/info/rating-breakdown.js');
-var Comments = require('./modules/info/info-comments.js');
-var CommentInput = require('./modules/info/comment-input.js');
-var RatingForm = require('./modules/rating/rating-form.js');
-var Header = require('./modules/header.js');
-var BackPanel = require('./modules/back-panel.js');
-var Footer = require('./modules/footer.js');
-var Globals = require('./modules/globals.js');
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
+import styles from 'styles/info.scss';
+import React, {Component} from 'react';
+import * as isofetch from 'isomorphic-fetch';
 
-var commentScrollName = 'commentInputElement';
+import CourseInfo from 'components/course/course-info.js';
+import CircleProgress from 'components/circle-progress.js';
+import RatingBreakdown from 'components/course/rating-breakdown.js';
+import Comments from 'components/course/infocomments.js';
+import CommentInput from 'components/course/comment-input.js';
+import RatingForm from 'components/rating-form.js';
 
-var App = React.createClass({
-	getInitialState: function() {
-		return {
+import Header from 'components/header.js';
+import Footer from 'components/footer.js';
+import Globals from 'components/globals.js';
+
+class Course extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
 			courseInfo: {},
 			courseStats: {},
-			courseId: Globals.getQueryString().course_id.split('#')[0],
+			courseId: props.params.courseId,
 			comments: [],
-			status: 'waiting',
-			from: decodeURIComponent(Globals.getQueryString().from)
+			status: 'waiting'
 		}
-	},
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		var self = this;
-		Promise.all([this.loadCourseInformation(), this.loadStatsComments()])
-			.then(function(response) {
-				var courseInfo = response[0];
-				var statsComments = response[1];
+			Promise.all([this.loadCourseInformation(), this.loadStatsComments()])
+				.then(function(response) {
+					var courseInfo = response[0];
+					var statsComments = response[1];
 
-				self.setState({
-					courseInfo: courseInfo,
-					comments: statsComments.comments,
-					courseStats: {
-						profs: statsComments.profs,
-						diffCounts: statsComments.diffCounts,
-						intCounts: statsComments.intCounts,
-						avgDiff: statsComments.totalDiffAvg,
-						avgInt: statsComments.totalIntAvg,
-						numResponses: statsComments.totalCount
-					}
+					self.setState({
+						courseInfo: courseInfo,
+						comments: statsComments.comments,
+						courseStats: {
+							profs: statsComments.profs,
+							diffCounts: statsComments.diffCounts,
+							intCounts: statsComments.intCounts,
+							avgDiff: statsComments.totalDiffAvg,
+							avgInt: statsComments.totalIntAvg,
+							numResponses: statsComments.totalCount
+						}
+					})
 				})
-			})
-			.catch(function(err) {
-				console.log(err);
-			})
-	},
+				.catch(function(err) {
+					console.log(err);
+				})
+	}
 
-	loadCourseInformation: function() {
-		return fetch(Globals.API_COURSES + '?course_id=' + this.state.courseId)
+	loadCourseInformation() {
+		return 
+			fetch(Globals.API_COURSES + '?course_id=' + this.state.courseId)
 				.then(Globals.handleFetchResponse)
 				.then(function(response) {
 					return response[1][0]
 				})
-	},
+	}
 
-	loadStatsComments: function() {
-		var self = this;
-		return fetch(Globals.API_COURSE_STATS + '?course_id=' + this.state.courseId)
+	loadStatsComments() {
+		return 
+			fetch(Globals.API_COURSE_STATS + '?course_id=' + this.state.courseId)
 				.then(Globals.handleFetchResponse)
 				.then(function(response) {
 					return response
 				})
-	},
+	}
 
-	getRequestBody: function(comment) {
+	getRequestBody(comment) {
 		return {
 			comment: comment.text,
 			name: comment.name,
 			course_id: this.state.courseId
 		}
-	},
+	}
 
-	render: function() {
+	render() {
 		var diffStats = {
 			average: 0,
 			counts: [0,0,0,0,0],
@@ -124,8 +124,6 @@ var App = React.createClass({
 				breakdown: ints
 			};
 		}
-
-		var backPanel = this.state.from ? <BackPanel location={this.state.from} /> : undefined;
 
 		return (
 			<div>
@@ -211,6 +209,6 @@ var App = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-ReactDOM.render(<App />, document.getElementById('app'))
+export default Course;

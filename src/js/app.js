@@ -12,7 +12,7 @@ class App extends React.Component {
 				<div>
 					<Route exact path='/' component={Home} />
 					<Route path='/search' component={Search} />
-					<Route path='/course' component={Course} />
+					<Route path='/course/:courseId' component={Course} />
 				</div>
 			</BrowserRouter>
 		)

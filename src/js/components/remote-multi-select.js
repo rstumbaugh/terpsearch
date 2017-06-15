@@ -1,7 +1,6 @@
 var React = require('react');
 var MultiSelect = require('react-selectize').MultiSelect;
 var Globals = require('./globals.js');
-require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 var RemoteMultiSelect = React.createClass({
