@@ -5,6 +5,7 @@ import Home from 'pages/home.js';
 import Search from 'pages/search.js';
 import Course from 'pages/course.js';
 import Feedback from 'pages/feedback.js';
+import Rating from 'pages/rating.js';
 
 class App extends React.Component {
 	render () {
@@ -15,6 +16,7 @@ class App extends React.Component {
 					<Route path='/search' component={Search} />
 					<Route path='/course/:courseId' component={Course} />
 					<Route path='/feedback' component={Feedback} />
+					<Route path='/rate' component={Rating} />
 				</div>
 			</BrowserRouter>
 		)
