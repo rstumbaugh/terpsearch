@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 class Footer extends Component {
     render() {
@@ -11,7 +12,7 @@ class Footer extends Component {
             <div className="col-sm-12">
               <div className="footer-links col-sm-6 col-sm-offset-3">
                 <div className="col-xs-4">
-                  <a href="admin.html">Admin Login</a>
+                  <Link to='/admin'>Admin Login</Link>
                 </div>
                 <div className="col-xs-4">
                   <a href='feedback.html'>Contact</a>
