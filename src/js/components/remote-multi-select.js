@@ -1,10 +1,36 @@
-var React = require('react');
-var MultiSelect = require('react-selectize').MultiSelect;
-var Globals = require('./globals.js');
-require('isomorphic-fetch');
+import React, {Component} from 'react';
+import {MultiSelect} from 'react-selectize';
+import Globals from 'components/globals.js';
+import * as isofetch from 'isomorphic-fetch';
 
-var RemoteMultiSelect = React.createClass({
-	render: function() {
+class RemoteMultiSelect extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			search: '',
+			results: [],
+			allOptions: [],
+			values: [],
+			minSearchLength: props.minSearchLength || 2
+		}
+	}
+
+	componentDidMount() {
+		var self = this;
+		if (!this.props.loadOnSearchChange) {
+			fetch(this.props.url)
+				.then(Globals.handleFetchResponse)
+				.then(function(response) {
+					self.setState({
+						allOptions: response,
+						results: response
+					})
+				})
+		}
+	}
+
+	render() {
 		var self = this;
 		return (
 			<MultiSelect
@@ -75,32 +101,7 @@ var RemoteMultiSelect = React.createClass({
 			/>
 		)
 
-	},
-
-	componentDidMount: function() {
-		var self = this;
-		if (!this.props.loadOnSearchChange) {
-			fetch(this.props.url)
-				.then(Globals.handleFetchResponse)
-				.then(function(response) {
-					self.setState({
-						allOptions: response,
-						results: response
-					})
-				})
-		}
-	},
-
-	getInitialState: function() {
-		return {
-			search: '',
-			results: [],
-			allOptions: [],
-			values: [],
-			minSearchLength: this.props.minSearchLength || 2
-		}
 	}
-})
+}
 
-
-module.exports = RemoteMultiSelect;
+export default RemoteMultiSelect;

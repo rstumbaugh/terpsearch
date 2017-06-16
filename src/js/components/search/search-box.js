@@ -144,7 +144,7 @@ class SearchBox extends Component {
 								textField='name'
 								name='prof'
 								loadOnSearchChange={true}
-								onValuesChange={this.handleChange}
+								onValuesChange={this.handleChange.bind(this)}
 						 />
 		var departments = <RemoteMultiSelect
 								placeholder='Enter departments (e.g. AASP)'
@@ -153,7 +153,7 @@ class SearchBox extends Component {
 								name='dept'
 								minSearchLength={0}
 								loadOnSearchChange={false}
-								onValuesChange={this.handleChange}
+								onValuesChange={this.handleChange.bind(this)}
 						 />
 		var genedComponent = <MultiSelect
 								placeholder='Enter Gen Eds (e.g. DSHU)'

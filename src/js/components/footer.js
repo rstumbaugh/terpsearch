@@ -27,7 +27,7 @@ class Footer extends Component {
               <a href="http://www.flaticon.com/authors/madebyoliver" target="_blank" title="Madebyoliver"> Madebyoliver </a> 
               from <a href="http://www.flaticon.com" target="_blank" title="Flaticon">
               www.flaticon.com</a> is licensed by 
-              <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 
+              <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank"> CC 3.0 
               BY</a>
             </div>
           </div>

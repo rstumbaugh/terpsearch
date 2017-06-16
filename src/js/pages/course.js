@@ -29,9 +29,6 @@ class Course extends Component {
 	componentDidMount() {
 		var self = this;
 
-		var p1 = this.loadCourseInformation();
-		var p2 = this.loadStatsComments();
-
 		Promise.all([this.loadCourseInformation(), this.loadStatsComments()])
 			.then(response => {
 				console.log(response)
