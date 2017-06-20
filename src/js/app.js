@@ -20,7 +20,7 @@ class App extends React.Component {
 					<Route path='/feedback' component={Feedback} />
 					<Route path='/rate' component={Rating} />
 					<Route path='/admin' component={Admin} />
-					<Route path='/comments', component={Comments} />
+					<Route path='/comments/:type/:id' component={Comments} />
 				</div>
 			</BrowserRouter>
 		)

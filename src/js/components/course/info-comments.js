@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 class CourseComments extends Component {
 	constructor() {
@@ -54,10 +55,7 @@ class CourseComments extends Component {
 		var link;
 
 		if (this.props.max && this.state.comments.length > this.props.max) {
-			link = 
-				<a href={'comments.html?id=' + this.props.id + '&type=' + this.props.type}>
-					View all
-				</a>
+			link = <Link to={`/comments/${this.props.type}/${this.props.id}`}>View all</Link>
 		}
 
 		if (this.state.comments.length) {

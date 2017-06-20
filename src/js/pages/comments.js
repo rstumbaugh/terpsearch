@@ -3,18 +3,18 @@ import React, {Component} from 'react';
 import * as isofetch from 'isomorphic-fetch';
 import Header from 'components/header.js';
 import Footer from 'components/footer.js';
-import Comments from 'components/courses/info-comments.js';
+import CourseComments from 'components/course/info-comments.js';
 import Globals from 'components/globals.js';
 
 class Comments extends Component {
-	render(props) {
+	constructor(props) {
 		super(props);
 
 		this.state = {
 			id: props.match.params.id,
 			type: props.match.params.type,
 			comments: []
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -51,7 +51,7 @@ class Comments extends Component {
 						<div className='col-sm-10 col-sm-offset-1'>
 							<div className='card'>
 								<h1>{decodeURIComponent(this.state.id)}</h1>
-								<Comments
+								<CourseComments
 									comments={this.state.comments}
 								/>
 							</div>
