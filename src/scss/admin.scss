@@ -1,7 +1,6 @@
 @import "partials/main";
 
 .nav-header-wrap {
-	margin-bottom: 0;
 }
 
 #app,
@@ -11,6 +10,7 @@
 }
 
 .content-wrap {
+	margin-top: -15px;
 	background-color: white;
 
 	&, & > .row {
