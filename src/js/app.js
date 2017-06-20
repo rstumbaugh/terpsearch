@@ -7,6 +7,7 @@ import Course from 'pages/course.js';
 import Feedback from 'pages/feedback.js';
 import Rating from 'pages/rating.js';
 import Admin from 'pages/admin.js';
+import Comments from 'pages/comments.js';
 
 class App extends React.Component {
 	render () {
@@ -19,6 +20,7 @@ class App extends React.Component {
 					<Route path='/feedback' component={Feedback} />
 					<Route path='/rate' component={Rating} />
 					<Route path='/admin' component={Admin} />
+					<Route path='/comments', component={Comments} />
 				</div>
 			</BrowserRouter>
 		)
