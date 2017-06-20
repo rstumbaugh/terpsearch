@@ -1,28 +1,32 @@
 @import "partials/main";
 
-.content-wrap {
+.nav-header-wrap {
+	margin-bottom: 0;
+}
+
+#app,
+#app > div[data-reactroot],
+#app > div[data-reactroot] > div {
 	height: 100%;
+}
+
+.content-wrap {
 	background-color: white;
 
-	& > div {
+	&, & > .row {
 		height: 100%;
-	}
-
-	.container-fluid {
-		height: calc(100% - 80px);
 	}
 }
 
-.sidebar-wrap {
+.admin-sidebar-wrap {
 	height: 100%;
 	padding: 0;
 
 	.sidebar {
+		height: 100%;
 		background-color: $gray;
 		border: 1px solid $red;
 		border-top: 0;
-		height: 100%;
-		width: 100%;
 		padding: 0;
 
 		.sidebar-item {
