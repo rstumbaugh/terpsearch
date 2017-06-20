@@ -1,7 +1,7 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var Users = React.createClass({
-	getUsers: function(users) {
+class Users extends Component {
+	getUsers(users) {
 		var rows = []
 
 		for (var key in users) {
@@ -15,9 +15,9 @@ var Users = React.createClass({
 		}
 
 		return rows;
-	},
+	}
 
-	render: function() {
+	render() {
 		var users = this.props.users;
 		var admins = {};
 
@@ -58,7 +58,6 @@ var Users = React.createClass({
 			</div>
 		)
 	}
-});
+}
 
-
-module.exports = Users;
+export default Users;

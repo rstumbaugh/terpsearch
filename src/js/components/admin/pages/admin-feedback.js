@@ -1,7 +1,7 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var Feedback = React.createClass({
-	getFeedback: function(feedback) {
+class Feedback extends Component {
+	getFeedback(feedback) {
 		var rows = [];
 
 		var sortedKeys = Object.keys(feedback).sort(function(a,b) {
@@ -28,9 +28,9 @@ var Feedback = React.createClass({
 		}
 
 		return rows;
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<table className='table table-bordered'>
 				<tbody>
@@ -45,8 +45,7 @@ var Feedback = React.createClass({
 			</table>
 		)
 	}
-});
+}
 
-
-module.exports = Feedback;
+export default Feedback;
 

@@ -1,21 +1,23 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var Emails = React.createClass({
-	getInitialState: function() {
-		return {
+class Emails extends Component {
+	constructor() {
+		super();
+
+		this.state = {
 			email: '',
 			subject: '',
 			body: ''
 		}
-	},
+	}
 
-	updateParam: function(param, e) {
+	updateParam(param, e) {
 		var s = {};
 		s[param] = e.target.value;
 		this.setState(s);
-	},
+	}
 
-	getEmails: function(emails) {
+	getEmails(emails) {
 		var rows = [];
 
 		for (var key in emails) {
@@ -31,9 +33,9 @@ var Emails = React.createClass({
 			)
 		}
 		return rows;
-	},
+	}
 
-	sendEmail: function(e) {
+	sendEmail(e) {
 		e.preventDefault(); // don't submit form
 		var subject = this.state.subject;
 		var body = this.state.body;
@@ -44,9 +46,9 @@ var Emails = React.createClass({
 		});
 		
 		this.props.sendEmail(subject, body);
-	},
+	}
 
-	addEmail: function(e) {
+	addEmail(e) {
 		e.preventDefault();
 		var email = this.state.email;
 
@@ -55,9 +57,9 @@ var Emails = React.createClass({
 		});
 
 		this.props.addEmail(email);
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div>
 				<div className='row'>
@@ -118,7 +120,6 @@ var Emails = React.createClass({
 			</div>
 		)
 	}
-});
+}
 
-
-module.exports = Emails;
+export default Emails;

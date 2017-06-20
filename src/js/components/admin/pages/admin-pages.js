@@ -1,12 +1,12 @@
-var React = require('react');
-var Globals = require('../../globals.js');
-var Logs = require('./admin-logs.js');
-var Emails = require('./admin-emails.js');
-var Users = require('./admin-users.js');
-var Feedback = require('./admin-feedback.js');
+import React, {Component} from 'react';
+import Globals from 'components/globals.js';
+import Logs from './admin-logs.js';
+import Emails from './admin-emails.js';
+import Users from './admin-users.js';
+import Feedback from './admin-feedback.js';
 
-var Pages = React.createClass({
-	render: function() {
+class Pages extends Component {
+	render() {
 		var active = this.props.active;
 		var logs = this.props.content.logs;
 		var emails = this.props.content.emails;
@@ -26,6 +26,6 @@ var Pages = React.createClass({
 
 		return active ? components[active] : <h6>nothing to see here</h6>;
 	}
-});
+}
 
-module.exports = Pages;
+export default Pages;

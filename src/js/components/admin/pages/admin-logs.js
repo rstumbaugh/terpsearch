@@ -1,7 +1,7 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var Logs = React.createClass({
-	getLogs: function(logs) {
+class Logs extends Component {
+	getLogs(logs) {
 		var rows = [];
 
 		// sort logs by time
@@ -38,9 +38,9 @@ var Logs = React.createClass({
 		}
 
 		return rows;
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<table className='table table-bordered'>
 				<tbody>
@@ -54,7 +54,6 @@ var Logs = React.createClass({
 			</table>
 		)
 	}
-});
+}
 
-
-module.exports = Logs;
+export default Logs;
