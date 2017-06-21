@@ -9,9 +9,8 @@ import Comments from 'components/course/info-comments.js';
 import CommentInput from 'components/course/comment-input.js';
 import RatingForm from 'components/rating/rating-form.js';
 
-import Header from 'components/header.js';
-import Footer from 'components/footer.js';
-import Globals from 'components/globals.js';
+import {Header, Content, Footer} from 'utils/layout.js';
+import Globals from 'globals';
 
 class Course extends Component {
 	constructor(props) {

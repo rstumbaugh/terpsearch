@@ -2,9 +2,8 @@ import styles from 'styles/search.scss';
 import React, {Component} from 'react';
 import * as isofetch from 'isomorphic-fetch'
 
-import Header from 'components/header.js';
-import Footer from 'components/footer.js';
-import Globals from 'components/globals.js';
+import {Header, Content, Footer} from 'utils/layout.js';
+import Globals from 'globals';
 import SearchBox from 'components/search/search-box.js';
 import SearchSummary from 'components/search/search-summary.js';
 import SearchResults from 'components/search/search-results.js';

@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 
 
 // get firebase config from API

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {MultiSelect} from 'react-selectize';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 import * as isofetch from 'isomorphic-fetch';
 
 class RemoteMultiSelect extends Component {

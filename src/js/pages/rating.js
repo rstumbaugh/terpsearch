@@ -1,8 +1,7 @@
 import styles from 'styles/info.scss';
 import React, {Component} from 'react';
 import RatingForm from 'components/rating/rating-form.js';
-import Header from 'components/header.js';
-import Footer from 'components/footer.js';
+import {Header, Content, Footer} from 'utils/layout.js';
 
 class Rating extends Component {
 	render() {

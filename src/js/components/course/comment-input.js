@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 import * as isofetch from 'isomorphic-fetch';
 
 class CommentInput extends Component {

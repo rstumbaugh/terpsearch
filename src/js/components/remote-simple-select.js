@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {ReactSelectize, SimpleSelect} from 'react-selectize';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 import * as isofetch from 'isomorphic-fetch';
 
 class RemoteSimpleSelect extends Component {

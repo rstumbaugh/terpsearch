@@ -3,7 +3,7 @@ import {ReactSelectize, SimpleSelect, MultiSelect} from 'react-selectize';
 import RemoteMultiSelect from 'components/remote-multi-select.js';
 import StaticSimpleSelect from 'components/static-simple-select.js';
 import SearchComponent from './search-box-component.js';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 
 class SearchBox extends Component {
 	constructor() {

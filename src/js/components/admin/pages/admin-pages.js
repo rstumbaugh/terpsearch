@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 import Logs from './admin-logs.js';
 import Emails from './admin-emails.js';
 import Users from './admin-users.js';

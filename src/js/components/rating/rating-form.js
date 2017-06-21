@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import RatingFormComponent from './rating-form-component.js';
 import StarRating from './star-rating.js';
 import RemoteSimpleSelect from 'components/remote-simple-select.js';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 import * as isofetch from 'isomorphic-fetch';
 
 class RatingForm extends Component {

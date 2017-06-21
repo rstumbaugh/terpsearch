@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SearchItem from './search-item.js';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 
 class SearchResults extends Component {
 	constructor() {

@@ -12,15 +12,14 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 import Search from 'pages/search.js';
-import Header from 'components/header.js';
-import Footer from 'components/footer.js';
+import {Header, Content, Footer} from 'utils/layout.js';
 import RatingForm from 'components/rating/rating-form.js';
 import Feedback from 'components/feedback.js';
 
 class Home extends React.Component {
   render() {
     return (
-      <div className='row'>
+      <div>
         <Header white />
   			<div className='container-fluid home-wrap'>
   				<div className='row landing'>

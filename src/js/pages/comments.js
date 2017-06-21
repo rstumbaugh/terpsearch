@@ -1,10 +1,9 @@
 import styles from 'styles/info.scss';
 import React, {Component} from 'react';
 import * as isofetch from 'isomorphic-fetch';
-import Header from 'components/header.js';
-import Footer from 'components/footer.js';
+import {Header, Content, Footer} from 'utils/layout.js';
 import CourseComments from 'components/course/info-comments.js';
-import Globals from 'components/globals.js';
+import Globals from 'globals';
 
 class Comments extends Component {
 	constructor(props) {

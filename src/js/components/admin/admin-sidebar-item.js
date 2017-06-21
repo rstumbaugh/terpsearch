@@ -1,5 +1,5 @@
 var React = require('react');
-var Globals = require('../globals.js');
+var Globals = require('globals');
 
 var SidebarItem = React.createClass({
 	render: function() {

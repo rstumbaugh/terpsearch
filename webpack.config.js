@@ -24,6 +24,8 @@ module.exports = {
       components: path.resolve(__dirname, './src/js/components/'),
       pages: path.resolve(__dirname, './src/js/pages/'),
       js: path.resolve(__dirname, './src/js/'),
+      globals: path.resolve(__dirname, './src/js/utils/globals.js'),
+      utils: path.resolve(__dirname, './src/js/utils/')
     },
   },
   module: {
