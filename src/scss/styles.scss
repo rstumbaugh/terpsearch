@@ -1,0 +1,12 @@
+// import global styles
+@import 'common/vars';
+@import 'common/header';
+@import 'common/content';
+@import 'common/footer';
+@import 'common/card';
+@import 'common/ratings';
+@import 'common/selectize';
+@import 'common/slide';
+
+// import page-specific styles
+@import 'home/home';

@@ -1,4 +1,3 @@
-import styles from 'styles/info.scss';
 import React, {Component} from 'react';
 import RatingForm from 'components/rating/rating-form.js';
 import {Header, Content, Footer} from 'utils/layout.js';

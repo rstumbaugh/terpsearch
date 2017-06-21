@@ -1,4 +1,3 @@
-import styles from 'styles/info.scss';
 import React, {Component} from 'react';
 import * as isofetch from 'isomorphic-fetch';
 import {Header, Content, Footer} from 'utils/layout.js';

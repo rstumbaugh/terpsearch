@@ -1,4 +1,3 @@
-import * as styles from 'styles/admin.scss';
 import React, {Component} from 'react';
 import {Header, Content, Footer} from 'utils/layout.js';
 import Sidebar from 'components/admin/admin-sidebar.js';

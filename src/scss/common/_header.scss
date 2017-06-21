@@ -1,0 +1,35 @@
+.nav-header-wrap {
+	$fonts: "Lobster", "Helvetica Neue", Helvetica;
+
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+
+	text-align: center;
+	padding: 0;
+	margin-bottom: 15px;
+
+	font-size: 40px;
+	font-weight: 700;
+	color: white;
+	background-color: $red;
+
+	font-family: $fonts;
+
+	a {
+		color: inherit;
+
+		&:hover {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+}
+
+.nav-header-wrap-white {
+	@extend .nav-header-wrap;
+
+	color: $red;
+	background-color: white;
+	margin-bottom: 0;
+}

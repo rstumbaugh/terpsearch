@@ -1,0 +1,16 @@
+.slide {
+	overflow: hidden;
+	position: absolute;
+
+	&.closed {
+		max-height: 0px;
+
+		@include transition(max-height .75s linear);
+	}
+
+	&.open {
+		max-height: 50px;
+
+		@include transition(max-height .75s linear);
+	}
+}

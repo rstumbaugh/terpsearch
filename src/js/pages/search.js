@@ -1,4 +1,3 @@
-import styles from 'styles/search.scss';
 import React, {Component} from 'react';
 import * as isofetch from 'isomorphic-fetch'
 

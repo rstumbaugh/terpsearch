@@ -1,4 +1,3 @@
-import styles from 'styles/home.scss';
 import scheduleImg from 'images/schedule.png';
 import shellImg from 'images/shell.svg';
 import classImg from 'images/class.svg';
@@ -21,91 +20,98 @@ class Home extends React.Component {
     return (
       <div>
         <Header white />
-  			<div className='container-fluid home-wrap'>
-  				<div className='row landing'>
-  					<div className='hero-wrap col-md-5 col-md-offset-1'>
-  						<div className='hero'>
-  							<h1>Course selection <br/> made simple.</h1>
-  							<br/>
-                <Link to='/search' className='btn btn-lg btn-primary'>Start Searching</Link>
-  						</div>
-  						<div className='subtitle'>
-  							<h2><i>Made for Terps, by Terps.</i></h2>
-  						</div>
-  					</div>
-  					<div className='img-wrap col-md-5 hidden-xs hidden-sm'>
-  						<img className='col-sm-12' src={scheduleImg} />
-  					</div>
-  				</div>
-
-  				<div className='row icons'>
-	          <div className='col-sm-12 col-md-10 col-md-offset-1'>
-              <div className='icon-wrap col-sm-12 col-md-4'>
-                <img src={shellImg} />
-                <p>One of the only course selection applications made specifically for UMD students.</p>
+        <Content>
+          <div className='home-wrap'>
+            <div className='home-landing row'>
+              <div className='home-hero-wrap col-md-5 col-md-offset-1'>
+                <div className='home-hero'>
+                  <h1>Course selection <br/> made simple.</h1>
+                  <br/>
+                  <Link to='/search' className='btn btn-lg btn-primary'>Start Searching</Link>
+                </div>
+                <div className='home-hero-subtitle'>
+                  <h2><i>Made by Terps, for Terps</i></h2>
+                </div>
               </div>
-              <div className='icon-wrap col-sm-12 col-md-4'>
-                <img src={classImg} />
-                <p>Find and filter classes based on difficulty, Gen Ed requirements, engagement, and subject.</p>
+              <div className='home-img col-md-5 hidden-xs hidden-sm'>
+                <img className='col-sm-12' src={scheduleImg} />
               </div>
-              <div className='icon-wrap col-sm-12 col-md-4'>
-                <img src={capImg} />
-                <p>Course information contributed by University of Maryland students just like you.</p>
-              </div>
-	          </div>
-          </div>
-          
-          <div className='row content'>
-            <div className='content-heading'>
-            	Features
             </div>
-            <div className='col-sm-12'>
-              <div className='content-list card'>
-                <div className='row content-item'>
-                  <div className='col-md-1 hidden-sm hidden-xs'>
-                  	<img src={searchImg} alt='search.svg' width='100%' />
-                  </div>
-                  <div className='content-desc col-md-11'>
-                    <h2>Powerful course searching</h2>
-                    It's never been easier to find courses that fit your interests. With the ability to search for 
-                    courses by keyword, professor, difficulty, interest, and more, you'll be sure to find courses 
-                    that fit your needs.
-                  </div>
+
+            <div className='home-icon-list row'>
+              <div className='col-sm-12 col-md-10 col-md-offset-1'>
+                <div className='home-icon-wrap col-sm-12 col-md-4'>
+                  <img src={shellImg} />
+                  <p>One of the only course selection applications made specifically for UMD students.</p>
                 </div>
-                <div className='row content-item'>
-                  <div className='col-md-1 hidden-sm hidden-xs'>
-                    <img src={ratingImg} alt='ratings.svg' width='100%' />
-                  </div>
-                  <div className='content-desc col-md-11'>
-                    <h2>Student-contributed ratings and reviews</h2>
-                    Powered by ratings provided by UMD students, you can see what other students think about the 
-                    courses you're considering. See what students thought about both the difficulty and interest of 
-                    courses, as well as rating breakdowns by professor.
-                  </div>
+                <div className='home-icon-wrap col-sm-12 col-md-4'>
+                  <img src={classImg} />
+                  <p>Find and filter classes based on difficulty, Gen Ed requirements, engagement, and subject.</p>
                 </div>
-                <div className='row content-item'>
-                    <div className='col-md-1 hidden-sm hidden-xs'>
-                      <img src={descImg} alt='desc.svg' width='100%' />
-                    </div>
-                    <div className='content-desc col-md-11'>
-                      <h2>In-depth descriptions</h2>
-                      Course information and description is retrieved from the University of Maryland Schedule of 
-                      Classes, so you can be sure that you have the most accurate and up-to-date course information 
-                      available.
-                    </div>
+                <div className='home-icon-wrap col-sm-12 col-md-4'>
+                  <img src={capImg} />
+                  <p>Course information contributed by University of Maryland students just like you.</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className='row coming-soon content'>
-              <div className='content-heading'>
-                  More coming soon
+            <div className='home-content-wrap row'>
+              <div className='home-content-heading'>
+                Features
               </div>
-              <div className='col-sm-12'>
-                <div className='content-list card'>
-                  <div className='row content-item'>
-                    <div className='col-md-6 coming-soon-content'>
+              <div className='col-md-10 col-md-offset-1'>
+                <div className='card'>
+                  <div className='home-content-item row'>
+                    <div className='col-md-1 hidden-xs hidden-sm'>
+                      <img src={searchImg} alt='search.svg' className='home-content-img' />
+                    </div>
+                    <div className='home-content-desc col-md-11'>
+                      <h2 className='home-content-title'>Powerful course searching</h2>
+                      <p>
+                        It's never been easier to find courses that fit your interests. With the ability to search for 
+                        courses by keyword, professor, difficulty, interest, and more, you'll be sure to find courses 
+                        that fit your needs.
+                      </p>
+                    </div>
+                  </div>
+                  <div className='home-content-item row'>
+                    <div className='col-md-1 hidden-xs hidden-sm'>
+                      <img src={ratingImg} alt='search.svg' className='home-content-img' />
+                    </div>
+                    <div className='home-content-desc col-md-11'>
+                      <h2 className='home-content-title'>Student-contributed ratings and reviews</h2>
+                      <p>
+                        Powered by ratings provided by UMD students, you can see what other students think about the 
+                        courses you're considering. See what students thought about both the difficulty and interest of 
+                        courses, as well as rating breakdowns by professor.
+                      </p>
+                    </div>
+                  </div>
+                  <div className='home-content-item row'>
+                    <div className='col-md-1 hidden-xs hidden-sm'>
+                      <img src={descImg} alt='search.svg' className='home-content-img' />
+                    </div>
+                    <div className='home-content-desc col-md-11'>
+                      <h2 className='home-content-title'>In-depth descriptions</h2>
+                      <p>
+                        Course information and description is retrieved from the University of Maryland Schedule of 
+                        Classes, so you can be sure that you have the most accurate and up-to-date course information 
+                        available.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='home-content-wrap row'>
+              <div className='home-content-heading'>
+                More coming soon
+              </div>
+              <div className='col-md-10 col-md-offset-1'>
+                <div className='card'>
+                  <div className='row home-content-item'>
+                    <div className='col-md-6 home-coming-soon'>
                       <p>
                         You can check out the code and progress <a href='https://github.com/rstumbaugh/terpsearch' 
                         target='_blank'>here</a> on GitHub.
@@ -117,66 +123,34 @@ class Home extends React.Component {
                         on GitHub</a>. Some possible features on the To Do list include:
                         <br/>
                       </p>
-                      <ul className='coming-soon-list'>
+                      <ul>
                         <li>
                           <h3>Facebook integration</h3>
-                          See courses your Facebook friends have taken and how they have rated them in the past.
+                          <p>See courses your Facebook friends have taken and how they have rated them in the past.</p>
                         </li>
                         <li>
                           <h3>Professor review pages</h3>
-                          See all ratings for courses taught by a specific professor and leave comments and reviews.
+                          <p>See all ratings for courses taught by a specific professor and leave comments.</p>
                         </li>
                         <li>
                           <h3>Course suggestions</h3>
-                          Given your remaining unfulfilled requirements and interests, find and suggest courses 
-                          to fit your schedule.
+                          <p>
+                            Given your remaining unfulfilled requirements and interests, find and suggest courses 
+                            to fit your schedule.
+                          </p>
                         </li>
                       </ul>
                     </div>
-                    <div className='col-md-6 rating-wrap'>
-                      <div className='form-wrap col-sm-12'>
-                        <RatingForm />
-                      </div>
+                    <div className='col-md-5 col-md-offset-1'>
+                      <RatingForm />
                     </div>
                   </div>
                 </div>
               </div>
-          </div>
-
-          
-          <div className='row feedback'>
-            <div className='col-sm-12 col-md-10 col-md-offset-1'>
-              <h2>Questions? Comments? Suggestions?</h2>
-              <p>
-                Have any feedback about the site or idea? Maybe a cool idea you'd like to see? Feel free to leave an 
-                anonymous comment here. Comments, complaints, and suggestions are welcome.
-              </p>
-              <Feedback />
             </div>
           </div>
-          
-          <div className='row content'>
-            <div className='content-heading'>
-              Changelog
-            </div>
-            <div className='col-sm-12'>
-              <div className='content-list card'>
-                <div className='row content-item'>
-                  <div className='col-sm-12'>
-                    <h3 className='version-title'>v1.0</h3>
-                    <p className='version-desc'>
-                      The first version of TerpSearch is out! This first version features advanced course searching, 
-                      student-contributed ratings and reviews, and course information retrieved from Testudo. Excited 
-                      to see where this will go in the future!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        	<Footer />
-  			</div>
+        </Content>
+        <Footer />
       </div>
     )
   }
