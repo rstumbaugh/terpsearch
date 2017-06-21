@@ -34,7 +34,7 @@ class SearchResults extends Component {
 					course_id={course.course_id}
 					title={course.name}
 					description={course.description}
-					gen_ed={course.gen_ed.join(', ') || 'None'}
+					gen_ed={(course.gen_ed ? course.gen_ed.join(', ') : '') || 'None'}
 					credits={course.credits}
 					lastOffered={Globals.getSemesterFromCode(course.semester)}
 					diffRating={course.avg_diff ? course.avg_diff.toFixed(1) : 'N/A'}

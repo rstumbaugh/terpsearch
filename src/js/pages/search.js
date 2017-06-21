@@ -30,12 +30,15 @@ class Search extends Component {
 		})
 		fetch(Globals.API_COURSES + query)
 			.then(Globals.handleFetchResponse)
-			.then(function(response) {
+			.then(response => {
 				self.setState({
 					numResults: response[0].total_matches,
 					results: response[1],
 					status: 'done'
 				})
+			})
+			.catch(err => {
+				console.log(err);
 			})
 	}
 
