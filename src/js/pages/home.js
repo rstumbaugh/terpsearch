@@ -148,6 +148,38 @@ class Home extends React.Component {
                 </div>
               </div>
             </div>
+
+
+            <div className='home-feedback row'>
+              <div className='col-md-10 col-md-offset-1'>
+                <h2>Feedback</h2>
+                <p>
+                  Have any feedback about the site or idea? Maybe a cool idea you'd like to see? Feel free to leave an 
+                  anonymous comment here. Comments, complaints, and suggestions are welcome.
+                </p>
+                <Feedback />
+              </div>
+            </div>
+
+            <div className='home-content-wrap row'>
+              <div className='home-content-heading'>
+                Changelog
+              </div>
+              <div className='col-md-10 col-md-offset-1'>
+                <div className='card'>
+                  <div className='home-content-item row'>
+                    <div className='home-version col-sm-12'>
+                      <h3 className='home-version-title'>v1.0</h3>
+                      <p className='home-version-desc'>
+                        The first version of TerpSearch is out! This first version features advanced course searching, 
+                        student-contributed ratings and reviews, and course information retrieved from Testudo. Excited 
+                        to see where this will go in the future!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </Content>
         <Footer />
