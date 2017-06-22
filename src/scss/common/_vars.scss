@@ -1,13 +1,28 @@
+// global variables and mixins
+
+// colors
 $red: #c0392b;
 $error-red: #a94442;
 $gray: #ecf0f1;
 $dark-gray: #737373;
 $black: #333;
 $green: #3c763d;
+
+// fonts
 $fonts: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$page-header: 40px;
+$header-lg: 48px;
+$header-sm: 22px;
+$body-lg: 18px;
+$body-md: 16px;
+$body-sm: 14px;
+$body-xs: 12px;
+
+// card styles
 $card-border-radius: 5px;
 $card-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
 
+// bootstrap breakpoints
 $xs-width: 480px;
 $sm-width: 768px;
 $md-width: 992px;
