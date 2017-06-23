@@ -71,7 +71,7 @@ class SearchSummary extends Component {
 		var className = this.state.showSummary ? (this.state.visible ? '' : 'fix') : 'hidden';
 		
 		var placeholderHeight;
-		var summaryWrap = document.querySelector('#summaryWrap');
+		var summaryWrap = document.getElementById('summaryWrap');
 		if (summaryWrap) { // get height of wrap to make placeholder
 			placeholderHeight = summaryWrap.clientHeight;
 		}
@@ -91,8 +91,8 @@ class SearchSummary extends Component {
 					<div className='sensor-anchor'></div>
 				</Sensor>
 				<div className='after'></div>
-				<div id='summaryWrap' className={'row summary-wrap ' + className}>
-					<div className='summary col-sm-4'>
+				<div id='summaryWrap' className={'row search-summary-wrap ' + className}>
+					<div className='search-summary col-sm-4'>
 						{'Found ' + this.state.totalResults + ' results, showing ' + this.state.numResults + '.'}
 					</div>
 					<div className='pages col-sm-8'>

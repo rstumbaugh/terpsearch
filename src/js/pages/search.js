@@ -55,30 +55,23 @@ class Search extends Component {
 		return (
 			<div>
 				<Header />
-				<div className='container-fluid'>
-					<div className='row'>
-						<div className='col-md-10 col-md-offset-1 search-wrap'>
-							<div className='search-box-wrap card'>
-								<SearchBox updateQuery={this.onQueryUpdate.bind(this)} />
-							</div>
-							<br/>
-							<div className='search-results-wrap'>
-								<SearchSummary
-									perPage={matches ? matches[1] : 25}
-									numResults={this.state.results.length}
-									totalResults={this.state.numResults}
-									showSummary={this.state.status == 'done'}
-									onPageChange={this.onPageChange}
-								/>
-								<SearchResults
-									numResults={this.state.numResults} 
-									results={this.state.results}
-									status={this.state.status} 
-								/>
-							</div>
-						</div>
+				<Content offset>
+					<div className='search-wrap'>
+						<SearchBox updateQuery={this.onQueryUpdate.bind(this)} />
+						<SearchSummary
+							perPage={matches ? matches[1] : 25}
+							numResults={this.state.results.length}
+							totalResults={this.state.numResults}
+							showSummary={this.state.status == 'done'}
+							onPageChange={this.onPageChange}
+						/>
+						<SearchResults
+							numResults={this.state.numResults} 
+							results={this.state.results}
+							status={this.state.status} 
+						/>
 					</div>
-				</div>
+				</Content>
 				<Footer />
 			</div>
 		)

@@ -39,6 +39,14 @@ body {
 	  }
 	}
 
+	label {
+		font-family: $fonts;
+		font-size: $body-sm;
+		font-weight: 400;
+
+		color: $black;
+	}
+
 	.hidden {
 		display: none
 	}

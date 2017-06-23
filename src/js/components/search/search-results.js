@@ -57,7 +57,7 @@ class SearchResults extends Component {
 		}
 		
 		return (
-			<div>
+			<div className='search-results-wrap row'>
 				{results}
 			</div>
 		)

@@ -223,8 +223,8 @@ class SearchBox extends Component {
 							/>
 
 		return (
-			<div className='row'>
-				<div className='col-sm-12 search-box'>
+			<div className='search-box-wrap card row'>
+				<div className='search-box col-sm-12'>
 					<h1>Filter Courses</h1>
 					<form>
 						<div className='col-lg-10'>

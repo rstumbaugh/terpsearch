@@ -1,0 +1,17 @@
+$yellow: #f5d360;
+
+.search-box-wrap {
+	padding: 25px;
+	background-color: $yellow;
+	border: 1px solid $red;
+
+	.search-box {
+		h1 {
+			margin-top: 0;
+		}
+
+		p {
+			font-size: $body-sm;
+		}
+	}
+}

@@ -22,11 +22,11 @@ class SearchItem extends Component {
               {this.props.course_id}
             </Link>
           </h2>
-          <div className='rating col-xs-6'>
+          <div className='search-result-rating col-xs-6'>
             <span className='large'>{this.props.diffRating}</span><br/>
             Avg. Difficulty
           </div>
-          <div className='rating col-xs-6'>
+          <div className='search-result-rating col-xs-6'>
             <span className='large'>{this.props.intRating}</span><br/>
             Avg. Interest
           </div>
@@ -38,7 +38,7 @@ class SearchItem extends Component {
               {this.props.title}
             </Link>
           </h3>
-          <div className='info row'>
+          <div className='search-result-info row'>
             <div className='col-sm-4'>
               <strong>Last offered: </strong><span className='semester'>{this.props.lastOffered}</span>
             </div>
@@ -50,7 +50,7 @@ class SearchItem extends Component {
             </div>
             <div className='clearfix visible-sm'></div>
           </div>
-          <div className='description row'>
+          <div className='search-result-description'>
             <div className='col-sm-12'>
               {this.props.description || <i>No description.</i>}
             </div>
