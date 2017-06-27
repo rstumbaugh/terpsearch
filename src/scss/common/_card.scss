@@ -4,10 +4,6 @@
 	margin-bottom: 15px;
 	border-radius: $card-border-radius;
 	box-shadow: $card-box-shadow;
-
-	&.last-card {
-		margin-bottom: 40px;
-	}
 }
 
 @include media-md {

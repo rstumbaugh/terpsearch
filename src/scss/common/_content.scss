@@ -1,6 +1,9 @@
-$p-size:           18px;
-$legend-size:      18px;
-$small-font-size:  14px;
+$p-size:                 18px;
+$legend-size:            18px;
+$small-font-size:        14px;
+$label-size:             14px;
+$selectize-option-size:  14px;
+$selectize-none-size:    12px; 
 
 html,
 body {
@@ -45,7 +48,7 @@ body {
 
 	label {
 		font-family: $fonts;
-		font-size: $body-sm;
+		font-size: $label-size;
 		font-weight: 400;
 
 		color: $black;
@@ -84,7 +87,7 @@ body {
 	}
 
 	.selectize-option {
-		font-size: $body-sm;
+		font-size: $selectize-option-size;
 		padding: 5px 5px;
 		margin-right: 5px;
 		color: $black;
@@ -93,7 +96,7 @@ body {
 	.selectize-option-empty {
 		@extend .selectize-option;
 
-		font-size: $body-xs;
+		font-size: $selectize-none-size;
 		color: $dark-gray;
 	}
 

@@ -181,7 +181,7 @@ class Course extends Component {
 							/>
 						</div>
 					</div>
-					<div className='row card last-card'>
+					<div className='row card'>
 						<div className='col-md-12'>
 							<Comments 
 								max={5}

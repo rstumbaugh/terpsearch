@@ -44,18 +44,14 @@ class Comments extends Component {
 		return (
 			<div>
 				<Header />
-				<div className='container-fluid'>
-					<div className='row'>
-						<div className='col-sm-10 col-sm-offset-1'>
-							<div className='card'>
-								<h1>{decodeURIComponent(this.state.id)}</h1>
-								<CourseComments
-									comments={this.state.comments}
-								/>
-							</div>
-						</div>
+				<Content offset>
+					<div className='card info-main'>
+						<h1>{decodeURIComponent(this.state.id)}</h1>
+						<CourseComments
+							comments={this.state.comments}
+						/>
 					</div>
-				</div>
+				</Content>
 				<Footer />
 			</div>
 		)

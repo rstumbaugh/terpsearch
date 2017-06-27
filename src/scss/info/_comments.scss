@@ -2,19 +2,32 @@ $comment-size: 18px;
 $summary-size: 16px;
 
 .info-comment-wrap {
-	padding-bottom: 20px;
+	word-wrap: break-word;
+	padding-bottom: 30px;
 
-	blockquote {
-		font-size: $comment-size;
-		word-wrap: break-word;
+	h2 {
+		margin-top: 0;
 	}
 
-	.info-comment-summary {
-		font-size: $summary-size;
+	a {
+		margin-left: 5px;
+	}
 
-		a {
-			padding-left: 7px;
+	.info-comment {
+		padding-bottom: 15px;
+
+		&:first-child {
+			padding-top: 30px;
 		}
+	}
+
+	blockquote {
+		display: block;
+	}
+
+	cite {
+		margin-top: 15px;
+		float: right
 	}
 }
 

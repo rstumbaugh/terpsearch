@@ -1,7 +1,8 @@
-@import "vars";
+$font-size: 14px;
+$help-size: 12px;
 
 .rating-form {
-	font-size: $body-sm;
+	font-size: $font-size;
 
 	.star {
 		display: inline;
@@ -16,7 +17,7 @@
 	}
 
 	.help-block {
-		font-size: $body-xs;
+		font-size: $help-size;
 		margin-left: 0;
 		margin-right: 0;
 		margin-bottom: 0;

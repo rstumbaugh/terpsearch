@@ -1,3 +1,5 @@
+$header-size: 40px;
+
 .nav-header-wrap {
 	$fonts: "Lobster", "Helvetica Neue", Helvetica;
 
@@ -9,7 +11,7 @@
 	padding: 0;
 	margin-bottom: 15px;
 
-	font-size: $page-header;
+	font-size: $header-size;
 	font-weight: 700;
 	color: white;
 	background-color: $red;
