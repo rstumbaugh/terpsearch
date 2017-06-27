@@ -91,7 +91,7 @@ class SearchSummary extends Component {
 					<div className='sensor-anchor'></div>
 				</Sensor>
 				<div className='after'></div>
-				<div id='summaryWrap' className={'row search-summary-wrap ' + className}>
+				<div id='summaryWrap' className={'card search-summary-wrap row' + className}>
 					<div className='search-summary col-sm-4'>
 						{'Found ' + this.state.totalResults + ' results, showing ' + this.state.numResults + '.'}
 					</div>

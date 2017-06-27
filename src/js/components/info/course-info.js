@@ -63,7 +63,7 @@ class CourseInfo extends Component {
 		}
 		var padding = {paddingRight: '10px'};
 		return (
-			<div className='info'>
+			<div className='info-main'>
 				<h1>{this.props.course.course_id}</h1>
 				<h2>{this.props.course.name}</h2>
 				<p>

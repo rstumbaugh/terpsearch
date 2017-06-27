@@ -70,7 +70,7 @@ class CommentInput extends Component {
 		charsLeft = charsLeft > 0 ? charsLeft : 0;
 
 		return (
-			<div className='row comment-input'>
+			<div className='info-comment-input row'>
 				<fieldset>
 					<legend>Add a comment</legend>
 					<div className={'col-md-12 form-group ' + (this.state.error ? 'has-error' : '')}>
@@ -95,10 +95,10 @@ class CommentInput extends Component {
 							placeholder='anonymous'
 						/>
 					</div>
-					<div className='col-md-3 button-wrap'>
+					<div className='info-comment-button-wrap col-md-3'>
 						<div className='btn btn-primary' onClick={this.handleSubmit}>Submit</div>
 					</div>
-					<div className='col-md-6 feedback-wrap'>
+					<div className='info-comment-feedback-wrap col-md-6'>
 						<p className={this.state.feedbackClass}>
 							{this.state.feedback}
 						</p>

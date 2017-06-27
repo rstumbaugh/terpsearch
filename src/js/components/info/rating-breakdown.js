@@ -37,7 +37,7 @@ class CustomProgress extends Component {
 
 	render() {
 		return (
-			<div className='custom-progress'>
+			<div className='info-custom-progress'>
 				<strong>{this.props.title}</strong>
 				<i>{', ' + this.props.numResponses + ' responses'}</i>
 				<br/>
@@ -120,7 +120,6 @@ class RatingBreakdown extends Component {
 					title={item.id}
 				/>
 			)
-
 		}
 
 		return bars;
@@ -128,14 +127,14 @@ class RatingBreakdown extends Component {
 
 	render() {
 		return (
-			<div className='breakdown-wrap row'>
+			<div className='info-breakdown-wrap row'>
 				<div className='col-sm-12'>
-					<div className='col-md-2 average'>
-						<span className='value'>{this.state.average.toFixed(1)}</span>
+					<div className='info-average col-md-2'>
+						<span className='info-average-value'>{this.state.average.toFixed(1)}</span>
 						<br/>
 						{this.props.title}
 					</div>
-					<div className='col-md-10 breakdown'>
+					<div className='info-breakdown col-md-10'>
 						<div>
 							<h4>Total Distribution</h4>
 							<p className='small'>{this.props.numResponses + ' responses'}</p>
@@ -144,7 +143,7 @@ class RatingBreakdown extends Component {
 								options={this.getChartInfo().options}
 							/>
 						</div>
-						<div className='progress-bars'>
+						<div className='info-breakdown-progress-bars'>
 							<h4>{this.props.breakdownTitle}</h4>
 							{this.getProgressBars()}
 						</div>

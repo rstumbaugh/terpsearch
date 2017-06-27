@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import * as isofetch from 'isomorphic-fetch';
 
-import CourseInfo from 'components/course/course-info.js';
-import CircleProgress from 'components/course/circle-progress.js';
-import RatingBreakdown from 'components/course/rating-breakdown.js';
-import Comments from 'components/course/info-comments.js';
-import CommentInput from 'components/course/comment-input.js';
+import CourseInfo from 'components/info/course-info.js';
+import CircleProgress from 'components/info/circle-progress.js';
+import RatingBreakdown from 'components/info/rating-breakdown.js';
+import Comments from 'components/info/info-comments.js';
+import CommentInput from 'components/info/comment-input.js';
 import RatingForm from 'components/rating/rating-form.js';
 
 import {Header, Content, Footer} from 'utils/layout.js';
@@ -132,82 +132,78 @@ class Course extends Component {
 		return (
 			<div>
 				<Header />
-				<div className='container-fluid'>
-					<div className='row'>
-						<div className='col-md-10 col-md-offset-1'>
-							<div className='row card'>
-								<div className='col-md-9'>
-									<CourseInfo 
-										course={this.state.courseInfo}
-									/>
-								</div>
-								<div className='col-md-3'>
-									<div className='circle-progress-wrap col-sm-6 col-md-12'>
-										<CircleProgress 
-											id='circleDiff'
-											text='Average Difficulty' 
-											value={this.state.courseStats.avgDiff}
-										/>
-									</div>
-									<div className='circle-progress-wrap col-sm-6 col-md-12'>
-										<CircleProgress 
-											id='circleInt'
-											text='Average Interest'
-											value={this.state.courseStats.avgInt} 
-										/>
-									</div>
-								</div>
+				<Content offset>
+					<div className='row card'>
+						<div className='col-md-9'>
+							<CourseInfo 
+								course={this.state.courseInfo}
+							/>
+						</div>
+						<div className='col-md-3'>
+							<div className='col-sm-6 col-md-12'>
+								<CircleProgress 
+									id='circleDiff'
+									text='Average Difficulty' 
+									value={this.state.courseStats.avgDiff}
+								/>
 							</div>
-							<div className='row card'>
-								<div className='col-md-12'>
-									<RatingBreakdown
-										title='Average Difficulty'
-										breakdownTitle='Professor Breakdown'
-										average={diffStats.average}
-										numResponses={diffStats.numResponses}
-										counts={diffStats.counts}
-										breakdown={diffStats.breakdown}
-										id='diffBkdwn'
-									/>
-								</div>
-							</div>
-							<div className='row card'>
-								<div className='col-md-12'>
-									<RatingBreakdown
-										title='Average Interest'
-										breakdownTitle='Professor Breakdown'
-										average={intStats.average}
-										numResponses={intStats.numResponses}
-										counts={intStats.counts}
-										breakdown={intStats.breakdown}
-									/>
-								</div>
-							</div>
-							<div className='row card last-card'>
-								<div className='col-md-12'>
-									<Comments 
-										max={5}
-										id={this.state.courseId}
-										type='course'
-										comments={this.state.comments} 
-									/>
-								</div>
-
-								<div className='col-md-7'>
-									<CommentInput
-										rows={6}
-										minLength={25}
-										id={this.state.courseId}
-										getRequestBody={this.getRequestBody}
-									/>
-								</div>
-								<div className='col-md-5'>
-									<RatingForm />
-								</div>
+							<div className='col-sm-6 col-md-12'>
+								<CircleProgress 
+									id='circleInt'
+									text='Average Interest'
+									value={this.state.courseStats.avgInt} 
+								/>
 							</div>
 						</div>
 					</div>
-				</div>
+					<div className='row card'>
+						<div className='col-md-12'>
+							<RatingBreakdown
+								title='Average Difficulty'
+								breakdownTitle='Professor Breakdown'
+								average={diffStats.average}
+								numResponses={diffStats.numResponses}
+								counts={diffStats.counts}
+								breakdown={diffStats.breakdown}
+								id='diffBkdwn'
+							/>
+						</div>
+					</div>
+					<div className='row card'>
+						<div className='col-md-12'>
+							<RatingBreakdown
+								title='Average Interest'
+								breakdownTitle='Professor Breakdown'
+								average={intStats.average}
+								numResponses={intStats.numResponses}
+								counts={intStats.counts}
+								breakdown={intStats.breakdown}
+							/>
+						</div>
+					</div>
+					<div className='row card last-card'>
+						<div className='col-md-12'>
+							<Comments 
+								max={5}
+								id={this.state.courseId}
+								type='course'
+								comments={this.state.comments} 
+							/>
+						</div>
+
+						<div className='col-md-7'>
+							<CommentInput
+								rows={6}
+								minLength={25}
+								id={this.state.courseId}
+								getRequestBody={this.getRequestBody}
+							/>
+						</div>
+						<div className='col-md-5'>
+							<RatingForm />
+						</div>
+					</div>
+				</Content>
 				<Footer />
 			</div>
 		)

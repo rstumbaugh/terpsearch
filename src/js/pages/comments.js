@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as isofetch from 'isomorphic-fetch';
 import {Header, Content, Footer} from 'utils/layout.js';
-import CourseComments from 'components/course/info-comments.js';
+import CourseComments from 'components/info/info-comments.js';
 import Globals from 'globals';
 
 class Comments extends Component {

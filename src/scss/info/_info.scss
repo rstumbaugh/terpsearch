@@ -1,0 +1,16 @@
+$title-size: 48px;
+$info-size: 16px;
+
+.info-main {
+	h1 {
+		font-size: $title-size;
+	}
+
+	p {
+		font-size: $info-size;
+	}
+
+	.red {
+		color: $red;
+	}
+}

@@ -1,0 +1,27 @@
+$label-size:       16px;
+$help-block-size:  16px;
+
+.info-comment-input {
+	padding: 0 20px;
+	
+	label,
+	p.help-block {
+		font-size: 16px;
+	}
+
+	.info-comment-button-wrap {
+		margin-bottom: 10px;
+
+		.btn {
+			width: 100%;
+		}
+	}
+}
+
+@include media-md {
+	.info-comment-input {
+		.info-comment-feedback-wrap {
+			margin: 10px auto;
+		}
+	}
+}

@@ -1,3 +1,4 @@
+$helper-text-size: 14px;
 $yellow: #f5d360;
 
 .search-box-wrap {
@@ -11,7 +12,7 @@ $yellow: #f5d360;
 		}
 
 		p {
-			font-size: $body-sm;
+			font-size: $helper-text-size;
 		}
 	}
 }

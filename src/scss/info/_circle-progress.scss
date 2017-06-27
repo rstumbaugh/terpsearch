@@ -1,0 +1,19 @@
+$caption-size: 18px;
+$rating-size:  48px;
+
+.info-circle-progress-wrap {
+	font-size: $caption-size;
+	font-weight: 500;
+	margin-bottom: 15px;
+	padding: 0;
+	text-align: center;
+
+	.info-circle-progress {
+		width: 150px;
+		height: 150px;
+		margin: 0 auto;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		font-size: $rating-size;
+	}
+}

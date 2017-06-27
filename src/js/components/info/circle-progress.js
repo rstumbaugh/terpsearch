@@ -44,8 +44,8 @@ class CircleProgress extends Component {
 
 	render() {
 		return (
-			<div>
-				<div className='circle-progress' id={this.props.id}></div>
+			<div className='info-circle-progress-wrap'>
+				<div className='info-circle-progress' id={this.props.id}></div>
 				{this.props.text}
 				<br/><br/>
 			</div>

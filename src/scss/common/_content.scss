@@ -1,3 +1,7 @@
+$p-size:           18px;
+$legend-size:      18px;
+$small-font-size:  14px;
+
 html,
 body {
 	width: 100%;
@@ -15,7 +19,7 @@ body {
 	padding-top: 15px;
 
 	p {
-		font-size: $body-lg;
+		font-size: $p-size;
 	}
 
 	legend {
@@ -26,7 +30,7 @@ body {
 		border: auto;
 		border-bottom: none;
 		color: $red;
-		font-size: $body-lg;
+		font-size: $legend-size;
 		font-weight: 300;
 	}
 
@@ -61,6 +65,10 @@ body {
 
 	.full-width {
 		width: 100%;
+	}
+
+	.small {
+		font-size: $small-font-size;
 	}
 
 	.react-selectize.root-node {

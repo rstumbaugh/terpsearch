@@ -1,3 +1,7 @@
+$main-hero-size:        48px;
+$hero-subtitle-size:    22px;
+$content-heading-size:  48px;
+
 .home-wrap {
 	margin-top: -15px;
 
@@ -14,7 +18,7 @@
 		}
 
 		h1 {
-			font-size: $header-xl;
+			font-size: $main-hero-size;
 		}
 	}
 
@@ -49,7 +53,7 @@
 	    overflow: hidden;
 	    text-align: center;
 	    font-weight: 200;
-	    font-size: $header-sm;
+	    font-size: $hero-subtitle-size;
 
 	    &:before,
 	    &:after {
@@ -64,7 +68,6 @@
 		}
 
 		i {
-			font-size: $header-sm;
 			padding: 0 5px;
 			font-style: normal;
 		}
@@ -79,7 +82,7 @@
 	.home-content-heading {
 		text-align: center;
 		color: $red;
-		font-size: $header-lg;
+		font-size: $content-heading-size;
 		font-weight: 500;
 		padding-bottom: 15px;
 	}
@@ -106,4 +109,8 @@
 	background-color: $red;
 	color: white;
 	padding-top: 20px;
+
+	label {
+		color: white;
+	}
 }

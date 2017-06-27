@@ -1,0 +1,47 @@
+$breakdown-font-size: 16px;
+$average-font-size:   18px;
+$average-large-size:  48px;
+
+.info-breakdown-wrap {
+	.info-average {
+		padding: 25px 10px;
+		font-size: $average-font-size;
+		text-align: center;
+
+		.info-average-value {
+			font-size: $average-large-size;
+			font-weight: 700;
+			color: $red;
+		}
+	}
+
+	.info-breakdown {
+		padding: 25px 15px;
+		border-left: 1px solid $red;
+
+		canvas {
+			margin-top: 35px;
+		}
+
+		.info-breakdown-progress-bars {
+			padding-bottom: 20px;
+			font-size: $breakdown-font-size;
+		}
+
+		.info-custom-progress {
+			margin: 20px auto;
+
+			& > div {
+				display: inline;
+				position: relative;
+			}
+			
+		}
+
+		& > div {
+			display: inline-block;
+			float: left;
+			padding: 0 20px;
+		}
+	}
+}

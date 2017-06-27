@@ -38,7 +38,7 @@ class CourseComments extends Component {
 				text.push(<br key={i}/>)
 			})
 			comments.push(
-				<div className='comment' key={i}>
+				<div className='info-comment' key={i}>
 					<blockquote>
 						{text}
 						<cite>{'\u2014 ' + (this.state.comments[i].name || 'anonymous')}</cite>
@@ -67,10 +67,12 @@ class CourseComments extends Component {
 		}
 
 		return (
-			<div className='comment-wrap'>
+			<div className='info-comment-wrap'>
 				<h2>Comments</h2>
-				{summary}
-				{link}
+				<div className='info-comment-summary'>
+					{summary}
+					{link}
+				</div>
 				<br/>
 				{this.getComments()}
 			</div>

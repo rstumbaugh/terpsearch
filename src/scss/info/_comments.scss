@@ -1,0 +1,19 @@
+$comment-size: 18px;
+$summary-size: 16px;
+
+.info-comment-wrap {
+	padding-bottom: 20px;
+	
+	blockquote {
+		font-size: $comment-size;
+		word-wrap: break-word;
+	}
+
+	.info-comment-summary {
+		font-size: $summary-size;
+
+		a {
+			padding-left: 7px;
+		}
+	}
+}
