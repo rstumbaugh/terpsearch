@@ -35,13 +35,30 @@ $average-large-size:  48px;
 				display: inline;
 				position: relative;
 			}
-			
 		}
 
 		& > div {
 			display: inline-block;
 			float: left;
 			padding: 0 20px;
+		}
+	}
+}
+
+
+@include media-md {
+	.info-breakdown-wrap {
+		.info-breakdown {
+			border-left: 0;
+			border-top: 1px solid $red;
+
+			.info-breakdown-progress-bars {
+				width: 100%;
+			}
+
+			& > div {
+				padding: 0;
+			}
 		}
 	}
 }

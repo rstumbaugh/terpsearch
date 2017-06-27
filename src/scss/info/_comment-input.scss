@@ -20,6 +20,9 @@ $help-block-size:  16px;
 
 @include media-md {
 	.info-comment-input {
+		padding: 0;
+		margin-bottom: 20px;
+
 		.info-comment-feedback-wrap {
 			margin: 10px auto;
 		}
