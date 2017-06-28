@@ -37,8 +37,10 @@ var AdminSidebar = React.createClass({
 		}
 
 		return (
-			<div className='sidebar'>
-				{items}
+			<div className='admin-sidebar-wrap'>
+				<div className='admin-sidebar row'>
+					{items}
+				</div>
 			</div>
 		)
 	}

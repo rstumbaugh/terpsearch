@@ -5,7 +5,7 @@ var SidebarItem = React.createClass({
 	render: function() {
 		return (
 			<div onClick={this.props.onClick} 
-				 className={'sidebar-item ' + (this.props.active ? 'active' : '')}>
+				 className={'admin-sidebar-item ' + (this.props.active ? 'active' : '')}>
 				{Globals.capitalize(this.props.text)}
 			</div>
 		)

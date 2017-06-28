@@ -111,9 +111,6 @@ class Admin extends Component {
 	}
 
 	sendEmail(subject, body) {
-		console.log('sending...');
-		console.log({subject: subject, body: body})
-
 		var obj = {
 			subject: subject,
 			message: body
@@ -214,9 +211,9 @@ class Admin extends Component {
 		return (
 			<div>
 				<Header />
-				<div className='container-fluid content-wrap'>
-					<div className='row'>
-						<div className='col-sm-2 admin-sidebar-wrap'>
+				<Content>
+					<div className='admin-wrap row'>
+						<div className='col-sm-2'>
 							<Sidebar
 								items={this.state.items}
 								default='Logs'
@@ -238,7 +235,7 @@ class Admin extends Component {
 							{content}
 						</div>
 					</div>
-				</div>
+				</Content>
 			</div>
 		)
 		// return (

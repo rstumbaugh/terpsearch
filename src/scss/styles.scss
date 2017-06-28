@@ -9,14 +9,21 @@
 @import 'common/slide';
 
 // import page-specific styles
+// home page
 @import 'home/home';
 
+// search page
 @import 'search/search-box';
 @import 'search/search-results';
 @import 'search/search-summary';
 
+// course & prof info page
 @import 'info/info';
 @import 'info/circle-progress';
 @import 'info/breakdown';
 @import 'info/comments';
 @import 'info/comment-input';
+
+// admin page
+@import 'admin/admin';
+@import 'admin/admin-sidebar';

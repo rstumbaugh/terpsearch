@@ -1,0 +1,14 @@
+.admin-wrap {
+	margin-top: -30px;
+	background-color: white;
+
+	.admin-content {
+		height: 100%;
+		overflow-y: scroll;
+
+		.table {
+			table-layout: fixed;
+			word-wrap: break-word;
+		}
+	}
+}
