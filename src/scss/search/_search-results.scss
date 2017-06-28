@@ -78,20 +78,29 @@ $rating-mobile-size:     26px;
 	}
 }
 
-@include media-sm {
+@include media-md {
 	.search-results-wrap .search-result {
-		& > div:nth-child(2) {
-			border-left: 0;
-			border-top: 1px solid $red;
-		}
-		h2 {
-			font-size: $course-id-mobile-size;
-		}
-		.search-result-rating {
-			margin-top: 20px;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
 
-			.large {
-				font-size: $rating-mobile-size;
+@include media-sm {
+	.search-results-wrap {
+		.search-result {
+			& > div:nth-child(2) {
+				border-left: 0;
+				border-top: 1px solid $red;
+			}
+			h2 {
+				font-size: $course-id-mobile-size;
+			}
+			.search-result-rating {
+				margin-top: 20px;
+
+				.large {
+					font-size: $rating-mobile-size;
+				}
 			}
 		}
 	}

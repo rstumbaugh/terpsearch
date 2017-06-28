@@ -16,3 +16,10 @@ $yellow: #f5d360;
 		}
 	}
 }
+
+@include media-md {
+	.search-box-wrap {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}

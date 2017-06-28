@@ -38,3 +38,10 @@ $summary-transition: background-color 0.2s ease-in-out;
 		padding: 0 5px;
 	}
 }
+
+@include media-md {
+	.search-summary-wrap {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
