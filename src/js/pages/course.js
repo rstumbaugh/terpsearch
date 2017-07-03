@@ -7,6 +7,7 @@ import RatingBreakdown from 'components/info/rating-breakdown.js';
 import Comments from 'components/info/info-comments.js';
 import CommentInput from 'components/info/comment-input.js';
 import RatingForm from 'components/rating/rating-form.js';
+import Breadcrumb from 'components/breadcrumb';
 
 import {Header, Content, Footer} from 'utils/layout.js';
 import Globals from 'globals';
@@ -20,7 +21,8 @@ class Course extends Component {
 			courseStats: {},
 			courseId: props.match.params.courseId,
 			comments: [],
-			status: 'waiting'
+			status: 'waiting',
+			from: props.location.state ? props.location.state.from : ''
 		}
 	}
 
@@ -29,7 +31,6 @@ class Course extends Component {
 
 		Promise.all([this.loadCourseInformation(), this.loadStatsComments()])
 			.then(response => {
-				console.log(response)
 				var courseInfo = response[0];
 				var statsComments = response[1];
 
@@ -47,7 +48,7 @@ class Course extends Component {
 				})
 			})
 			.catch(function(err) {
-				console.log(err);
+				console.error(err);
 			})
 	}
 
@@ -128,11 +129,12 @@ class Course extends Component {
 				breakdown: ints
 			};
 		}
-
+		
 		return (
 			<div>
 				<Header />
 				<Content offset>
+					<Breadcrumb from={this.state.from} />
 					<div className='row card'>
 						<div className='col-md-9'>
 							<CourseInfo 
