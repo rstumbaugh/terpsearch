@@ -4,6 +4,7 @@ import StarRating from './star-rating.js';
 import RemoteSimpleSelect from 'components/remote-simple-select.js';
 import Globals from 'globals';
 import * as isofetch from 'isomorphic-fetch';
+import Ajax from 'utils/ajax';
 
 class RatingForm extends Component {
 	constructor() {
@@ -20,6 +21,7 @@ class RatingForm extends Component {
 		}
 	}
 
+	// update state from form item
 	handleChange(field, value) {
 		var s = {};
 		s[field] = value;
@@ -51,7 +53,7 @@ class RatingForm extends Component {
 			};
 
 			// moved this method outside promise success to avoid UI hanging
-			self.setState({
+			this.setState({
 				courseId: '',
 				professor: '',
 				difficulty: 1,
@@ -61,28 +63,20 @@ class RatingForm extends Component {
 				messageClass: 'slide open'
 			})
 
-			self.refs.courseField.reset();
-			self.refs.profField.reset();
-
-			fetch(Globals.API_SUBMIT_RATING, {
-				method: 'post',
-				'headers': {
+			Ajax.post(Globals.API_SUBMIT_RATING, {
+				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(rating)
 			})
-			.then(Globals.handleFetchResponse)
-			.then(function(response) {
-				// on success, reset form and show success message
-				
-
-				if (self.props.onSuccess) {
-					self.props.onSuccess();
+			.then(response => {
+				if (this.props.onSuccess) {
+					this.props.onSuccess();
 				}
 			})
-			.catch(function(err) {
-				console.log(err);
+			.catch(err => {
+				console.error(err);
 			})
 		}
 	}
@@ -93,16 +87,16 @@ class RatingForm extends Component {
 								url={Globals.API_LIST_COURSES + '?course_id='}
 								textField='course_id' 
 								name='courseId'
-								ref='courseField'
-								onValueChange={this.handleChange.bind(this)}
+								value={this.state.courseId}
+								onChange={this.handleChange.bind(this)}
 						 />;
 		var profField = <RemoteSimpleSelect 
 								placeholder='Enter a professor'
 								url={Globals.API_PROFS + '?q='}
 								textField='name'
 								name='professor'
-								ref='profField'
-								onValueChange={this.handleChange.bind(this)}
+								value={this.state.professor}
+								onChange={this.handleChange.bind(this)}
 						/>;
 		var diffRating = <StarRating 
 								rating={this.state.difficulty} 
