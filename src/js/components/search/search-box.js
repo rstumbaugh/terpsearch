@@ -20,10 +20,17 @@ class SearchBox extends Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (nextProps && Object.keys(nextProps.formData).length > 0) {
+			this.setState(nextProps.formData);
+		}
+	}
+
 	componentDidMount() {
 		var self = this;
 		
 		document.onkeydown = function() {
+			// submit form on enter press
 			if (window.event.keyCode == '13') {
 				self.submitForm();
 			}
@@ -42,26 +49,7 @@ class SearchBox extends Component {
 	}
 
 	submitForm() {
-		var query = '?';
-
-		for (var field in this.state) {
-			var value = this.state[field];
-
-			query += field + '=';
-
-			if (value instanceof Array) {
-				query += encodeURIComponent(value.join(','));
-			} else if (value instanceof Object) {
-				query += encodeURIComponent(value.value);
-			} else {
-				query += encodeURIComponent(value);
-			}
-
-			query += '&';
-		}
-
-		query = query.replace(/%2C/g, ',');
-		this.props.updateQuery(query.substring(0, query.length-1)); // remove trailing &
+		this.props.updateQuery(this.state);
 	}
 
 	render() {

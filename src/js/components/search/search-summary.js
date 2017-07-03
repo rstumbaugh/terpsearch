@@ -63,9 +63,9 @@ class SearchSummary extends Component {
 				default={1}
 				options={this.getPages()}
 				value={this.state.currentPage}
-				onValueChange={this.handlePageChange}
+				onValueChange={this.handlePageChange.bind(this)}
 				style={{display: 'inline-block'}}
-			 />
+			/>
 
 		var style = this.state.numResults == 0 ? {display: 'none'} : {};
 		var className = this.state.showSummary ? (this.state.visible ? '' : 'fix') : 'hidden';

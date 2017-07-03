@@ -11,6 +11,7 @@ class SearchItem extends Component {
 			                        </div>
 			                      </div>;
 
+    var href = `/course/${this.props.course_id}`;
 		var diffs = this.props.diffRating;
 		diffs = typeof(diffs) === 'string' ? diffs : diffs.toFixed(1);	                      
 		
@@ -18,7 +19,7 @@ class SearchItem extends Component {
 			<div className='search-result card row'>
         <div className='col-sm-3 col-md-2'>
         	<h2>
-            <Link to={'/course/' + this.props.course_id}>
+            <Link to={{pathname: href, state: {from: 'search'}}}>
               {this.props.course_id}
             </Link>
           </h2>
