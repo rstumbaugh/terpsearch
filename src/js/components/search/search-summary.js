@@ -56,7 +56,6 @@ class SearchSummary extends Component {
 	}
 
 	render() {
-		console.log(this.state.currentPage)
 		var self = this;
 		var pagePicker = 
 			<Select
