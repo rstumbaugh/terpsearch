@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {ReactSelectize, SimpleSelect} from 'react-selectize';
 import Select from 'react-select';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';

@@ -28,6 +28,11 @@ $summary-transition: background-color 0.2s ease-in-out;
 		}
 	}
 
+	.search-summary-input {
+		display: inline-block;
+		margin-bottom: -10px;
+	}
+
 	.search-summary {
 		font-size: $summary-size;
 		font-weight: 500;

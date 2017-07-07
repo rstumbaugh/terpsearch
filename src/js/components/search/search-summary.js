@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Sensor from 'react-visibility-sensor';
-import StaticSimpleSelect from 'components/static-simple-select.js';
+import Select from 'react-select';
 
 class SearchSummary extends Component {
 	constructor() {
@@ -36,7 +36,6 @@ class SearchSummary extends Component {
 		this.setState({
 			currentPage: page
 		})
-		this.props.onPageChange(page);
 	}
 
 	handleArrowClick(direction) {
@@ -53,23 +52,27 @@ class SearchSummary extends Component {
 			pages.push(i);
 		}
 
-		return pages;
+		return pages.map(x => ({label: x, value: x}));
 	}
 
 	render() {
+		console.log(this.state.currentPage)
 		var self = this;
 		var pagePicker = 
-			<StaticSimpleSelect
-				default={1}
+			<Select
+				simpleValue
 				options={this.getPages()}
 				value={this.state.currentPage}
-				onValueChange={this.handlePageChange.bind(this)}
-				style={{display: 'inline-block'}}
+				onChange={this.handlePageChange.bind(this)}
+				className='search-summary-input'
+				clearable={false}
 			/>
 
 		var style = this.state.numResults == 0 ? {display: 'none'} : {};
 		var className = this.state.showSummary ? (this.state.visible ? '' : 'fix') : 'hidden';
 		
+		// when falls out of focus, insert placeholder div to maintain document height
+		// and move summary to top of screen in fixed position
 		var placeholderHeight;
 		var summaryWrap = document.getElementById('summaryWrap');
 		if (summaryWrap) { // get height of wrap to make placeholder
@@ -91,9 +94,9 @@ class SearchSummary extends Component {
 					<div className='sensor-anchor'></div>
 				</Sensor>
 				<div className='after'></div>
-				<div id='summaryWrap' className={'card search-summary-wrap row ' + className}>
+				<div id='summaryWrap' className={`card search-summary-wrap row ${className}`}>
 					<div className='search-summary col-sm-4'>
-						{'Found ' + this.state.totalResults + ' results, showing ' + this.state.numResults + '.'}
+						{`Found ${this.state.totalResults}, showing ${this.state.numResults}`}
 					</div>
 					<div className='pages col-sm-8'>
 						<a onClick={this.handleArrowClick.bind(this, 'left')}>
