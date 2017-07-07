@@ -4,7 +4,7 @@ import Sidebar from 'components/admin/admin-sidebar.js';
 import Pages from 'components/admin/pages/admin-pages.js';
 import Auth from 'components/firebase/firebase-auth.js';
 import Globals from 'globals';
-import * as isofetch from 'isomorphic-fetch';
+import Ajax from 'utils/ajax';
 
 class Admin extends Component {
 	constructor() {
@@ -40,12 +40,13 @@ class Admin extends Component {
 							token: token,
 							name: user.displayName
 						})
-						return fetch(Globals.API_ADMIN_DASHBOARD + '?token=' + token);
+
+						var url = `${Globals.API_ADMIN_DASHBOARD}?token=${token}`;
+						return Ajax.get(url);
 					})
-					.then(Globals.handleFetchResponse)
+					.then(res => JSON.parse(res.response))
 					.then(function(response) {
 						// populate state with info
-						console.log('token received');
 						self.setState({
 							status: 'logged in',
 							items: Globals.ADMIN_PAGES,
@@ -60,7 +61,7 @@ class Admin extends Component {
 					})
 					.catch(function(err) {
 						// error thrown if unauthorized 
-						console.log(err);
+						console.error(err);
 						self.setState({
 							status: 'unauthorized'
 						})

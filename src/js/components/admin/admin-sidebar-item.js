@@ -1,15 +1,15 @@
-var React = require('react');
-var Globals = require('globals');
+import React, {Component} from 'react';
+import Globals from 'globals';
 
-var SidebarItem = React.createClass({
-	render: function() {
+class SidebarItem extends Component {
+	render() {
 		return (
 			<div onClick={this.props.onClick} 
-				 className={'admin-sidebar-item ' + (this.props.active ? 'active' : '')}>
+				 className={`admin-sidebar-item ${(this.props.active ? 'active' : '')}`}>
 				{Globals.capitalize(this.props.text)}
 			</div>
 		)
 	}
-})
+}
 
-module.exports = SidebarItem;
+export default SidebarItem

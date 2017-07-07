@@ -5,9 +5,7 @@ class Logs extends Component {
 		var rows = [];
 
 		// sort logs by time
-		logs.sort(function(a,b) {
-			return a.time > b.time ? -1 : 1
-		})
+		logs.sort((a,b) => a.time > b.time ? -1 : 1)
 
 		for (var i = 0; i < logs.length; i++) {
 			var log = logs[i];

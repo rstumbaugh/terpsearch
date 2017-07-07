@@ -1,28 +1,30 @@
-var React = require('react');
-var SidebarItem = require('./admin-sidebar-item.js');
+import React, {Component} from 'react';
+import SidebarItem from './admin-sidebar-item';
 
-var AdminSidebar = React.createClass({
-	getInitialState: function() {
-		return {
+class AdminSidebar extends Component {
+	constructor() {
+		super();
+
+		this.state = {
 			active: ''
 		}
-	},
+	}
 
-	componentWillReceiveProps: function(nextProps) {
+	componentWillReceiveProps(nextProps) {
 		this.setState({
 			active: nextProps.active
 		})
-	},
+	}
 
-	handleClick: function(item) {
+	handleClick(item) {
 		this.setState({
 			active: item
 		})
 
 		this.props.onActiveChange(item);
-	},
+	}
 
-	render: function() {
+	render() {
 		var items = [];
 
 		for (var i = 0; i < this.props.items.length; i++) {
@@ -44,6 +46,7 @@ var AdminSidebar = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = AdminSidebar;
+
+export default AdminSidebar;
