@@ -1,47 +1,28 @@
-import FirebaseSetup from './firebase-setup.js';
+import * as Firebase from 'firebase';
 
 class Auth {
 	onStateChanged(callback) {
-		FirebaseSetup
-			.then(function(firebase) {
-				firebase.auth().onAuthStateChanged(function(user) {
-					callback(user);
-				})
-			})
-			.catch(function(err) {
-				console.log(err);
-			})
+		Firebase.auth().onAuthStateChanged(function(user) {
+			callback(user)
+		})
 	}
 
 	logIn() {
-		FirebaseSetup
-			.then(function(firebase) {
-				var provider = new firebase.auth.FacebookAuthProvider();
+		var provider = new Firebase.auth.FacebookAuthProvider();
 
-				// only want to call once. don't want to keep this observer
-				var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
-					if (!user) {
-						firebase.auth().signInWithRedirect(provider);
-					}
-				})
+		// only want to call once. don't want to keep this observer
+		var unsubscribe = Firebase.auth().onAuthStateChanged(function(user) {
+			if (!user) {
+				Firebase.auth().signInWithRedirect(provider);
+			}
+		})
 
-				// unsubscribe to avoid future callbacks
-				unsubscribe();
-				
-			})
-			.catch(function(err) {
-				console.log(err);
-			})
+		// unsubscribe to avoid future callbacks
+		unsubscribe();
 	}
 
 	logOut() {
-		FirebaseSetup
-			.then(function(firebase) {
-				firebase.auth().signOut()
-			})
-			.catch(function(err) {
-				console.log(err);
-			})
+		Firebase.auth().signOut();
 	}
 }
 

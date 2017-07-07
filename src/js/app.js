@@ -3,7 +3,7 @@ import 'react-select/dist/react-select.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route} from 'react-router-dom';
-import { LastLocationProvider } from 'react-router-last-location';
+import * as firebase from 'firebase';
 import Home from 'pages/home.js';
 import Search from 'pages/search.js';
 import Course from 'pages/course.js';
@@ -15,6 +15,28 @@ import Comments from 'pages/comments.js';
 class App extends React.Component {
 	constructor() {
 		super();
+		
+		// initialize firebase app
+		var config;
+		if (/localhost/.test(window.location.href)) {
+			config = {
+        apiKey: "AIzaSyDA2-jPO0hAlAH3NJIOXJj9Ygg9YatKYio",
+        authDomain: "terpsearch-dev.firebaseapp.com",
+        databaseURL: "https://terpsearch-dev.firebaseio.com",
+        storageBucket: "terpsearch-dev.appspot.com",
+        messagingSenderId: "378503825008"
+      };
+		} else {
+			config = {
+        apiKey: "AIzaSyAMR4YSAmaxptjscXsoOd33Y3jBHnVUNdw",
+        authDomain: "umd-api-testing.firebaseapp.com",
+        databaseURL: "https://umd-api-testing.firebaseio.com",
+        storageBucket: "umd-api-testing.appspot.com",
+        messagingSenderId: "379483876030"
+	    };
+		}
+
+		firebase.initializeApp(config)
 
 		this.state = {};
 	}

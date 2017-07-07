@@ -1,9 +1,11 @@
-const API_ROOT = 'http://localhost:8888/';
+const API_ROOT = /localhost/.test(window.location.href) 
+								 	? 'http://localhost:8888/' 
+								 	: 'http://sheltered-ridge-74266.herokuapp.com/';
 
 var globals = {
-	API_ROOT: 			  API_ROOT,
+	API_ROOT: 			  		API_ROOT,
   
-	API_COURSES: 		  API_ROOT + 'courses',
+	API_COURSES: 		  		API_ROOT + 'courses',
 	API_LIST_COURSES: 	  API_ROOT + 'courses/list',
 	API_COURSE_STATS: 	  API_ROOT + 'courses/stats',
 	API_LIST_DEPARTMENTS: API_ROOT + 'courses/departments',   
@@ -11,15 +13,15 @@ var globals = {
   
 	API_SUBMIT_RATING:    API_ROOT + 'courses/reviews/ratings',
   
-	API_PROFS: 			  API_ROOT + 'professors',
+	API_PROFS: 			  		API_ROOT + 'professors',
 	API_LIST_PROFS:       API_ROOT + 'professors/list',
   
-	API_ADD_EMAIL: 		  API_ROOT + 'users/email',
+	API_ADD_EMAIL: 		 		API_ROOT + 'users/email',
 	API_ADD_FEEDBACK:     API_ROOT + 'users/feedback',
 
 	API_ADMIN_DASHBOARD:  API_ROOT + 'admin/dash',
 	API_DASHBOARD_REMOVE: API_ROOT + 'admin/dash/remove',
-	API_ADMIN_SEND: 	  API_ROOT + 'admin/dash/email/send',
+	API_ADMIN_SEND: 	  	API_ROOT + 'admin/dash/email/send',
 
 	API_FIREBASE_CONFIG:  API_ROOT + 'firebase_config',
 
