@@ -20,7 +20,7 @@ class Home extends React.Component {
     return (
       <div>
         <Header white />
-        <Content>
+        <Content noDisclaimer>
           <div className='home-wrap'>
             <div className='home-landing row'>
               <div className='home-hero-wrap col-md-5 col-md-offset-1'>

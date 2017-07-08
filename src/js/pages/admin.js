@@ -212,7 +212,7 @@ class Admin extends Component {
 		return (
 			<div>
 				<Header />
-				<Content>
+				<Content noDisclaimer>
 					<div className='admin-wrap row'>
 						<div className='col-sm-2'>
 							<Sidebar
@@ -239,36 +239,6 @@ class Admin extends Component {
 				</Content>
 			</div>
 		)
-		// return (
-		// 	<div className='content-wrap'>
-		// 		<Header hideFeedback={true} />
-		// 		<div className='container-fluid content-wrap'>
-		// 			<div className='row'>
-		// 				<div className='col-sm-2 sidebar-wrap'>
-		// 					<Sidebar
-		// 						items={this.state.items}
-		// 						default='Logs'
-		// 						active={this.state.active}
-		// 						onActiveChange={this.updateActive}
-		// 					/>
-		// 				</div>
-		// 				<div className='col-sm-10 admin-content'>
-		// 					<h1>{Globals.capitalize(this.state.active)}</h1>
-		// 					<div style={{display: displayName ? '' : 'none'}}>
-		// 						<div>
-		// 							{'Logged in as '+this.state.name}
-		// 						</div>
-		// 						<div className='link' onClick={function() {Auth.logOut()}}>
-		// 							Log Out
-		// 						</div>
-		// 						<br/><br/>
-		// 					</div>
-		// 					{content}
-		// 				</div>
-		// 			</div>
-		// 		</div>
-		// 	</div>
-		// )
 	}
 }
 
