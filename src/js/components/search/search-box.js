@@ -40,7 +40,7 @@ class SearchBox extends Component {
 	handleChange(field, value) {
 		var s = {};
 		s[field] = value;
-		this.setState(s, () => console.log(this.state));
+		this.setState(s);
 	}
 
 	submitForm() {
@@ -101,7 +101,7 @@ class SearchBox extends Component {
 		var keyword = 
 			<input 
 				type='text' className='form-control' placeholder='Enter search terms' 
-				value={this.state.keyword} onChange={this.handleChange.bind(this, 'keyword')}>
+				value={this.state.keyword} onChange={e => this.handleChange('keyword', e.target.value)}>
 			</input>;
 
 		// remote multi select

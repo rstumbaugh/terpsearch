@@ -72,7 +72,8 @@ class Search extends Component {
 			query += field + '=';
 
 			if (value instanceof Array) {
-				query += encodeURIComponent(value.join(','));
+				query
+				query += encodeURIComponent(value.map(x => x.value ? x.value : x).join(','));
 			} else if (value instanceof Object) {
 				query += encodeURIComponent(value.value); // get sort.value
 			} else {
