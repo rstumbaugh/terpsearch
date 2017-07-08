@@ -175,7 +175,9 @@ class Home extends React.Component {
                         New fixes include saving your search so the results don't disappear when changing pages.
                       </p>
                     </div>
-                    <div className='home-content-item row'>
+                  </div>
+                  <div className='home-content-item row'>
+                    <div className='home-version col-sm-12'>
                       <h3 className='home-version-title'>v1.0</h3>
                       <p className='home-version-desc'>
                         The first version of TerpSearch is out! This first version features advanced course searching, 
