@@ -10,7 +10,7 @@ class Disclaimer extends Component {
 						<div className='panel-heading'>
 							This site is still in its first versions. If you find any loading errors,
 							weird formatting, or something that doesn't look right, please
-							<Link to='/feedback'>leave some feedback!</Link>
+							<Link to='/feedback'> leave some feedback!</Link>
 						</div>
 					</div>
 				</div>
