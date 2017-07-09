@@ -3,3 +3,4 @@ firebase-debug.log
 node_modules/
 dist/
 *.swp
+.eslintrc*
