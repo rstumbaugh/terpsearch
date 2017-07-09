@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Application to filter courses at the University of Maryland. Inspired by <a href=\"https://www.ourumd.com\">www.ourumd.com</a>. Utilizes API found at <a href=\"https://umd.io\">umd.io</a>, which contains information on all courses offered at UMD.",
   "main": "./src/app.js",
-  "dependencies": {},
+  "dependencies": {
+    "eslint-plugin-react": "^7.1.0"
+  },
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",
@@ -12,6 +14,8 @@
     "chart.js": "^2.6.0",
     "css-loader": "^0.28.4",
     "es6-promise": "^4.1.0",
+    "eslint": "^4.2.0",
+    "file-entry-cache": "^2.0.0",
     "file-loader": "^0.11.2",
     "firebase": "^4.1.2",
     "html-loader": "^0.4.5",

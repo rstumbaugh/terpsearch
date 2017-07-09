@@ -1,4 +1,4 @@
-import styles from 'styles/styles.scss';
+import styles_ from 'styles/styles.scss';
 import 'react-select/dist/react-select.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
