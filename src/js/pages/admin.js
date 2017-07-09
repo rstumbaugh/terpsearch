@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Header, Content, Footer} from 'utils/layout.js';
 import Sidebar from 'components/admin/admin-sidebar.js';
 import Pages from 'components/admin/pages/admin-pages.js';
-import Auth from 'components/firebase/firebase-auth.js';
+import Auth from 'utils/auth';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';
 
