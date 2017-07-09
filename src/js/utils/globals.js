@@ -21,7 +21,7 @@ var globals = {
 
 	API_ADMIN_DASHBOARD:  API_ROOT + 'admin/dash',
 	API_DASHBOARD_REMOVE: API_ROOT + 'admin/dash/remove',
-	API_ADMIN_SEND: 	  	API_ROOT + 'admin/dash/email/send',
+	API_EMAIL_SEND: 	  	API_ROOT + 'admin/dash/email/send',
 
 	API_FIREBASE_CONFIG:  API_ROOT + 'firebase_config',
 

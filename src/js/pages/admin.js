@@ -93,22 +93,16 @@ class Admin extends Component {
 			key: key
 		}
 
-		var self = this;
-		fetch(Globals.API_DASHBOARD_REMOVE + '?token=' + this.state.token, {
-			method: 'POST',
-			'headers': {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
+		Ajax.post(`${Globals.API_DASHBOARD_REMOVE}?token=${this.state.token}`, {
 			body: JSON.stringify(item)
 		})
-		.then(Globals.handleFetchResponse)
-		.then(function(response) {
-			self.setState(state);
-		})
-		.catch(function(err) {
-			console.log(err);
-		})
+			.then(res => res.response)
+			.then(response => {
+				this.setState(state);
+			})
+			.catch(err => {
+				console.error(err);
+			})
 	}
 
 	sendEmail(subject, body) {
@@ -116,60 +110,47 @@ class Admin extends Component {
 			subject: subject,
 			message: body
 		};
-
-		var self = this;
-		fetch(Globals.API_EMAIL_SEND + '?token=' + this.state.token, {
-			method: 'POST',
-			'headers': {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
+		
+		Ajax.post(`${Globals.API_EMAIL_SEND}?token=${this.state.token}`, {
 			body: JSON.stringify(obj)
 		})
-		.then(Globals.handleFetchResponse)
-		.then(function(response) {
-			console.log('email sent!');
-		})
-		.catch(function(err) {
-			console.log(err);
-		})
+			.then(res => res.response)
+			.then(function(response) {
+				console.log('email sent!');
+			})
+			.catch(function(err) {
+				console.error(err);
+			})
 	}
 
 	addEmail(email) {
 		var self = this;
-
-		fetch(Globals.API_ADD_EMAIL + '?token=' + this.state.token, {
-			method: 'POST',
-			'headers': {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
+		Ajax.post(Globals.API_ADD_EMAIL + '?token=' + this.state.token, {
 			body: JSON.stringify({email: email})
 		})
-		.then(Globals.handleFetchResponse)
-		.then(function(response) {
-			return fetch(Globals.API_ADMIN_DASHBOARD + '?token=' + self.state.token)
-		})
-		.then(Globals.handleFetchResponse)
-		.then(function(response) {
-			self.setState({
-				content: {
-					emails: response.emails
-				}
+			.then(res => res.response)
+			.then(function(response) {
+				return Ajax.get(Globals.API_ADMIN_DASHBOARD + '?token=' + self.state.token)
 			})
-			console.log('emails updated');
-		})
-		.catch(function(err) {
-			console.log(err);
-		})
+			.then(res => JSON.parse(res.response))
+			.then(function(response) {
+				self.setState({
+					content: {
+						emails: response.emails
+					}
+				});
+			})
+			.catch(function(err) {
+				console.error(err);
+			})
 	}
 
 	getContent() {
 		var content;
 		var callbacks = { // passed down to pages, all API calls managed here
-			removeItem: this.removeItem,
-			sendEmail: this.sendEmail,
-			addEmail: this.addEmail
+			removeItem: this.removeItem.bind(this),
+			sendEmail: this.sendEmail.bind(this),
+			addEmail: this.addEmail.bind(this)
 		};
 
 		if (this.state.status == 'logging in') {

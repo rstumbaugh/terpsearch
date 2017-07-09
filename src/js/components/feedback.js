@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Globals from 'globals';
+import Ajax from 'utils/ajax';
 
 class Feedback extends Component {
 	constructor() {
@@ -22,28 +23,24 @@ class Feedback extends Component {
 	handleSubmit() {
 		if (this.state.feedback.length > 0) {
 			var self = this;
-			fetch(Globals.API_ADD_FEEDBACK, {
-				method: 'POST',
-				headers: {
-			    	'Accept': 'application/json',
-			    	'Content-Type': 'application/json'
-			    },
+			Ajax.post(Globals.API_ADD_FEEDBACK, {
 				body: JSON.stringify({ msg: this.state.feedback, email: this.state.email })
 			})
-			.then(Globals.handleFetchResponse)
-			.then(function(response) {
-			  	self.setState({
-					feedback: '',
-					email: '',
-					message: 'Thanks!',
-					slideClass: 'slide open'
+				.then(res => res.response)
+				.then(function(response) {
+						self.setState({
+						feedback: '',
+						email: '',
+						message: 'Thanks!',
+						slideClass: 'slide open'
+					})
+				}).catch(function(err) {
+					self.setState({
+						message: 'Something went wrong...',
+						slideClass: 'slide open'
+					})
+					console.error(err);
 				})
-			}).catch(function(err) {
-				self.setState({
-					message: 'Something went wrong...',
-					slideClass: 'slide open'
-				})
-			})
 		}
 	}
 

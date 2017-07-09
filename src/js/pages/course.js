@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import * as isofetch from 'isomorphic-fetch';
 
 import CourseInfo from 'components/info/course-info.js';
 import CircleProgress from 'components/info/circle-progress.js';
@@ -8,6 +7,7 @@ import Comments from 'components/info/info-comments.js';
 import CommentInput from 'components/info/comment-input.js';
 import RatingForm from 'components/rating/rating-form.js';
 import Breadcrumb from 'components/breadcrumb';
+import Ajax from 'utils/ajax';
 
 import {Header, Content, Footer} from 'utils/layout.js';
 import Globals from 'globals';
@@ -53,24 +53,21 @@ class Course extends Component {
 	}
 
 	loadCourseInformation() {
-		return fetch(Globals.API_COURSES + '?course_id=' + this.state.courseId)
-				.then(Globals.handleFetchResponse)
+		return Ajax.get(Globals.API_COURSES + '?course_id=' + this.state.courseId)
+				.then(res => JSON.parse(res.response))
 				.then(function(response) {
 					return response[1][0]
 				})
 				.catch(err => {
-					console.log(err);
+					console.error(err);
 				})
 	}
 
 	loadStatsComments() {
-		return fetch(Globals.API_COURSE_STATS + '?course_id=' + this.state.courseId)
-				.then(Globals.handleFetchResponse)
-				.then(function(response) {
-					return response
-				})
+		return Ajax.get(Globals.API_COURSE_STATS + '?course_id=' + this.state.courseId)
+				.then(res => JSON.parse(res.response))
 				.catch(err => {
-					console.log(err);
+					console.error(err);
 				})
 	}
 
@@ -198,7 +195,7 @@ class Course extends Component {
 								rows={6}
 								minLength={25}
 								id={this.state.courseId}
-								getRequestBody={this.getRequestBody}
+								getRequestBody={this.getRequestBody.bind(this)}
 							/>
 						</div>
 						<div className='col-md-5'>

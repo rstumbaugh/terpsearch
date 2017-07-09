@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Globals from 'globals';
-import * as isofetch from 'isomorphic-fetch';
+import Ajax from 'utils/ajax';
 
 class CommentInput extends Component {
 	constructor() {
@@ -16,8 +16,6 @@ class CommentInput extends Component {
 	}
 
 	handleChange(e) {
-		var left = this.props.minLength - e.target.value.length;
-
 		this.setState({
 			text: e.target.value
 		})
@@ -44,23 +42,19 @@ class CommentInput extends Component {
 				name: this.state.name || 'anonymous'
 			});
 
-			fetch(Globals.API_COURSE_COMMENTS, {
-				method: 'post',
-				'headers': {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
+			Ajax.post(Globals.API_COURSE_COMMENTS, {
 				body: JSON.stringify(body)
 			})
-			.then(Globals.handleFetchResponse)
-			.then(function(response) {
-				self.setState({
-					feedbackClass: 'success-msg slide open',
-					feedback: 'Comment successfully submitted.',
-					text: '',
-					name: ''
+				.then(res => res.response)
+				.then(function(response) {
+					self.setState({
+						feedbackClass: 'success-msg slide open',
+						feedback: 'Comment successfully submitted.',
+						text: '',
+						name: ''
+					})
 				})
-			})
+				.catch(err => console.error(err))
 		}
 	}
 
@@ -80,7 +74,7 @@ class CommentInput extends Component {
 							value={this.state.text}
 							rows={this.props.rows} 
 							className={'form-control ' + this.props.className} 
-							onChange={this.handleChange} />
+							onChange={this.handleChange.bind(this)} />
 						<p className='help-block'>
 							{charsLeft + ' characters remaining.'}
 						</p>
@@ -96,7 +90,7 @@ class CommentInput extends Component {
 						/>
 					</div>
 					<div className='info-comment-button-wrap col-md-3'>
-						<div className='btn btn-primary' onClick={this.handleSubmit}>Submit</div>
+						<div className='btn btn-primary' onClick={this.handleSubmit.bind(this)}>Submit</div>
 					</div>
 					<div className='info-comment-feedback-wrap col-md-6'>
 						<p className={this.state.feedbackClass}>

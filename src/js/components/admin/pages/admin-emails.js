@@ -84,7 +84,7 @@ class Emails extends Component {
 								onChange={this.updateParam.bind(this, 'body')} />
 						</div>
 						<div className='form-group col-sm-12'>
-							<button className='btn btn-primary' onClick={this.sendEmail}>Send</button>
+							<button className='btn btn-primary' onClick={this.sendEmail.bind(this)}>Send</button>
 						</div>
 					</form>
 					<br/>
@@ -102,7 +102,7 @@ class Emails extends Component {
 							/>
 						</div>
 						<div className='form-group col-sm-12'>
-							<button className='btn btn-primary' onClick={this.addEmail}>Add</button>
+							<button className='btn btn-primary' onClick={this.addEmail.bind(this)}>Add</button>
 						</div>
 					</form>
 				</div>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import * as isofetch from 'isomorphic-fetch'
 
 import {Header, Content, Footer} from 'utils/layout.js';
 import Globals from 'globals';
@@ -7,6 +6,7 @@ import SearchBox from 'components/search/search-box.js';
 import SearchSummary from 'components/search/search-summary.js';
 import SearchResults from 'components/search/search-results.js';
 import Store from 'utils/store';
+import Ajax from 'utils/ajax';
 
 class Search extends Component {
 	constructor(props) {
@@ -44,8 +44,8 @@ class Search extends Component {
 
 		var queryString = this.generateQueryString(query);
 
-		fetch(Globals.API_COURSES + queryString)
-			.then(Globals.handleFetchResponse)
+		Ajax.get(Globals.API_COURSES + queryString)
+			.then(res => JSON.parse(res.response))
 			.then(response => {
 				self.setState({
 					form: query,

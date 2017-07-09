@@ -18,11 +18,16 @@ class Ajax {
   }
 
   post(url, body) {
+		var headers = body.headers ? body.headers : {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		};
+
   	return new Promise((resolve, reject) => {
   		nanoajax.ajax({
   			url: url,
   			method: 'POST',
-  			headers: body.headers,
+  			headers: headers,
   			body: body.body,
   			cors: true
   		}, (code, response) => {

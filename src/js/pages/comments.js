@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import * as isofetch from 'isomorphic-fetch';
 import {Header, Content, Footer} from 'utils/layout.js';
 import CourseComments from 'components/info/info-comments.js';
 import Globals from 'globals';
+import Ajax from 'utils/ajax';
 
 class Comments extends Component {
 	constructor(props) {
@@ -27,8 +27,8 @@ class Comments extends Component {
 		}
 
 		if (url) {
-			fetch(url + encodeURIComponent(this.state.id))
-				.then(Globals.handleFetchResponse)
+			Ajax.get(url + encodeURIComponent(this.state.id))
+				.then(res => JSON.parse(res.response))
 				.then(function(response) {
 					self.setState({
 						comments: response
