@@ -3,8 +3,8 @@ import RatingFormComponent from './rating-form-component.js';
 import StarRating from './star-rating.js';
 import RemoteSimpleSelect from 'components/remote-simple-select.js';
 import Globals from 'globals';
-import * as isofetch from 'isomorphic-fetch';
 import Ajax from 'utils/ajax';
+import Auth from 'utils/auth';
 
 class RatingForm extends Component {
 	constructor() {
@@ -19,6 +19,12 @@ class RatingForm extends Component {
 			profError: false,
 			messageClass: 'slide closed'
 		}
+	}
+
+	componentDidMount() {
+		Auth.onStateChanged(user => {
+			this.setState({ user })
+		})
 	}
 
 	// update state from form item
@@ -44,14 +50,14 @@ class RatingForm extends Component {
 				profError: false
 			})
 			
-			var self = this;
 			var rating = {
 				course_id: this.state.courseId,
 				professor: this.state.professor,
 				difficulty: this.state.difficulty,
-				interest: this.state.interest
+				interest: this.state.interest,
+				userId: this.state.user ? this.state.user.providerData[0].uid : undefined
 			};
-
+			
 			// moved this method outside promise success to avoid UI hanging
 			this.setState({
 				courseId: '',
