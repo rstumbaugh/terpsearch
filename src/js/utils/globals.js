@@ -1,6 +1,6 @@
 const API_ROOT = /localhost/.test(window.location.href) 
 								 	? 'http://localhost:8888/' 
-								 	: 'http://sheltered-ridge-74266.herokuapp.com/';
+								 	: 'https://sheltered-ridge-74266.herokuapp.com/';
 
 var globals = {
 	API_ROOT: 			  		API_ROOT,
@@ -80,6 +80,13 @@ var globals = {
 		} else {
 			return response.text();
 		}
+	},
+
+	getProfileUrl: (user) => {
+		if (!user) return '';
+		var name = user.displayName.replace(' ', '-');
+		var id = user.providerData[0].uid;
+		return `/user/${id}/${encodeURIComponent(name)}`;
 	},
 
 	capitalize: function(str) {
