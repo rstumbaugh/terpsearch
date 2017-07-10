@@ -11,6 +11,7 @@ import Feedback from 'pages/feedback.js';
 import Rating from 'pages/rating.js';
 import Admin from 'pages/admin.js';
 import Comments from 'pages/comments.js';
+import Profile from 'pages/profile';
 
 class App extends React.Component {
 	constructor() {
@@ -66,6 +67,7 @@ class App extends React.Component {
 					<Route path='/rate' component={Rating} />
 					<Route path='/admin' component={Admin} />
 					<Route path='/comments/:type/:id' component={Comments} />
+					<Route path='/user/:userId/:displayName' component={Profile} />
 				</div>
 			</BrowserRouter>
 		)

@@ -42,6 +42,20 @@ $header-mobile-size: 32px;
 	color: $red;
 	background-color: white;
 	margin-bottom: 0;
+
+	.login-user-info {
+		&:hover {
+			background-color: $gray;
+		}
+
+		ul.login-user-info-options li.login-user-info-option {
+			background-color: $gray;
+
+			&:hover {
+				background-color: white;
+			}
+		}
+	}
 }
 
 @include media-sm {

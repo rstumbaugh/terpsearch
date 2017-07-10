@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Auth from 'utils/auth';
+import Globals from 'globals';
 import fbLogo from 'images/fb-logo.png';
 
-// if user already logged in, show info
-// otherwise, show login button
-// FB token found at user.providerData.uid
 class Login extends Component {
 	constructor() {
 		super();
@@ -17,7 +15,7 @@ class Login extends Component {
 	}
 
 	componentDidMount() {
-		// set up state watcher to check for login
+		// set up state watcher to check for login & keep track of user data
 		Auth.onStateChanged(user => {
 			this.setState({
 				user: user
@@ -48,11 +46,12 @@ class Login extends Component {
 		)
 	}
 
+	// show user photo, name, dropdown if already logged in
 	getUserInfo() {
 		var photo = this.state.user.providerData[0].photoURL;
 		return (
 			<div className='login-user-info' onMouseEnter={this.toggleDropdown.bind(this)} onMouseLeave={this.toggleDropdown.bind(this)}>
-				<Link to='/'>
+				<Link to={Globals.getProfileUrl(this.state.user)}>
 					<div className='login-user-info-photo-wrap'>
 						<img src={photo} className='login-user-info-photo' alt='User Profile Image'/>
 					</div>
@@ -60,7 +59,7 @@ class Login extends Component {
 				</Link>
 				<ul className={`login-user-info-options ${this.state.dropdownClass}`}>
 					<li className='login-user-info-option'>
-						<Link to='/test'>
+						<Link to={Globals.getProfileUrl(this.state.user)}>
 							<span className='glyphicon glyphicon-user'></span>
 							My Profile
 						</Link>
