@@ -128,31 +128,6 @@ class Search extends Component {
 				<Footer />
 			</div>
 		)
-		// return (
-		// 	<div>
-		// 		<Header />
-		// 		<Content offset>
-		// 			<div className='search-wrap'>
-		// 				<SearchBox 
-		// 					formData={this.state.form}
-		// 					updateQuery={this.onQueryUpdate.bind(this)} />
-		// 				<SearchSummary
-		// 					perPage={matches}
-		// 					numResults={this.state.results.length}
-		// 					totalResults={this.state.numResults}
-		// 					showSummary={this.state.status == 'done'}
-		// 					onPageChange={this.onPageChange.bind(this)}
-		// 				/>
-		// 				<SearchResults
-		// 					numResults={this.state.numResults} 
-		// 					results={this.state.results}
-		// 					status={this.state.status} 
-		// 				/>
-		// 			</div>
-		// 		</Content>
-		// 		<Footer />
-		// 	</div>
-		// )
 	}
 }
 
