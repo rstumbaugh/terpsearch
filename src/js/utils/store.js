@@ -12,8 +12,6 @@ class Store {
 
 	setItem(itemName, value) {
 		this.store.setItem(itemName, value);
-		console.log('stored ' + itemName);
-		console.log(value);
 	}
 }
 

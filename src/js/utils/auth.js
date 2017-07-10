@@ -2,7 +2,7 @@ import * as Firebase from 'firebase';
 
 class Auth {
 	onStateChanged(callback) {
-		Firebase.auth().onAuthStateChanged(function(user) {
+		return Firebase.auth().onAuthStateChanged(function(user) {
 			callback(user)
 		})
 	}

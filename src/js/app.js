@@ -20,19 +20,19 @@ class App extends React.Component {
 		var config;
 		if (/localhost/.test(window.location.href)) {
 			config = {
-        apiKey: "AIzaSyDA2-jPO0hAlAH3NJIOXJj9Ygg9YatKYio",
-        authDomain: "terpsearch-dev.firebaseapp.com",
-        databaseURL: "https://terpsearch-dev.firebaseio.com",
-        storageBucket: "terpsearch-dev.appspot.com",
-        messagingSenderId: "378503825008"
+        apiKey: 'AIzaSyDA2-jPO0hAlAH3NJIOXJj9Ygg9YatKYio',
+        authDomain: 'terpsearch-dev.firebaseapp.com',
+        databaseURL: 'https://terpsearch-dev.firebaseio.com',
+        storageBucket: 'terpsearch-dev.appspot.com',
+        messagingSenderId: '378503825008'
       };
 		} else {
 			config = {
-        apiKey: "AIzaSyAMR4YSAmaxptjscXsoOd33Y3jBHnVUNdw",
-        authDomain: "umd-api-testing.firebaseapp.com",
-        databaseURL: "https://umd-api-testing.firebaseio.com",
-        storageBucket: "umd-api-testing.appspot.com",
-        messagingSenderId: "379483876030"
+        apiKey: 'AIzaSyAMR4YSAmaxptjscXsoOd33Y3jBHnVUNdw',
+        authDomain: 'umd-api-testing.firebaseapp.com',
+        databaseURL: 'https://umd-api-testing.firebaseio.com',
+        storageBucket: 'umd-api-testing.appspot.com',
+        messagingSenderId: '379483876030'
 	    };
 		}
 
