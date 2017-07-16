@@ -15,7 +15,8 @@ var globals = {
   
 	API_PROFS: 			  		API_ROOT + 'professors',
 	API_LIST_PROFS:       API_ROOT + 'professors/list',
-  
+	
+	API_USERS:						API_ROOT + 'users',
 	API_ADD_EMAIL: 		 		API_ROOT + 'users/email',
 	API_ADD_FEEDBACK:     API_ROOT + 'users/feedback',
 

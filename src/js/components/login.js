@@ -52,7 +52,7 @@ class Login extends Component {
 					email,
 					accessToken
 				}
-				return Ajax.post(`${Globals.API_USERS}${uid}/login`, {
+				return Ajax.post(`${Globals.API_USERS}/${uid}/login`, {
 					headers: {
 						'authorization': token,
 					},
