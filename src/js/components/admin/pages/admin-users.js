@@ -5,11 +5,12 @@ class Users extends Component {
 		var rows = []
 
 		for (var key in users) {
+			var time = new Date(users[key].lastLogin).toString('hh:mm tt MMM dd yyyy');
 			rows.push(
 				<tr key={key}>
 					<td>{users[key].name}</td>
 					<td>{users[key].uid}</td>
-					<td>{users[key].token.substring(0,5) + '...'}</td>
+					<td>{time}</td>
 				</tr>
 			)
 		}
@@ -37,7 +38,7 @@ class Users extends Component {
 						<tr>
 							<th>Name</th>
 							<th>UID</th>
-							<th>Access Token</th>
+							<th>Last Login</th>
 						</tr>
 						{adminRows}
 					</tbody>
