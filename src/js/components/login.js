@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Auth from 'utils/auth';
+import Ajax from 'utils/ajax';
 import Globals from 'globals';
 import fbLogo from 'images/fb-logo.png';
 
@@ -16,11 +17,55 @@ class Login extends Component {
 
 	componentDidMount() {
 		// set up state watcher to check for login & keep track of user data
-		Auth.onStateChanged(user => {
+		var unsubscribe = Auth.onStateChanged(user => {
 			this.setState({
 				user: user
 			})
 		})
+
+		// unsubscribe on unmount
+		this.setState({ unsubscribe });
+
+		// when user signs in on redirect, pass info to server and see if user exists
+		Auth.getRedirectResult()
+			.then(result => {
+				if (result && result.user) {
+					// send name, email, FB token
+					// uid in route, firebase token in headers
+					var user = result.user;
+					return Promise.all([Promise.resolve(result), user.getIdToken(false)]);
+				}
+
+				return Promise.resolve([]);
+			})
+			.then(result => {
+				if (result.length == 0) return Promise.resolve();
+				
+				var accessToken = result[0].credential.accessToken;
+				var uid = result[0].user.providerData[0].uid;
+				var name = result[0].user.displayName;
+				var email = result[0].user.email;
+				var token = result[1];
+
+				var obj = {
+					name,
+					email,
+					accessToken
+				}
+				return Ajax.post(`${Globals.API_USERS}${uid}/login`, {
+					headers: {
+						'authorization': token,
+					},
+					body: JSON.stringify(obj)
+				})
+			})
+			.catch(err => {
+				console.error(err);
+			})
+	}
+
+	componentWillUnmount() {
+		this.state.unsubscribe();
 	}
 
 	toggleDropdown(e) {
