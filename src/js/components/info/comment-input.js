@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';
+import Auth from 'utils/auth';
+import Store from 'utils/store';
 
 class CommentInput extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			feedbackClass: 'slide closed',
 			feedback: '',
 			error: false,
 			text: '',
-			name: ''
+			name: '',
+			id: props.id
 		};
 	}
 
@@ -37,12 +40,20 @@ class CommentInput extends Component {
 				feedback: 'Comment must be at least ' + this.props.minLength + ' characters.'
 			})
 		} else {
-			var body = this.props.getRequestBody({
-				text: this.state.text,
-				name: this.state.name || 'anonymous'
-			});
+			var user = Auth.getCurrentUser();
+			var body = {
+				comment: this.state.text,
+				name: this.state.name || 'anonymous',
+				uid: user ? user.providerData[0].uid : undefined
+			}
 
-			Ajax.post(Globals.API_COURSE_COMMENTS, {
+			// send based on type passed from props
+			body[`${this.props.type}Id`] = this.props.id;
+
+			Ajax.post(this.props.url, {
+				headers: {
+					'Authorization': Store.getItem('userToken')
+				},
 				body: JSON.stringify(body)
 			})
 				.then(res => res.response)

@@ -5,6 +5,7 @@ import RemoteSimpleSelect from 'components/remote-simple-select.js';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';
 import Auth from 'utils/auth';
+import Store from 'utils/store';
 
 class RatingForm extends Component {
 	constructor() {
@@ -19,12 +20,6 @@ class RatingForm extends Component {
 			profError: false,
 			messageClass: 'slide closed'
 		}
-	}
-
-	componentDidMount() {
-		Auth.onStateChanged(user => {
-			this.setState({ user })
-		})
 	}
 
 	// update state from form item
@@ -50,12 +45,13 @@ class RatingForm extends Component {
 				profError: false
 			})
 			
+			var user = Auth.getCurrentUser();
 			var rating = {
-				course_id: this.state.courseId,
-				professor: this.state.professor,
+				courseId: this.state.courseId,
+				prof: this.state.professor,
 				difficulty: this.state.difficulty,
 				interest: this.state.interest,
-				userId: this.state.user ? this.state.user.providerData[0].uid : undefined
+				userId: user ? user.providerData[0].uid : undefined
 			};
 			
 			// moved this method outside promise success to avoid UI hanging
@@ -71,8 +67,7 @@ class RatingForm extends Component {
 
 			Ajax.post(Globals.API_SUBMIT_RATING, {
 				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
+					'Authorization': Store.getItem('userToken')
 				},
 				body: JSON.stringify(rating)
 			})

@@ -71,14 +71,6 @@ class Course extends Component {
 				})
 	}
 
-	getRequestBody(comment) {
-		return {
-			comment: comment.text,
-			name: comment.name,
-			course_id: this.state.courseId
-		}
-	}
-
 	render() {
 		var diffStats = {
 			average: 0,
@@ -195,7 +187,8 @@ class Course extends Component {
 								rows={6}
 								minLength={25}
 								id={this.state.courseId}
-								getRequestBody={this.getRequestBody.bind(this)}
+								type='course'
+								url={Globals.API_COURSE_COMMENTS}
 							/>
 						</div>
 						<div className='col-md-5'>
