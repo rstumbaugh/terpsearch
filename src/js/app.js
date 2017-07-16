@@ -4,6 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route} from 'react-router-dom';
 import * as firebase from 'firebase';
+import Auth from 'utils/auth';
+import Store from 'utils/store';
 import Home from 'pages/home.js';
 import Search from 'pages/search.js';
 import Course from 'pages/course.js';
@@ -40,6 +42,26 @@ class App extends React.Component {
 		firebase.initializeApp(config)
 
 		this.state = {};
+	}
+
+	componentDidMount() {
+		// save token to store on initial page load
+		Auth.onStateChanged(user => {
+			if (user) {
+				user.getIdToken(true)
+					.then(token => {
+						// make available regardless of state or timing of function calls
+						Store.setItem('userToken', token)
+						Store.setItem('userId', user.providerData[0].uid);
+					})
+					.catch(err => {
+						console.error(err)
+					})
+			} else {
+				Store.setItem('userToken', null);
+				Store.setItem('userId', null);
+			}
+		})
 	}
 
 	updateState(item, value) {
