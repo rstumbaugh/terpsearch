@@ -1,6 +1,10 @@
 import * as Firebase from 'firebase';
 
 class Auth {
+	getCurrentUser() {
+		return Firebase.auth().currentUser;
+	}
+
 	onStateChanged(callback) {
 		return Firebase.auth().onAuthStateChanged(function(user) {
 			callback(user)
@@ -9,16 +13,20 @@ class Auth {
 
 	logIn() {
 		var provider = new Firebase.auth.FacebookAuthProvider();
-
+		
 		// only want to call once. don't want to keep this observer
 		var unsubscribe = Firebase.auth().onAuthStateChanged(function(user) {
 			if (!user) {
 				Firebase.auth().signInWithRedirect(provider);
 			}
+			
+			// unsub to avoid future callback
+			unsubscribe();
 		})
+	}
 
-		// unsubscribe to avoid future callbacks
-		unsubscribe();
+	getRedirectResult() {
+		return Firebase.auth().getRedirectResult();
 	}
 
 	logOut() {

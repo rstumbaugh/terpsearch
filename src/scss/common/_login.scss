@@ -103,6 +103,20 @@ $height: $header-height - 2 * $top;
 			}
 		}
 	}
+
+	.nav-header-wrap-white & {
+		&:hover {
+			background-color: $gray;
+		}
+
+		ul.login-user-info-options li.login-user-info-option {
+			background-color: $gray;
+
+			&:hover {
+				background-color: white;
+			}
+		}
+	}
 }
 
 @include media-sm {
