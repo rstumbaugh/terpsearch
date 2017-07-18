@@ -1,0 +1,28 @@
+.user-profile-toggle {
+	margin-top: 5px;
+	
+	ul.user-profile-toggle-items {
+		list-style-type: none;
+		padding-left: 0;
+		display: inline;
+
+		li.user-profile-toggle-item {
+			padding-left: 10px;
+			display: inline-block;
+
+			&.active {
+				color: $link-blue;
+
+				&:hover {
+					color: $link-hover-blue;
+					text-decoration: underline;
+				}
+			}
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+	
+}

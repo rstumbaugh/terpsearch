@@ -1,0 +1,22 @@
+.user-profile-info {
+	.user-profile-details {
+		padding-top: 10px;
+
+		.user-profile-details-item {
+			font-size: 16px;
+
+				h3.user-profile-subheader {
+				font-size: 22px;
+			}
+
+			&:last-child hr {
+				display: none;
+			}
+		}
+	}
+
+	.user-profile-secondary-text {
+		font-size: 14px;
+		color: gray;
+	}
+}

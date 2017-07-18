@@ -90,6 +90,8 @@ class App extends React.Component {
 					<Route path='/admin' component={Admin} />
 					<Route path='/comments/:type/:id' component={Comments} />
 					<Route path='/user/:userId/:displayName' component={Profile} />
+					<Route path='/user/:userId/ratings' component={Profile} />
+					<Route path='/user/:userId/comments' component={Profile} />
 				</div>
 			</BrowserRouter>
 		)
