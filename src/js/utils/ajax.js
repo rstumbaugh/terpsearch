@@ -25,9 +25,9 @@ class Ajax {
         }
       )
     })
-  }
-
-  post(url, body) {
+	}
+	
+	post(url, body) {
 		var headers = body.headers ? body.headers : {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ class Ajax {
   			url: url,
   			method: 'POST',
   			headers: headers,
-  			body: body.body,
+  			body: typeof(body.body) === 'string' ? body.body : JSON.stringify(body.body),
   			cors: true
   		}, (code, response) => {
   			var func;
