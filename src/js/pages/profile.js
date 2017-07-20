@@ -4,8 +4,9 @@ import Store from 'utils/store';
 import Globals from 'globals';
 import {Header, Content, Footer} from 'utils/layout';
 import ProfileInfo from 'components/profile/profile-info';
-import ProfileRatings from 'components/profile/profile-ratings';
-import ProfileComments from 'components/profile/profile-comments';
+import ProfileCourseInfo from 'components/profile/profile-course-info';
+import ProfileFriends from 'components/profile/profile-friends';
+
 
 class Profile extends Component {
 	constructor(props) {
@@ -25,7 +26,6 @@ class Profile extends Component {
 
 	getUserInfo() {
 		var url = `${Globals.API_USERS}/${this.state.uid}/profile`;
-		
 		Ajax.get(url, { 'Authorization': Store.getItem('userToken') })
 			.then(res => JSON.parse(res.response))
 			.then(user => {
@@ -63,7 +63,7 @@ class Profile extends Component {
 				<Header />
 				<Content offset>
 					<div className='user-profile-wrap row'>
-						<div className='user-profile-info-wrap col-md-8'>
+						<div className='user-profile-info-wrap col-sm-12'>
 							<ProfileInfo
 								name={this.state.user.name}
 								email={this.state.user.email}
@@ -73,10 +73,18 @@ class Profile extends Component {
 								onEmailChange={this.toggleEmail.bind(this)}
 							/>
 						</div>
-						<div className='user-profile-ratings-wrap col-md-4'>
-							<ProfileRatings
+						<div className='user-profile-section col-md-7 left'>
+							<h1 className='user-profile-heading'>Courses</h1>
+							<ProfileCourseInfo
 								ratings={this.state.user.ratings}
+								comments={this.state.user.comments}
 								isSelf={this.state.isSelf}
+							/>
+						</div>
+						<div className='user-profile-section col-md-5 right'>
+							<h1 className='user-profile-heading'>Friends</h1>
+							<ProfileFriends 
+								friends={this.state.user.friends}
 							/>
 						</div>
 					</div>
