@@ -7,8 +7,8 @@ class ProgressBar extends Component {
 			strokeWidth: 4,
 			easing: 'easeInOut',
 			duration: 1400,
-			color: '#52a2f1',
-			trailColor: '#fff',
+			color: this.props.color || '#52a2f1',
+			trailColor: '#eee',
 			trailWidth: 6,
 			svgStyle: {width: '100%', height: '100%'},
 			text: {
