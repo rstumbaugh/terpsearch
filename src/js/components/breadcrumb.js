@@ -8,14 +8,16 @@ class Breadcrumb extends Component {
 	}
 
 	render() {
-		var lastPath = this.props.from;
+		var lastPath = this.props.link;
 		var currentPath = window.location.pathname.split('/')[1];
 		var panel = <div />;
 
 		if (lastPath && lastPath != currentPath) {
 			panel = (
 				<div className='breadcrumb row'>
-					<Link to={`/${lastPath}`}>{this.capitalize(lastPath)}</Link>
+					<Link to={lastPath.startsWith('/') ? lastPath : `/${lastPath}`}>
+						{this.capitalize(this.props.display)}
+					</Link>
 					{` / ${this.capitalize(currentPath)}`}
 				</div>
 			)
