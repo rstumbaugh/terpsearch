@@ -100,12 +100,14 @@ class RatingForm extends Component {
 								onChange={this.handleChange.bind(this)}
 						/>;
 		var diffRating = <StarRating 
+								updatable
 								rating={this.state.difficulty} 
 								name='difficulty'
 								updateRating={this.handleChange.bind(this)}
 						/>
 
 		var intRating = <StarRating 
+								updatable
 								rating={this.state.interest} 
 								name='interest'
 								updateRating={this.handleChange.bind(this)}
