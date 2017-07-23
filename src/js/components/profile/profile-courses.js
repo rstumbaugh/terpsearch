@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class ProfileCourseInfo extends Component {
+class ProfileCourses extends Component {
 	constructor(props) {
 		super(props);
 
@@ -38,6 +38,7 @@ class ProfileCourseInfo extends Component {
 						<ProfileCourseItem 
 							courseId={courseId}
 							course={this.state.courses[courseId]} 
+							isSelf={this.props.isSelf}
 							key={courseId} 
 						/>
 					)
@@ -50,9 +51,23 @@ class ProfileCourseInfo extends Component {
 const ProfileCourseItem = props => {
 	return (
 		<div className='user-profile-course-item'>
-			{ props.courseId }
+			<h4 className='user-profile-course-id'>
+				{ props.courseId }
+			</h4>
+			{
+				props.course.rating
+					? <div className='user-profile-course-rating'>
+							<span className='user-profile-rating-item'>
+								{`Difficulty: ${props.course.rating.difficulty}`}
+							</span>
+							<span className='user-profile-rating-item'>
+								{`Interest: ${props.course.rating.interest}`}
+							</span>
+						</div>
+					: ''
+			}
 		</div>
 	)
 }
 
-export default ProfileCourseInfo;
+export default ProfileCourses;
