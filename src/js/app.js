@@ -14,6 +14,7 @@ import Rating from 'pages/rating.js';
 import Admin from 'pages/admin.js';
 import Comments from 'pages/comments.js';
 import Profile from 'pages/profile';
+import AuthRedirect from 'pages/auth-redirect';
 
 class App extends React.Component {
 	constructor() {
@@ -92,6 +93,7 @@ class App extends React.Component {
 					<Route path='/user/:userId/:displayName' component={Profile} />
 					<Route path='/user/:userId/ratings' component={Profile} />
 					<Route path='/user/:userId/comments' component={Profile} />
+					<Route path='/auth/redirect/' component={AuthRedirect} />
 				</div>
 			</BrowserRouter>
 		)
