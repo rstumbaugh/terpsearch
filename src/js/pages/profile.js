@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Ajax from 'utils/ajax';
 import Store from 'utils/store';
+import Auth from 'utils/auth';
 import Globals from 'globals';
 import {Header, Content, Footer} from 'utils/layout';
 import ProfileInfo from 'components/profile/profile-info';
-import ProfileCourseInfo from 'components/profile/profile-course-info';
+import ProfileCourses from 'components/profile/profile-courses';
 import ProfileFriends from 'components/profile/profile-friends';
 
 
@@ -48,7 +49,7 @@ class Profile extends Component {
 				'Authorization': Store.getItem('userToken')
 			},
 			body: {}
-		})
+		}).then(Auth.handleAuthResponse)
 			.then(() => {
 				this.getUserInfo();
 			})
@@ -58,6 +59,8 @@ class Profile extends Component {
 	}
 
 	render() {
+		var friends = this.state.user.friends;
+		friends = friends ? friends.concat(friends) : friends;
 		return (
 			<div>
 				<Header />
@@ -75,7 +78,7 @@ class Profile extends Component {
 						</div>
 						<div className='user-profile-section col-md-7 left'>
 							<h1 className='user-profile-heading'>Courses</h1>
-							<ProfileCourseInfo
+							<ProfileCourses
 								ratings={this.state.user.ratings}
 								comments={this.state.user.comments}
 								isSelf={this.state.isSelf}
@@ -84,7 +87,8 @@ class Profile extends Component {
 						<div className='user-profile-section col-md-5 right'>
 							<h1 className='user-profile-heading'>Friends</h1>
 							<ProfileFriends 
-								friends={this.state.user.friends}
+								friends={friends}
+								max={6}
 							/>
 						</div>
 					</div>
