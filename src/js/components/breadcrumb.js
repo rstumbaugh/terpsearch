@@ -1,28 +1,26 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import Store from 'utils/store';
+import Globals from 'globals';
 
 class Breadcrumb extends Component {
-	capitalize(str) {
-		return str.charAt(0).toUpperCase() + str.substring(1);
-	}
-
 	render() {
-		var lastPath = this.props.link;
-		var currentPath = window.location.pathname.split('/')[1];
-		var panel = <div />;
+		var items = [];
+		// for each item in history, make a new breadcrumb entry
+		var history = Store.getHistory();
+		
+		if (history.length) {
+			var currentPath = window.location.pathname.split('/')[1];
+			history.forEach((item,i) => {
+				items.push(<Link to={item.path} key={i}>{Globals.capitalize(item.name)}</Link>);
+				items.push(<span key={`${i}${i}`}> / </span>);
+				console.log(items);
+			})
 
-		if (lastPath && lastPath != currentPath) {
-			panel = (
-				<div className='breadcrumb row'>
-					<Link to={lastPath.startsWith('/') ? lastPath : `/${lastPath}`}>
-						{this.capitalize(this.props.display)}
-					</Link>
-					{` / ${this.capitalize(currentPath)}`}
-				</div>
-			)
+			items.push(<span>{Globals.capitalize(currentPath)}</span>);
 		}
 
-		return panel;
+		return items.length ? <div className='breadcrumb row'>{items}</div> : <div />;
 	}
 }
 

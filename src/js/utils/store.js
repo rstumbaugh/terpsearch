@@ -14,6 +14,19 @@ class Store {
 	setItem(itemName, value) {
 		this.store.setItem(itemName, value);
 	}
+
+	addHistoryItem(name, path) {
+		var history = this.store.getItem('history');
+		history = history === null ? [] : JSON.parse(history);
+		history.push({ name, path });
+		this.store.setItem('history', JSON.stringify(history));
+	}
+
+	getHistory() {
+		var history = this.store.getItem('history');
+		history = history === null ? [] : JSON.parse(history);
+		return history;
+	}
 }
 
 export default new Store();

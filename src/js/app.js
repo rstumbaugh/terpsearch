@@ -19,7 +19,7 @@ import AuthRedirect from 'pages/auth-redirect';
 class App extends React.Component {
 	constructor() {
 		super();
-		
+
 		// initialize firebase app
 		var config;
 		if (/localhost/.test(window.location.href)) {
@@ -41,6 +41,9 @@ class App extends React.Component {
 		}
 
 		firebase.initializeApp(config)
+
+		// initialize history to empty
+		Store.setItem('history', '[]');
 
 		this.state = {};
 	}

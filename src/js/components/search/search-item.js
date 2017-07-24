@@ -1,25 +1,22 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import Link from 'components/link';
 
 class SearchItem extends Component {
 	render() {
-		var noReviewsPanel = this.props.hasReviews 
-													? undefined 
-													: <div className="col-xs-12">
-			                        <div className="panel panel-warning">
-		                            <div className="panel-heading">No reviews found.</div>
-			                        </div>
-			                      </div>;
-
-    var href = `/course/${this.props.course_id}`;
-		var diffs = this.props.diffRating;
-		diffs = typeof(diffs) === 'string' ? diffs : diffs.toFixed(1);	                      
+    var noReviewsPanel = 
+      this.props.hasReviews 
+        ? undefined 
+        : <div className="col-xs-12">
+            <div className="panel panel-warning">
+              <div className="panel-heading">No reviews found.</div>
+            </div>
+          </div>;               
 		
     return (
 			<div className='search-result card row'>
         <div className='col-sm-3 col-md-2'>
         	<h2>
-            <Link to={{pathname: href, state: {from: 'search'}}}>
+            <Link to={`/course/${this.props.course_id}`}>
               {this.props.course_id}
             </Link>
           </h2>
@@ -35,7 +32,7 @@ class SearchItem extends Component {
         </div>
         <div className='col-sm-9 col-md-10'>
           <h3>
-            <Link to={'/course/' + this.props.course_id}>
+            <Link to={`/course/${this.props.course_id}`}>
               {this.props.title}
             </Link>
           </h3>
