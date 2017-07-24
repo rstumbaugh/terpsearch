@@ -1,3 +1,31 @@
 .user-profile-course-info {
-	
+	.user-profile-course-item {
+		padding-left: 10px;
+		padding-bottom: 25px;
+		
+		h4.user-profile-course-id {
+			font-size: 28px;
+			display: inline-block;
+		}
+
+		a.user-profile-course-link {
+			margin-left: 8px;
+			font-size: 16px;
+		}
+
+		.user-profile-course-rating {
+			font-size: 16px;
+			padding-bottom: 8px;
+
+			.user-profile-rating-item {
+				padding-right: 35px;
+				display: inline-block;
+			}
+		}
+
+		blockquote.user-profile-course-comment {
+			font-style: italic;
+			font-size: 16px;
+		}
+	}
 }

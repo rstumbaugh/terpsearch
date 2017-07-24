@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import StarRating from 'components/rating/star-rating';
 
 class ProfileCourses extends Component {
 	constructor(props) {
@@ -49,21 +51,35 @@ class ProfileCourses extends Component {
 }
 
 const ProfileCourseItem = props => {
+	const href = `/course/${props.courseId}`;
+	const path = window.location.pathname;
 	return (
 		<div className='user-profile-course-item'>
-			<h4 className='user-profile-course-id'>
-				{ props.courseId }
-			</h4>
+			<h4 className='user-profile-course-id'>{props.courseId}</h4>
+			<Link 
+				to={{pathname: href, state: {from: path, display: 'Profile'}}} 
+				className='user-profile-course-link'>
+				View course
+			</Link>
 			{
 				props.course.rating
 					? <div className='user-profile-course-rating'>
 							<span className='user-profile-rating-item'>
-								{`Difficulty: ${props.course.rating.difficulty}`}
+								Difficulty
+								<StarRating rating={props.course.rating.difficulty} />
 							</span>
 							<span className='user-profile-rating-item'>
-								{`Interest: ${props.course.rating.interest}`}
+								Interest
+								<StarRating rating={props.course.rating.interest} />
 							</span>
 						</div>
+					: ''
+			}
+			{
+				props.course.comment
+					? <blockquote className='user-profile-course-comment'>
+							{props.course.comment.comment}
+						</blockquote>
 					: ''
 			}
 		</div>
