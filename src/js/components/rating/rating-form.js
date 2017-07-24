@@ -62,9 +62,10 @@ class RatingForm extends Component {
 				interest: 1,
 				courseError: false,
 				profError: false,
-				messageClass: 'slide open'
+				messageClass: 'slide open',
+				message: 'Submitting...'
 			})
-			
+
 			// post rating, send auth params
 			// redirect to UMD login page if not authorized
 			var redirectUrl = `${window.location.origin}/auth/redirect`;
@@ -78,15 +79,20 @@ class RatingForm extends Component {
 				body: JSON.stringify(rating)
 			})
 			.then(response => {
-				if (this.props.onSuccess) {
-					this.props.onSuccess();
-				}
+				this.setState({
+					messageClass: 'success slide open',
+					message: response.response
+				})
 			})
 			.catch(err => {
 				if (err.code == 401) {
 					window.location.href = redirectUrl;
 				}
-				console.error(err);
+				
+				this.setState({
+					messageClass: 'error slide open',
+					message: err.response
+				})
 			})
 		}
 	}
@@ -159,8 +165,8 @@ class RatingForm extends Component {
 							</button>
 						</div>
 						<div className='feedback-wrap col-sm-12'>
-							<p className={'success-msg ' + this.state.messageClass}>
-								Course successfully submitted.
+							<p className={'form-feedback ' + this.state.messageClass}>
+								{ this.state.message }
 							</p>
 						</div>
 					</fieldset>

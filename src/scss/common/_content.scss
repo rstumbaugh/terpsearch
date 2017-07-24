@@ -51,6 +51,22 @@ body {
 		display: none
 	}
 
+	.form-feedback {
+		font-size: 16px;
+		color: gray;
+		@include transition(color .25s linear);
+
+		&.success {
+			color: $green;
+			@include transition(color .25s linear);
+		}
+
+		&.error {
+			color: $error-red;
+			@include transition(color .25s linear);
+		}
+	}
+
 	.success-msg {
 		color: $green;
 	}
