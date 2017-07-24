@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import Globals from 'globals';
 
 class ProfileFriends extends Component {
@@ -32,7 +33,7 @@ class ProfileFriends extends Component {
 const ProfileFriendItem = props => {
 	var url = `${Globals.API_USERS}/${props.id}/photo?size=250`;
 	return (
-		<div>
+		<Link to={Globals.getProfileUrl(props.name, props.id)}>
 			<div className='user-profile-friend col-md-4'>
 				<div className='user-profile-friend-img-wrap'>
 					<img src={url} alt={props.name} className='user-profile-friend-img' />
@@ -44,7 +45,7 @@ const ProfileFriendItem = props => {
 					? <div className='clearfix visible-md visible-lg'></div> 
 					: ''
 			}
-		</div>
+		</Link>
 	)
 }
 
