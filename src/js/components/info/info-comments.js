@@ -55,7 +55,14 @@ class CourseComments extends Component {
 		var link;
 
 		if (this.props.max && this.state.comments.length > this.props.max) {
-			link = <Link to={`/comments/${this.props.type}/${this.props.id}`}>View all</Link>
+			link = 
+				<Link 
+					to={{
+						pathname: `/comments/${this.props.type}/${this.props.id}`,
+						state: { from: window.location.pathname, display: this.props.type}
+					}}>
+					View all
+				</Link>
 		}
 
 		if (this.state.comments.length) {

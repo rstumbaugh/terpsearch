@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Store from 'utils/store';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Breadcrumb extends Component {
 	capitalize(str) {
