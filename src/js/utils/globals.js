@@ -86,9 +86,17 @@ var globals = {
 		}
 	},
 
+<<<<<<< HEAD
 	getProfileUrl: (name, uid) => {
 		if (!name || !uid) return '';
 		return `/user/${uid}/${encodeURIComponent(name.replace(' ', '-'))}`;
+=======
+	getProfileUrl: (user) => {
+		if (!user) return '';
+		var name = user.displayName.replace(' ', '-');
+		var id = user.providerData[0].uid;
+		return `/user/${id}/${encodeURIComponent(name)}`;
+>>>>>>> 4fd4fecc5f0b00e2ca8fba7b6a793c61ab450f42
 	},
 
 	capitalize: function(str) {
