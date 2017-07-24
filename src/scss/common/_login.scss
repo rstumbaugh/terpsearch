@@ -1,0 +1,153 @@
+$login-btn-size: 16px;
+$display-name-size: 18px;
+$options-size: 16px;
+
+$top: 10px;
+$height: $header-height - 2 * $top;
+
+.login-wrap {
+	line-height: initial;
+	font-family: $fonts;
+	position: absolute;
+	top: 0;
+	right: 30px;
+}
+
+.fb-login-btn {
+	background-color: $facebook-blue;
+	font-size: $login-btn-size;
+	font-weight: 300;
+	color: white;
+
+	height: $height;
+	line-height: $height;
+	padding: 0 10px 0 5px;
+	border-radius: 4px;
+
+	position: relative;
+	top: $top;
+
+	cursor: pointer;
+
+	.fb-login-logo {
+		height: 2 * $login-btn-size;
+		margin-right: 10px;
+		margin-top: -3px;
+	}
+}
+
+.login-user-info {
+	position: relative;
+	height: $header-height;
+	display: table;
+	cursor: pointer;
+	padding-left: 10px;
+	padding-right: 30px;
+	font-weight: 200;
+
+	&:hover {
+		background-color: $dark-red;
+	}
+
+	.login-user-info-photo-wrap {
+		display: table-cell;
+		vertical-align: middle;
+		padding-right: 15px;
+
+		.login-user-info-photo {
+			height: $height;
+			width: $height;
+			border-radius: 100%;
+		}
+	}
+
+	.login-user-info-name {
+		height: $header-height;
+		line-height: $header-height;
+		display: table-cell;
+		vertical-align: middle;
+
+		font-size: $display-name-size;
+	}
+
+	ul.login-user-info-options {
+		position: absolute;
+		left: 0;
+		top: $header-height;
+		font-size: $options-size;
+		list-style-type: none;
+		padding-left: 0;
+		width: 100%;
+		text-align: left;
+		z-index: 10;
+
+		&.dd-hidden {
+			visibility: hidden;
+		}
+
+		&.dd-visible {
+			visibility: visible;
+		}
+
+		.login-user-info-option {
+			list-style: none;
+			padding: 15px 10px;
+			background-color: $dark-red;
+
+			&:hover {
+				background-color: $red;
+			}
+
+			.glyphicon {
+				margin-right: 10px;
+			}
+		}
+	}
+
+	.nav-header-wrap-white & {
+		&:hover {
+			background-color: $gray;
+		}
+
+		ul.login-user-info-options li.login-user-info-option {
+			background-color: $gray;
+
+			&:hover {
+				background-color: white;
+			}
+		}
+	}
+}
+
+@include media-sm {
+	.fb-login-btn {
+		.fb-login-logo,
+		.fb-login-btn-text {
+			display: none;
+		}
+	}
+
+	.login-user-info {
+		padding-right: 10px;
+
+		.login-user-info-photo-wrap {
+			padding-right: 0;
+			padding-top: 8px;
+		}
+
+		.login-user-info-name {
+			display: none;
+		}
+
+		.login-user-info-options {
+			width: 150%;
+			left: -50%;
+
+			.login-user-info-option {
+				.glyphicon {
+					display: none;
+				}
+			}
+		}
+	}
+}
