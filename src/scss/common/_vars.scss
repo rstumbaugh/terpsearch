@@ -2,17 +2,24 @@
 
 // colors
 $red: #c0392b;
+$dark-red: #96281B;
 $error-red: #a94442;
 $gray: #ecf0f1;
 $dark-gray: #737373;
 $black: #333;
 $green: #3c763d;
+$facebook-blue: #4267b2;
+$link-blue: #337ab7;
+$link-hover-blue: #23527c;
 
 // fonts
 $fonts: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+// header height
+$header-height: 70px;
+
 // card styles
-$card-border-radius: 5px;
+$card-border-radius: 3px;
 $card-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
 
 // bootstrap breakpoints

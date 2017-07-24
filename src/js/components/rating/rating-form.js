@@ -3,8 +3,9 @@ import RatingFormComponent from './rating-form-component.js';
 import StarRating from './star-rating.js';
 import RemoteSimpleSelect from 'components/remote-simple-select.js';
 import Globals from 'globals';
-import * as isofetch from 'isomorphic-fetch';
 import Ajax from 'utils/ajax';
+import Auth from 'utils/auth';
+import Store from 'utils/store';
 
 class RatingForm extends Component {
 	constructor() {
@@ -28,7 +29,7 @@ class RatingForm extends Component {
 		this.setState(s);
 	}
 
-	handleClick(e) {
+	submitRating(e) {
 		e.preventDefault(); // don't submit form
 		// check that course and prof is entered
 		
@@ -44,14 +45,15 @@ class RatingForm extends Component {
 				profError: false
 			})
 			
-			var self = this;
+			var user = Auth.getCurrentUser();
 			var rating = {
-				course_id: this.state.courseId,
-				professor: this.state.professor,
+				courseId: this.state.courseId,
+				prof: this.state.professor,
 				difficulty: this.state.difficulty,
-				interest: this.state.interest
+				interest: this.state.interest,
+				userId: user ? user.providerData[0].uid : undefined
 			};
-
+			
 			// moved this method outside promise success to avoid UI hanging
 			this.setState({
 				courseId: '',
@@ -62,11 +64,16 @@ class RatingForm extends Component {
 				profError: false,
 				messageClass: 'slide open'
 			})
-
+			
+			// post rating, send auth params
+			// redirect to UMD login page if not authorized
+			var redirectUrl = `${window.location.origin}/auth/redirect`;
+			redirectUrl += `?type=ratings&data=${encodeURIComponent(JSON.stringify(rating))}`
 			Ajax.post(Globals.API_SUBMIT_RATING, {
 				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
+					'Authorization': Store.getItem('userToken'),
+					'X-Auth-Ticket': Store.getItem('authTicket'),
+					'X-Auth-Service': redirectUrl.split('?')[0]
 				},
 				body: JSON.stringify(rating)
 			})
@@ -76,39 +83,48 @@ class RatingForm extends Component {
 				}
 			})
 			.catch(err => {
+				if (err.code == 401) {
+					window.location.href = redirectUrl;
+				}
 				console.error(err);
 			})
 		}
 	}
 
 	render() {
-		var courseField = <RemoteSimpleSelect 
-								placeholder='Enter a course ID'
-								url={Globals.API_LIST_COURSES + '?course_id='}
-								textField='course_id' 
-								name='courseId'
-								value={this.state.courseId}
-								onChange={this.handleChange.bind(this)}
-						 />;
-		var profField = <RemoteSimpleSelect 
-								placeholder='Enter a professor'
-								url={Globals.API_PROFS + '?q='}
-								textField='name'
-								name='professor'
-								value={this.state.professor}
-								onChange={this.handleChange.bind(this)}
-						/>;
-		var diffRating = <StarRating 
-								rating={this.state.difficulty} 
-								name='difficulty'
-								updateRating={this.handleChange.bind(this)}
-						/>
+		var courseField = 
+			<RemoteSimpleSelect 
+				placeholder='Enter a course ID'
+				url={Globals.API_LIST_COURSES + '?course_id='}
+				textField='course_id' 
+				name='courseId'
+				value={this.state.courseId}
+				onChange={this.handleChange.bind(this)}
+			/>;
+		var profField = 
+			<RemoteSimpleSelect 
+				placeholder='Enter a professor'
+				url={Globals.API_PROFS + '?q='}
+				textField='name'
+				name='professor'
+				value={this.state.professor}
+				onChange={this.handleChange.bind(this)}
+			/>;
+		var diffRating = 
+			<StarRating 
+				updatable
+				rating={this.state.difficulty} 
+				name='difficulty'
+				updateRating={this.handleChange.bind(this)}
+			/>
 
-		var intRating = <StarRating 
-								rating={this.state.interest} 
-								name='interest'
-								updateRating={this.handleChange.bind(this)}
-						/>
+		var intRating = 
+			<StarRating 
+				updatable
+				rating={this.state.interest} 
+				name='interest'
+				updateRating={this.handleChange.bind(this)}
+			/>
 		return (
 			<div className='row rating-form'>
 				<form id="courseForm" className="form-horizontal">
@@ -138,7 +154,7 @@ class RatingForm extends Component {
 						/>
 						<div className='col-sm-12'>
 							<button className='full-width btn btn-primary' 
-									onClick={this.handleClick.bind(this)}>
+									onClick={this.submitRating.bind(this)}>
 									Submit
 							</button>
 						</div>

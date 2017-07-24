@@ -1,6 +1,6 @@
 const API_ROOT = /localhost/.test(window.location.href) 
 								 	? 'http://localhost:8888/' 
-								 	: 'http://sheltered-ridge-74266.herokuapp.com/';
+								 	: 'https://sheltered-ridge-74266.herokuapp.com/';
 
 var globals = {
 	API_ROOT: 			  		API_ROOT,
@@ -15,13 +15,17 @@ var globals = {
   
 	API_PROFS: 			  		API_ROOT + 'professors',
 	API_LIST_PROFS:       API_ROOT + 'professors/list',
-  
+	
+	API_USERS:						API_ROOT + 'users',
 	API_ADD_EMAIL: 		 		API_ROOT + 'users/email',
 	API_ADD_FEEDBACK:     API_ROOT + 'users/feedback',
 
 	API_ADMIN_DASHBOARD:  API_ROOT + 'admin/dash',
 	API_DASHBOARD_REMOVE: API_ROOT + 'admin/dash/remove',
 	API_EMAIL_SEND: 	  	API_ROOT + 'admin/dash/email/send',
+
+	API_AUTH: 						API_ROOT + '/auth',
+	API_AUTH_VALIDATE:		API_ROOT + '/auth/validate',
 
 	API_FIREBASE_CONFIG:  API_ROOT + 'firebase_config',
 
@@ -82,9 +86,14 @@ var globals = {
 		}
 	},
 
+	getProfileUrl: (name, uid) => {
+		if (!name || !uid) return '';
+		return `/user/${uid}/${encodeURIComponent(name.replace(' ', '-'))}`;
+	},
+
 	capitalize: function(str) {
 		return str.substring(0,1).toUpperCase() + str.substring(1);
 	}
 }
 
-module.exports = globals;
+export default globals;

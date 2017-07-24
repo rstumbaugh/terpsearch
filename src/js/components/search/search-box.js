@@ -31,7 +31,7 @@ class SearchBox extends Component {
 		
 		document.onkeydown = function() {
 			// submit form on enter press
-			if (window.event.keyCode == '13') {
+			if (/search/.test(window.location.pathname) && window.event.keyCode == '13') {
 				self.submitForm();
 			}
 		}

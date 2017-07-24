@@ -7,13 +7,12 @@ class Store {
 	}
 
 	getItem(itemName) {
-		return this.store.getItem(itemName);
+		var item = this.store.getItem(itemName);
+		return item === null ? '' : item
 	}
 
 	setItem(itemName, value) {
 		this.store.setItem(itemName, value);
-		console.log('stored ' + itemName);
-		console.log(value);
 	}
 }
 

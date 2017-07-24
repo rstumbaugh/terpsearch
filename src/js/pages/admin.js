@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Header, Content, Footer} from 'utils/layout.js';
 import Sidebar from 'components/admin/admin-sidebar.js';
 import Pages from 'components/admin/pages/admin-pages.js';
-import Auth from 'components/firebase/firebase-auth.js';
+import Auth from 'utils/auth';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';
 
@@ -28,7 +28,7 @@ class Admin extends Component {
 	componentDidMount() {
 		var self = this;
 
-		Auth.onStateChanged(function(user) {
+		var unsubscribe = Auth.onStateChanged(function(user) {
 			if (user) {
 				// get user's firebase access token
 				// use token to check if admin, then get 
@@ -40,9 +40,10 @@ class Admin extends Component {
 							token: token,
 							name: user.displayName
 						})
-
-						var url = `${Globals.API_ADMIN_DASHBOARD}?token=${token}`;
-						return Ajax.get(url);
+						
+						return Ajax.get(Globals.API_ADMIN_DASHBOARD, {
+							'Authorization': token
+						});
 					})
 					.then(res => JSON.parse(res.response))
 					.then(function(response) {
@@ -75,7 +76,13 @@ class Admin extends Component {
 			}
 		})
 
+		this.setState({ unsubscribe });
+
 		Auth.logIn();
+	}
+
+	componentWillUnmount() {
+		this.state.unsubscribe();
 	}
 
 	// remove item from one of the pages
@@ -93,7 +100,10 @@ class Admin extends Component {
 			key: key
 		}
 
-		Ajax.post(`${Globals.API_DASHBOARD_REMOVE}?token=${this.state.token}`, {
+		Ajax.post(Globals.API_DASHBOARD_REMOVE, {
+			headers: {
+				'Authorization': this.state.token
+			},
 			body: JSON.stringify(item)
 		})
 			.then(res => res.response)
@@ -111,7 +121,10 @@ class Admin extends Component {
 			message: body
 		};
 		
-		Ajax.post(`${Globals.API_EMAIL_SEND}?token=${this.state.token}`, {
+		Ajax.post(Globals.API_EMAIL_SEND, {
+			headers: {
+				'Authorization': this.state.token
+			},
 			body: JSON.stringify(obj)
 		})
 			.then(res => res.response)
@@ -124,17 +137,20 @@ class Admin extends Component {
 	}
 
 	addEmail(email) {
-		var self = this;
-		Ajax.post(Globals.API_ADD_EMAIL + '?token=' + this.state.token, {
+		Ajax.post(Globals.API_ADD_EMAIL, {
+			headers: {
+				'Authorization': this.state.token
+			},
 			body: JSON.stringify({email: email})
 		})
-			.then(res => res.response)
-			.then(function(response) {
-				return Ajax.get(Globals.API_ADMIN_DASHBOARD + '?token=' + self.state.token)
+			.then(() => {
+				return Ajax.get(Globals.API_ADMIN_DASHBOARD, {
+					'Authorization': this.state.token
+				})
 			})
 			.then(res => JSON.parse(res.response))
 			.then(function(response) {
-				self.setState({
+				this.setState({
 					content: {
 						emails: response.emails
 					}

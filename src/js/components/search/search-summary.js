@@ -27,6 +27,7 @@ class SearchSummary extends Component {
 	}
 
 	handleVisibilityChange(visible) {
+	
 		this.setState({
 			visible: visible
 		})
@@ -56,7 +57,6 @@ class SearchSummary extends Component {
 	}
 
 	render() {
-		var self = this;
 		var pagePicker = 
 			<Select
 				simpleValue
@@ -66,9 +66,6 @@ class SearchSummary extends Component {
 				className='search-summary-input'
 				clearable={false}
 			/>
-
-		var style = this.state.numResults == 0 ? {display: 'none'} : {};
-		var className = this.state.showSummary ? (this.state.visible ? '' : 'fix') : 'hidden';
 		
 		// when falls out of focus, insert placeholder div to maintain document height
 		// and move summary to top of screen in fixed position
@@ -76,14 +73,29 @@ class SearchSummary extends Component {
 		var summaryWrap = document.getElementById('summaryWrap');
 		if (summaryWrap) { // get height of wrap to make placeholder
 			placeholderHeight = summaryWrap.clientHeight;
+
 		}
 
-		var placeholderStyle = this.state.visible ? {display: 'none'} : {};
+		// only fix summary if summary position is above scroll position
+		var summaryIsAbove = false;
+		var doc = document.documentElement;
+		var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+		var anchor = document.getElementById('summaryAnchor');
+		
+		if (anchor) {
+			summaryIsAbove = top > anchor.offsetTop;
+		}
+
+		// show summary if invisible and below top
+		var placeholderStyle = !this.state.visible && summaryIsAbove ? {} : {display: 'none'};
 		placeholderStyle.height = placeholderHeight;
+
+		var style = this.state.numResults == 0 ? {display: 'none'} : {};
+		var className = this.state.showSummary ? (!this.state.visible && summaryIsAbove ? 'fix' : '') : 'hidden';
 		
 		return (
 			<div style={style}>
-				<div className='before'></div>
+				<div id='summaryAnchor' className='before'></div>
 				<Sensor
 					scrollCheck={true}
 					scrollDelay={50}

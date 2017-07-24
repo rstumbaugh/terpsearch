@@ -6,13 +6,6 @@ $help-size: 12px;
 	padding-left: 5px;
 	padding-right: 5px;
 
-	.star {
-		display: inline;
-		padding: 5px 1px;
-		color: $red;
-		font-size: 24px;
-	}
-
 	.form-component {
 		padding: 0;
 		padding-bottom: 25px;
@@ -25,12 +18,12 @@ $help-size: 12px;
 		margin-bottom: 0;
 	}
 
-	.glyphicon:hover {
-		cursor: pointer;
-	}
-
 	.feedback-wrap {
 		margin: 10px auto;
+	}
+
+	.glyphicon:hover {
+		cursor: pointer;
 	}
 }
 

@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
-import Globals from 'globals';
 import Ajax from 'utils/ajax';
+import Auth from 'utils/auth';
+import Store from 'utils/store';
 
 class CommentInput extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			feedbackClass: 'slide closed',
 			feedback: '',
 			error: false,
 			text: '',
-			name: ''
+			name: '',
+			id: props.id
 		};
 	}
 
@@ -36,26 +38,45 @@ class CommentInput extends Component {
 				feedbackClass: 'error-msg slide open',
 				feedback: 'Comment must be at least ' + this.props.minLength + ' characters.'
 			})
-		} else {
-			var body = this.props.getRequestBody({
-				text: this.state.text,
-				name: this.state.name || 'anonymous'
-			});
-
-			Ajax.post(Globals.API_COURSE_COMMENTS, {
-				body: JSON.stringify(body)
-			})
-				.then(res => res.response)
-				.then(function(response) {
-					self.setState({
-						feedbackClass: 'success-msg slide open',
-						feedback: 'Comment successfully submitted.',
-						text: '',
-						name: ''
-					})
-				})
-				.catch(err => console.error(err))
+			return;
 		}
+
+		var user = Auth.getCurrentUser();
+		var body = {
+			comment: this.state.text,
+			name: this.state.name || 'anonymous',
+			userId: user ? user.providerData[0].uid : undefined
+		}
+
+		// send based on type passed from props
+		body[`${this.props.type}Id`] = this.props.id;
+
+		// handle UMD auth flow
+		var redirectUrl = `${window.location.origin}/auth/redirect`;
+		redirectUrl += `?type=comments&data=${encodeURIComponent(JSON.stringify(body))}`
+		Ajax.post(this.props.url, {
+			headers: {
+				'Authorization': Store.getItem('userToken'),
+				'X-Auth-Ticket': Store.getItem('authTicket'),
+				'X-Auth-Service': redirectUrl.split('?')[0]
+			},
+			body: JSON.stringify(body)
+		})
+			.then(res => res.response)
+			.then(() => {
+				self.setState({
+					feedbackClass: 'success-msg slide open',
+					feedback: 'Comment successfully submitted.',
+					text: '',
+					name: ''
+				})
+			})
+			.catch(err => {
+				if (err.code == 401) {
+					window.location.href = redirectUrl;
+				}
+				console.error(err);
+			})
 	}
 
 	render() {
