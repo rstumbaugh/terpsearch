@@ -43,7 +43,7 @@ class AuthRedirect extends Component {
 		})
 			.then(res => {
 				this.setState({
-					message: 'Rating added'
+					message: res.response
 				})
 			})
 			.catch(err => {
