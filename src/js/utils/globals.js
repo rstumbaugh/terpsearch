@@ -24,6 +24,9 @@ var globals = {
 	API_DASHBOARD_REMOVE: API_ROOT + 'admin/dash/remove',
 	API_EMAIL_SEND: 	  	API_ROOT + 'admin/dash/email/send',
 
+	API_AUTH: 						API_ROOT + '/auth',
+	API_AUTH_VALIDATE:		API_ROOT + '/auth/validate',
+
 	API_FIREBASE_CONFIG:  API_ROOT + 'firebase_config',
 
 
@@ -83,11 +86,9 @@ var globals = {
 		}
 	},
 
-	getProfileUrl: (user) => {
-		if (!user) return '';
-		var name = user.displayName.replace(' ', '-');
-		var id = user.providerData[0].uid;
-		return `/user/${id}/${encodeURIComponent(name)}`;
+	getProfileUrl: (name, uid) => {
+		if (!name || !uid) return '';
+		return `/user/${uid}/${encodeURIComponent(name.replace(' ', '-'))}`;
 	},
 
 	capitalize: function(str) {
@@ -95,4 +96,4 @@ var globals = {
 	}
 }
 
-module.exports = globals;
+export default globals;
