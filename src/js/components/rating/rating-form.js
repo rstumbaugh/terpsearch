@@ -86,6 +86,7 @@ class RatingForm extends Component {
 			})
 			.catch(err => {
 				if (err.code == 401) {
+					Store.setItem('referrer', window.location.href);
 					window.location.href = redirectUrl;
 				}
 				

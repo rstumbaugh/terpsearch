@@ -122,7 +122,7 @@ class Course extends Component {
 			<div>
 				<Header />
 				<Content offset>
-					<Breadcrumb />
+					
 					<div className='row card'>
 						<div className='col-md-9'>
 							<CourseInfo 

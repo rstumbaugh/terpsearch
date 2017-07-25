@@ -1,0 +1,36 @@
+.auth-redirect {
+	text-align: center;
+	padding: 50px 0;
+
+	.auth-redirect-message {
+		display: inline-block;
+		font-size: 24px;
+		font-weight: 500;
+		padding: 75px 25px;
+		border: 2px solid transparent;
+		border-radius: 3px;
+
+		&.success {
+			border-color: $green;
+			color: $green;
+			background-color: $light-green;
+		}
+
+		&.error {
+			border-color: $error-red;
+			color: $error-red;
+			background-color: $error-light-red;
+		}
+
+		&.loading {
+			@extend .card;
+		}
+
+		.auth-redirect-link {
+			display: block;
+			margin-top: 25px;
+			font-size: 18px;
+			font-weight: 300;
+		}
+	}
+}

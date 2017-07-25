@@ -12,7 +12,8 @@ class AuthRedirect extends Component {
 
 		const query = Globals.getQueryString(window.location.href);
 		this.state = {
-			message: '',
+			status: 'loading',
+			message: 'Loading...',
 			service: encodeURIComponent(window.location.href.split('?')[0]),
 			ticket: query.ticket,
 			type: query.type,
@@ -30,6 +31,11 @@ class AuthRedirect extends Component {
 		}
 		
 		// if this block is reached, user has alredy been redirected from UMD login and should be validated
+		var referrer = Store.getItem('referrer'); // set in rating-form and comment-input
+		var referrerName = referrer.split('/').length && referrer.split('/')[3].length
+			? Globals.capitalize(referrer.split('/')[3])
+			: 'Home page';
+
 		var type = Store.getItem('type');
 		var object = JSON.parse(Store.getItem('data'));
 		Ajax.post(`${Globals.API_COURSES}/reviews/${type}`, {
@@ -43,12 +49,18 @@ class AuthRedirect extends Component {
 		})
 			.then(res => {
 				this.setState({
-					message: res.response
+					message: res.response,
+					status: 'success',
+					href: referrer,
+					linkText: `Back to ${referrerName}`
 				})
 			})
 			.catch(err => {
 				this.setState({
-					message: err.response
+					message: err.response,
+					status: 'error',
+					href: referrer,
+					linkText: `Back to ${referrerName}`
 				})
 			})
 	}
@@ -58,8 +70,17 @@ class AuthRedirect extends Component {
 			<div>
 				<Header />
 				<Content offset>
-					<div className='auth-redirect card col-sm-12'>
-						<h1 style={{marginTop: 0}}>{ this.state.message }</h1>
+					<div className='auth-redirect col-sm-12'>
+						<div className={`auth-redirect-message ${this.state.status}`}>
+							{ this.state.message }
+							{
+								this.state.status != 'loading'
+									? <a className='auth-redirect-link' href={this.state.href}>
+											{ this.state.linkText }
+										</a>
+									: ''
+							}
+						</div>
 					</div>
 				</Content>
 				<Footer />
