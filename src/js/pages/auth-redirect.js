@@ -72,6 +72,13 @@ class AuthRedirect extends Component {
 				<Content offset>
 					<div className='auth-redirect col-sm-12'>
 						<div className={`auth-redirect-message ${this.state.status}`}>
+							{
+								this.state.status != 'loading' 
+									? this.state.status == 'success'
+										? <span className='glyphicon glyphicon-ok'></span>
+										: <span className='glyphicon glyphicon-remove'></span>
+									: ''
+							}
 							{ this.state.message }
 							{
 								this.state.status != 'loading'

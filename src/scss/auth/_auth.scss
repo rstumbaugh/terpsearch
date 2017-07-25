@@ -1,6 +1,6 @@
 .auth-redirect {
 	text-align: center;
-	padding: 50px 0;
+	padding: 25px 0 50px 0;
 
 	.auth-redirect-message {
 		display: inline-block;
@@ -24,6 +24,12 @@
 
 		&.loading {
 			@extend .card;
+		}
+
+		.glyphicon {
+			display: block;
+			font-size: 72px;
+			padding-bottom: 25px;
 		}
 
 		.auth-redirect-link {
