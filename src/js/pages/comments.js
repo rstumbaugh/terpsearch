@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Header, Content, Footer} from 'utils/layout.js';
 import CourseComments from 'components/info/info-comments.js';
-import Breadcrumb from 'components/breadcrumb';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';
+import Breadcrumb from 'components/breadcrumb';
 
 class Comments extends Component {
 	constructor(props) {
@@ -51,7 +51,7 @@ class Comments extends Component {
 			<div>
 				<Header />
 				<Content offset>
-					<Breadcrumb link={this.state.fromLink} display={this.state.fromDisplay} />
+					<Breadcrumb />
 					<div className='card info-main row'>
 						<h1>{decodeURIComponent(this.state.id)}</h1>
 						<CourseComments

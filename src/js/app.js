@@ -6,6 +6,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import * as firebase from 'firebase';
 import Auth from 'utils/auth';
 import Store from 'utils/store';
+import History from 'utils/history';
 import Home from 'pages/home.js';
 import Search from 'pages/search.js';
 import Course from 'pages/course.js';
@@ -43,7 +44,7 @@ class App extends React.Component {
 		firebase.initializeApp(config)
 
 		// initialize history to empty
-		Store.setItem('history', '[]');
+		History.clear();
 
 		this.state = {};
 	}

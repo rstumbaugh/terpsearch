@@ -1,23 +1,34 @@
 import React, {Component} from 'react';
 import {Link as RouterLink} from 'react-router-dom';
-import Store from 'utils/store';
+import History from 'utils/history';
+import Globals from 'globals';
 
 class Link extends Component {
-	constructor() {
-		super();
-
-		this.pushHistory = this.pushHistory.bind(this);
+	pushHistory() {
+		// add current page to history before changing pages
+		var href = window.location.pathname;
+		var pageName = window.location.pathname.split('/')[1];
+		pageName = pageName ? Globals.capitalize(pageName) : 'Home';
+		History.push({ href, pageName });
 	}
 
-	pushHistory() {
-		var path = window.location.pathname;
-		var title = window.location.pathname.split('/')[1];
-		Store.addHistoryItem(title, path);
+	popHistory() {
+		// pop link URL and any following items from history
+		var href = typeof(this.props.to) == 'string' ? this.props.to : this.props.to.pathname;
+		History.pop(href);
+	}
+
+	handleClick() {
+		if (this.props.pushHistory) {
+			this.pushHistory();
+		} else if (this.props.popHistory) {
+			this.popHistory();
+		}
 	}
 
 	render() {
 		return (
-			<RouterLink to={this.props.to} onClick={this.pushHistory}>
+			<RouterLink to={this.props.to} onClick={this.handleClick.bind(this)}>
 				{ this.props.children }
 			</RouterLink>
 		)

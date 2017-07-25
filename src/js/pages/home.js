@@ -7,15 +7,18 @@ import ratingImg from 'images/ratings.svg';
 import descImg from 'images/desc.svg';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-import Search from 'pages/search.js';
 import {Header, Content, Footer} from 'utils/layout.js';
+import History from 'utils/history';
 import RatingForm from 'components/rating/rating-form.js';
 import Feedback from 'components/feedback.js';
 
 class Home extends React.Component {
+  componentDidMount() {
+    History.clear();
+  }
+
   render() {
     return (
       <div>

@@ -16,7 +16,7 @@ class SearchItem extends Component {
 			<div className='search-result card row'>
         <div className='col-sm-3 col-md-2'>
         	<h2>
-            <Link to={`/course/${this.props.course_id}`}>
+            <Link to={`/course/${this.props.course_id}`} pushHistory>
               {this.props.course_id}
             </Link>
           </h2>
@@ -32,7 +32,7 @@ class SearchItem extends Component {
         </div>
         <div className='col-sm-9 col-md-10'>
           <h3>
-            <Link to={`/course/${this.props.course_id}`}>
+            <Link to={`/course/${this.props.course_id}`} pushHistory>
               {this.props.title}
             </Link>
           </h3>

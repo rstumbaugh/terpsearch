@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import Link from 'components/link';
 
 class CourseComments extends Component {
 	constructor() {
@@ -56,11 +56,7 @@ class CourseComments extends Component {
 
 		if (this.props.max && this.state.comments.length > this.props.max) {
 			link = 
-				<Link 
-					to={{
-						pathname: `/comments/${this.props.type}/${this.props.id}`,
-						state: { from: window.location.pathname, display: this.props.type}
-					}}>
+				<Link to={`/comments/${this.props.type}/${this.props.id}`} pushHistory>
 					View all
 				</Link>
 		}
