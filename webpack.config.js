@@ -9,6 +9,7 @@ const HtmlWebpackPluginConfig =  new HtmlWebpackPlugin({
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
+  devtool: 'source-map',
   entry: {
     app: './js/app.js'
   },

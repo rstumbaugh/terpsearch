@@ -26,20 +26,22 @@ class CommentInput extends Component {
 	handleSubmit() {
 		var self = this;
 
-		this.setState({
-			error: false,
-			feedbackClass: '',
-			feedback: ''
-		});
-
 		if (this.state.text.length < this.props.minLength) {
 			this.setState({
 				error: true,
-				feedbackClass: 'error-msg slide open',
+				feedbackClass: 'error slide open',
 				feedback: 'Comment must be at least ' + this.props.minLength + ' characters.'
 			})
 			return;
 		}
+
+		this.setState({
+			error: false,
+			feedbackClass: 'slide open',
+			feedback: 'Submitting...',
+			text: '',
+			name: ''
+		});
 
 		var user = Auth.getCurrentUser();
 		var body = {
@@ -63,19 +65,22 @@ class CommentInput extends Component {
 			body: JSON.stringify(body)
 		})
 			.then(res => res.response)
-			.then(() => {
+			.then(response => {
 				self.setState({
-					feedbackClass: 'success-msg slide open',
-					feedback: 'Comment successfully submitted.',
-					text: '',
-					name: ''
+					feedbackClass: 'success slide open',
+					feedback: response,
 				})
 			})
 			.catch(err => {
 				if (err.code == 401) {
+					Store.setItem('referrer', window.location.href);
 					window.location.href = redirectUrl;
 				}
-				console.error(err);
+
+				self.setState({
+					feedbackClass: 'error slide open',
+					feedback: err.response
+				})
 			})
 	}
 
@@ -114,7 +119,7 @@ class CommentInput extends Component {
 						<div className='btn btn-primary' onClick={this.handleSubmit.bind(this)}>Submit</div>
 					</div>
 					<div className='info-comment-feedback-wrap col-md-6'>
-						<p className={this.state.feedbackClass}>
+						<p className={'form-feedback ' + this.state.feedbackClass}>
 							{this.state.feedback}
 						</p>
 					</div>

@@ -16,17 +16,12 @@ class Course extends Component {
 	constructor(props) {
 		super(props);
 
-		const fromLink = props.location.state ? props.location.state.from : '';
 		this.state = {
 			courseInfo: {},
 			courseStats: {},
 			courseId: props.match.params.courseId,
 			comments: [],
-			status: 'waiting',
-			fromLink: fromLink,
-			fromDisplay: props.location.state && props.location.state.display 
-					? props.location.state.display 
-					: fromLink
+			status: 'waiting'
 		}
 	}
 
@@ -127,7 +122,7 @@ class Course extends Component {
 			<div>
 				<Header />
 				<Content offset>
-					<Breadcrumb link={this.state.fromLink} display={this.state.fromDisplay} />
+					<Breadcrumb />
 					<div className='row card'>
 						<div className='col-md-9'>
 							<CourseInfo 
@@ -196,7 +191,7 @@ class Course extends Component {
 							/>
 						</div>
 						<div className='col-md-5'>
-							<RatingForm />
+							<RatingForm history={this.props.history} />
 						</div>
 					</div>
 				</Content>

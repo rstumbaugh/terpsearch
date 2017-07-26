@@ -1,4 +1,4 @@
-import styles_ from 'styles/styles.scss';
+import 'styles/styles.scss';
 import 'react-select/dist/react-select.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -6,6 +6,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import * as firebase from 'firebase';
 import Auth from 'utils/auth';
 import Store from 'utils/store';
+import History from 'utils/history';
 import Home from 'pages/home.js';
 import Search from 'pages/search.js';
 import Course from 'pages/course.js';
@@ -19,7 +20,7 @@ import AuthRedirect from 'pages/auth-redirect';
 class App extends React.Component {
 	constructor() {
 		super();
-		
+
 		// initialize firebase app
 		var config;
 		if (/localhost/.test(window.location.href)) {
@@ -41,6 +42,13 @@ class App extends React.Component {
 		}
 
 		firebase.initializeApp(config)
+
+		// initialize history to empty unless otherwise specified
+		if (History.peek() && History.peek().href == 'noClear') {
+			History.pop();
+		} else {
+			History.clear();
+		}
 
 		this.state = {};
 	}

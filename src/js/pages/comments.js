@@ -3,15 +3,21 @@ import {Header, Content, Footer} from 'utils/layout.js';
 import CourseComments from 'components/info/info-comments.js';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';
+import Breadcrumb from 'components/breadcrumb';
 
 class Comments extends Component {
 	constructor(props) {
 		super(props);
 
+		const fromLink = props.location.state ? props.location.state.from : '';
 		this.state = {
 			id: props.match.params.id,
 			type: props.match.params.type,
-			comments: []
+			comments: [],
+			fromLink: fromLink,
+			fromDisplay: props.location.state && props.location.state.display 
+					? props.location.state.display 
+					: fromLink
 		};
 	}
 
@@ -45,7 +51,8 @@ class Comments extends Component {
 			<div>
 				<Header />
 				<Content offset>
-					<div className='card info-main'>
+					<Breadcrumb />
+					<div className='card info-main row'>
 						<h1>{decodeURIComponent(this.state.id)}</h1>
 						<CourseComments
 							comments={this.state.comments}
