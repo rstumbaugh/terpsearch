@@ -13,6 +13,8 @@ import {Header, Content, Footer} from 'utils/layout.js';
 import History from 'utils/history';
 import RatingForm from 'components/rating/rating-form.js';
 import Feedback from 'components/feedback.js';
+import Changelog from 'components/home/changelog';
+import ChangelogItem from 'components/home/changelog-item';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -164,34 +166,37 @@ class Home extends React.Component {
               </div>
             </div>
 
-            <div className='home-content-wrap row'>
-              <div className='home-content-heading'>
-                Changelog
-              </div>
-              <div className='col-md-10 col-md-offset-1'>
-                <div className='card'>
-                  <div className='home-content-item row'>
-                    <div className='home-version col-sm-12'>
-                      <h3 className='home-version-title'>v1.1</h3>
-                      <p className='home-version-desc'>
-                        Lots of behind the scenes fixes -- almost a complete refactoring of most of TerpSearch's code. 
-                        New fixes include saving your search so the results don't disappear when changing pages.
-                      </p>
-                    </div>
-                  </div>
-                  <div className='home-content-item row'>
-                    <div className='home-version col-sm-12'>
-                      <h3 className='home-version-title'>v1.0</h3>
-                      <p className='home-version-desc'>
-                        The first version of TerpSearch is out! This first version features advanced course searching, 
-                        student-contributed ratings and reviews, and course information retrieved from Testudo. Excited 
-                        to see where this will go in the future!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Changelog>
+              <ChangelogItem
+                version='1.2'
+                date='July 2017'
+                description={
+                  'Added Facebook login and UMD authentication. UMD login assures that all ' +
+                  'contributors will be UMD students, and Facebook login sets the groundwork for ' +
+                  'finding courses your friends have taken and seeing your friends ratings, reviews ' +
+                  'and comments! Don\'t worry, when this feature is released, we will give you the ' +
+                  'ability to hide your profile or certain reviews you\'d like to keep private.'
+                }
+              />
+              <ChangelogItem
+                version='1.1'
+                date='June 2017'
+                description={
+                  'Lots of behind the scenes fixes -- almost a complete refactoring of most of ' +
+                  'TerpSearch\'s code. New fixes include saving your search so the results don\'t ' +
+                  'disappear when changing pages.'
+                }
+              />
+              <ChangelogItem
+                version='1.0'
+                date='April 2017'
+                description={
+                  'The first version of TerpSearch is out! This first version features advanced ' +
+                  'course searching, student-contributed ratings and reviews, and course ' +
+                  'information retrieved from Testudo. Excited to see where this will go in the future!'
+                }
+              />
+            </Changelog>
           </div>
         </Content>
         <Footer />
