@@ -1,4 +1,5 @@
 import * as Firebase from 'firebase';
+import History from 'utils/history';
 
 class Auth {
 	getCurrentUser() {
@@ -21,6 +22,7 @@ class Auth {
 		// only want to call once. don't want to keep this observer
 		var unsubscribe = Firebase.auth().onAuthStateChanged(function(user) {
 			if (!user) {
+				History.push({href: 'noClear', pageName: ''});
 				Firebase.auth().signInWithRedirect(provider);
 			}
 			
