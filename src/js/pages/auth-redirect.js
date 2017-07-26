@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import Link from 'components/link';
 import {Header, Content, Footer} from 'utils/layout';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';
 import Store from 'utils/store';
+import History from 'utils/history';
 
 // handle redirect from UMD auth server
 // URL querystring will have ticket, rating info, previous page
@@ -26,16 +28,13 @@ class AuthRedirect extends Component {
 		if (!this.state.ticket) {
 			Store.setItem('type', this.state.type);
 			Store.setItem('data', this.state.data);
+			History.push({href: 'noClear', pageName: ''}); // don't clear whole history
 			window.location.href = `https://login.umd.edu/cas/login?service=${this.state.service}`;
 			return;
 		}
 		
 		// if this block is reached, user has alredy been redirected from UMD login and should be validated
-		var referrer = Store.getItem('referrer'); // set in rating-form and comment-input
-		var referrerName = referrer.split('/').length && referrer.split('/')[3].length
-			? Globals.capitalize(referrer.split('/')[3])
-			: 'Home page';
-
+		var prevPage = History.pop() || {href: '/', pageName: 'Home'};
 		var type = Store.getItem('type');
 		var object = JSON.parse(Store.getItem('data'));
 		Ajax.post(`${Globals.API_COURSES}/reviews/${type}`, {
@@ -51,17 +50,18 @@ class AuthRedirect extends Component {
 				this.setState({
 					message: res.response,
 					status: 'success',
-					href: referrer,
-					linkText: `Back to ${referrerName}`
+					href: prevPage.href,
+					linkText: `Back to ${prevPage.pageName}`
 				})
 			})
 			.catch(err => {
 				this.setState({
 					message: err.response,
 					status: 'error',
-					href: referrer,
-					linkText: `Back to ${referrerName}`
+					href: prevPage.href,
+					linkText: `Back to ${prevPage.pageName}`
 				})
+				console.error(err)
 			})
 	}
 
@@ -82,9 +82,9 @@ class AuthRedirect extends Component {
 							{ this.state.message }
 							{
 								this.state.status != 'loading'
-									? <a className='auth-redirect-link' href={this.state.href}>
+									? <Link className='auth-redirect-link' to={this.state.href}>
 											{ this.state.linkText }
-										</a>
+										</Link>
 									: ''
 							}
 						</div>

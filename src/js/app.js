@@ -43,8 +43,12 @@ class App extends React.Component {
 
 		firebase.initializeApp(config)
 
-		// initialize history to empty
-		History.clear();
+		// initialize history to empty unless otherwise specified
+		if (History.peek() && History.peek().href == 'noClear') {
+			History.pop();
+		} else {
+			History.clear();
+		}
 
 		this.state = {};
 	}

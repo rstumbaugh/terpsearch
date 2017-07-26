@@ -191,7 +191,7 @@ class Course extends Component {
 							/>
 						</div>
 						<div className='col-md-5'>
-							<RatingForm />
+							<RatingForm history={this.props.history} />
 						</div>
 					</div>
 				</Content>

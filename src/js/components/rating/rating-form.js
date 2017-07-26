@@ -6,6 +6,7 @@ import Globals from 'globals';
 import Ajax from 'utils/ajax';
 import Auth from 'utils/auth';
 import Store from 'utils/store';
+import History from 'utils/history';
 
 class RatingForm extends Component {
 	constructor() {
@@ -86,7 +87,12 @@ class RatingForm extends Component {
 			})
 			.catch(err => {
 				if (err.code == 401) {
-					Store.setItem('referrer', window.location.href);
+					var href = window.location.pathname;
+					var pageName = window.location.pathname.split('/')[1];
+					pageName = pageName ? Globals.capitalize(pageName) : 'Home';
+					History.push({href, pageName});
+					History.push({href: 'noClear', pageName: ''});
+					
 					window.location.href = redirectUrl;
 				}
 				

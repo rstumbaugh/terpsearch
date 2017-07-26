@@ -3,10 +3,11 @@ import Store from 'utils/store';
 // handle page changes, keep track of local history via localStorage
 // certain pages will clear history (home page, search page)
 // used to populate Breadcrumb on top of some pages
+// acts as a stack
 class History {
 	get() {
 		var history = Store.getItem('history');
-		history = history === null ? [] : JSON.parse(history);
+		history = history === null || history == '' ? [] : JSON.parse(history);
 		return history;
 	}
 
@@ -22,13 +23,23 @@ class History {
 	pop(href = '') {
 		var idx = -1;
 		var history = this.get();
+		var popped = [];
 		
 		history.forEach((item, i) => {
 			idx = item.href == href ? i : idx
 		})
 
-		history.splice(idx);
+		popped = history.splice(idx);
 		Store.setItem('history', JSON.stringify(history));
+		return popped.length
+			? popped.length == 1 ? popped[0] : popped
+			: undefined
+	}
+
+	// get first element in history
+	peek() {
+		var history = this.get();
+		return history.length ? history[history.length - 1] : undefined;
 	}
 
 	// reset history

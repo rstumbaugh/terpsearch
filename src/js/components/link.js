@@ -28,7 +28,11 @@ class Link extends Component {
 
 	render() {
 		return (
-			<RouterLink to={this.props.to} onClick={this.handleClick.bind(this)}>
+			<RouterLink 
+				to={this.props.to} 
+				className={this.props.className} 
+				onClick={this.handleClick.bind(this)}
+			>
 				{ this.props.children }
 			</RouterLink>
 		)
