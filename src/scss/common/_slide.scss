@@ -9,7 +9,7 @@
 	}
 
 	&.open {
-		max-height: 50px;
+		max-height: 100px;
 
 		@include transition(max-height .75s linear);
 	}
