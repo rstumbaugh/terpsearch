@@ -46,6 +46,13 @@ class CommentInput extends Component {
 		});
 
 		var user = Auth.getCurrentUser();
+		if (!user) {
+			this.setState({
+				feedbackClass: 'error slide open',
+				feedback: 'You must be logged in to submit a comment.'
+			})
+			return;
+		}
 		var body = {
 			comment: this.state.text,
 			name: this.state.name || 'anonymous',
