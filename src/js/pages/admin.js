@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Header, Content, Footer} from 'utils/layout.js';
+import {Header, Content} from 'utils/layout.js';
 import Sidebar from 'components/admin/admin-sidebar.js';
 import Pages from 'components/admin/pages/admin-pages.js';
 import Auth from 'utils/auth';
@@ -48,17 +48,18 @@ class Admin extends Component {
 					.then(res => JSON.parse(res.response))
 					.then(function(response) {
 						// populate state with info
-						self.setState({
+						var state = {
 							status: 'logged in',
 							items: Globals.ADMIN_PAGES,
 							active: Globals.ADMIN_PAGES[0],
-							content: {
-								logs: response.logs,
-								emails: response.emails,
-								feedback: response.feedback,
-								users: response.users
-							}
+							content: {}
+						}
+
+						Globals.ADMIN_PAGES.forEach(page => {
+							state.content[page] = response[page];
 						})
+						
+						self.setState(state);
 					})
 					.catch(function(err) {
 						// error thrown if unauthorized 
