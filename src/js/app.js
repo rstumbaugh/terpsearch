@@ -16,6 +16,7 @@ import Admin from 'pages/admin.js';
 import Comments from 'pages/comments.js';
 import Profile from 'pages/profile';
 import AuthRedirect from 'pages/auth-redirect';
+import Incident from 'pages/incident';
 
 class App extends React.Component {
 	constructor() {
@@ -96,7 +97,8 @@ class App extends React.Component {
 					<Route path='/course/:courseId' component={Course} />
 					<Route path='/feedback' component={Feedback} />
 					<Route path='/rate' component={Rating} />
-					<Route path='/admin' component={Admin} />
+					<Route path='/admin' component={Admin} exact />
+					<Route path='/admin/incident/:id' component={Incident} />
 					<Route path='/comments/:type/:id' component={Comments} />
 					<Route path='/user/:userId/:displayName' component={Profile} />
 					<Route path='/user/:userId/ratings' component={Profile} />

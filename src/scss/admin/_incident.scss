@@ -1,0 +1,41 @@
+.incident-wrap {
+	.incident-info {
+		.incident-name {
+			h1 {
+				margin-top: 0;
+				margin-bottom: 25px;
+				display: inline-block;
+			}
+
+			.incident-status {
+				margin-left: 10px;
+				padding: 5px 8px;
+				text-align: center;
+				border-radius: 3px;
+				border: 1px solid transparent;
+
+				&.new {
+					background-color: $error-light-red;
+					border-color: $error-red;
+					color: $error-red;
+				}
+
+				&.in-progress {
+					background-color: $light-yellow;
+					border-color: $yellow;
+					color: $yellow;
+				}
+
+				&.resolved {
+					background-color: $light-green;
+					border-color: $green;
+					color: $green;
+				}
+			}
+		}
+
+		p {
+			font-size: 16px;
+		}
+	}
+}
