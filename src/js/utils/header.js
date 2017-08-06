@@ -5,8 +5,8 @@ import Login from 'components/login';
 class Header extends Component {
 	logIn(e) {
 		e.preventDefault();
-		console.log('here');
 	}
+	
 	render() {
 		var className = this.props.white ? 'nav-header-wrap-white' : 'nav-header-wrap';
 
