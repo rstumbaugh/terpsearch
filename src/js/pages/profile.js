@@ -76,16 +76,16 @@ class Profile extends Component {
 								onEmailChange={this.toggleEmail.bind(this)}
 							/>
 						</div>
-						<div className='user-profile-section col-md-7 left'>
-							<h1 className='user-profile-heading'>Courses</h1>
+						<div className='user-profile-section section col-md-7 left'>
+							<h1 className='user-profile-heading section-heading'>Courses</h1>
 							<ProfileCourses
 								ratings={this.state.user.ratings}
 								comments={this.state.user.comments}
 								isSelf={this.state.isSelf}
 							/>
 						</div>
-						<div className='user-profile-section col-md-5 right'>
-							<h1 className='user-profile-heading'>Friends</h1>
+						<div className='user-profile-section section col-md-5 right'>
+							<h1 className='user-profile-heading section-heading'>Friends</h1>
 							<ProfileFriends 
 								friends={friends}
 								max={6}

@@ -18,6 +18,19 @@ body {
 .content-wrap {
 	padding-top: 15px;
 
+	.section {
+		text-align: center;
+
+		h1.section-heading {
+			color: $red;
+			font-size: 48px;
+		}
+
+		& > div {
+			text-align: left;
+		}
+	}
+
 	p {
 		font-size: $p-size;
 	}
