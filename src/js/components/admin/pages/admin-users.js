@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import Globals from 'globals';
 
 class Users extends Component {
 	getUsers(users) {
 		var rows = []
 
 		for (var key in users) {
-			var time = new Date(users[key].lastLogin).toString('hh:mm tt MMM dd yyyy');
+			var time = Globals.formatDate(users[key].lastLogin);
 			rows.push(
 				<tr key={key}>
 					<td>{users[key].name}</td>

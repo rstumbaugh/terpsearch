@@ -1,3 +1,4 @@
+import dateFormat from 'dateformat';
 const API_ROOT = /localhost/.test(window.location.href) 
 								 	? 'http://localhost:8888/' 
 								 	: 'https://sheltered-ridge-74266.herokuapp.com/';
@@ -23,6 +24,7 @@ var globals = {
 	API_ADMIN_DASHBOARD:  API_ROOT + 'admin/dash',
 	API_DASHBOARD_REMOVE: API_ROOT + 'admin/dash/remove',
 	API_EMAIL_SEND: 	  	API_ROOT + 'admin/dash/email/send',
+	API_INCIDENTS: 				API_ROOT + 'admin/incidents',
 
 	API_AUTH: 						API_ROOT + '/auth',
 	API_AUTH_VALIDATE:		API_ROOT + '/auth/validate',
@@ -34,7 +36,7 @@ var globals = {
 	
 	MODAL_POPUP_FREQUENCY: 0.08,
 
-	ADMIN_PAGES: ['logs', 'emails', 'users', 'feedback'],
+	ADMIN_PAGES: ['logs', 'emails', 'users', 'feedback', 'incidents'],
 
 	getQueryString: function(url) {
 	    var vars = [], hash;
@@ -93,6 +95,10 @@ var globals = {
 
 	capitalize: function(str) {
 		return str.substring(0,1).toUpperCase() + str.substring(1);
+	},
+
+	formatDate: function(date) {
+		return dateFormat(date, 'mmmm dS, yyyy, h:MM TT');
 	}
 }
 

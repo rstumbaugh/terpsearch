@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Globals from 'globals';
 
 class Logs extends Component {
 	getLogs(logs) {
@@ -12,7 +13,7 @@ class Logs extends Component {
 			var c = log.content;
 			var type = log.type;
 			var content;
-			var time = new Date(log.time).toString('hh:mm tt MMM dd yyyy');
+			var time = Globals.formatDate(log.time);
 
 			// decide what to display based on log type
 			if (log.type == 'rating') {

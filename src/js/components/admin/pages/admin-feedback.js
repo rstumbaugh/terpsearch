@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Globals from 'globals';
 
 class Feedback extends Component {
 	getFeedback(feedback) {
@@ -11,7 +12,7 @@ class Feedback extends Component {
 		for (var i = 0; i < sortedKeys.length; i++) {
 			var key = sortedKeys[i];
 			var item = feedback[key];
-			var time = new Date(item.timestamp).toString('h:mm tt MMM dd yyyy');
+			var time = Globals.formatDate(item.timestamp);
 
 			rows.push(
 				<tr key={key}>
