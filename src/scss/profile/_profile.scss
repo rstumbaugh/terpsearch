@@ -12,8 +12,6 @@ $profile-subheader-size: 32px;
 	}
 
 	.user-profile-section {
-		text-align: center;
-
 		&.left {
 			padding-right: 5px;
 		}
@@ -23,13 +21,7 @@ $profile-subheader-size: 32px;
 		}
 
 		h1.user-profile-heading {
-			font-size: $profile-header-size;
-			color: $red;
 			margin: 15px 0;
-		}
-
-		& > div {
-			text-align: left;
 		}
 	}
 	

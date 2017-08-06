@@ -1,7 +1,8 @@
 .incident-wrap {
 	.incident-info {
-		.incident-name {
+		.incident-title {
 			h1 {
+				font-size: 48px;
 				margin-top: 0;
 				margin-bottom: 25px;
 				display: inline-block;
@@ -36,6 +37,42 @@
 
 		p {
 			font-size: 16px;
+		}
+
+		.incident-body {
+			margin-top: 25px;
+
+			.incident-body-item {
+				margin-left: 10px;
+			}
+		}
+	}
+
+	.incident-actions {
+		.incident-action {
+			display: block;
+			margin-bottom: 10px;
+
+
+			
+			&.action-approve {
+				background-color: $light-green;
+				border-color: $green;
+				color: $green;
+
+				&:hover {
+					background-color: darken($light-green, 15%);
+				}
+			}
+
+			&.action-reject {
+				background-color: $error-light-red;
+				border-color: $error-red;
+				color: $error-red;
+				&:hover {
+					background-color: darken($error-light-red, 15%);
+				}
+			}
 		}
 	}
 }
