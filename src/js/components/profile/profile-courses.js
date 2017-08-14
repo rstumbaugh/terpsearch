@@ -7,13 +7,13 @@ class ProfileCourses extends Component {
 		super(props);
 
 		this.state = {
-			courses: {}
+			courses: props.courses || {}
 		}
 	}
 
 	// combine ratings & comments for each course
 	componentWillReceiveProps(nextProps) {
-		var courses = {};
+		var courses = nextProps.courses || {};
 		
 		// initialize course with rating
 		for (const course in nextProps.ratings) {
@@ -36,7 +36,7 @@ class ProfileCourses extends Component {
 			<div className='user-profile-course-info card'>
 				{
 					Object.keys(this.state.courses).map((courseId, i) => 
-						i >= this.props.max 
+						this.props.max && i >= this.props.max 
 							? '' 
 							: <ProfileCourseItem 
 									courseId={courseId}
@@ -47,9 +47,18 @@ class ProfileCourses extends Component {
 					)
 				}
 				{
-					Object.keys(this.state.courses).length > this.props.max
+					this.props.max && Object.keys(this.state.courses).length > this.props.max
 						? <div className='user-profile-view-all-courses'>
-								<Link to={`/user/${this.props.uid}/courses`} className='user-profile-all-course-link'>
+								<Link 
+									pushHistory
+									to={{
+										pathname: `/user/${this.props.uid}/courses`,
+										state: {
+											courses: this.state.courses,
+											userId: this.props.uid
+										}
+									}} 
+									className='user-profile-all-course-link'>
 									{ `View all courses (${Object.keys(this.state.courses).length} found)`}
 								</Link>
 							</div>

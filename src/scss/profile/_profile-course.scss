@@ -3,7 +3,7 @@
 		padding-left: 10px;
 		padding-bottom: 25px;
 
-		&:last-child {
+		&:nth-last-child(2) {
 			padding-bottom: 0;
 		}
 		
