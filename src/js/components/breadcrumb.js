@@ -10,7 +10,7 @@ class Breadcrumb extends Component {
 		var history = History.get();
 		
 		if (history.length) {
-			var currentPath = window.location.pathname.split('/')[1];
+			var currentPath = this.props.current || window.location.pathname.split('/')[1];
 			history.forEach((item,i) => {
 				items.push(<Link to={item.href} key={i} popHistory>{Globals.capitalize(item.pageName)}</Link>);
 				items.push(<span key={`${i}span`}> / </span>);

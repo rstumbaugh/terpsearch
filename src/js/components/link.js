@@ -7,7 +7,7 @@ class Link extends Component {
 	pushHistory() {
 		// add current page to history before changing pages
 		var href = window.location.pathname;
-		var pageName = window.location.pathname.split('/')[1];
+		var pageName = this.props.pageName || window.location.pathname.split('/')[1];
 		pageName = pageName ? Globals.capitalize(pageName) : 'Home';
 		History.push({ href, pageName });
 	}
