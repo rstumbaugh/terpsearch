@@ -33,7 +33,7 @@ class ProfileFriends extends Component {
 const ProfileFriendItem = props => {
 	var url = `${Globals.API_USERS}/${props.id}/photo?size=250`;
 	return (
-		<Link to={Globals.getProfileUrl(props.name, props.id)}>
+		<Link to={`/user/${props.id}/`}>
 			<div className='user-profile-friend col-md-4'>
 				<div className='user-profile-friend-img-wrap'>
 					<img src={url} alt={props.name} className='user-profile-friend-img' />

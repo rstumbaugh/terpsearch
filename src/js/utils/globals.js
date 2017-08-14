@@ -88,11 +88,6 @@ var globals = {
 		}
 	},
 
-	getProfileUrl: (name, uid) => {
-		if (!name || !uid) return '';
-		return `/user/${uid}/${encodeURIComponent(name.replace(' ', '-'))}`;
-	},
-
 	capitalize: function(str) {
 		return str.substring(0,1).toUpperCase() + str.substring(1);
 	},

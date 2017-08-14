@@ -93,12 +93,11 @@ class Login extends Component {
 
 	// show user photo, name, dropdown if already logged in
 	getUserInfo() {
-		var name = this.state.user.displayName;
 		var uid = this.state.user.providerData[0].uid;
 		var photo = this.state.user.providerData[0].photoURL;
 		return (
 			<div className='login-user-info' onMouseEnter={this.toggleDropdown.bind(this)} onMouseLeave={this.toggleDropdown.bind(this)}>
-				<Link to={Globals.getProfileUrl(name, uid)}>
+				<Link to={`/user/${uid}/`}>
 					<div className='login-user-info-photo-wrap'>
 						<img src={photo} className='login-user-info-photo' alt='User Profile Image'/>
 					</div>
@@ -106,7 +105,7 @@ class Login extends Component {
 				</Link>
 				<ul className={`login-user-info-options ${this.state.dropdownClass}`}>
 					<li className='login-user-info-option'>
-						<Link to={Globals.getProfileUrl(name, uid)}>
+						<Link to={`/user/${uid}/`}>
 							<span className='glyphicon glyphicon-user'></span>
 							My Profile
 						</Link>
