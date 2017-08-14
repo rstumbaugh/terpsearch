@@ -12,7 +12,8 @@ class Incident extends Component {
 		this.state = {
 			name: props.match.params.id,
 			body: {},
-			actions: []
+			actions: [],
+			comment: ''
 		}
 	}
 
@@ -27,7 +28,6 @@ class Incident extends Component {
 		})
 			.then(response => JSON.parse(response.response))
 			.then(incident => {
-				console.log(incident)
 				this.setState(incident);
 			})
 			.catch(err => {
@@ -36,11 +36,24 @@ class Incident extends Component {
 	}
 
 	handleAction(action) {
-
+		this.setState({
+			status: 'RESOLVED',
+			comment: ''
+		})
+		Ajax.post(`${Globals.API_INCIDENTS}/${this.state.name}/action?action=${action}`, {
+			headers: {
+				'Authorization': Store.getItem('userToken')
+			},
+			body: { comment: this.state.comment }
+		})
+			.catch(err => console.error(err));
 	}
 
 	getActionClassName(action) {
 		var className = 'incident-action btn ';
+		if (this.state.status == 'RESOLVED') {
+			return className + ' disabled'
+		}
 		
 		switch (action) {
 			case 'Approve':
@@ -67,7 +80,7 @@ class Incident extends Component {
 							<div className='incident-title'>
 								<h1>Incident Overview</h1>
 								<span className={`incident-status ${status}`}>
-									{this.state.status}
+									{Globals.capitalize(status.replace('-', ' '))}
 								</span>
 							</div>
 							<p className='incident-name'>
@@ -127,6 +140,21 @@ class Incident extends Component {
 											)
 											: <i>No actions.</i>
 									}
+
+									<div className='incident-action-comment'>
+										<form>
+											<div className='form-group'>
+												<label>Add a comment:</label>
+												<textarea 
+													name='comment'
+													value={this.state.comment}
+													onChange={e => this.setState({comment: e.target.value})}
+													rows='6'
+													className='form-control'
+												/>
+											</div>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
