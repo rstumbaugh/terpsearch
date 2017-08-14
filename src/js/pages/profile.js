@@ -82,6 +82,8 @@ class Profile extends Component {
 								ratings={this.state.user.ratings}
 								comments={this.state.user.comments}
 								isSelf={this.state.isSelf}
+								uid={this.state.uid}
+								max={3}
 							/>
 						</div>
 						<div className='user-profile-section section col-md-5 right'>

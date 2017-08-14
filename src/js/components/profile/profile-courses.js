@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import Link from 'components/link';
 import StarRating from 'components/rating/star-rating';
 
 class ProfileCourses extends Component {
@@ -32,18 +32,28 @@ class ProfileCourses extends Component {
 	}
 
 	render() {
-		console.log(this.state.courses);
 		return (
 			<div className='user-profile-course-info card'>
 				{
-					Object.keys(this.state.courses).map(courseId => 
-						<ProfileCourseItem 
-							courseId={courseId}
-							course={this.state.courses[courseId]} 
-							isSelf={this.props.isSelf}
-							key={courseId} 
-						/>
+					Object.keys(this.state.courses).map((courseId, i) => 
+						i >= this.props.max 
+							? '' 
+							: <ProfileCourseItem 
+									courseId={courseId}
+									course={this.state.courses[courseId]} 
+									isSelf={this.props.isSelf}
+									key={courseId} 
+								/>
 					)
+				}
+				{
+					Object.keys(this.state.courses).length > this.props.max
+						? <div className='user-profile-view-all-courses'>
+								<Link to={`/user/${this.props.uid}/courses`} className='user-profile-all-course-link'>
+									{ `View all courses (${Object.keys(this.state.courses).length} found)`}
+								</Link>
+							</div>
+						: ''
 				}
 			</div>
 		)
@@ -51,13 +61,12 @@ class ProfileCourses extends Component {
 }
 
 const ProfileCourseItem = props => {
-	const href = `/course/${props.courseId}`;
-	const path = window.location.pathname;
 	return (
 		<div className='user-profile-course-item'>
 			<h4 className='user-profile-course-id'>{props.courseId}</h4>
 			<Link 
-				to={{pathname: href, state: {from: path, display: 'Profile'}}} 
+				pushHistory 
+				to={`/course/${props.courseId}`}
 				className='user-profile-course-link'>
 				View course
 			</Link>
