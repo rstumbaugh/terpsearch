@@ -1,40 +1,50 @@
-.user-profile-course-info {
-	.user-profile-course-item {
-		padding-left: 10px;
-		padding-bottom: 25px;
+.user-profile-course-item {
+	padding-left: 10px;
+	padding-bottom: 25px;
 
-		&:nth-last-child(2) {
-			padding-bottom: 0;
-		}
-		
-		h4.user-profile-course-id {
-			font-size: 28px;
+	&:nth-last-child(2) {
+		padding-bottom: 0;
+	}
+	
+	h4.user-profile-course-id {
+		font-size: 28px;
+		display: inline-block;
+	}
+
+	a.user-profile-course-link {
+		margin-left: 8px;
+		font-size: 16px;
+	}
+
+	.user-profile-course-rating {
+		font-size: 16px;
+		padding-bottom: 8px;
+
+		.user-profile-rating-item {
+			padding-right: 35px;
 			display: inline-block;
-		}
-
-		a.user-profile-course-link {
-			margin-left: 8px;
-			font-size: 16px;
-		}
-
-		.user-profile-course-rating {
-			font-size: 16px;
-			padding-bottom: 8px;
-
-			.user-profile-rating-item {
-				padding-right: 35px;
-				display: inline-block;
-			}
-		}
-
-		blockquote.user-profile-course-comment {
-			font-style: italic;
-			font-size: 16px;
 		}
 	}
 
-	.user-profile-view-all-courses {
-		width: 100%;
-		text-align: center;
+	blockquote.user-profile-course-comment {
+		font-style: italic;
+		font-size: 16px;
+	}
+
+	hr {
+		margin: 0;
+		border-color: $gray;
+	}
+}
+
+.user-profile-view-all-courses {
+	width: 100%;
+	text-align: center;
+	color: $link-blue;
+
+	&:hover {
+		cursor: pointer;
+		color: $link-hover-blue;
+		text-decoration: underline;
 	}
 }

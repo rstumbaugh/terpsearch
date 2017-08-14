@@ -1,0 +1,28 @@
+.ReactModal__Body--open {
+	overflow: hidden;
+	position: fixed;
+}
+
+.ReactModal__Content {
+	/* override default inline styles from react-modal */
+	padding: 0 !important;
+	width: 60%;
+	margin: 0 auto 0 auto;
+
+	.modal-header {
+		background-color: $red;
+		color: white;
+		border-bottom: 0;
+
+		h2 {
+			margin-top: 10px;
+		}
+
+		.modal-close {
+			position: absolute;
+			right: 25px;
+			color: darken($red, 25%);
+			cursor: pointer;
+		}
+	}
+}

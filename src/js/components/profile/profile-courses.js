@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Modal from 'react-modal';
 import Link from 'components/link';
 import StarRating from 'components/rating/star-rating';
 
@@ -7,7 +8,8 @@ class ProfileCourses extends Component {
 		super(props);
 
 		this.state = {
-			courses: props.courses || {}
+			courses: props.courses || {},
+			showModal: false
 		}
 	}
 
@@ -31,6 +33,10 @@ class ProfileCourses extends Component {
 		this.setState({ courses });
 	}
 
+	toggleModal(showModal) {
+		this.setState({ showModal });
+	}
+
 	render() {
 		return (
 			<div className='user-profile-course-info card'>
@@ -48,22 +54,36 @@ class ProfileCourses extends Component {
 				}
 				{
 					this.props.max && Object.keys(this.state.courses).length > this.props.max
-						? <div className='user-profile-view-all-courses'>
-								<Link 
-									pushHistory
-									to={{
-										pathname: `/user/${this.props.uid}/courses`,
-										state: {
-											courses: this.state.courses,
-											userId: this.props.uid
-										}
-									}} 
-									className='user-profile-all-course-link'>
-									{ `View all courses (${Object.keys(this.state.courses).length} found)`}
-								</Link>
+						? <div className='user-profile-view-all-courses' onClick={this.toggleModal.bind(this, true)}>
+								{ `View all courses (${Object.keys(this.state.courses).length} found)`}
 							</div>
 						: ''
 				}
+
+				<Modal
+					isOpen={this.state.showModal}
+					onRequestClose={this.toggleModal.bind(this, false)}
+					contentLabel='Courses modal'
+				>
+					<div className='modal-header'>
+						<h2>
+							{`${this.props.name ? this.props.name.split(' ')[0] : ''}'s reviews`}
+							<span className='modal-close' onClick={this.toggleModal.bind(this, false)}>&times;</span>
+						</h2>
+					</div>
+					<div className='modal-body'>
+						{
+							Object.keys(this.state.courses).map(courseId => 
+								<ProfileCourseItem
+									courseId={courseId}
+									course={this.state.courses[courseId]}
+									key={courseId}
+								/>
+							)
+						}
+					</div>
+				</Modal>
+
 			</div>
 		)
 	}
@@ -100,6 +120,7 @@ const ProfileCourseItem = props => {
 						</blockquote>
 					: ''
 			}
+			<hr />
 		</div>
 	)
 }

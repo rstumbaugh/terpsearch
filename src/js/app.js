@@ -17,7 +17,6 @@ import Comments from 'pages/comments.js';
 import Profile from 'pages/profile';
 import AuthRedirect from 'pages/auth-redirect';
 import Incident from 'pages/incident';
-import ProfileAllCourses from 'pages/profile-all-courses';
 
 class App extends React.Component {
 	constructor() {
@@ -102,7 +101,6 @@ class App extends React.Component {
 					<Route path='/admin/incident/:id' component={Incident} />
 					<Route path='/comments/:type/:id' component={Comments} />
 					<Route path='/user/:userId/' component={Profile} exact />
-					<Route path='/user/:userId/courses' component={ProfileAllCourses} exact />
 					<Route path='/auth/redirect/' component={AuthRedirect} />
 				</div>
 			</BrowserRouter>

@@ -82,7 +82,7 @@ class Profile extends Component {
 								ratings={this.state.user.ratings}
 								comments={this.state.user.comments}
 								isSelf={this.state.isSelf}
-								uid={this.state.uid}
+								name={this.state.user.name}
 								max={3}
 							/>
 						</div>
