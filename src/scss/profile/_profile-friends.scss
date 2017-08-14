@@ -1,17 +1,59 @@
-.user-profile-friends {
-	.row {
-		text-align: center;
+.user-profile-friend {
+	text-align: center;
+
+	.user-profile-friend-img-wrap {
+		width: 100%;
+		padding-bottom: 5px;
+
+		img.user-profile-friend-img {
+			width: 100%;
+			border-radius: 100%;
+		}
+	}
+}
+
+.user-friends-modal {
+	padding: 0;
+}
+
+.user-friend-row {
+	padding: 10px;
+
+	a:nth-child(2n) & {
+		background-color: #fafbfb;
+	}	
+
+	.user-friend-row-img-wrap {
+		$img-size: 75px;
+		width: $img-size;
+		height: $img-size;
+		display: inline-block;
+
+		.user-friend-row-img {
+			width: 100%;
+			height: 100%;
+			border-radius: 100%;
+		}
 	}
 
-	.user-profile-friend {
-		.user-profile-friend-img-wrap {
-			width: 100%;
-			padding-bottom: 5px;
+	.user-friend-row-name {
+		display: inline-block;
+		color: #333;
+		padding-left: 25px;
+		font-size: 18px;
+	}
+}
 
-			img.user-profile-friend-img {
-				width: 100%;
-				border-radius: 100%;
-			}
-		}
+
+
+.user-profile-view-all-friends {
+	width: 100%;
+	text-align: center;
+	color: $link-blue;
+
+	&:hover {
+		cursor: pointer;
+		color: $link-hover-blue;
+		text-decoration: underline;
 	}
 }
