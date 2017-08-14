@@ -53,8 +53,6 @@
 			display: block;
 			margin-bottom: 10px;
 
-
-			
 			&.action-approve {
 				background-color: $light-green;
 				border-color: $green;
@@ -72,6 +70,12 @@
 				&:hover {
 					background-color: darken($error-light-red, 15%);
 				}
+			}
+
+			&.disabled {
+				background-color: $gray;
+				border-color: $dark-gray;
+				color: $dark-gray;
 			}
 		}
 	}
