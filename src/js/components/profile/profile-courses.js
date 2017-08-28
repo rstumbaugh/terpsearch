@@ -38,19 +38,22 @@ class ProfileCourses extends Component {
 	}
 
 	render() {
+		var numCourses = Object.keys(this.state.courses).length;
 		return (
-			<div className='user-profile-course-info card'>
+			<div className={`user-profile-course-info card ${numCourses == 0 ? 'empty' : ''}`}>
 				{
-					Object.keys(this.state.courses).map((courseId, i) => 
-						this.props.max && i >= this.props.max 
-							? '' 
-							: <ProfileCourseItem 
-									courseId={courseId}
-									course={this.state.courses[courseId]} 
-									isSelf={this.props.isSelf}
-									key={courseId} 
-								/>
-					)
+					numCourses == 0 
+						? <i>No courses to display.</i> 
+						: Object.keys(this.state.courses).map((courseId, i) => 
+								this.props.max && i >= this.props.max 
+									? '' 
+									: <ProfileCourseItem 
+											courseId={courseId}
+											course={this.state.courses[courseId]} 
+											isSelf={this.props.isSelf}
+											key={courseId} 
+										/>
+							)
 				}
 				{
 					this.props.max && Object.keys(this.state.courses).length > this.props.max

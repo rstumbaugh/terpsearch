@@ -26,6 +26,7 @@ class Profile extends Component {
 	}
 
 	getUserInfo() {
+		console.log(this.props.match.params.userId);
 		var url = `${Globals.API_USERS}/${this.state.uid}/profile`;
 		Ajax.get(url, { 'Authorization': Store.getItem('userToken') })
 			.then(res => JSON.parse(res.response))
