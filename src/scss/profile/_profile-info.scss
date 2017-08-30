@@ -20,3 +20,22 @@
 		color: gray;
 	}
 }
+
+.umd-auth-status {
+	padding: 3px 5px;
+	border-radius: 3px;
+	border: 1px solid transparent;
+	display: inline-block;
+
+	&.umd-auth-success {
+		border-color: $green;
+		color: $green;
+		background-color: $light-green;
+	}
+
+	&.umd-auth-failure {
+		border-color: $error-red;
+		color: $error-red;
+		background-color: $error-light-red;
+	}
+}

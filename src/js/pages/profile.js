@@ -82,6 +82,7 @@ class Profile extends Component {
 								subscribed={this.state.user.getUpdates}
 								isSelf={this.state.isSelf}
 								onEmailChange={this.toggleEmail.bind(this)}
+								umdAuth={this.state.user.umdAuth}
 							/>
 						</div>
 						<div className='user-profile-section section col-md-7 left'>
