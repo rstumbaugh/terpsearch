@@ -1,8 +1,26 @@
 import React, {Component} from 'react';
+import Store from 'utils/store';
+import History from 'utils/history';
 import ProfileToggle from 'components/profile/profile-toggle';
 import ProfileDetailsItem from 'components/profile/profile-details-item';
 
 class ProfileSettings extends Component {
+	handleUmdSignin() {
+		if (!this.props.umdAuth) {
+			// push current page to history
+			// push noClear to retain history on redirect back
+			// redirect URL to /auth/redirect page
+			var obj = { userId: Store.getItem('userId') };
+			var redirectUrl = `${window.location.origin}/auth/redirect`;
+			redirectUrl += `?data=${encodeURIComponent(JSON.stringify(obj))}`
+			var href = window.location.pathname;
+			History.push({href, pageName: 'User'});
+			History.push({href: 'noClear', pageName: ''});
+			
+			window.location.href = redirectUrl;
+		}
+	}
+
 	render() {
 		return (
 			<div className='user-profile-settings'>
@@ -12,7 +30,7 @@ class ProfileSettings extends Component {
 						TerpSearch does not have access to your directory ID, and we do not store any
 						information linked to your student account.
 					</p>
-					<UmdAuthStatus authorized={this.props.umdAuth} />
+					<UmdAuthStatus authorized={this.props.umdAuth} onClick={this.handleUmdSignin.bind(this)} />
 				</ProfileDetailsItem>
 				<ProfileDetailsItem title='Profile'>
 					<p className='user-profile-secondary-text'>
@@ -49,7 +67,8 @@ class ProfileSettings extends Component {
 }
 
 const UmdAuthStatus = props => (
-	<div className={`umd-auth-status ${props.authorized ? 'umd-auth-success' : 'umd-auth-failure'}`}>
+	<div onClick={props.onClick}
+			 className={`umd-auth-status ${props.authorized ? 'umd-auth-success' : 'umd-auth-failure'}`}>
 		{ props.authorized ? 'Authorized' : 'Not yet authorized' }
 	</div>
 )

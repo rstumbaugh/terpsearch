@@ -33,20 +33,30 @@ class AuthRedirect extends Component {
 			return;
 		}
 		
-		// if this block is reached, user has alredy been redirected from UMD login and should be validated
+		// if this block is reached, user has alredy been redirected from UMD login and has been validated
 		var prevPage = History.pop() || {href: '/', pageName: 'Home'};
 		var type = Store.getItem('type');
+
+		var promise;
 		var object = JSON.parse(Store.getItem('data'));
-		Ajax.post(`${Globals.API_COURSES}/reviews/${type}`, {
-			headers: {
+		var headers = {
 				'Authorization': object.userId ? Store.getItem('userToken') : '',
 				'X-Auth-Ticket': this.state.ticket,
 				'X-Auth-Service': this.state.service
-			},
-
-			body: JSON.stringify(object)
-		})
-			.then(res => {
+		};
+		if (!type) {
+			promise = Ajax.post(`${Globals.API_COURSES}/reviews/${type}`, {
+				headers,
+				body: JSON.stringify(object)
+			})
+		} else {
+			promise = Ajax.post(`${Globals.API_USERS}/${Store.getItem('userId')}/umdLogin`, {
+				headers,
+				body: {}
+			});
+		}
+		
+		promise.then(res => {
 				this.setState({
 					message: res.response,
 					status: 'success',

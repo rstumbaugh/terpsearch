@@ -26,6 +26,7 @@
 	border-radius: 3px;
 	border: 1px solid transparent;
 	display: inline-block;
+	cursor: pointer;
 
 	&.umd-auth-success {
 		border-color: $green;
