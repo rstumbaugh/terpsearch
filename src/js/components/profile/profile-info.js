@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Globals from 'globals';
 import ProfileSettings from 'components/profile/profile-settings';
-import ProfileDetailsItem from 'components/profile/profile-details-item';
 
 class UserInfo extends Component {
 	toggleEmail(selected) {

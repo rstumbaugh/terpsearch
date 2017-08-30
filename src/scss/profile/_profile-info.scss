@@ -1,6 +1,6 @@
 .user-profile-info {
 	.user-profile-details {
-		padding-top: 10px;
+		padding-top: 20px;
 
 		.user-profile-details-item {
 			font-size: 16px;
@@ -18,6 +18,14 @@
 	.user-profile-secondary-text {
 		font-size: 14px;
 		color: gray;
+	}
+}
+
+.user-profile-settings {
+	padding: 0 8px 8px 8px;
+
+	legend {
+		margin-bottom: 0;
 	}
 }
 
