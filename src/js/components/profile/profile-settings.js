@@ -62,7 +62,8 @@ class ProfileSettings extends Component {
 							label='Get updates from TerpSearch via email?'
 							items={['No', 'Yes']}
 							active={this.props.subscribed ? 'Yes' : 'No'}
-							onChange={this.props.toggleEmail}
+							onChange={this.props.onEmailChange}
+							enabled={this.props.emailEnabled}
 						/>
 					</ProfileSettingsItem>
 				</fieldset>

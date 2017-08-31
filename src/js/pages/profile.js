@@ -17,7 +17,8 @@ class Profile extends Component {
 		this.state = {
 			user: {},
 			uid: uid,
-			isSelf: Store.getItem('userId') == uid
+			isSelf: Store.getItem('userId') == uid,
+			emailEnabled: true
 		}
 	}
 
@@ -47,10 +48,15 @@ class Profile extends Component {
 	}
 
 	// toggle user email subscribe status
-	toggleEmail(isUnsubscribing) {
-		var url = isUnsubscribing
-			? `${Globals.API_USERS}/${this.state.uid}/unsubscribe`
-			: `${Globals.API_USERS}/${this.state.uid}/subscribe`;
+	toggleEmail(subscribe) {
+		var url = subscribe === 'Yes'
+			? `${Globals.API_USERS}/${this.state.uid}/subscribe`
+			: `${Globals.API_USERS}/${this.state.uid}/unsubscribe`;
+
+		// disable dropdown until server response received
+		this.setState({
+			emailEnabled: false
+		})
 
 		Ajax.post(url, {
 			headers: {
@@ -59,7 +65,12 @@ class Profile extends Component {
 			body: {}
 		}).then(Auth.handleAuthResponse)
 			.then(() => {
-				this.getUserInfo();
+				var user = this.state.user;
+				user.getUpdates = subscribe == 'Yes';
+				this.setState({
+					user,
+					emailEnabled: true
+				})
 			})
 			.catch(err => {
 				console.error(err);
@@ -82,6 +93,7 @@ class Profile extends Component {
 								subscribed={this.state.user.getUpdates}
 								isSelf={this.state.isSelf}
 								onEmailChange={this.toggleEmail.bind(this)}
+								emailEnabled={this.state.emailEnabled}
 								umdAuth={this.state.user.umdAuth}
 							/>
 						</div>

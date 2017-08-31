@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
+import Select from 'react-select';
 
 class ProfileToggle extends Component {
 	constructor(props) {
 		super(props);
 		
 		this.state = {
-			active: props.active
+			active: props.active,
+			disabled: false
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			active: nextProps.active
+			active: nextProps.active,
+			disabled: !nextProps.enabled
 		})
 	}
 
@@ -24,21 +27,16 @@ class ProfileToggle extends Component {
 		return (
 			<div className='user-profile-toggle'>
 				<span className='user-profile-toggle-label'>{this.props.label}</span>
-				<ul className='user-profile-toggle-items'>
-					{
-						this.props.items.map(item => {
-							var className = `user-profile-toggle-item ${
-								this.props.active == item ? 'active' : ''
-							}`;
-							
-							return (
-								<li className={className} onClick={this.toggle.bind(this, item)} key={item}>
-									{item}
-								</li>
-							)
-						})
-					}
-				</ul>
+				<Select
+					simpleValue
+					options={this.props.items.map(item => ({label: item, value: item}))}
+					value={this.state.active}
+					clearable={false}
+					searchable={false}
+					disabled={this.state.disabled}
+					onChange={this.toggle.bind(this)}
+					className='user-profile-toggle'
+				/>
 			</div>
 		)
 	}

@@ -1,28 +1,20 @@
 .user-profile-toggle {
-	margin-top: 5px;
-	
-	ul.user-profile-toggle-items {
-		list-style-type: none;
-		padding-left: 0;
-		display: inline;
+	display: inline-block;
+	vertical-align: middle;
 
-		li.user-profile-toggle-item {
-			padding-left: 10px;
-			display: inline-block;
+	&.is-disabled .Select-control {
+		cursor: progress;
+	}
 
-			&.active {
-				color: $link-blue;
+	.Select-control {
+		margin-left: 10px;
 
-				&:hover {
-					color: $link-hover-blue;
-					text-decoration: underline;
-				}
-			}
-
-			&:hover {
-				cursor: pointer;
-			}
+		.Select-multi-value-wrapper {
+			padding-right: 10px;
 		}
 	}
-	
+
+	.Select-menu-outer {
+		margin-left: 10px;
+	}
 }

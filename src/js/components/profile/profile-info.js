@@ -3,10 +3,6 @@ import Globals from 'globals';
 import ProfileSettings from 'components/profile/profile-settings';
 
 class UserInfo extends Component {
-	toggleEmail(selected) {
-		this.props.onEmailChange(selected == 'No');
-	}
-
 	render() {
 		const photo = `${Globals.API_USERS}/${this.props.uid}/photo`;
 		return (
