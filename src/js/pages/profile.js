@@ -18,7 +18,8 @@ class Profile extends Component {
 			user: {},
 			uid: uid,
 			isSelf: Store.getItem('userId') == uid,
-			emailEnabled: true
+			emailEnabled: true,
+			publicEnabled: true
 		}
 	}
 
@@ -77,6 +78,34 @@ class Profile extends Component {
 			})
 	}
 
+	// toggle user public prop -- to show profile or don't show
+	togglePublic(isPublic) {
+		var pub = isPublic == 'Yes';
+		var url = `${Globals.API_USERS}/${this.state.uid}/togglePublic?public=${pub}`;
+
+		this.setState({
+			publicEnabled: false
+		})
+		
+		Ajax.post(url, {
+			headers: {
+				'Authorization': Store.getItem('userToken')
+			}, 
+			body: {}
+		}).then(Auth.handleAuthResponse)
+			.then(() => {
+				var user = this.state.user;
+				user.public = pub;
+				this.setState({
+					user,
+					publicEnabled: true
+				})
+			})
+			.catch(err => {
+				console.error(err);
+			})
+	}
+
 	render() {
 		var friends = this.state.user.friends;
 		friends = friends ? friends.concat(friends) : friends;
@@ -92,8 +121,10 @@ class Profile extends Component {
 								uid={this.state.uid}
 								subscribed={this.state.user.getUpdates}
 								isSelf={this.state.isSelf}
+								onPublicChange={this.togglePublic.bind(this)}
 								onEmailChange={this.toggleEmail.bind(this)}
 								emailEnabled={this.state.emailEnabled}
+								publicEnabled={this.state.publicEnabled}
 								umdAuth={this.state.user.umdAuth}
 							/>
 						</div>

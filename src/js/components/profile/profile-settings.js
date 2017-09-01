@@ -45,8 +45,9 @@ class ProfileSettings extends Component {
 						<ProfileToggle
 							label='Allow others to see your profile?'
 							items={['No', 'Yes']}
-							active={'Yes'}
-							onChange={item => console.log(item)}
+							active={this.props.public ? 'Yes' : 'No'}
+							onChange={this.props.onPublicChange}
+							enabled={this.props.publicEnabled}
 						/>
 					</ProfileSettingsItem>
 					<ProfileSettingsItem title='Email'>
