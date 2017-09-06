@@ -27,7 +27,6 @@ class SearchSummary extends Component {
 	}
 
 	handleVisibilityChange(visible) {
-	
 		this.setState({
 			visible: visible
 		})
@@ -37,6 +36,7 @@ class SearchSummary extends Component {
 		this.setState({
 			currentPage: page
 		})
+		this.props.onPageChange(page);
 	}
 
 	handleArrowClick(direction) {
