@@ -126,6 +126,7 @@ class Profile extends Component {
 								emailEnabled={this.state.emailEnabled}
 								publicEnabled={this.state.publicEnabled}
 								umdAuth={this.state.user.umdAuth}
+								schedule={this.state.user.schedule}
 							/>
 						</div>
 						<div className='user-profile-section section col-md-7 left'>

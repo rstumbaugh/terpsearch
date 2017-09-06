@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Globals from 'globals';
 import ProfileSettings from 'components/profile/profile-settings';
+import ProfileSchedule from 'components/profile/profile-schedule';
 
 class UserInfo extends Component {
 	render() {
@@ -16,6 +17,7 @@ class UserInfo extends Component {
 					<div className='col-sm-9 col-xs-8'>
 						<h1 className='user-profile-name'>{this.props.name}</h1>
 						<div className='user-profile-details'>
+							<ProfileSchedule schedule={this.props.schedule} />
 							{
 								this.props.isSelf 
 									? <ProfileSettings {...this.props} />
