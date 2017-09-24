@@ -13,7 +13,7 @@ class RemoteSimpleSelect extends Component {
 
 	// pass change to parent
 	onChange(value) {
-		this.props.onChange(this.props.name, value.value);
+		this.props.onChange(this.props.name, value ? value.value : undefined);
 	}
 
 	// map array of JSON results to array of { label: _, value: _ }
