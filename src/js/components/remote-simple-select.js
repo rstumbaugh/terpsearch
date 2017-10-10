@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
-import Globals from 'globals';
 import Ajax from 'utils/ajax';
 
 // simple select box from remote data source
@@ -46,7 +45,8 @@ class RemoteSimpleSelect extends Component {
 	render() {
 		return (
 			<Select.Async 
-        name={this.props.name}
+				name={this.props.name}
+				className={this.props.className}
         placeholder={this.props.placeholder}
         loadOptions={this.search.bind(this)}
         onChange={this.onChange.bind(this)}
