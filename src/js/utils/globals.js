@@ -92,9 +92,12 @@ var globals = {
 		return str.substring(0,1).toUpperCase() + str.substring(1);
 	},
 
-	formatDate: function(date) {
-		return dateFormat(date, 'mmmm dS, yyyy, h:MM TT');
-	}
+	formatDate: function(date, time = true) {
+		if (time)
+			return dateFormat(date, 'mmmm dS, yyyy, h:MM TT');
+		else
+			return dateFormat(date, 'mmmm dS, yyyy');
+	},
 }
 
 export default globals;
