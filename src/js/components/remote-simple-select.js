@@ -15,12 +15,19 @@ class RemoteSimpleSelect extends Component {
 		this.props.onChange(this.props.name, value ? value.value : undefined);
 	}
 
+	getOptionText(item) {
+		if (typeof(this.props.textField) === 'string') return item[this.props.textField]
+		else return this.props.textField(item)
+	}
+
+	getOptionValue(item) {
+		if (this.props.valueField) return item[this.props.valueField]
+		else return this.getOptionText(item);
+	}
+
 	// map array of JSON results to array of { label: _, value: _ }
 	getOptions(items) {
-		const textField = this.props.textField;
-		const valueField = this.props.valueField || textField;
-
-    return items.map(i => ({ label: i[textField], value: i[valueField] }));
+    return items.map(i => ({ label: this.getOptionText(i), value: this.getOptionValue(i) }));
   }
 
   // get options from data source
