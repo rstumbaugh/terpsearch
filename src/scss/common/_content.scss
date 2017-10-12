@@ -129,4 +129,35 @@ body {
 		background-color: $gray;
 		border-radius: 3px;
 	}
+
+	.btn-submit,
+	.btn-white {
+		display: inline-block;
+		border-radius: 2px;
+		border: 1px solid;
+		padding: 3px 8px;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.btn-submit {
+		color: white;
+		border-color: $dark-red;
+		background-color: $red;
+
+		&:hover {
+			background-color: darken($red, 5%);
+		}
+	}
+
+	.btn-white {
+		background-color: white;
+		border-color: lightgray;
+
+		&:hover {
+			background-color: darken(white, 5%);
+		}
+	}
 }
