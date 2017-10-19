@@ -24,11 +24,11 @@ $select-box-width: 75%;
 			display: block;
 			font-size: $class-size;
 			padding-top: 10px;
-
-			&:last-child {
-				padding-bottom: 15px;
-			}
 		}
+	}
+
+	.schedule-add {
+		margin-top: 15px;
 	}
 
 	.profile-schedule-form {
