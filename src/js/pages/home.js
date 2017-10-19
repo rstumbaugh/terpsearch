@@ -122,9 +122,8 @@ class Home extends React.Component {
                         target='_blank'>here</a> on GitHub.
                         In the meantime, contribute your own ratings to help out!<br/><br />
 
-                        Feel free to <a href='mailto:admin@terpsearch.me' target='_blank'>shoot me an email</a> 
-                        with any suggestions you might have for the site or 
-                        <a href='https://github.com/rstumbaugh/terpsearch/issues' target='_blank'>report an issue 
+                        Feel free to <a href='mailto:admin@terpsearch.me' target='_blank'>shoot me an email</a> with 
+                        any suggestions you might have for the site or <a href='https://github.com/rstumbaugh/terpsearch/issues' target='_blank'>report an issue 
                         on GitHub</a>. Some possible features on the To Do list include:
                         <br/>
                       </p>
