@@ -98,6 +98,11 @@ var globals = {
 		else
 			return dateFormat(date, 'mmmm dS, yyyy');
 	},
+
+	scrollTop: function() {
+		document.documentElement.scrollTop = 0;
+		document.body.scrollTop = 0;
+	}
 }
 
 export default globals;

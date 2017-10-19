@@ -24,10 +24,12 @@ class Profile extends Component {
 	}
 
 	componentDidMount() {
+		Globals.scrollTop();
 		this.getUserInfo();
 	}
 
 	componentWillReceiveProps(props) {
+		Globals.scrollTop();
 		var uid = props.match.params.userId;
 		this.setState({ 
 			uid, 

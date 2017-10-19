@@ -26,6 +26,7 @@ class Course extends Component {
 	}
 
 	componentDidMount() {
+		Globals.scrollTop();
 		var self = this;
 
 		Promise.all([this.loadCourseInformation(), this.loadStatsComments()])
