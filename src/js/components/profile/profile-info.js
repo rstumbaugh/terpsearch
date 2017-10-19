@@ -17,7 +17,10 @@ class UserInfo extends Component {
 					<div className='col-sm-9 col-xs-8'>
 						<h1 className='user-profile-name'>{this.props.name}</h1>
 						<div className='user-profile-details'>
-							<ProfileSchedule schedule={this.props.schedule} />
+							<ProfileSchedule 
+								isSelf={this.props.isSelf} 
+								schedule={this.props.schedule}
+								onUpdate={this.props.onScheduleUpdate} />
 							{
 								this.props.isSelf 
 									? <ProfileSettings {...this.props} />

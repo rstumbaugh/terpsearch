@@ -1,5 +1,55 @@
+$empty-size: 14px;
+$class-size: 16px;
+$select-box-width: 75%;
+
 .user-profile-schedule {
+	padding: 0 8px 8px 8px;
+	
 	fieldset {
 		border-color: #c7c7c7;
+	}
+
+	legend {
+		margin-bottom: 10px;
+	}
+
+	.empty-schedule {
+		font-size: $empty-size;
+		color: gray;
+		font-style: italic;
+	}
+
+	.profile-schedule-wrap {
+		.profile-schedule-item {
+			display: block;
+			font-size: $class-size;
+			padding-top: 10px;
+
+			&:last-child {
+				padding-bottom: 15px;
+			}
+		}
+	}
+
+	.profile-schedule-form {
+		.btn-submit {
+			margin-left: 8px;
+		}
+
+		.profile-schedule-form-item {
+			width: $select-box-width;
+			margin-bottom: 8px;
+		}
+
+		.profile-schedule-add {
+			margin-bottom: 10px;
+			color: $link-blue;
+			
+			&:hover {
+				color: $link-hover-blue;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
 	}
 }

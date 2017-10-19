@@ -106,7 +106,21 @@ class Profile extends Component {
 			})
 	}
 
+	updateSchedule(newSchedule) {
+		console.log(`updating ${newSchedule}`)
+		Ajax.post(`${Globals.API_USERS}/${this.state.uid}/schedule`, {
+			headers: {
+				'Authorization': Store.getItem('userToken')
+			},
+			body: { schedule: newSchedule }
+		}).then(Auth.handleAuthResponse)
+			.then(() => {
+				console.log('schedule updated');
+			})
+	}
+
 	render() {
+		console.log(this.state.user);
 		var friends = this.state.user.friends;
 		friends = friends ? friends.concat(friends) : friends;
 		return (
@@ -127,6 +141,7 @@ class Profile extends Component {
 								publicEnabled={this.state.publicEnabled}
 								umdAuth={this.state.user.umdAuth}
 								schedule={this.state.user.schedule}
+								onScheduleUpdate={this.updateSchedule.bind(this)}
 							/>
 						</div>
 						<div className='user-profile-section section col-md-7 left'>
