@@ -43,7 +43,7 @@ class ProfileCourses extends Component {
 			<div className={`user-profile-course-info card ${numCourses == 0 ? 'empty' : ''}`}>
 				{
 					numCourses == 0 
-						? <i>No courses to display.</i> 
+						? <i>No course ratings to display.</i> 
 						: Object.keys(this.state.courses).map((courseId, i) => 
 								this.props.max && i >= this.props.max 
 									? '' 
