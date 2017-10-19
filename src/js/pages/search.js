@@ -5,7 +5,7 @@ import Globals from 'globals';
 import SearchBox from 'components/search/search-box.js';
 import SearchSummary from 'components/search/search-summary.js';
 import SearchResults from 'components/search/search-results.js';
-import Store from 'utils/store';
+import History from 'utils/history';
 import Ajax from 'utils/ajax';
 
 class Search extends Component {
@@ -24,6 +24,7 @@ class Search extends Component {
 	}
 
 	componentDidMount() {
+		History.clear();
 		this.setState(this.props.state ? this.props.state : this.state);
 	}
 
