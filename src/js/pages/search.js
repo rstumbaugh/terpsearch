@@ -40,7 +40,8 @@ class Search extends Component {
 		var self = this;
 		// do this first so UI updates before waiting for response
 		this.setState({
-			status: 'loading'
+			status: 'loading',
+			form: query
 		})
 
 		var queryString = this.generateQueryString(query);
@@ -49,7 +50,6 @@ class Search extends Component {
 			.then(res => JSON.parse(res.response))
 			.then(response => {
 				self.setState({
-					form: query,
 					numResults: response[0].total_matches,
 					results: response[1],
 					status: 'done'
