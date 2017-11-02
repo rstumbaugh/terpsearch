@@ -17,147 +17,166 @@ body {
 
 .content-wrap {
 	padding-top: 15px;
+}
 
-	.section {
-		text-align: center;
+.section {
+	text-align: center;
 
-		h1.section-heading {
-			color: $red;
-			font-size: 48px;
-		}
-
-		& > div {
-			text-align: left;
-		}
-	}
-
-	p {
-		font-size: $p-size;
-	}
-
-	legend {
-		display: block;
-		width: auto;
-		padding: 0 5px;
-		line-height: inherit;
-		border: auto;
-		border-bottom: none;
+	h1.section-heading {
 		color: $red;
-		font-size: $legend-size;
-		font-weight: 300;
+		font-size: 48px;
 	}
 
-	fieldset {
-	  border: 1px solid $red;
-	  padding: 0 15px 20px 15px;
+	& > div {
+		text-align: left;
 	}
+}
 
-	label {
-		font-family: $fonts;
-		font-size: $label-size;
-		font-weight: 400;
+p {
+	font-size: $p-size;
+}
 
-		color: $black;
-	}
+legend {
+	display: block;
+	width: auto;
+	padding: 0 5px;
+	line-height: inherit;
+	border: auto;
+	border-bottom: none;
+	color: $red;
+	font-size: $legend-size;
+	font-weight: 300;
+}
 
-	.hidden {
-		display: none
-	}
+fieldset {
+	border: 1px solid $red;
+	padding: 0 15px 20px 15px;
+}
 
-	.form-feedback {
-		font-size: 16px;
-		color: gray;
-		@include transition(color .25s linear);
+label {
+	font-family: $fonts;
+	font-size: $label-size;
+	font-weight: 400;
 
-		&.success {
-			color: $green;
-			@include transition(color .25s linear);
-		}
+	color: $black;
+}
 
-		&.error {
-			color: $error-red;
-			@include transition(color .25s linear);
-		}
-	}
+.hidden {
+	display: none
+}
 
-	.success-msg {
+.form-feedback {
+	font-size: 16px;
+	color: gray;
+	@include transition(color .25s linear);
+
+	&.success {
 		color: $green;
+		@include transition(color .25s linear);
 	}
 
-	.error-msg {
+	&.error {
 		color: $error-red;
+		@include transition(color .25s linear);
 	}
+}
 
-	.full-width {
-		width: 100%;
+.success-msg {
+	color: $green;
+}
+
+.error-msg {
+	color: $error-red;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.small {
+	font-size: $small-font-size;
+}
+
+.react-selectize.root-node {
+	width: auto;
+	
+	.react-selectize-control {
+		background-color: #fff;
 	}
-
-	.small {
-		font-size: $small-font-size;
-	}
-
-	.react-selectize.root-node {
-		width: auto;
-		
-		.react-selectize-control {
-			background-color: #fff;
-		}
-		
-		.react-selectize-reset-button-container {
-			margin-right: 5px;
-		}
-	}
-
-	.selectize-option {
-		font-size: $selectize-option-size;
-		padding: 5px 5px;
+	
+	.react-selectize-reset-button-container {
 		margin-right: 5px;
-		color: $black;
 	}
+}
 
-	.selectize-option-empty {
-		@extend .selectize-option;
+.selectize-option {
+	font-size: $selectize-option-size;
+	padding: 5px 5px;
+	margin-right: 5px;
+	color: $black;
+}
 
-		font-size: $selectize-none-size;
-		color: $dark-gray;
-	}
+.selectize-option-empty {
+	@extend .selectize-option;
 
-	.selectize-item {
+	font-size: $selectize-none-size;
+	color: $dark-gray;
+}
+
+.selectize-item {
+	cursor: pointer;
+	padding: 2px 5px;
+	color: $black;
+	background-color: $gray;
+	border-radius: 3px;
+}
+
+.btn-submit,
+.btn-white,
+.btn-blue {
+	display: inline-block;
+	border-radius: 2px;
+	border: 1px solid;
+	padding: 3px 8px;
+
+	&:hover {
 		cursor: pointer;
-		padding: 2px 5px;
-		color: $black;
-		background-color: $gray;
-		border-radius: 3px;
+		text-decoration: none;
 	}
 
-	.btn-submit,
-	.btn-white {
-		display: inline-block;
-		border-radius: 2px;
-		border: 1px solid;
-		padding: 3px 8px;
-
-		&:hover {
-			cursor: pointer;
-		}
+	&.large {
+		font-size: 16px;
+		padding: 8px 10px;
 	}
+}
 
-	.btn-submit {
+.btn-submit {
+	color: white;
+	border-color: $dark-red;
+	background-color: $red;
+
+	&:hover {
+		background-color: darken($red, 5%);
+	}
+}
+
+.btn-white {
+	background-color: white;
+	border-color: lightgray;
+	color: #333;
+
+	&:hover {
+		background-color: darken(white, 5%);
+	}
+}
+
+.btn-blue {
+	background-color: $link-blue;
+	border-color: $link-hover-blue;
+	color: white;
+
+	&:hover {
+		background-color: darken($link-blue, 5%);
 		color: white;
-		border-color: $dark-red;
-		background-color: $red;
-
-		&:hover {
-			background-color: darken($red, 5%);
-		}
-	}
-
-	.btn-white {
-		background-color: white;
-		border-color: lightgray;
-
-		&:hover {
-			background-color: darken(white, 5%);
-		}
 	}
 }
