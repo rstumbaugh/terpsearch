@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Modal from 'react-modal';
 import Link from 'components/link';
 import StarRating from 'components/rating/star-rating';
+import RatingForm from 'components/rating/rating-form';
 
 class ProfileCourses extends Component {
 	constructor(props) {
@@ -9,7 +10,8 @@ class ProfileCourses extends Component {
 
 		this.state = {
 			courses: props.courses || {},
-			showModal: false
+			showCoursesModal: false,
+			showRatingModal: false
 		}
 	}
 
@@ -33,14 +35,21 @@ class ProfileCourses extends Component {
 		this.setState({ courses });
 	}
 
-	toggleModal(showModal) {
-		this.setState({ showModal });
+	toggleRatingModal(showRatingModal) {
+		this.setState({ showRatingModal });
+	}
+
+	toggleCoursesModal(showCoursesModal) {
+		this.setState({ showCoursesModal });
 	}
 
 	render() {
 		var numCourses = Object.keys(this.state.courses).length;
 		return (
 			<div className={`user-profile-course-info card ${numCourses == 0 ? 'empty' : ''}`}>
+				<div className='user-profile-add-rating' onClick={this.toggleRatingModal.bind(this,true)}>
+					Add a rating
+				</div>
 				{
 					numCourses == 0 
 						? <i>No course ratings to display.</i> 
@@ -57,21 +66,20 @@ class ProfileCourses extends Component {
 				}
 				{
 					this.props.max && Object.keys(this.state.courses).length > this.props.max
-						? <div className='user-profile-view-all-courses' onClick={this.toggleModal.bind(this, true)}>
+						? <div className='user-profile-view-all-courses' onClick={this.toggleCoursesModal.bind(this, true)}>
 								{ `View all courses (${Object.keys(this.state.courses).length} found)`}
 							</div>
 						: ''
 				}
 
 				<Modal
-					isOpen={this.state.showModal}
-					onRequestClose={this.toggleModal.bind(this, false)}
-					contentLabel='Courses modal'
-				>
+					isOpen={this.state.showCoursesModal}
+					onRequestClose={this.toggleCoursesModal.bind(this, false)}
+					contentLabel='Courses modal'>
 					<div className='modal-header'>
 						<h2>
 							{`${this.props.name ? this.props.name.split(' ')[0] : ''}'s reviews`}
-							<span className='modal-close' onClick={this.toggleModal.bind(this, false)}>&times;</span>
+							<span className='modal-close' onClick={this.toggleCoursesModal.bind(this, false)}>&times;</span>
 						</h2>
 					</div>
 					<div className='modal-body'>
@@ -86,7 +94,25 @@ class ProfileCourses extends Component {
 						}
 					</div>
 				</Modal>
-
+				
+				<Modal
+					isOpen={this.state.showRatingModal}
+					onRequestClose={this.toggleRatingModal.bind(this, false)}
+					contentLabel='Rating modal'>
+					<div className='modal-header'>
+						<h2>
+							Add a course rating
+							<span className='modal-close' onClick={this.toggleRatingModal.bind(this, false)}>&times;</span>
+						</h2>
+					</div>
+					<div className='modal-body'>
+						<div className='row'>
+							<div className='col-sm-10 col-sm-offset-1'>
+								<RatingForm />
+							</div>
+						</div>
+					</div>
+				</Modal>
 			</div>
 		)
 	}
