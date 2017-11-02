@@ -53,3 +53,9 @@
 		text-decoration: underline;
 	}
 }
+
+.user-profile-add-rating {
+	@extend .user-profile-view-all-courses;
+	font-size: 18px;
+	margin-bottom: 10px;
+}

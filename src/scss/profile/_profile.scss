@@ -46,6 +46,10 @@ $profile-subheader-size: 32px;
 
 @include media-sm {
 	.user-profile-wrap {
+		.user-profile-image-wrap {
+			width: 25%;
+		}
+		
 		.user-profile-section.left,
 		.user-profile-section.right {
 			padding: 0 15px;

@@ -7,7 +7,7 @@ class ProfileScheduleForm extends Component {
 		super(props);
 
 		this.state = {
-			fields: <ScheduleFormItem index={0} onUpdate={this.updateCourse.bind(this)} />,
+			fields: [<ScheduleFormItem key={0} index={0} onUpdate={this.updateCourse.bind(this)} />],
 			courses: ['']
 		}
 	}

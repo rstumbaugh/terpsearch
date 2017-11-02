@@ -109,7 +109,10 @@ class Profile extends Component {
 	}
 
 	updateSchedule(newSchedule) {
-		console.log(`updating ${newSchedule}`)
+		var user = this.state.user;
+		user.schedule.courses = newSchedule;
+		this.setState({ user });
+
 		Ajax.post(`${Globals.API_USERS}/${this.state.uid}/schedule`, {
 			headers: {
 				'Authorization': Store.getItem('userToken')

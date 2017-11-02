@@ -65,7 +65,7 @@ const ProfileFriendItem = props => {
 	var url = `${Globals.API_USERS}/${props.id}/photo?size=250`;
 	return (
 		<Link to={`/user/${props.id}/`}>
-			<div className={`user-profile-friend col-md-${12 / props.rowSize}`}>
+			<div className={`user-profile-friend col-xs-6 col-sm-${12 / props.rowSize}`}>
 				<div className='user-profile-friend-img-wrap'>
 					<img src={url} alt={props.name} className='user-profile-friend-img' />
 				</div>
