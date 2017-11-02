@@ -129,6 +129,14 @@ class SearchBox extends Component {
 			/>
 		)
 
+		var semesters = 
+		<Select
+			name='sort'
+			onChange={item => this.handleChange('sort', item)}
+			options={sorts}
+			value={this.state.sort}
+		/>
+
 		// static multi select
 		var genedComponent =
 			<Select
@@ -194,7 +202,14 @@ class SearchBox extends Component {
 								subcomponent={genedRadios}
 							/>
 						</div>
-						<div className='clearfix visible-sm'></div>
+
+						{/* <div className='col-sm-6 col-md-3'>
+							<SearchComponent
+								labelText='Semester'
+								component={semesters}
+							/>
+						</div> */}
+						<div className='clearfix visible-sm visible-md hidden-lg'></div>
 						<div className='col-lg-3 col-sm-5'>
 							<SearchComponent
 								labelText='Sort by:'
@@ -209,7 +224,7 @@ class SearchBox extends Component {
 						</div>
 						<div className='clearfix visible-xs visible-sm visible-md visible-lg'></div>
 						<div className='col-sm-3'>
-							<div className='btn btn-primary' onClick={this.submitForm.bind(this)}>Search</div>
+							<div className='btn-blue' onClick={this.submitForm.bind(this)}>Search</div>
 						</div>
 					</form>
 				</div>

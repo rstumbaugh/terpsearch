@@ -18,6 +18,7 @@ class SearchSummary extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
+			currentPage: nextProps.page,
 			perPage: nextProps.perPage,
 			numResults: nextProps.numResults,
 			totalResults: nextProps.totalResults,

@@ -37,7 +37,10 @@ class Search extends Component {
 	}
 
 	onQueryUpdate(query) {
+		if (!query) return;
 		var self = this;
+		var page = query.per_page == this.state.form.per_page ? this.state.page : 1;
+		
 		// do this first so UI updates before waiting for response
 		this.setState({
 			status: 'loading',
@@ -45,14 +48,15 @@ class Search extends Component {
 		})
 
 		var queryString = this.generateQueryString(query);
-
+		
 		Ajax.get(Globals.API_COURSES + queryString)
 			.then(res => JSON.parse(res.response))
 			.then(response => {
 				self.setState({
 					numResults: response[0].total_matches,
 					results: response[1],
-					status: 'done'
+					status: 'done',
+					page
 				}, () => {
 					// pass search back to App to persist
 					self.updateSearch(self.state)
@@ -84,8 +88,9 @@ class Search extends Component {
 			query += '&';
 		}
 
+		var page = form.per_page == this.state.form.per_page ? this.state.page : 1;
 		query = query.replace(/%2C/g, ',');
-		query += `page=${this.state.page}`; // add page to query
+		query += `page=${page}`; // add page to query
 
 		return query;
 	}
@@ -97,13 +102,13 @@ class Search extends Component {
 		this.setState({
 			page: newPage
 		}, function() {
-			self.onQueryUpdate(self.onQueryUpdate(self.state.form))
+			self.onQueryUpdate(self.state.form)
 		})
 	}
 
 	render() {
 		// use regex to get number of items per page
-		var matches = this.state.query ? this.state.query.per_page : 25;
+		var matches = this.state.form ? this.state.form.per_page : 25;
 		return (
 			<div>
 				<Header />
@@ -113,6 +118,7 @@ class Search extends Component {
 							formData={this.state.form}
 							updateQuery={this.onQueryUpdate.bind(this)} />
 						<SearchSummary
+							page={this.state.page}
 							perPage={matches}
 							numResults={this.state.results.length}
 							totalResults={this.state.numResults}
