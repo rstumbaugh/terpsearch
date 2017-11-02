@@ -31,7 +31,14 @@ class CourseComments extends Component {
 		}
 
 		for (var i = 0; i < max; i++) {
-			var paragraphs = this.state.comments[i].comment.split(/\r?\n/);
+			// trim comment length
+			var comment = this.state.comments[i].comment;
+			comment = this.props.maxLength ? comment.slice(0, this.props.maxLength) : comment;
+			var trimmed = comment.length < this.state.comments[i].comment.length;
+			comment += trimmed ? '...' : ''
+
+			// split into paragraphs
+			var paragraphs = comment.split(/\r?\n/);
 			var text = [];
 			paragraphs.forEach(function(p, i) {
 				text.push(p);
@@ -41,6 +48,7 @@ class CourseComments extends Component {
 				<div className='info-comment' key={i}>
 					<blockquote>
 						{text}
+						{trimmed ? <i style={{fontSize: '14px'}}><br/>Click "View All" to see the rest</i> : ''}
 						<cite>{'\u2014 ' + (this.state.comments[i].name || 'anonymous')}</cite>
 					</blockquote>
 				</div>
@@ -54,7 +62,7 @@ class CourseComments extends Component {
 		var summary;
 		var link;
 
-		if (this.props.max && this.state.comments.length > this.props.max) {
+		if (!/comments/.test(window.location.href)) {
 			link = 
 				<Link to={`/comments/${this.props.type}/${this.props.id}`} pushHistory>
 					View all
