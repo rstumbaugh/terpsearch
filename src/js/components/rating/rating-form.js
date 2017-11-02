@@ -166,7 +166,7 @@ class RatingForm extends Component {
 								message={'1 star = Very Boring, 5 stars = Very Interesting'}
 						/>
 						<div className='col-sm-12'>
-							<button className='full-width btn btn-primary' 
+							<button className='full-width btn-blue' 
 									onClick={this.submitRating.bind(this)}>
 									Submit
 							</button>

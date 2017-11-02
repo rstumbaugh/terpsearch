@@ -114,9 +114,10 @@ class CommentInput extends Component {
 							value={this.state.text}
 							rows={this.props.rows} 
 							className={'form-control ' + this.props.className} 
-							onChange={this.handleChange.bind(this)} />
+							onChange={this.handleChange.bind(this)}
+							maxLength='750' />
 						<p className='help-block'>
-							{charsLeft + ' characters remaining.'}
+							{charsLeft + ' more characters required.'}
 						</p>
 					</div>
 					<div className='col-md-12 form-group'>
@@ -130,7 +131,7 @@ class CommentInput extends Component {
 						/>
 					</div>
 					<div className='info-comment-button-wrap col-md-3'>
-						<div className='btn btn-primary' onClick={this.handleSubmit.bind(this)}>Submit</div>
+						<div className='btn-blue' onClick={this.handleSubmit.bind(this)}>Submit</div>
 					</div>
 					<div className='info-comment-feedback-wrap col-md-6'>
 						<p className={'form-feedback ' + this.state.feedbackClass}>

@@ -32,7 +32,7 @@ class Home extends React.Component {
                 <div className='home-hero'>
                   <h1>Course selection <br/> made simple.</h1>
                   <br/>
-                  <Link to='/search' className='btn btn-lg btn-primary'>Start Searching</Link>
+                  <Link to='/search' className='btn-blue large'>Start Searching</Link>
                 </div>
                 <div className='home-hero-subtitle'>
                   <h2><i>Made by Terps, for Terps</i></h2>
