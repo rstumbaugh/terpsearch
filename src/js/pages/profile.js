@@ -81,8 +81,8 @@ class Profile extends Component {
 	}
 
 	// toggle user public prop -- to show profile or don't show
-	togglePublic(isPublic) {
-		var pub = isPublic == 'Yes';
+	togglePublic(isHidden) {
+		var pub = isHidden == 'No';
 		var url = `${Globals.API_USERS}/${this.state.uid}/togglePublic?public=${pub}`;
 
 		this.setState({
@@ -139,6 +139,7 @@ class Profile extends Component {
 								email={this.state.user.email}
 								uid={this.state.uid}
 								subscribed={this.state.user.getUpdates}
+								public={this.state.user.public}
 								isSelf={this.state.isSelf}
 								onPublicChange={this.togglePublic.bind(this)}
 								onEmailChange={this.toggleEmail.bind(this)}

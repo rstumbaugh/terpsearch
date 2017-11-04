@@ -39,13 +39,12 @@ class ProfileSettings extends Component {
 					<ProfileSettingsItem title='Profile'>
 						<p className='user-profile-secondary-text'>
 							Edit who can and cannot see your profile. Those who can see your profile
-							can only view your name, picture, as well as ratings and comments which
-							you choose to make public.
+							can only view your name, picture, course ratings, and course comments.
 						</p>
 						<ProfileToggle
-							label='Allow others to see your profile?'
+							label='Hide your profile from others?'
 							items={['No', 'Yes']}
-							active={this.props.public ? 'Yes' : 'No'}
+							active={this.props.public ? 'No' : 'Yes'}
 							onChange={this.props.onPublicChange}
 							enabled={this.props.publicEnabled}
 						/>
