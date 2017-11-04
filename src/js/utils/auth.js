@@ -15,9 +15,9 @@ class Auth {
 	logIn() {
 		var provider = new Firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_friends');
-		// provider.setCustomParameters({
-		// 	'auth_type': 'reauthenticate'
-		// })
+		provider.setCustomParameters({
+			'auth_type': 'reauthenticate'
+		})
 		
 		// only want to call once. don't want to keep this observer
 		var unsubscribe = Firebase.auth().onAuthStateChanged(function(user) {

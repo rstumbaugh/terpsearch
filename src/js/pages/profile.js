@@ -125,9 +125,6 @@ class Profile extends Component {
 	}
 
 	render() {
-		console.log(this.state.user);
-		var friends = this.state.user.friends;
-		friends = friends ? friends.concat(friends) : friends;
 		return (
 			<div>
 				<Header />
@@ -163,7 +160,7 @@ class Profile extends Component {
 						<div className='user-profile-section section col-md-5 right'>
 							<h1 className='user-profile-heading section-heading'>Friends</h1>
 							<ProfileFriends 
-								friends={friends}
+								friends={this.state.user.friends}
 								max={6}
 							/>
 						</div>
