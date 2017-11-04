@@ -47,13 +47,19 @@ class ProfileCourses extends Component {
 		var numCourses = Object.keys(this.state.courses).length;
 		return (
 			<div className={`user-profile-course-info card ${numCourses == 0 ? 'empty' : ''}`}>
+				{
+					numCourses == 0
+						? <i>No course ratings to display.</i>
+						: ''
+				}
+
 				<div className='user-profile-add-rating'>
 					<div className='btn-submit large' onClick={this.toggleRatingModal.bind(this,true)}>Add a rating</div>
 				</div>
+				
 				{
-					numCourses == 0 
-						? <i>No course ratings to display.</i> 
-						: Object.keys(this.state.courses).map((courseId, i) => 
+					numCourses > 0 
+						? Object.keys(this.state.courses).map((courseId, i) => 
 								this.props.max && i >= this.props.max 
 									? '' 
 									: <ProfileCourseItem 
@@ -63,6 +69,7 @@ class ProfileCourses extends Component {
 											key={courseId} 
 										/>
 							)
+						: ''
 				}
 				{
 					this.props.max && Object.keys(this.state.courses).length > this.props.max
