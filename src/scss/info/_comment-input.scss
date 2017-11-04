@@ -3,6 +3,10 @@ $help-block-size:  16px;
 
 .info-comment-input {
 	padding: 0 20px;
+
+	fieldset {
+		padding-bottom: 50px;
+	}
 	
 	label,
 	p.help-block {

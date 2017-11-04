@@ -109,6 +109,9 @@ class Profile extends Component {
 
 	updateSchedule(newSchedule) {
 		var user = this.state.user;
+		if (!user.schedule) {
+			user.schedule = {};
+		}
 		user.schedule.courses = newSchedule;
 		this.setState({ user });
 
