@@ -15,7 +15,7 @@ class Footer extends Component {
                   <Link to='/admin'>Admin Login</Link>
                 </div>
                 <div className="col-xs-4">
-                  <a href='feedback.html'>Contact</a>
+                  <a href='/feedback'>Contact</a>
                 </div>
                 <div className="col-xs-4">
                   <a href="https://github.com/rstumbaugh/terpsearch" target="_blank">GitHub</a>

@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import * as isofetch from 'isomorphic-fetch';
 
-import {Header, Content, Footer} from 'utils/layout.js';
+import {Header, Footer} from 'utils/layout.js';
+import Globals from 'globals';
 import Form from 'components/feedback.js';
 
 class Feedback extends Component {
+	componentDidMount() {
+		Globals.scrollTop();
+	}
+
 	render() {
 		return (
 			<div>
@@ -23,7 +27,6 @@ class Feedback extends Component {
 								For developers, you can visit the 
 								<a href='https://github.com/rstumbaugh/terpsearch' target='_blank'> GitHub page </a>
 								for this website to report an issue or just poke through the front-end code.
-								You can also send an email to <a href='mailto:admin@terpsearch.me'>admin@terpsearch.me</a>.
 							</p>
 							<br/>
 							<Form />

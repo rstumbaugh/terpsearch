@@ -7,7 +7,6 @@ import ratingImg from 'images/ratings.svg';
 import descImg from 'images/desc.svg';
 
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 import {Header, Content, Footer} from 'utils/layout.js';
 import History from 'utils/history';
@@ -15,6 +14,7 @@ import RatingForm from 'components/rating/rating-form.js';
 import Feedback from 'components/feedback.js';
 import Changelog from 'components/home/changelog';
 import ChangelogItem from 'components/home/changelog-item';
+import Link from 'components/link';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -126,7 +126,7 @@ class Home extends React.Component {
                         target='_blank'>here</a> on GitHub.
                         In the meantime, contribute your own ratings to help out!<br/><br />
 
-                        Feel free to <a href='mailto:admin@terpsearch.me' target='_blank'>shoot me an email</a> with 
+                        Feel free to <Link to='/feedback'>shoot me an email</Link> with 
                         any suggestions you might have for the site or <a href='https://github.com/rstumbaugh/terpsearch/issues' target='_blank'>report an issue 
                         on GitHub</a>. Some possible features on the To Do list include:
                         <br/>
