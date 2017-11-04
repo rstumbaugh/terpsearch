@@ -42,7 +42,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "rm -rf dist; webpack -p",
-    "deploy": "firebase deploy"
+    "deploy": "rm -rf dist; webpack -p; firebase deploy"
   },
   "repository": {
     "type": "git",
