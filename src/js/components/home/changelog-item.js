@@ -9,8 +9,7 @@ export default props =>
 					{ `\u2014 ${props.date}` }
 				</i>
 			</h3>
-			<p className='home-version-desc'>
-				{props.description}
+			<p className='home-version-desc' dangerouslySetInnerHTML={{__html: props.description}}>
 			</p>
 		</div>
 	</div>

@@ -111,13 +111,17 @@ class Home extends React.Component {
 
             <div className='home-content-wrap row'>
               <div className='home-content-heading'>
-                More coming soon
+                About TerpSearch
               </div>
               <div className='col-md-10 col-md-offset-1'>
                 <div className='card'>
                   <div className='row home-content-item'>
                     <div className='col-md-6 home-coming-soon'>
                       <p>
+                        TerpSearch is a <a href='https://rstumbaugh.me/' target='_blank'>student-created</a> website
+                        aiming to help University of Maryland students find interesting courses for their 
+                        schedule. We are very open to feedback and accept any and all input!<br/><br/>
+
                         You can check out the code and progress <a href='https://github.com/rstumbaugh/terpsearch' 
                         target='_blank'>here</a> on GitHub.
                         In the meantime, contribute your own ratings to help out!<br/><br />
@@ -129,8 +133,8 @@ class Home extends React.Component {
                       </p>
                       <ul>
                         <li>
-                          <h3>Facebook integration</h3>
-                          <p>See courses your Facebook friends have taken and how they have rated them in the past.</p>
+                          <h3>More powerful Facebook integration</h3>
+                          <p>See if friends have taken a course right from the Search Results page.</p>
                         </li>
                         <li>
                           <h3>Professor review pages</h3>
@@ -166,6 +170,17 @@ class Home extends React.Component {
             </div>
 
             <Changelog>
+              <ChangelogItem
+                version='1.3'
+                date='November 2017'
+                description={
+                  'Completed Profile page using Facebook login. Users can now view their ' +
+                  'Facebook friends that are on TerpSearch as well as courses they have taken, ' +
+                  'ratings they have left, and comments they have added. Users have the option ' +
+                  'hide their profile as well. <i>Only name and friends list is collected from ' +
+                  'Facebook. No other information is used or stored.</i> '
+                }
+              />
               <ChangelogItem
                 version='1.2'
                 date='July 2017'
