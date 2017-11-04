@@ -47,8 +47,8 @@ class ProfileCourses extends Component {
 		var numCourses = Object.keys(this.state.courses).length;
 		return (
 			<div className={`user-profile-course-info card ${numCourses == 0 ? 'empty' : ''}`}>
-				<div className='user-profile-add-rating' onClick={this.toggleRatingModal.bind(this,true)}>
-					Add a rating
+				<div className='user-profile-add-rating'>
+					<div className='btn-submit large' onClick={this.toggleRatingModal.bind(this,true)}>Add a rating</div>
 				</div>
 				{
 					numCourses == 0 
