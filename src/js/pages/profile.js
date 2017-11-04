@@ -43,7 +43,6 @@ class Profile extends Component {
 			.then(res => JSON.parse(res.response))
 			.then(user => {
 				this.setState({ user });
-				console.log(user)
 			})
 			.catch(err => {
 				console.error(err)
