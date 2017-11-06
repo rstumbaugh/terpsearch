@@ -28,6 +28,8 @@ class SearchResults extends Component {
 
 		for (var i = 0; i < this.state.results.length; i++) {
 			var course = this.state.results[i];
+			var sortedSemesters = course.semesters.sort()
+			var lastOffered = sortedSemesters[sortedSemesters.length - 1]
 			items.push(
 				<SearchItem 
 					key={i}
@@ -36,7 +38,7 @@ class SearchResults extends Component {
 					description={course.description}
 					gen_ed={(course.gen_ed ? course.gen_ed.join(', ') : '') || 'None'}
 					credits={course.credits}
-					lastOffered={Globals.getSemesterFromCode(course.semester)}
+					lastOffered={Globals.getSemesterFromCode(lastOffered)}
 					diffRating={course.avg_diff ? course.avg_diff.toFixed(1) : 'N/A'}
 					intRating={course.avg_int ? course.avg_int.toFixed(1) : 'N/A'}
 					hasReviews={course.num_responses > 0}
