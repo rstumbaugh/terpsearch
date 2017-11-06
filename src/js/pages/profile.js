@@ -150,7 +150,7 @@ class Profile extends Component {
 							/>
 						</div>
 						<div className='user-profile-section section col-md-7 left'>
-							<h1 className='user-profile-heading section-heading'>Courses</h1>
+							<h1 className='user-profile-heading section-heading'>Course Reviews</h1>
 							<ProfileCourses
 								ratings={this.state.user.ratings}
 								comments={this.state.user.comments}
