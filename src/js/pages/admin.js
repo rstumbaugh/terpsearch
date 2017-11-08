@@ -5,6 +5,7 @@ import Pages from 'components/admin/pages/admin-pages.js';
 import Auth from 'utils/auth';
 import Globals from 'globals';
 import Ajax from 'utils/ajax';
+import Store from 'utils/store';
 
 class Admin extends Component {
 	constructor() {
@@ -28,58 +29,38 @@ class Admin extends Component {
 	componentDidMount() {
 		var self = this;
 
-		var unsubscribe = Auth.onStateChanged(function(user) {
-			if (user) {
-				// get user's firebase access token
-				// use token to check if admin, then get 
+		if (!Store.getItem('userToken')) {
+			self.setState({
+				status: 'logged out',
+				items: [],
+				active: '',
+			})
+			return;
+		}
 
-				// get Firebase token, check if authenticated
-				user.getIdToken(true)
-					.then(function(token) {
-						self.setState({
-							token: token,
-							name: user.displayName
-						})
-						
-						return Ajax.get(Globals.API_ADMIN_DASHBOARD, {
-							'Authorization': token
-						});
-					})
-					.then(res => JSON.parse(res.response))
-					.then(function(response) {
-						// populate state with info
-						var state = {
-							status: 'logged in',
-							items: Globals.ADMIN_PAGES,
-							active: Globals.ADMIN_PAGES[0],
-							content: {}
-						}
+		Ajax.get(Globals.API_ADMIN_DASHBOARD, {
+			'Authorization': Store.getItem('userToken')
+		}).then(response => JSON.parse(response.response))
+			.then(response => {
+				var state = {
+					status: 'logged in',
+					items: Globals.ADMIN_PAGES,
+					active: Globals.ADMIN_PAGES[0],
+					content: {}
+				}
 
-						Globals.ADMIN_PAGES.forEach(page => {
-							state.content[page] = response[page];
-						})
-						
-						self.setState(state);
-					})
-					.catch(function(err) {
-						// error thrown if unauthorized 
-						console.error(err);
-						self.setState({
-							status: 'unauthorized'
-						})
-					})
-			} else {
-				self.setState({
-					status: 'logged out',
-					items: [],
-					active: '',
+				Globals.ADMIN_PAGES.forEach(page => {
+					state.content[page] = response[page];
 				})
-			}
-		})
-
-		this.setState({ unsubscribe });
-
-		Auth.logIn();
+				
+				self.setState(state);
+			})
+			.catch(err => {
+				console.error(err);
+				self.setState({
+					status: 'unauthorized'
+				})
+			})
 	}
 
 	componentWillUnmount() {
