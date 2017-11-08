@@ -12,6 +12,7 @@ class SearchBox extends Component {
 			keyword: '',
 			prof: [],
 			dept: [],
+			semester: [],
 			gened: [],
 			gened_type: 'or',
 			sort: 'course_id',
@@ -129,13 +130,19 @@ class SearchBox extends Component {
 			/>
 		)
 
-		var semesters = 
-		<Select
-			name='sort'
-			onChange={item => this.handleChange('sort', item)}
-			options={sorts}
-			value={this.state.sort}
-		/>
+		var semesters = (
+			<RemoteMultiSelect
+				name='semester'
+				loadOptionsOnMount
+				textField='name'
+				valueField='code'
+				minSearchLength={0}
+				value={this.state.semester}
+				url={Globals.API_LIST_SEMESTERS}
+				onChange={this.handleChange.bind(this)}
+				placeholder='Enter semesters (e.g. Fall 2016)'
+			/>
+		)
 
 		// static multi select
 		var genedComponent =
@@ -173,25 +180,29 @@ class SearchBox extends Component {
 				<div className='search-box col-sm-12'>
 					<h1>Filter Courses</h1>
 					<form>
-						<div className='col-lg-10'>
+						<div className='col-lg-12'>
 							<SearchComponent
 								labelText='Search by keyword or course ID'
 								component={keyword} 
 							/>
 						</div>
 						<div className='clearfix visible-md visible-lg'></div>
-						<div className='col-sm-6 col-lg-5'>
+						<div className='col-sm-6 col-lg-4'>
 							<SearchComponent
 								labelText='Filter professors'
-								component={professors}
-								subcomponent={<p className='help-block'>Shows courses taught by at least 
-											one of the selected professors</p>} 
+								component={professors} 
 							/>
 						</div>
-						<div className='col-sm-6 col-lg-4'>
+						<div className='col-sm-6 col-lg-3'>
 							<SearchComponent
 								labelText='Filter departments'
 								component={departments}
+							/>
+						</div>
+						<div className='col-sm-6 col-md-4'>
+							<SearchComponent
+								labelText='Semester'
+								component={semesters}
 							/>
 						</div>
 						<div className='clearfix visible-sm visible-md visible-lg'></div>
@@ -202,13 +213,6 @@ class SearchBox extends Component {
 								subcomponent={genedRadios}
 							/>
 						</div>
-
-						{/* <div className='col-sm-6 col-md-3'>
-							<SearchComponent
-								labelText='Semester'
-								component={semesters}
-							/>
-						</div> */}
 						<div className='clearfix visible-sm visible-md hidden-lg'></div>
 						<div className='col-lg-3 col-sm-5'>
 							<SearchComponent

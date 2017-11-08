@@ -48,7 +48,7 @@ class Search extends Component {
 		})
 
 		var queryString = this.generateQueryString(query);
-		
+		console.log(queryString)
 		Ajax.get(Globals.API_COURSES + queryString)
 			.then(res => JSON.parse(res.response))
 			.then(response => {
