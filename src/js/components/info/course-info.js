@@ -36,7 +36,10 @@ class CourseInfo extends Component {
 		}
 
 		var courseId = this.props.course.course_id;
-		var semester = this.props.course.semester;
+		var semesters = this.props.course.semesters.sort((a,b) => b - a);
+		var lastSemester = semesters[0];
+		semesters = semesters.map(code => Globals.getSemesterFromCode(code))
+		semesters = semesters.join(', ');
 		var dept = this.props.course.dept_id;
 		var genEd = this.props.course.gen_ed;
 		var core = this.props.course.core;
@@ -67,7 +70,8 @@ class CourseInfo extends Component {
 				<h1>{this.props.course.course_id}</h1>
 				<h2>{this.props.course.name}</h2>
 				<p>
-					<a href={'https://ntst.umd.edu/soc/'+semester+'/' + dept + '/' + courseId}>
+					<a href={`https://ntst.umd.edu/soc/${lastSemester}/${dept}/${courseId}`}
+						 target='_blank'>
 						View course on Testudo
 					</a>
 				</p>
@@ -75,8 +79,8 @@ class CourseInfo extends Component {
 					<i>{this.props.course.credits + ' credits'}</i>
 				</p>
 				<p>
-					<strong>Most recently offered: </strong>
-					<span className='red'>{Globals.getSemesterFromCode(semester)}</span>
+					<strong>Semesters offered: </strong>
+					<span className='red'>{semesters}</span>
 				</p>
 				<p>
 					<strong>Taught by: </strong>{profs}
