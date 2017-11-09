@@ -63,10 +63,6 @@ class Admin extends Component {
 			})
 	}
 
-	componentWillUnmount() {
-		this.state.unsubscribe();
-	}
-
 	// remove item from one of the pages
 	// arguments are type of item to remove (emails, users, feedback, etc)
 	// and the PK of object to remove
@@ -84,7 +80,7 @@ class Admin extends Component {
 
 		Ajax.post(Globals.API_DASHBOARD_REMOVE, {
 			headers: {
-				'Authorization': this.state.token
+				'Authorization': Store.getItem('userToken')
 			},
 			body: JSON.stringify(item)
 		})
@@ -105,7 +101,7 @@ class Admin extends Component {
 		
 		Ajax.post(Globals.API_EMAIL_SEND, {
 			headers: {
-				'Authorization': this.state.token
+				'Authorization': Store.getItem('userToken')
 			},
 			body: JSON.stringify(obj)
 		})
@@ -121,13 +117,13 @@ class Admin extends Component {
 	addEmail(email) {
 		Ajax.post(Globals.API_ADD_EMAIL, {
 			headers: {
-				'Authorization': this.state.token
+				'Authorization': Store.getItem('userToken')
 			},
 			body: JSON.stringify({email: email})
 		})
 			.then(() => {
 				return Ajax.get(Globals.API_ADMIN_DASHBOARD, {
-					'Authorization': this.state.token
+					'Authorization': Store.getItem('userToken')
 				})
 			})
 			.then(res => JSON.parse(res.response))
